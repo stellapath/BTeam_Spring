@@ -15,9 +15,6 @@ import com.csslect.app.dto.ANDto;
 import com.csslect.app.dto.MemberDTO;
 
 public class ANDao {
-	
-	// 욜
-	// ㅁㄴㅇ
 
 	DataSource dataSource;
 
@@ -25,11 +22,9 @@ public class ANDao {
 		try {
 			Context context = new InitialContext();
 			dataSource = (DataSource) context.lookup("java:/comp/env/bteam");
-			/* dataSource = (DataSource) context.lookup("java:/comp/env/team01"); */
 		} catch (NamingException e) {
 			e.getMessage();
 		}
-
 	}
 	
     public MemberDTO anLogin(String idin, String passwdin) {
@@ -63,7 +58,6 @@ public class ANDao {
 			System.out.println(e.getMessage());
 		} finally {
 			try {			
-				
 				if (resultSet != null) {
 					resultSet.close();
 				}
