@@ -10,7 +10,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import com.bteam.app.dto.UserVO;
+import com.bteam.app.vo.UserVO;
 
 public class UserDAO {
 	
@@ -30,20 +30,20 @@ public class UserDAO {
 	}
 	
 	// 회원가입
-	public int userSignUp(UserVO dto) {
+	public int userSignUp(UserVO vo) {
 		int succ = 0;
 		try {
 			conn = dataSource.getConnection();
 			String sql = "INSERT INTO bUser VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, dto.getUser_id());
-			ps.setString(2, dto.getUser_pw());
-			ps.setString(3, dto.getUser_name());
-			ps.setString(4, dto.getUser_nickname());
-			ps.setString(5, dto.getUser_email());
-			ps.setString(6, dto.getUser_phone());
-			ps.setString(7, dto.getUser_birth());
-			ps.setString(8, dto.getUser_key());
+			ps.setString(1, vo.getUser_id());
+			ps.setString(2, vo.getUser_pw());
+			ps.setString(3, vo.getUser_name());
+			ps.setString(4, vo.getUser_nickname());
+			ps.setString(5, vo.getUser_email());
+			ps.setString(6, vo.getUser_phone());
+			ps.setString(7, vo.getUser_birth());
+			ps.setString(8, vo.getUser_key());
 			succ = ps.executeUpdate();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -55,7 +55,7 @@ public class UserDAO {
 
 	// 로그인
 	public UserVO userLogIn(String user_id, String user_pw) {
-		UserVO dto = null;
+		UserVO vo = null;
 		try {
 			conn = dataSource.getConnection();
 			String sql = "SELECT * FROM bUser WHERE user_id = ? AND user_pw = ?";
@@ -64,22 +64,22 @@ public class UserDAO {
 			ps.setString(2, user_pw);
 			rs = ps.executeQuery();
 			if (rs.next()) {
-				dto = new UserVO();
-				dto.setUser_id(rs.getString("user_id"));
-				dto.setUser_pw(rs.getString("user_pw"));
-				dto.setUser_name(rs.getString("user_name"));
-				dto.setUser_nickname(rs.getString("user_nickname"));
-				dto.setUser_email(rs.getString("user_email"));
-				dto.setUser_phone(rs.getString("user_phone"));
-				dto.setUser_birth(rs.getString("user_birth"));
-				dto.setUser_key(rs.getString("user_key"));
+				vo = new UserVO();
+				vo.setUser_id(rs.getString("user_id"));
+				vo.setUser_pw(rs.getString("user_pw"));
+				vo.setUser_name(rs.getString("user_name"));
+				vo.setUser_nickname(rs.getString("user_nickname"));
+				vo.setUser_email(rs.getString("user_email"));
+				vo.setUser_phone(rs.getString("user_phone"));
+				vo.setUser_birth(rs.getString("user_birth"));
+				vo.setUser_key(rs.getString("user_key"));
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			System.out.println("userLogIn() Exception");
 		}
 		
-		return dto;
+		return vo;
 	}
 	
 	// 난수 생성

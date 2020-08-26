@@ -1,4 +1,4 @@
-package com.bteam.app.dto;
+package com.bteam.app.vo;
 
 public class UserVO {
 

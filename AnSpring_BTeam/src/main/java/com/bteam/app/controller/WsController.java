@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bteam.app.dao.UserDAO;
-import com.bteam.app.dto.UserVO;
+import com.bteam.app.vo.UserVO;
 
 @Controller
-public class KangController {
+public class WsController {
 
 	// 메인
 	@RequestMapping(value = "/")
