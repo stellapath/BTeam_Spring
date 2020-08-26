@@ -8,30 +8,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bteam.app.dao.UserDAO;
-import com.bteam.app.dto.UserDTO;
+import com.bteam.app.dto.UserVO;
 
 @Controller
 public class KangController {
 
-	/**
-	 * 임시
-	 */
-	@RequestMapping(value = "/index")
+	// 메인
+	@RequestMapping(value = "/")
 	public String index(HttpServletRequest request, Model model) {
-		System.out.println("::index::");
-		
-		return "index";
+
+		return "main";
 	}
 	
-	/**
-	 * 안드로이드 회원가입
-	 */
+	// 안드로이드 회원가입
 	@RequestMapping(value = "/andSignUp", method = RequestMethod.GET)
 	public String androidSignUp(HttpServletRequest request, Model model) {
-		System.out.println("::andSignUp::");
-		
+
 		UserDAO dao = new UserDAO();
-		UserDTO dto = new UserDTO();
+		UserVO dto = new UserVO();
 		
 		dto.setUser_id(request.getParameter("user_id"));
 		dto.setUser_pw(request.getParameter("user_pw"));
@@ -46,26 +40,23 @@ public class KangController {
 		
 		model.addAttribute("succ", succ);
 		
-		return "andSignUp";
+		return "app/andSignUp";
 	}
 	
-	/**
-	 * 안드로이드 로그인
-	 */
-	@RequestMapping(value = "/andLogIn", method = RequestMethod.GET)
+	// 안드로이드 로그인
+	@RequestMapping(value = "/andLogin", method = RequestMethod.GET)
 	public String androidLogIn(HttpServletRequest request, Model model) {
-		System.out.println("::andLogIn::");
-		
+
 		UserDAO dao = new UserDAO();
 		
 		String user_id = request.getParameter("user_id");
 		String user_pw = request.getParameter("user_pw");
 		
-		UserDTO dto = dao.userLogIn(user_id, user_pw);
+		UserVO dto = dao.userLogIn(user_id, user_pw);
 		
 		model.addAttribute("dto", dto);
 		
-		return "andLogIn";
+		return "app/andLogin";
 	}
 	
 }

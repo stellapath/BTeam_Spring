@@ -1,24 +1,9 @@
 package com.bteam.app.dto;
 
-public class UserDTO {
+public class UserVO {
 
 	private String user_id, user_pw, user_name, user_nickname,
 				   user_email, user_phone, user_birth, user_key;
-
-	public UserDTO() {}
-	
-	public UserDTO(String user_id, String user_pw, String user_name, String user_nickname, String user_email,
-			String user_phone, String user_birth, String user_key) {
-		super();
-		this.user_id = user_id;
-		this.user_pw = user_pw;
-		this.user_name = user_name;
-		this.user_nickname = user_nickname;
-		this.user_email = user_email;
-		this.user_phone = user_phone;
-		this.user_birth = user_birth;
-		this.user_key = user_key;
-	}
 
 	public String getUser_id() {
 		return user_id;

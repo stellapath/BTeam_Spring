@@ -10,7 +10,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import com.bteam.app.dto.UserDTO;
+import com.bteam.app.dto.UserVO;
 
 public class UserDAO {
 	
@@ -30,7 +30,7 @@ public class UserDAO {
 	}
 	
 	// 회원가입
-	public int userSignUp(UserDTO dto) {
+	public int userSignUp(UserVO dto) {
 		int succ = 0;
 		try {
 			conn = dataSource.getConnection();
@@ -54,8 +54,8 @@ public class UserDAO {
 	}
 
 	// 로그인
-	public UserDTO userLogIn(String user_id, String user_pw) {
-		UserDTO dto = null;
+	public UserVO userLogIn(String user_id, String user_pw) {
+		UserVO dto = null;
 		try {
 			conn = dataSource.getConnection();
 			String sql = "SELECT * FROM bUser WHERE user_id = ? AND user_pw = ?";
@@ -64,7 +64,7 @@ public class UserDAO {
 			ps.setString(2, user_pw);
 			rs = ps.executeQuery();
 			if (rs.next()) {
-				dto = new UserDTO();
+				dto = new UserVO();
 				dto.setUser_id(rs.getString("user_id"));
 				dto.setUser_pw(rs.getString("user_pw"));
 				dto.setUser_name(rs.getString("user_name"));
