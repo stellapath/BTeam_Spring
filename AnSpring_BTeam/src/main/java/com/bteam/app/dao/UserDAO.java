@@ -36,14 +36,14 @@ public class UserDAO {
 			conn = dataSource.getConnection();
 			String sql = "INSERT INTO bUser VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, dto.getUser_id());
+			ps.setString(1, dto.getUser_email());
 			ps.setString(2, dto.getUser_pw());
-			ps.setString(3, dto.getUser_name());
-			ps.setString(4, dto.getUser_nickname());
-			ps.setString(5, dto.getUser_email());
-			ps.setString(6, dto.getUser_phone());
-			ps.setString(7, dto.getUser_birth());
-			ps.setString(8, dto.getUser_key());
+			ps.setString(3, dto.getUser_nickname());
+			ps.setString(4, dto.getUser_phone());
+			ps.setInt(5, dto.getUser_zipcode());
+			ps.setString(6, dto.getUser_address());
+			ps.setString(7, dto.getDetail_address());
+			ps.setString(8, dto.getUser_birth());
 			succ = ps.executeUpdate();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -65,12 +65,13 @@ public class UserDAO {
 			rs = ps.executeQuery();
 			if (rs.next()) {
 				dto = new UserVO();
-				dto.setUser_id(rs.getString("user_id"));
-				dto.setUser_pw(rs.getString("user_pw"));
-				dto.setUser_name(rs.getString("user_name"));
-				dto.setUser_nickname(rs.getString("user_nickname"));
 				dto.setUser_email(rs.getString("user_email"));
+				dto.setUser_pw(rs.getString("user_pw"));
+				dto.setUser_nickname(rs.getString("user_nickname"));
 				dto.setUser_phone(rs.getString("user_phone"));
+				dto.setUser_zipcode(rs.getInt("user_zipcode"));
+				dto.setUser_address(rs.getString("user_address"));
+				dto.setDetail_address(rs.getString("detail_address"));
 				dto.setUser_birth(rs.getString("user_birth"));
 				dto.setUser_key(rs.getString("user_key"));
 			}
