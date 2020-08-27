@@ -54,13 +54,13 @@ public class UserDAO {
 	}
 
 	// 로그인
-	public UserVO userLogIn(String user_email, String user_pw) {
+	public UserVO userLogIn(String user_id, String user_pw) {
 		UserVO dto = null;
 		try {
 			conn = dataSource.getConnection();
 			String sql = "SELECT * FROM bUser WHERE user_email = ? AND user_pw = ?";
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, user_email);
+			ps.setString(1, user_id);
 			ps.setString(2, user_pw);
 			rs = ps.executeQuery();
 			if (rs.next()) {

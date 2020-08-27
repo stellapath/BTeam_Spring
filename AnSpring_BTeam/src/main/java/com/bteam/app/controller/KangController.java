@@ -27,9 +27,8 @@ public class KangController {
 		UserDAO dao = new UserDAO();
 		UserVO dto = new UserVO();
 		
-		dto.setUser_id(request.getParameter("user_id"));
+		dto.setUser_email(request.getParameter("user_id"));
 		dto.setUser_pw(request.getParameter("user_pw"));
-		dto.setUser_name(request.getParameter("user_name"));
 		dto.setUser_nickname(request.getParameter("user_nickname"));
 		dto.setUser_email(request.getParameter("user_email"));
 		dto.setUser_phone(request.getParameter("user_phone"));
