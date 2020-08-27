@@ -6,7 +6,6 @@
 <title>Main</title>
 <link rel="stylesheet" href="owlcarousel/owl.carousel.min.css">
 <link rel="stylesheet" href="owlcarousel/owl.theme.default.min.css">
-</script>
 </head>
 <body>
 <jsp:include page="include/header.jsp" />
