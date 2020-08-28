@@ -1,12 +1,12 @@
 -- 유저 (멤버)
 create table bUser (
-	user_email		varchar2(30)	primary key,
-	user_pw			varchar2(30)	not null,
-	user_nickname	varchar2(30)	not null,
-	user_phone		varchar2(15),
-	user_zipcode	number,
-	user_address	varchar2(1024),
-	detail_address	varchar2(1024),
-	user_birth		date,
-	user_key		varchar2(30)
+	user_email		 varchar2(30)	 primary key,
+	user_pw			 varchar2(30)	 not null,
+	user_nickname	 varchar2(30)	 not null,
+	user_phone		 varchar2(15),
+	user_zipcode	 number,
+	user_address	 varchar2(1024),
+	detail_address	 varchar2(1024),
+	user_birth		 date,
+	user_key		 varchar2(30)
 );

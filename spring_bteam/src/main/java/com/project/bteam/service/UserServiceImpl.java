@@ -9,13 +9,14 @@ import com.project.bteam.vo.UserVO;
 @Service
 public class UserServiceImpl implements UserService {
 
-	@Autowired private UserDAO dao;
+	@Autowired 
+	private UserDAO dao;
 
 	@Override
 	public boolean user_signup(UserVO vo) { return dao.user_signup(vo); }
 
 	@Override
-	public boolean user_id_check(String id) { return dao.user_id_check(id);	}
+	public boolean user_email_check(String id) { return dao.user_email_check(id);	}
 
 	@Override
 	public boolean user_login(String id, String pw) { return dao.user_login(id, pw); }

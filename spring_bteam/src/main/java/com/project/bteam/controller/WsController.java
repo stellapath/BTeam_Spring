@@ -7,12 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.project.bteam.service.UserService;
+import com.project.bteam.service.UserServiceImpl;
+import com.project.bteam.vo.UserVO;
 
 @Controller
 public class WsController {
 	
-	@Autowired private UserService service;
+	@Autowired 
+	private UserServiceImpl service;
 	
 	// 메인
 	@RequestMapping("/")
@@ -28,7 +30,10 @@ public class WsController {
 	
 	// 회원가입 처리 요청
 	@RequestMapping("/signupReq")
-	public String singupReq(HttpServletRequest request, Model model) {
+	public String singupReq(UserVO vo, Model model) {
+		boolean isSignup = service.user_signup(vo);
+		if (isSignup) model.addAttribute("signup", "회원가입성공");
+		else model.addAttribute("signup", "회원가입실패");
 		return "user/signupReq";
 	}
 	
