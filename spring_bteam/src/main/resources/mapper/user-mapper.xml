@@ -3,13 +3,18 @@
 <mapper namespace="user">
 	
 	<insert id="signup">
-		insert into bUser
-		values (#{user_email}, #{user_pw}, #{user_nickname}, #{user_phone}, 
-				#{user_zipcode}, #{user_address}, #{detail_address}, #{user_birth}, #{user_key})
+	insert into bUser
+	values (#{user_email}, #{user_pw}, #{user_nickname}, #{user_phone}, 
+			#{user_zipcode}, #{user_address}, #{detail_address}, #{user_birth}, #{user_key})
 	</insert>
 	
-	<select id="email_check" resultType="String">
-		select user_email from bUser where id = #{id}
+	<select id="email_check" resultType="Integer">
+	select count(*) from bUser where user_email = #{user_email}
 	</select>
 	
+	<select id="login" resultType="UserVO">
+	select * from bUser
+	where user_email = #{user_email} and user_pw = #{user_pw}
+	</select>
+
 </mapper>

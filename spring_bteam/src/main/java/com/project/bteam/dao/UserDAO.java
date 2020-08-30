@@ -17,34 +17,28 @@ public class UserDAO implements UserService {
 
 	// 회원가입
 	@Override
-	public boolean user_signup(UserVO vo) {
+	public int user_signup(UserVO vo) {
 		vo.setUser_key(getKey(false, 10));
-		int succ = sql.insert("user.signup", vo);	
-		System.out.println(succ);
-		if (succ > 0) {
-			return true;
-		}
-		return false;
+		int result = sql.insert("user.signup", vo);	
+		return result;
 	}
 
 	// 이메일 중복체크
 	@Override
-	public boolean user_email_check(String id) {
-		String user_email = sql.selectOne("user.email_check", id);
-		System.out.println(user_email);
-		if (!user_email.equals("")) {
-			return true;
-		}
-		return false;
+	public int user_email_check(String user_email) {
+		int result = sql.selectOne("user.email_check", user_email);
+		return result;
+	}
+
+	// 로그인
+	@Override
+	public UserVO user_login(UserVO vo) {
+		UserVO result = sql.selectOne("user.login", vo);
+		return result;
 	}
 
 	@Override
-	public boolean user_login(String id, String pw) {
-		return false;
-	}
-
-	@Override
-	public UserVO user_detail(String id) {
+	public UserVO user_detail(String user_email) {
 		return null;
 	}
 
@@ -54,7 +48,7 @@ public class UserDAO implements UserService {
 	}
 
 	@Override
-	public boolean user_delete(String id) {
+	public boolean user_delete(String user_email) {
 		return false;
 	}
 	
