@@ -8,5 +8,32 @@ create table bUser (
 	user_address	 varchar2(1024),
 	detail_address	 varchar2(1024),
 	user_birth		 date,
-	user_key		 varchar2(30)
+	user_key		 varchar2(30),
+	user_image		 varchar2(300),
+	user_imagepath	 varchar2(300)
 );
+
+-- 컬럼 추가됨 (user_image)
+alter table bUser add user_image varchar2(300) default 'default_profile.png';
+alter table bUser add user_imagepath varchar2(200) default '';
+
+-- 게시판
+create table bBoard (
+	board_num		number	primary key,
+	board_category	number	not null,
+	board_email		varchar2(30),
+	board_nickname	varchar2(30),
+	board_date		date,
+	board_title		varchar2(1024),
+	board_content	varchar2(2048) default '글 내용이 없습니다.',
+	board_file		varchar2(1024),
+	board_like		number,
+	constraint email
+	foreign key (board_email)
+	references bUser (user_email)
+);
+
+-- 카테고리 => 공지사항:0
+
+-- 글 번호 시퀀스 생성
+create sequence board_seq increment by 1;

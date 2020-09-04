@@ -1,9 +1,9 @@
-package com.project.bteam.vo;
+package com.project.bteam.user;
 
 public class UserVO {
 
-	private String user_email, user_pw, user_nickname, user_phone,
-				   user_zipcode, user_address, detail_address, user_birth, user_key;
+	private String user_email, user_pw, user_nickname, user_phone, user_zipcode,
+				    user_address, detail_address, user_birth, user_key, user_image, user_imagepath;
 
 	public String getUser_email() {
 		return user_email;
@@ -75,6 +75,22 @@ public class UserVO {
 
 	public void setUser_key(String user_key) {
 		this.user_key = user_key;
+	}
+
+	public String getUser_image() {
+		return user_image;
+	}
+
+	public void setUser_image(String user_image) {
+		this.user_image = user_image;
+	}
+
+	public String getUser_imagepath() {
+		return user_imagepath;
+	}
+
+	public void setUser_imagepath(String user_imagepath) {
+		this.user_imagepath = user_imagepath;
 	}
 
 }

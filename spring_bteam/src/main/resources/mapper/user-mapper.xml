@@ -3,7 +3,8 @@
 <mapper namespace="user">
 	
 	<insert id="signup">
-	insert into bUser
+	insert into bUser (user_email, user_pw, user_nickname, user_phone, 
+			user_zipcode, user_address, detail_address, user_birth, user_key)
 	values (#{user_email}, #{user_pw}, #{user_nickname}, #{user_phone}, 
 			#{user_zipcode}, #{user_address}, #{detail_address}, #{user_birth}, #{user_key})
 	</insert>
@@ -16,5 +17,16 @@
 	select * from bUser
 	where user_email = #{user_email} and user_pw = #{user_pw}
 	</select>
+
+	<select id="detail" resultType="UserVO">
+	select * from bUser
+	where user_email = #{user_email}
+	</select>
+
+	<update id="imageUpload">
+	update bUser
+	set user_image = #{user_image}, user_imagepath = #{user_imagepath}
+	where user_email = #{user_email}
+	</update>
 
 </mapper>

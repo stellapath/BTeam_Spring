@@ -5,6 +5,7 @@
 
 <configuration>
 	<typeAliases>		
-		<typeAlias type="com.project.bteam.vo.UserVO" alias="UserVO"/>
+		<typeAlias type="com.project.bteam.user.UserVO" alias="UserVO"/>
+		<typeAlias type="com.project.bteam.board.BoardVO" alias="BoardVO"/>
 	</typeAliases>
 </configuration>

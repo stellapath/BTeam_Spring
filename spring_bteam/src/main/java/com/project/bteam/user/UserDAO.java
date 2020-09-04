@@ -1,13 +1,10 @@
-package com.project.bteam.dao;
+package com.project.bteam.user;
 
 import java.util.Random;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import com.project.bteam.service.UserService;
-import com.project.bteam.vo.UserVO;
 
 @Repository
 public class UserDAO implements UserService {
@@ -17,7 +14,7 @@ public class UserDAO implements UserService {
 
 	// 회원가입
 	@Override
-	public int user_signup(UserVO vo) {
+	public int userSignup(UserVO vo) {
 		vo.setUser_key(getKey(false, 10));
 		int result = sql.insert("user.signup", vo);	
 		return result;
@@ -25,30 +22,37 @@ public class UserDAO implements UserService {
 
 	// 이메일 중복체크
 	@Override
-	public int user_email_check(String user_email) {
+	public int userEmailCheck(String user_email) {
 		int result = sql.selectOne("user.email_check", user_email);
 		return result;
 	}
 
 	// 로그인
 	@Override
-	public UserVO user_login(UserVO vo) {
+	public UserVO userLogin(UserVO vo) {
 		UserVO result = sql.selectOne("user.login", vo);
 		return result;
 	}
 
+	// 회원 정보 가져오기
 	@Override
-	public UserVO user_detail(String user_email) {
-		return null;
+	public UserVO userDetail(String user_email) {
+		return sql.selectOne("user.detail", user_email);
+	}
+	
+	// 프로필 이미지 업로드
+	@Override
+	public int userImageUpload(UserVO vo) {
+		return sql.update("user.imageUpload", vo);
 	}
 
 	@Override
-	public boolean user_update(UserVO vo) {
+	public boolean userUpdate(UserVO vo) {
 		return false;
 	}
 
 	@Override
-	public boolean user_delete(String user_email) {
+	public boolean userDelete(String user_email) {
 		return false;
 	}
 	
