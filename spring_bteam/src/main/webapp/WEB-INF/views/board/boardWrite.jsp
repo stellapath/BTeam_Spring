@@ -53,7 +53,10 @@ history.back();
 			<td><input type="file" name="board_file" /></td>
 		</tr>
 	</table>
-	<input type="submit" value="글 작성" />
+	<div id="buttons">
+		<a class="btn-fill" onclick="javascript:if( confirm('작성글을 등록하시겠습니까?') ){$('form').submit()}">등록</a>
+		<a class="btn-fill" onclick="javascript:if( confirm('작성글을 취소하시겠습니까?') ){href='board'}">취소</a>
+	</div>
 </form>
 </body>
 </html>

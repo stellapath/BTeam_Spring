@@ -2,12 +2,13 @@ package com.project.bteam.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 
 import com.project.bteam.board.BoardServiceImpl;
 import com.project.bteam.board.BoardVO;
@@ -19,14 +20,18 @@ public class BoardController {
 	@Autowired private BoardServiceImpl service;
 	@Autowired private CommonService common;
 	
-	// 공지사항 화면 요청
+//	 공지사항 화면 요청
 	@RequestMapping("/noticeBoard")
-	public String boardList(Model model) {
+	public String boardList(Model model, int board_category, HttpSession session) {
 		// 카테고리 : 0 => 공지사항
-		List<BoardVO> list = service.boardList(0);
+		List<BoardVO> list = service.boardList(board_category);
+		session.setAttribute("list", list);
 		model.addAttribute("boardList", list);
 		return "board/noticeBoard";
 	}
+	
+	// 공지글 상세보기 화면 요청
+	
 	
 	// 글 작성 화면 요청
 	@RequestMapping("/boardWrite")

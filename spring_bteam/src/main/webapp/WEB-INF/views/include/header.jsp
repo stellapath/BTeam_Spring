@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <header>
 	<h1>HEADER</h1>
-	<a href="noticeBoard">공지사항</a>
+	<a href="noticeBoard?board_category=0">공지사항</a>
 	
 	<c:if test="${login_info eq null}">
 	<a href="login">로그인</a>
