@@ -18,25 +18,27 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public BoardVO board_detail(HashMap<String, Integer> map) {
-		return dao.board_detail(map);
+	public BoardVO boardDetail(HashMap<String, Integer> map) {
+		return dao.boardDetail(map);
 	}
 
 	@Override
-	public void board_insert(BoardVO bvo) {
-		dao.board_insert(bvo);		
+	public int boardWrite(BoardVO bvo) {
+		return dao.boardWrite(bvo);
 	}
 
 	@Override
-	public void board_update(BoardVO bvo) {
+	public void boardUpdate(BoardVO bvo) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void board_delete(int board_num, String board_email) {
-		// TODO Auto-generated method stub
+	public void boardDelete(int board_num) {
+		dao.boardDelete(board_num);
 		
 	}
+
+	
 
 }

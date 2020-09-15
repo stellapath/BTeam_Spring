@@ -12,7 +12,9 @@ pageContext.setAttribute("bvo", bvo);
 <title>공지사항</title>
 </head>
 <body>
-<table>
+<jsp:include page="/WEB-INF/views/include/header.jsp"/>
+<div class="container" align="center">
+<table border="1px solid #ccc" style="text-align: center;">
 	<tr>
 		<th>글제목</th>
 		<th>작성일</th>
@@ -21,7 +23,7 @@ pageContext.setAttribute("bvo", bvo);
 	</tr>
 	<c:forEach items="${list}" var="bvo">
 	<tr>
-		<td><a href="boardDetail?board_num=${bvo.board_num }">${bvo.board_title}</a></td>
+		<td><a href="boardView?board_num=${bvo.board_num }&board_category=0">${bvo.board_title}</a></td>
 		<td>${bvo.board_date}</td>
 		<td>${bvo.board_nickname}</td>
 		<td>${bvo.board_like}</td>
@@ -29,7 +31,9 @@ pageContext.setAttribute("bvo", bvo);
 	</c:forEach>
 </table>
 <c:if test="${login_info.user_email eq 'admin'}">
-<a href="boardWrite?category=0">글작성</a>
+<a href="boardWrite?board_category=0">글작성</a>
 </c:if>
+</div>
+<jsp:include page="/WEB-INF/views/include/footer.jsp"/>
 </body>
 </html>

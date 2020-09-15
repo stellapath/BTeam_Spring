@@ -1,10 +1,15 @@
-<%@page import="com.project.bteam.user.UserVO"%>
+<%@ page import="com.project.bteam.user.UserVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+UserVO vo = (UserVO) session.getAttribute("login_info");
+pageContext.setAttribute("vo", vo);
+%>
 <header>
 	<h1>HEADER</h1>
+	<a href="companyPage">회사소개</a>
+	<a href="productPage">제품소개</a>
 	<a href="noticeBoard?board_category=0">공지사항</a>
-	
 	<c:if test="${login_info eq null}">
 	<a href="login">로그인</a>
 	<a href="signup">회원가입</a>

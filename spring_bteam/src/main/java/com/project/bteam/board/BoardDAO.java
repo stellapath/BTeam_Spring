@@ -19,26 +19,25 @@ public class BoardDAO implements BoardService {
 	}
 
 	@Override
-	public BoardVO board_detail(HashMap<String, Integer> map) {
+	public BoardVO boardDetail(HashMap<String, Integer> map) {
 		return sql.selectOne("board.view", map);
 	}
 
 	@Override
-	public void board_insert(BoardVO bvo) {
-		sql.insert("board.upload", bvo);
-		
+	public int boardWrite(BoardVO bvo) {
+		int result = sql.insert("board.write", bvo);
+		return result;
 	}
 
 	@Override
-	public void board_update(BoardVO bvo) {
+	public void boardUpdate(BoardVO bvo) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void board_delete(int board_num, String board_email) {
-		// TODO Auto-generated method stub
-		
+	public void boardDelete(int board_num) {
+		sql.delete("board.delete", board_num);		
 	}
 	
 }

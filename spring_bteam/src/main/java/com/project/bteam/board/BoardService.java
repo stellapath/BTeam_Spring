@@ -8,9 +8,9 @@ import com.project.bteam.board.BoardVO;
 public interface BoardService {
 
 	List<BoardVO> boardList(int board_category);
-	BoardVO board_detail(HashMap<String, Integer> map);
-	void board_insert(BoardVO bvo);
-	void board_update(BoardVO bvo);
-	void board_delete(int board_num, String board_email);
+	BoardVO boardDetail(HashMap<String, Integer> map);
+	int boardWrite(BoardVO bvo);
+	void boardUpdate(BoardVO bvo);
+	void boardDelete(int board_num);
 	
 }
