@@ -54,7 +54,7 @@ pageContext.setAttribute("enter", "\n");
 			<a onclick="javascript:if( confirm('게시글을 삭제하시겠습니까?') ){ href='boardDelete?board_num=${bvo.board_num}&board_category=${bvo.board_category}'}">삭제</a>
 			<a href="boardWrite?board_category=${bvo.board_category}">글쓰기</a>
 			</c:if>
-			<a href="noticeBoard">목록</a>
+			<a href="noticeBoard?board_category=0">목록</a>
 		</td>
 	</tr>
 </table>
