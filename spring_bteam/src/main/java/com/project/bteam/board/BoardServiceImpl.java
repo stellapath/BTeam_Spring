@@ -23,14 +23,13 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int boardWrite(BoardVO bvo) {
+	public boolean boardWrite(BoardVO bvo) {
 		return dao.boardWrite(bvo);
 	}
 
 	@Override
-	public void boardUpdate(BoardVO bvo) {
-		// TODO Auto-generated method stub
-		
+	public boolean boardUpdate(BoardVO bvo) {
+		return dao.boardUpdate(bvo);
 	}
 
 	@Override

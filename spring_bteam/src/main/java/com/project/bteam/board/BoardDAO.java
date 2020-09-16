@@ -24,15 +24,13 @@ public class BoardDAO implements BoardService {
 	}
 
 	@Override
-	public int boardWrite(BoardVO bvo) {
-		int result = sql.insert("board.write", bvo);
-		return result;
+	public boolean boardWrite(BoardVO bvo) {
+		return sql.insert("board.write", bvo)>0 ? true : false;
 	}
 
 	@Override
-	public void boardUpdate(BoardVO bvo) {
-		// TODO Auto-generated method stub
-		
+	public boolean boardUpdate(BoardVO bvo) {
+		return sql.update("board.update", bvo)>0 ? true : false;		
 	}
 
 	@Override

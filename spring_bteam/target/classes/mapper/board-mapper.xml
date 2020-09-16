@@ -2,13 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board">
 	
+	<update id="update">
+	update bBoard set board_title=#{board_title}, board_content=#{board_content}, board_date=to_date(sysdate, 'yy/mm/dd'), board_file=#{board_file}
+	where board_num=#{board_num}
+	</update>
+	
 	<delete id="delete">
 	delete from bBoard where board_num = #{board_num}
 	</delete>
 	
 	<insert id="write">
 	insert into bBoard (board_num, board_category, board_email, board_nickname, board_date, board_title, board_content, board_file)
-	values ((select NVL(MAX(board_num), 0) + 1 from bBoard), #{board_category}, #{board_email}, #{board_nickname}, to_date(sysdate, 'yy/mm/dd'), #{board_title}, #{board_content}, #{board_file});
+	values ((select NVL(MAX(board_num), 0) + 1 from bBoard), #{board_category}, #{board_email}, #{board_nickname}, to_date(sysdate, 'yy/mm/dd'), #{board_title}, #{board_content}, #{board_file})
 	</insert>
 	
 	<select id="view" resultType="BoardVO">

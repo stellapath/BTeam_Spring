@@ -3,6 +3,7 @@ package com.project.bteam.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,22 +52,34 @@ public class BoardController {
 		return "board/boardWrite";
 	}
 	
-	// 글 작성 처리 요청
-	@RequestMapping("/boardWriteReq")
-	public String boardWriteReq(BoardVO bvo, Model model) {
-		int result = service.boardWrite(bvo);
-		model.addAttribute("result", result);
-		return "board/boardWriteReq";
+	// 글 작성 업로드 요청
+	@ResponseBody @RequestMapping(value="/boardWriteReq", produces="text/html; charset=utf-8")
+	public String boardWriteReq(BoardVO bvo, HttpServletRequest request) {
+		String msg = "<script type='text/javascript'>";
+		if(service.boardWrite(bvo)) {
+			msg += "alert('글이 등록되었습니다.'); location='" + request.getContextPath() + "/home'";
+		}else {
+			msg += "alert('글 등록에 실패했습니다.');";
+		}	
+		msg += "</script>";
+		return msg;
 	}
 	
 	// 글 수정 화면 요청
-	@RequestMapping("/boardModify")
-	public String boardModify(Model model, int board_num, int board_category) {
+	@RequestMapping("/boardUpdate")
+	public String boardUpdate(Model model, int board_num, int board_category) {
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		map.put("board_num", board_num);
 		map.put("board_category", board_category);
 		model.addAttribute("bvo", service.boardDetail(map));
-		return "board/boardModify";
+		return "board/boardUpdate";
+	}
+	
+	// 글 수정 업로드 요청
+	@RequestMapping("/boardUpdateReq")
+	public String boardUpdate(BoardVO bvo) {
+		service.boardUpdate(bvo);
+		return "";
 	}
 	
 	// 글 삭제 처리 요청

@@ -30,13 +30,14 @@ alert("공지사항은 관리자만 작성할 수 있습니다.");
 history.back();
 </script>
 </c:if>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/include/header.jsp"/>
 <div align="center">
 <h3>공지사항 작성</h3>
-<form action="/boardWriteReq" method="get" enctype="multipart/form-data">
+<form action="boardWriteReq" method="get" enctype="multipart/form-data">
+	<input type="hidden" name="board_nickname" value="${login_info.user_nickname}" />
 	<input type="hidden" name="board_email" value="${login_info.user_email}" />
 	<input type="hidden" name="board_category" value="${board_category}" />
 	<table border="1px solid #ccc" >
@@ -54,7 +55,7 @@ history.back();
 		</tr>
 		<tr>
 			<th>첨부파일</th>
-			<td><input type="file" name="board_file" value=""/></td>
+			<td><input type="file" name="board_file"/></td>
 		</tr>
 	</table>
 </form>
@@ -63,6 +64,7 @@ history.back();
 		<a class="btn-fill" onclick="javascript:if( confirm('작성글을 취소하시겠습니까?') ){href='noticeBoard?board_category=0'}">취소</a>
 	</div>
 </div>	
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <jsp:include page="/WEB-INF/views/include/footer.jsp"/>
 </body>
 </html>

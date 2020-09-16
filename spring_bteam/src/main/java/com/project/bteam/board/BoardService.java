@@ -9,8 +9,8 @@ public interface BoardService {
 
 	List<BoardVO> boardList(int board_category);
 	BoardVO boardDetail(HashMap<String, Integer> map);
-	int boardWrite(BoardVO bvo);
-	void boardUpdate(BoardVO bvo);
+	boolean boardWrite(BoardVO bvo);
+	boolean boardUpdate(BoardVO bvo);
 	void boardDelete(int board_num);
 	
 }
