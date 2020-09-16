@@ -10,8 +10,8 @@
 <body>
 <jsp:include page="/WEB-INF/views/include/header.jsp"/>
 <div align="center">
-<form action="boardUpdateReq" method="get">
-<input type="hidden" name="board_email" value="${bvo.board_num }"/>
+<form action="boardUpdateReq" method="get" enctype="multipart/form-data">
+<input type="hidden" name="board_num" value="${bvo.board_num }"/>
 <table border="1px solid #ccc">
 	<tr>
 		<th>제목</th>

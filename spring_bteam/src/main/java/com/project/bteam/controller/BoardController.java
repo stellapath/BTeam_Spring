@@ -57,7 +57,8 @@ public class BoardController {
 	public String boardWriteReq(BoardVO bvo, HttpServletRequest request) {
 		String msg = "<script type='text/javascript'>";
 		if(service.boardWrite(bvo)) {
-			msg += "alert('글이 등록되었습니다.'); location='" + request.getContextPath() + "/home'";
+			msg += "alert('글이 등록되었습니다.'); ";
+			msg	+= "location='" + request.getContextPath() + "/noticeBoard?board_category=0'";
 		}else {
 			msg += "alert('글 등록에 실패했습니다.');";
 		}	
@@ -76,10 +77,17 @@ public class BoardController {
 	}
 	
 	// 글 수정 업로드 요청
-	@RequestMapping("/boardUpdateReq")
-	public String boardUpdate(BoardVO bvo) {
-		service.boardUpdate(bvo);
-		return "";
+	@ResponseBody @RequestMapping(value="/boardUpdateReq", produces="text/html; charset=utf-8")
+	public String boardUpdate(BoardVO bvo, HttpServletRequest request) {
+		String msg = "<script type='text/javascript'>";
+		if(service.boardUpdate(bvo)) {
+			msg += "alert('글이 수정되었습니다.'); ";
+			msg	+= "location='" + request.getContextPath() + "/noticeBoard?board_category=0'";
+		}else {
+			msg += "alert('글 수정에 실패했습니다.');";
+		}	
+		msg += "</script>";
+		return msg;
 	}
 	
 	// 글 삭제 처리 요청
