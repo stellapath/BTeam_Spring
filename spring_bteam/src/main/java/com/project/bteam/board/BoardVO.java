@@ -1,10 +1,13 @@
 package com.project.bteam.board;
 
+import java.sql.Date;
+
 public class BoardVO {
 
 	private int board_num, board_category, board_like;
-	private String board_email, board_nickname, board_date, 
+	private String board_email, board_nickname, 
 				   board_title, board_content, board_file;
+	private Date board_date;
 	
 	public int getBoard_num() {
 		return board_num;
@@ -36,10 +39,10 @@ public class BoardVO {
 	public void setBoard_nickname(String board_nickname) {
 		this.board_nickname = board_nickname;
 	}
-	public String getBoard_date() {
+	public Date getBoard_date() {
 		return board_date;
 	}
-	public void setBoard_date(String board_date) {
+	public void setBoard_date(Date board_date) {
 		this.board_date = board_date;
 	}
 	public String getBoard_title() {

@@ -19,7 +19,7 @@ pageContext.setAttribute("bvo", bvo);
 		<th>글제목</th>
 		<th>작성일</th>
 		<th>작성자</th>
-		<th>좋아요 수</th>
+		<th>좋아요</th>
 	</tr>
 	<c:forEach items="${list}" var="bvo">
 	<tr>
