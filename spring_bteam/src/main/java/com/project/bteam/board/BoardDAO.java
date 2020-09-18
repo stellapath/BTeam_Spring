@@ -37,5 +37,11 @@ public class BoardDAO implements BoardService {
 	public void boardDelete(int board_num) {
 		sql.delete("board.delete", board_num);		
 	}
+
+	@Override
+	public void boardReadCnt(int board_num) {
+		sql.update("board.readcount", board_num);
+		
+	}
 	
 }

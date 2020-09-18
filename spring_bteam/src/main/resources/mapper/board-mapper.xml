@@ -21,9 +21,13 @@
 	where board_num=#{board_num} and board_category=#{board_category}
 	</select>
 	
+	<update id="readcount">
+	update bBoard set board_readcnt = board_readcnt+1 where board_num=#{board_num}
+	</update>
+	
 	<select id="list" resultType="BoardVO">
-	select * from bBoard
-	where board_category=#{board_category}
+	select rownum board_no, b.* from (select * from bBoard where board_category=#{board_category} order by board_num) b
+	order by board_no desc
 	</select>
 	
 </mapper>

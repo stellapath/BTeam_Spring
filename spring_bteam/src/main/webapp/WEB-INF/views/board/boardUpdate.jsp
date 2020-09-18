@@ -8,11 +8,10 @@
 <title>게시글 수정</title>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/include/header.jsp"/>
-<div align="center">
+<div class="container">
 <form action="boardUpdateReq" method="get" enctype="multipart/form-data">
 <input type="hidden" name="board_num" value="${bvo.board_num }"/>
-<table border="1px solid #ccc">
+<table>
 	<tr>
 		<th>제목</th>
 		<td><input type="text" name="board_title" value="${bvo.board_title }"/></td>
@@ -28,22 +27,20 @@
 	<tr>
 		<th>첨부파일</th>
 		<td colspan="3">
-			<c:if test="${empty bvo.board_file }">
-				<input type="file" name="board_file" value=""/>
+			<c:if test="${empty bvo.board_filename }">
+				<input type="file" name="board_filename" value=""/>
 			</c:if>
-			<c:if test="${not empty bvo.board_file }">
-				${bvo.board_file }<input type="file" name="board_file" value=""/>
+			<c:if test="${not empty bvo.board_filename }">
+				${bvo.board_filename }<input type="file" name="board_filename" value=""/>
 			</c:if>
 		</td>
 	</tr>
-</table>
-	<div id="buttons">
-		<a class="btn-fill" onclick="$('form').submit()">수정</a>
-		<a class="btn-fill" onclick="javascript:if( confirm('수정을 취소하시겠습니까?') ){href='boardView?board_num=${bvo.board_num}&board_category=0'}">취소</a>
-	</div>
+</table><br/>
 </form>
+<div class="btnSet">
+	<a class="btn_fill" onclick="$('form').submit()">수정</a>
+	<a class="btn_empty" onclick="javascript:if( confirm('수정을 취소하시겠습니까?') ){href='boardView?board_num=${bvo.board_num}&board_category=0'}">취소</a>
 </div>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<jsp:include page="/WEB-INF/views/include/footer.jsp"/>
+</div>
 </body>
 </html>

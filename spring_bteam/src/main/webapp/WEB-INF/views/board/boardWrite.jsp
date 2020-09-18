@@ -33,38 +33,42 @@ history.back();
 
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/include/header.jsp"/>
-<div align="center">
-<h3>공지사항 작성</h3>
+<div class="container">
 <form action="boardWriteReq" method="get" enctype="multipart/form-data">
 	<input type="hidden" name="board_nickname" value="${login_info.user_nickname}" />
 	<input type="hidden" name="board_email" value="${login_info.user_email}" />
 	<input type="hidden" name="board_category" value="${board_category}" />
-	<table border="1px solid #ccc" >
+	<table>
 		<tr>
 			<th>작성자</th>
 			<td>${login_info.user_nickname}</td>
 		</tr>
 		<tr>
-			<th>글 제목</th>
+			<th>제목</th>
 			<td><input type="text" name="board_title" required /></td>
 		</tr>
 		<tr>
-			<th>글 내용</th>
+			<th>내용</th>
 			<td><textarea rows="5" cols="20" name="board_content"></textarea></td>
 		</tr>
 		<tr>
 			<th>첨부파일</th>
-			<td><input type="file" name="board_file"/></td>
+			<td><label>
+				<img alt="첨부파일" src="img/attach.png" class="file_icon">
+				<input type="file" name="board_file" id="attach_file"/>
+				</label>
+				<span id="file-name" ></span>
+				<span id="delete-file" style="color : red;">
+					<i class="fas fa-times font_icon"></i>
+				</span>
+			</td>
 		</tr>
-	</table>
+	</table><br/>
 </form>
-	<div id="buttons">
-		<a class="btn-fill" onclick="$('form').submit()">등록</a>
-		<a class="btn-fill" onclick="javascript:if( confirm('작성글을 취소하시겠습니까?') ){href='noticeBoard?board_category=0'}">취소</a>
+	<div id="btnSet">
+		<a class="btn_fill" onclick="$('form').submit()">등록</a>
+		<a class="btn_empty" onclick="javascript:if( confirm('작성글을 취소하시겠습니까?') ){href='noticeBoard?board_category=0'}">취소</a>
 	</div>
 </div>	
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<jsp:include page="/WEB-INF/views/include/footer.jsp"/>
 </body>
 </html>

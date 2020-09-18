@@ -38,6 +38,11 @@ public class BoardServiceImpl implements BoardService {
 		
 	}
 
+	@Override
+	public void boardReadCnt(int board_num) {
+		dao.boardReadCnt(board_num);
+		
+	}
 	
 
 }

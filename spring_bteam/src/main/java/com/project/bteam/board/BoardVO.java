@@ -4,11 +4,34 @@ import java.sql.Date;
 
 public class BoardVO {
 
-	private int board_num, board_category, board_like;
-	private String board_email, board_nickname, 
-				   board_title, board_content, board_file;
+	private String board_email, board_nickname, board_title, board_content, board_filename, board_filepath;
 	private Date board_date;
+	private int board_num, board_category, board_like, board_readcnt, board_no;
 	
+	public String getBoard_filename() {
+		return board_filename;
+	}
+	public void setBoard_filename(String board_filename) {
+		this.board_filename = board_filename;
+	}
+	public String getBoard_filepath() {
+		return board_filepath;
+	}
+	public void setBoard_filepath(String board_filepath) {
+		this.board_filepath = board_filepath;
+	}
+	public int getBoard_no() {
+		return board_no;
+	}
+	public void setBoard_no(int board_no) {
+		this.board_no = board_no;
+	}
+	public int getBoard_readcnt() {
+		return board_readcnt;
+	}
+	public void setBoard_readcnt(int board_readcnt) {
+		this.board_readcnt = board_readcnt;
+	}
 	public int getBoard_num() {
 		return board_num;
 	}
@@ -57,11 +80,5 @@ public class BoardVO {
 	public void setBoard_content(String board_content) {
 		this.board_content = board_content;
 	}
-	public String getBoard_file() {
-		return board_file;
-	}
-	public void setBoard_file(String board_file) {
-		this.board_file = board_file;
-	} 
-	
+
 }

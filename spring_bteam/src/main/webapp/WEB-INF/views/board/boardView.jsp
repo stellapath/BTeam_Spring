@@ -15,48 +15,48 @@ pageContext.setAttribute("enter", "\n");
 <title>공지사항</title>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/include/header.jsp"/>
 <div class="container" align="center">
-	<table border="1px solid #ccc">
+	<table>
 		<tr>
-			<th>제목</th>
+			<th class="w-px120">제목</th>
 			<td>${bvo.board_title }</td>
-			<th>작성자</th>
+			<th class="w-px120">작성자</th>
 			<td>${bvo.board_nickname }</td>
 		</tr>
 		<tr>
 			<th>작성일</th>
 			<td>${bvo.board_date }</td>
-			<th>좋아요</th>
-			<td align="center">${bvo.board_like }</td>
+			<th>조회수</th>
+			<td>${bvo.board_readcnt }</td>
 		</tr>
 		<tr>
 			<th>내용</th>
-			<td colspan="3" width="500">
+			<td colspan="3" width="500" name="board_content">
 				${fn:replace(bvo.board_content, enter, "<br/>") }
 			</td>
 		</tr>
 		<tr>
 			<th>첨부파일</th>
-			<td colspan="3">
-				<c:if test="${empty bvo.board_file }">
+			<td colspan="3" name="board_file">
+				<c:if test="${empty bvo.board_filename }">
 					첨부된 파일이 없습니다.
 				</c:if>
-				<c:if test="${not empty bvo.board_file }">
-					<a href="">${bvo.board_file }</a>
+				<c:if test="${!empty bvo.board_filename }">
+					<label>
+					<img alt="첨부파일" src="img/attach.png" class="file_icon"><a href="">${bvo.board_filename }</a>
+					</label>
 				</c:if>
 			</td>
 		</tr>
-	</table>
-	<div id="buttons">
+	</table><br/>
+	<div id="btnSet">
 			<c:if test="${login_info.user_email eq 'admin'}">
-			<a onclick="javascript:if( confirm('게시글을 수정하시겠습니까?') ){ href='boardUpdate?board_num=${bvo.board_num}&board_category=${bvo.board_category}'}">수정</a>
-			<a onclick="javascript:if( confirm('게시글을 삭제하시겠습니까?') ){ href='boardDelete?board_num=${bvo.board_num}&board_category=${bvo.board_category}'}">삭제</a>
-			<a href="boardWrite?board_category=${bvo.board_category}">글쓰기</a>
+			<a class="btn_fill" onclick="javascript:if( confirm('게시글을 수정하시겠습니까?') ){ href='boardUpdate?board_num=${bvo.board_num}&board_category=${bvo.board_category}'}">수정</a>
+			<a class="btn_fill" onclick="javascript:if( confirm('게시글을 삭제하시겠습니까?') ){ href='boardDelete?board_num=${bvo.board_num}&board_category=${bvo.board_category}'}">삭제</a>
+			<a class="btn_fill" href="boardWrite?board_category=${bvo.board_category}">글쓰기</a>
 			</c:if>
-			<a href="noticeBoard?board_category=0">목록</a>
+			<a class="btn_empty" href="noticeBoard?board_category=0">목록</a>
 	</div>
 </div>
-<jsp:include page="/WEB-INF/views/include/footer.jsp"/>
 </body>
 </html>

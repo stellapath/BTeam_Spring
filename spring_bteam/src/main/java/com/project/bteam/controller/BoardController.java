@@ -15,16 +15,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.project.bteam.board.BoardServiceImpl;
 import com.project.bteam.board.BoardVO;
 import com.project.bteam.common.CommonService;
+import com.project.bteam.user.UserServiceImpl;
 
 @Controller
 public class BoardController {
 
 	@Autowired private BoardServiceImpl service;
 	@Autowired private CommonService common;
-	
+		
 	// 공지사항 화면 요청
 	@RequestMapping("/noticeBoard")
-	public String boardList(Model model, int board_category, HttpSession session) {
+	public String boardList(Model model, int board_category, HttpSession session) {	
 		// 카테고리 : 0 => 공지사항
 		List<BoardVO> list = service.boardList(board_category);
 		session.setAttribute("list", list);
@@ -35,6 +36,9 @@ public class BoardController {
 	// 공지글 상세보기 화면 요청
 	@RequestMapping("/boardView")
 	public String boardView(Model model, int board_num, int board_category, HttpSession session) {
+		//조회수 증가
+		service.boardReadCnt(board_num);
+		//해당 공지글 상세보기
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		map.put("board_num", board_num);
 		map.put("board_category", board_category);

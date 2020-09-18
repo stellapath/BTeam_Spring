@@ -12,28 +12,33 @@ pageContext.setAttribute("bvo", bvo);
 <title>공지사항</title>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/include/header.jsp"/>
 <div class="container" align="center">
-<table border="1px solid #ccc" style="text-align: center;">
-	<tr>
-		<th>글제목</th>
-		<th>작성일</th>
-		<th>작성자</th>
-		<th>좋아요</th>
+<table>
+	<tr><th class="w-px100">번호</th>
+		<th>제목</th>
+		<th class="w-px100">작성일</th>
+		<th class="w-px100">작성자</th>
+		<th class="w-px100">조회수</th>
 	</tr>
 	<c:forEach items="${list}" var="bvo">
-	<tr>
-		<td><a href="boardView?board_num=${bvo.board_num }&board_category=0">${bvo.board_title}</a></td>
+	<tr><td>${bvo.board_no }</td>
+		<td name="board_title">
+			<a href="boardView?board_num=${bvo.board_num }&board_category=0">${bvo.board_title}</a>
+			<c:if test="${!empty bvo.board_filename}">
+				<img alt="첨부파일" src="img/attach.png" class="file_icon">
+			</c:if>
+		</td>
 		<td>${bvo.board_date}</td>
 		<td>${bvo.board_nickname}</td>
-		<td>${bvo.board_like}</td>
+		<td>${bvo.board_readcnt}</td>
 	</tr>
 	</c:forEach>
-</table>
-<c:if test="${login_info.user_email eq 'admin'}">
-<a href="boardWrite?board_category=0">글작성</a>
-</c:if>
+</table><br/>
+<div class="btnSet">
+	<c:if test="${login_info.user_email eq 'admin'}">
+	<a class="btn_fill" href="boardWrite?board_category=0">글작성</a>
+	</c:if>
 </div>
-<jsp:include page="/WEB-INF/views/include/footer.jsp"/>
+</div>
 </body>
 </html>

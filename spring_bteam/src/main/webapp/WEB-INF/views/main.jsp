@@ -9,7 +9,6 @@
 <link rel="stylesheet" href="owlcarousel/owl.theme.default.min.css">
 
 <!-- js -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="owlcarousel/owl.carousel.min.js"></script>
 <script>
 $(document).ready(function() {
@@ -24,14 +23,11 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-<jsp:include page="include/header.jsp" />
 <hr />
 <div class="owl-carousel">
 	<div><img src="https://c4.wallpaperflare.com/wallpaper/246/739/689/digital-digital-art-artwork-illustration-abstract-hd-wallpaper-preview.jpg" /></div>
 	<div><img src="https://p4.wallpaperbetter.com/wallpaper/828/579/667/artistic-neon-huawei-light-purple-hd-wallpaper-preview.jpg" /></div>
 </div>
 <hr />
-<jsp:include page="include/footer.jsp" />
-
 </body>
 </html>
