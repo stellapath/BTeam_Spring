@@ -35,13 +35,13 @@ public class CommonService {
 	}
 	
 	// 파일 다운로드
-	public File download(String filename, String filepath, HttpSession session, HttpServletResponse response) {
-		File file = new File(session.getServletContext().getRealPath("resources") + filepath);
-		String mime = session.getServletContext().getMimeType(filename);
+	public File download(String board_filename, String board_filepath, HttpSession session, HttpServletResponse response) {
+		File file = new File(session.getServletContext().getRealPath("resources") + board_filepath);
+		String mime = session.getServletContext().getMimeType(board_filename);
 		response.setContentType(mime);
 		try {
-			filename = URLEncoder.encode(filename, "utf-8").replaceAll("\\+", "%20");
-			response.setHeader("content-disposition", "attachment; filename=" + filename);
+			board_filename = URLEncoder.encode(board_filename, "utf-8").replaceAll("\\+", "%20");
+			response.setHeader("content-disposition", "attachment; filename=" + board_filename);
 			ServletOutputStream out = response.getOutputStream();
 			FileCopyUtils.copy(new FileInputStream(file), out);
 			out.flush();

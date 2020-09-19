@@ -12,12 +12,13 @@ table th {background-color: #e0e0e0; font-weight: bold;}
 table td {text-align: center;}
 table td[name=board_title] {text-align: left; }
 table td[name=board_content] {text-align: left; height: 200px;}
-table td[name=board_file] {text-align: left;}
+table td[name=board_filename] {text-align: left;}
 
 input {	height: 22px;	padding: 5px 10px;	font-size: 15px; }
 input[name=board_title] {width: calc(100% - 24px); }
-input[name=board_file] {float: left; }
+input[name=board_filename] {float: left; }
 textarea { width: calc(100% - 6px); resize: none; height: 150px;}
+.check_msg {font-size: 15px;}
 
 a {text-decoration: none; color: black;}
 a:hover{font-weight: bold;}
@@ -27,6 +28,7 @@ a.btn_fill, a.btn_empty { text-align: center;	padding: 3px 10px;	border: 1px sol
 a.btn_fill {	background-color: #ad53ff; color: #ffffff; }
 a.btn_empty {	background-color: #edbdff; color: #5c5c5c; }
 
+#attach_file, #delete_file {display: none;}
 .file_icon {width: 15px;}
 
 .w-pct50{ width: 50%;}

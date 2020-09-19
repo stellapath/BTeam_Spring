@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,18 +12,45 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.project.bteam.board.BoardServiceImpl;
 import com.project.bteam.board.BoardVO;
 import com.project.bteam.common.CommonService;
 import com.project.bteam.user.UserServiceImpl;
+import com.project.bteam.user.UserVO;
 
 @Controller
 public class BoardController {
 
 	@Autowired private BoardServiceImpl service;
 	@Autowired private CommonService common;
-		
+	
+	// 문의하기 화면 요청
+	@RequestMapping("/qnaBoard")
+	public String qnaList(int board_category, Model model, HttpSession session) {
+		List<BoardVO> list = service.boardList(board_category);
+		session.setAttribute("list", list);
+		model.addAttribute("board_category", board_category);
+		return "board/qnaBoard";
+	}
+	
+	// 사용후기 작성화면 요청
+	@RequestMapping("/reviewWrite")
+	public String reviewWrite(String board_email,  Model model) {
+		model.addAttribute("board_email", board_email);
+		return "board/reviewWrite";
+	}
+	
+	// 사용후기 화면 요청
+	@RequestMapping("/reviewBoard")
+	public String reviewList(int board_category, Model model, HttpSession session) {
+		List<BoardVO> list = service.boardList(board_category);
+		session.setAttribute("list", list);
+		model.addAttribute("board_category", board_category);
+		return "board/reviewBoard";
+	}	
+	
 	// 공지사항 화면 요청
 	@RequestMapping("/noticeBoard")
 	public String boardList(Model model, int board_category, HttpSession session) {	
@@ -58,7 +86,14 @@ public class BoardController {
 	
 	// 글 작성 업로드 요청
 	@ResponseBody @RequestMapping(value="/boardWriteReq", produces="text/html; charset=utf-8")
-	public String boardWriteReq(BoardVO bvo, HttpServletRequest request) {
+	public String boardWriteReq(BoardVO bvo, MultipartFile file, 
+								HttpSession session, HttpServletRequest request) {
+		UserVO user = (UserVO)session.getAttribute("login_info");
+		bvo.setBoard_email(user.getUser_email());
+		if(!file.isEmpty()) {
+			bvo.setBoard_filename(file.getOriginalFilename());
+			bvo.setBoard_filepath(common.upload("board", file, session));
+		}
 		String msg = "<script type='text/javascript'>";
 		if(service.boardWrite(bvo)) {
 			msg += "alert('글이 등록되었습니다.'); ";
@@ -68,6 +103,17 @@ public class BoardController {
 		}	
 		msg += "</script>";
 		return msg;
+	}
+	
+	//첨부파일 다운로드
+	@RequestMapping("/download")
+	public void download(int board_num, int board_category, 
+						HttpSession session, HttpServletResponse response) {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("board_num", board_num);
+		map.put("board_category", board_category);
+		BoardVO bvo = service.boardDetail(map);
+		common.download(bvo.getBoard_filename(), bvo.getBoard_filepath(), session, response);
 	}
 	
 	// 글 수정 화면 요청

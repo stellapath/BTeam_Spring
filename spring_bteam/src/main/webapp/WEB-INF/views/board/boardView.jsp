@@ -37,13 +37,14 @@ pageContext.setAttribute("enter", "\n");
 		</tr>
 		<tr>
 			<th>첨부파일</th>
-			<td colspan="3" name="board_file">
+			<td colspan="3" name="board_file" style="text-align: left;">
 				<c:if test="${empty bvo.board_filename }">
 					첨부된 파일이 없습니다.
 				</c:if>
 				<c:if test="${!empty bvo.board_filename }">
 					<label>
-					<img alt="첨부파일" src="img/attach.png" class="file_icon"><a href="">${bvo.board_filename }</a>
+						<img alt="첨부파일" src="img/attach.png" class="file_icon">
+						<a href="download?board_num=${bvo.board_num }&board_category=0">${bvo.board_filename }</a>
 					</label>
 				</c:if>
 			</td>

@@ -34,10 +34,10 @@ history.back();
 </head>
 <body>
 <div class="container">
-<form action="boardWriteReq" method="get" enctype="multipart/form-data">
+<form action="boardWriteReq" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="board_nickname" value="${login_info.user_nickname}" />
 	<input type="hidden" name="board_email" value="${login_info.user_email}" />
-	<input type="hidden" name="board_category" value="${board_category}" />
+	<input type="hidden" name="board_category" value="0" />
 	<table>
 		<tr>
 			<th>작성자</th>
@@ -53,14 +53,15 @@ history.back();
 		</tr>
 		<tr>
 			<th>첨부파일</th>
-			<td><label>
-				<img alt="첨부파일" src="img/attach.png" class="file_icon">
-				<input type="file" name="board_file" id="attach_file"/>
-				</label>
-				<span id="file-name" ></span>
-				<span id="delete-file" style="color : red;">
-					<i class="fas fa-times font_icon"></i>
-				</span>
+			<td style="text-align: left;">
+			<label>
+				<img alt="파일선택" src="img/attach.png" class="file_icon">
+				<input type="file" name="file" id="attach_file"/>
+			</label>
+			<span id="board_filename" ></span>
+			<span id="delete_file" style="color : red;">
+				<i class="fas fa-times file_icon"></i>
+			</span>
 			</td>
 		</tr>
 	</table><br/>
@@ -70,5 +71,17 @@ history.back();
 		<a class="btn_empty" onclick="javascript:if( confirm('작성글을 취소하시겠습니까?') ){href='noticeBoard?board_category=0'}">취소</a>
 	</div>
 </div>	
+<script type="text/javascript">
+$('#attach_file').on('change', function(){
+	if( this.files[0] ) $('#board_filename').text( this.files[0].name );
+	$('#delete_file').css('display', 'inline');
+});
+
+$('#delete_file').on('click', function(){
+	$('#board_filename').text('');
+	$('#attach_file').val('');
+	$('#delete_file').css('display', 'none');
+});
+</script>
 </body>
 </html>

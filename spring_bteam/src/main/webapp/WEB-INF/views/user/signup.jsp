@@ -91,7 +91,7 @@ $(document).ready(() => {
 					<input type="password" name="user_pw" id="user_pw" required 
 						placeholder="비밀번호를 입력하세요."/><br/>
 					<input type="password" id="check_pw" required 
-						placeholder="비밀번호를 다시 입력하세요."/>
+						placeholder="비밀번호를 다시 입력하세요."/><br/>
 					<span id="check_msg"></span>
 				</td>
 			</tr>
@@ -127,10 +127,9 @@ $(document).ready(() => {
 		</table>
 	<div id="buttons">
 		<input type="submit" id="btn_submit" value="회원가입" /><br/>
-		<input type="reset" value="가입취소" onclick="location.href='/bteam/'" />
+		<input type="reset" value="가입취소" onclick="location.href='/bteam/home'" />
 	</div>
 	</form>
 </div>
-<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
 </html>

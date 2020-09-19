@@ -10,6 +10,8 @@ pageContext.setAttribute("vo", vo);
 	<a href="companyPage">회사소개</a>
 	<a href="productPage">제품소개</a>
 	<a href="noticeBoard?board_category=0">공지사항</a>
+	<a href="reviewBoard?board_category=1">사용후기</a>
+	<a href="qnaBoard?board_category=9">문의하기</a>
 	<div class="right">
 	<c:if test="${login_info eq null}">
 	<a href="login">로그인</a>

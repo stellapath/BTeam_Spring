@@ -9,15 +9,28 @@
 		<put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp"/>
 	</definition>
 	
+	<!-- 타일즈적용 제외 -->
+	<definition name="empty" template="/WEB-INF/views/tiles/empty.jsp">
+		<put-attribute name="content" value=""/>
+	</definition>
+		
 	<definition name="*/*" extends="layout">
 		<!-- content의 경우 상황에 따라 값이 달라진다. >> 고정불가 -->
 		<!-- member/join, customer/list, customer/detail -->
 		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp"/>
 	</definition>
-
+	
 	<definition name="*" extends="layout">
 		<!-- home.jsp -->
 		<put-attribute name="content" value="/WEB-INF/views/{1}.jsp"/>
 	</definition>
+	
+	<!-- 타일즈 제외 선언 -->
+	<definition name="user/signup" extends="empty">
+		<put-attribute name="content" value="/WEB-INF/views/user/signup.jsp"/>
+	</definition>
+	<definition name="user/login" extends="empty">
+		<put-attribute name="content" value="/WEB-INF/views/user/login.jsp"/>
+	</definition>	
 		
 </tiles-definitions>  

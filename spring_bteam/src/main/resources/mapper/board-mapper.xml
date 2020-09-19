@@ -12,8 +12,8 @@
 	</delete>
 	
 	<insert id="write">
-	insert into bBoard (board_num, board_category, board_email, board_nickname, board_date, board_title, board_content, board_file)
-	values ((select NVL(MAX(board_num), 0) + 1 from bBoard), #{board_category}, #{board_email}, #{board_nickname}, to_date(sysdate, 'yy/mm/dd'), #{board_title}, #{board_content}, #{board_file})
+	insert into bBoard (board_num, board_category, board_email, board_nickname, board_date, board_title, board_content, board_filename, board_filepath)
+	values ((select NVL(MAX(board_num), 0) + 1 from bBoard), #{board_category}, #{board_email}, #{board_nickname}, to_date(sysdate, 'yy/mm/dd'), #{board_title}, #{board_content}, #{board_filename, jdbcType=VARCHAR}, #{board_filepath, jdbcType=VARCHAR})
 	</insert>
 	
 	<select id="view" resultType="BoardVO">
