@@ -4,6 +4,15 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
 
+	<definition name="android" template="/WEB-INF/views/tiles/android.jsp">
+		<put-attribute name="content" value="" />
+	</definition>
+	
+	<!-- 안드로이드 페이지는 타일즈 적용하지 않음 -->
+	<definition name="app/*" extends="android">
+		<put-attribute name="content" value="/WEB-INF/views/app/{1}.jsp" />
+	</definition>
+
 	<definition name="layout" template="/WEB-INF/views/tiles/layout.jsp">
 		<put-attribute name="header" value="/WEB-INF/views/include/header.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp"/>
@@ -11,7 +20,7 @@
 	
 	<!-- 타일즈적용 제외 -->
 	<definition name="empty" template="/WEB-INF/views/tiles/empty.jsp">
-		<put-attribute name="content" value=""/>
+		<put-attribute name="content" value="" />
 	</definition>
 		
 	<definition name="*/*" extends="layout">
@@ -31,6 +40,6 @@
 	</definition>
 	<definition name="user/login" extends="empty">
 		<put-attribute name="content" value="/WEB-INF/views/user/login.jsp"/>
-	</definition>	
-		
+	</definition>
+
 </tiles-definitions>  
