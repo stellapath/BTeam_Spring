@@ -25,9 +25,17 @@
 	update bBoard set board_readcnt = board_readcnt+1 where board_num=#{board_num}
 	</update>
 	
+	<select id="total" resultType="Integer">
+	select count(*)
+	from bBoard
+	where board_category = #{board_category}
+	</select>
+	
 	<select id="list" resultType="BoardVO">
-	select rownum board_no, b.* from (select * from bBoard where board_category=#{board_category} order by board_num) b
-	order by board_no desc
+	select b.* from
+	(select rownum board_no, b.* from (select * from bBoard where board_category=#{board_category} order by board_num) b
+	order by board_no desc) b
+	where board_no between #{beginList} and #{endList}
 	</select>
 	
 </mapper>

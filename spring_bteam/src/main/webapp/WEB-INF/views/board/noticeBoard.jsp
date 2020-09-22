@@ -12,6 +12,14 @@ pageContext.setAttribute("bvo", bvo);
 <title>공지사항</title>
 </head>
 <body>
+<form action="noticeBoard?board_category=0" method="post">
+<input type="hidden" name="curPage" value='1'/>
+<div class="btnSet">
+	<c:if test="${login_info.user_email eq 'admin'}">
+	<a class="btn_fill" href="boardWrite?board_category=0">글작성</a>
+	</c:if>
+</div>
+</form>
 <div class="container" align="center">
 <table>
 	<tr><th class="w-px100">번호</th>
@@ -20,7 +28,7 @@ pageContext.setAttribute("bvo", bvo);
 		<th class="w-px100">작성자</th>
 		<th class="w-px100">조회수</th>
 	</tr>
-	<c:forEach items="${list}" var="bvo">
+	<c:forEach items="${page.list}" var="bvo">
 	<tr><td>${bvo.board_no }</td>
 		<td name="board_title">
 			<a href="boardView?board_num=${bvo.board_num }&board_category=0">${bvo.board_title}</a>
@@ -35,9 +43,7 @@ pageContext.setAttribute("bvo", bvo);
 	</c:forEach>
 </table><br/>
 <div class="btnSet">
-	<c:if test="${login_info.user_email eq 'admin'}">
-	<a class="btn_fill" href="boardWrite?board_category=0">글작성</a>
-	</c:if>
+<jsp:include page="/WEB-INF/views/include/page.jsp"/>
 </div>
 </div>
 </body>

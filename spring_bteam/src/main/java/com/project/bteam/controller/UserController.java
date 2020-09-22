@@ -57,10 +57,9 @@ public class UserController {
 	}
 
 	// 로그아웃 처리 요청
-	@RequestMapping("/logout")
-	public String logout(HttpSession session) {
+	@ResponseBody @RequestMapping("/logout")
+	public void logout(HttpSession session) {
 		session.removeAttribute("login_info");
-		return "redirect:/";
 	}
 	
 	// 마이페이지 화면 요청

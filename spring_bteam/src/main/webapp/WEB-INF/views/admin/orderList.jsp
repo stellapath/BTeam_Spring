@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>주문하기</title>
+<title>주문관리</title>
 </head>
 <body>
 

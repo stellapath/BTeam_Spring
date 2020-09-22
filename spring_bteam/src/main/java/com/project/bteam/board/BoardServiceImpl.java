@@ -35,7 +35,6 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void boardDelete(int board_num) {
 		dao.boardDelete(board_num);
-		
 	}
 
 	@Override
@@ -43,6 +42,10 @@ public class BoardServiceImpl implements BoardService {
 		dao.boardReadCnt(board_num);
 		
 	}
-	
+
+	@Override
+	public BoardPage boardList(int board_category, BoardPage page) {
+		return dao.boardList(board_category, page);
+	}	
 
 }

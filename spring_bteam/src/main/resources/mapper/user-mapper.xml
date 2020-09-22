@@ -28,5 +28,10 @@
 	set user_image = #{user_image}, user_imagepath = #{user_imagepath}
 	where user_email = #{user_email}
 	</update>
+	
+	<select id="list" resultType="UserVO">
+	select rownum user_num, u.* from 
+	(select * from bUser order by user_nickname) u
+	</select>
 
 </mapper>

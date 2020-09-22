@@ -1,5 +1,7 @@
 package com.project.bteam.user;
 
+import java.util.List;
+
 public interface UserService {
 
 	int userSignup(UserVO vo);					// 회원가입
@@ -9,5 +11,6 @@ public interface UserService {
 	int userImageUpload(UserVO vo);
 	boolean userUpdate(UserVO vo);				// 회원정보수정
 	boolean userDelete(String user_email); 	// 회원탈퇴
+	List<UserVO> userList();
 	
 }
