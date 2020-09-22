@@ -105,7 +105,6 @@ public class BoardController {
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		map.put("board_num", board_num);
 		map.put("board_category", board_category);
-		service.boardDetail(map);
 		BoardVO bvo = service.boardDetail(map);
 		session.setAttribute("boardList", bvo);
 		model.addAttribute("bvo", service.boardDetail(map));

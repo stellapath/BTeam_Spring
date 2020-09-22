@@ -1,14 +1,15 @@
 package com.project.bteam.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.bteam.board.BoardServiceImpl;
-import com.project.bteam.board.BoardVO;
 import com.project.bteam.common.CommonService;
 import com.project.bteam.user.UserServiceImpl;
 import com.project.bteam.user.UserVO;
@@ -51,6 +52,17 @@ public class AndroidController {
 		System.out.println("::andBoardList::");
 		model.addAttribute("boardList", board.boardList(category));
 		return "app/andBoardList";
+	}
+	
+	// 안드로이드 게시글 자세히
+	@RequestMapping("/andBoardView")
+	public String andBoardView(int board_num, int category, Model model) {
+		System.out.println("::andBoardView::");
+		HashMap<String, Integer> map = new HashMap<>();
+		map.put("board_num", board_num);
+		map.put("board_category", category);
+		model.addAttribute("vo", board.boardDetail(map));
+		return "app/andBoardView";
 	}
 	
 }
