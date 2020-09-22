@@ -46,6 +46,8 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public BoardPage boardList(int board_category, BoardPage page) {
 		return dao.boardList(board_category, page);
-	}	
+	}
+
+
 
 }

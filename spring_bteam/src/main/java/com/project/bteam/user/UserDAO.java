@@ -54,7 +54,7 @@ public class UserDAO implements UserService {
 
 	@Override
 	public boolean userUpdate(UserVO vo) {
-		return false;
+		return sql.update("user.update", vo)>0 ? true : false;
 	}
 
 	@Override

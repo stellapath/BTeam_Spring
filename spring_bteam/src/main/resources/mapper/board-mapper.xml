@@ -24,7 +24,7 @@
 	<update id="readcount">
 	update bBoard set board_readcnt = board_readcnt+1 where board_num=#{board_num}
 	</update>
-	
+		
 	<select id="total" resultType="Integer">
 	select count(*)
 	from bBoard

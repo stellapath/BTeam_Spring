@@ -29,6 +29,12 @@
 	where user_email = #{user_email}
 	</update>
 	
+	<update id="update">
+	update buser
+	set user_pw=#{user_pw}, user_nickname=#{user_nickname}, user_phone=#{user_phone}, user_zipcode=#{user_zipcode}, user_address=#{user_address}, detail_address=#{detail_address}, user_birth=#{user_birth} 
+	where user_email=#{user_email}
+	</update>
+	
 	<select id="list" resultType="UserVO">
 	select rownum user_num, u.* from 
 	(select * from bUser order by user_nickname) u

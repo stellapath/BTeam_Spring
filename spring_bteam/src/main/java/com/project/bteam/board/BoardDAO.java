@@ -50,5 +50,6 @@ public class BoardDAO implements BoardService {
 		page.setList(sql.selectList("board.list", page));
 		return page;
 	}
+
 	
 }

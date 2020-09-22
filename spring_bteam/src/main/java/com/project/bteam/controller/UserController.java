@@ -21,6 +21,13 @@ public class UserController {
 	@Autowired private UserServiceImpl service;
 	@Autowired private CommonService common;
 	
+	// 회원정보수정
+	@RequestMapping("/update")
+	public String update(UserVO vo) {
+		service.userUpdate(vo);
+		return "redirect:myPage";
+	}
+	
 	// 회원가입 화면 요청
 	@RequestMapping("/signup")
 	public String signup() {

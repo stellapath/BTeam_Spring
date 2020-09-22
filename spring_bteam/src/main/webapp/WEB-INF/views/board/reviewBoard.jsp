@@ -9,7 +9,6 @@
 <body>
 <div id="reviewPhoto">
 <p>포토리뷰</p>
-<p>미완성입니다.</p>
 <c:forEach items="${page.list}" var="bvo">	
 <c:if test="${bvo.board_filename ne null }">
 <img alt="리뷰사진" src="/ContextPath${bvo.board_filepath }/">
@@ -31,7 +30,7 @@
 		<a id="board_title" onclick="review_detail()">${bvo.board_title }</a>
 		<div id="board_content" style="display: none; text-align: left" >
 			${bvo.board_content }<br/>
-			<a class="right" href="" onclick="">좋아요</a>
+			<a class="btn-fill" onclick="">좋아요</a>
 		</div>
 	</td>
 	<td>${bvo.board_date }</td>

@@ -65,22 +65,17 @@ public class BoardController {
 		model.addAttribute("board_email", board_email);
 		return "board/reviewWrite";
 	}
-	
+			
 	// 사용후기 화면 요청
 	@RequestMapping("/reviewBoard")
 	public String reviewList(int board_category, Model model, HttpSession session,
-								@RequestParam(defaultValue="1") int curPage) {
-
+								@RequestParam(defaultValue="1") int curPage) {		
 		page.setBoard_category(board_category);
 		page.setCurPage(curPage);
 		model.addAttribute("page", service.boardList(board_category, page));
 		return "board/reviewBoard";
 	}	
-	
-	// 리뷰 이미지
-	public void imageView() {
-	}
-	
+		
 	// 공지사항 화면 요청
 	@RequestMapping("/noticeBoard")
 	public String boardList(Model model, int board_category, HttpSession session,
