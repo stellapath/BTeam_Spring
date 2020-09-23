@@ -1,5 +1,6 @@
 package com.project.bteam.user;
 
+import java.util.List;
 import java.util.Random;
 
 import org.apache.ibatis.session.SqlSession;
@@ -40,6 +41,11 @@ public class UserDAO implements UserService {
 		return sql.selectOne("user.detail", user_email);
 	}
 	
+	@Override
+	public List<UserVO> userList() {
+		return sql.selectList("user.list");
+	}
+	
 	// 프로필 이미지 업로드
 	@Override
 	public int userImageUpload(UserVO vo) {
@@ -48,7 +54,7 @@ public class UserDAO implements UserService {
 
 	@Override
 	public boolean userUpdate(UserVO vo) {
-		return false;
+		return sql.update("user.update", vo)>0 ? true : false;
 	}
 
 	@Override
@@ -84,5 +90,6 @@ public class UserDAO implements UserService {
 		this.size = size;
 		return randomKey();
 	}
+
 	
 }

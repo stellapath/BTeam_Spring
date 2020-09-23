@@ -15,7 +15,6 @@ pageContext.setAttribute("name", name);
 <head>
 <meta charset="UTF-8">
 <title>${name} 글쓰기</title>
-
 <%-- 로그인 하지 않았을 경우 --%>
 <c:if test="${login_info eq null}">
 <script>

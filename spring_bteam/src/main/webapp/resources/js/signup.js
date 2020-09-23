@@ -48,7 +48,7 @@ $(document).ready(() => {
 		var getNickname = /^[가-힣]+$/;
 		var getPw = /^[0-9a-z]{4,12}$/;
 		var getEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-		var getPhone = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
+		var getPhone = /^[0-9]{9,11}$/;
 
 		// 중복검사 유무
 		if (isChecked == 0) {
@@ -108,7 +108,7 @@ $(document).ready(() => {
 		
 		//전화번호 유효성
 		if ($("#user_phone").val() && !getPhone.test($("#user_phone").val())) {
-			alert("전화번호는 010-0000-0000 형식으로 입력하세요.");
+			alert("전화번호는 숫자만 입력하세요.");
 			$("#user_phone").val("");
 			$("#user_phone").focus();
 			return false;

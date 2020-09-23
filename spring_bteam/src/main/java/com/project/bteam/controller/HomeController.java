@@ -23,11 +23,5 @@ public class HomeController {
 	public String product() {
 		return "page/product";
 	}
-	
-	// 주문페이지
-	@RequestMapping("/orderPage")
-	public String order() {
-		return "page/order";
-	}
-	
+			
 }

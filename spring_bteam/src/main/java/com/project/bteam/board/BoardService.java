@@ -8,6 +8,7 @@ import com.project.bteam.board.BoardVO;
 public interface BoardService {
 
 	List<BoardVO> boardList(int board_category);
+	BoardPage boardList(int board_category, BoardPage page);
 	BoardVO boardDetail(HashMap<String, Integer> map);
 	boolean boardWrite(BoardVO bvo);
 	void boardReadCnt(int board_num);

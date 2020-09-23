@@ -21,6 +21,13 @@ public class UserController {
 	@Autowired private UserServiceImpl service;
 	@Autowired private CommonService common;
 	
+	// 회원정보수정
+	@RequestMapping("/update")
+	public String update(UserVO vo) {
+		service.userUpdate(vo);
+		return "redirect:myPage";
+	}
+	
 	// 회원가입 화면 요청
 	@RequestMapping("/signup")
 	public String signup() {
@@ -57,10 +64,9 @@ public class UserController {
 	}
 
 	// 로그아웃 처리 요청
-	@RequestMapping("/logout")
-	public String logout(HttpSession session) {
+	@ResponseBody @RequestMapping("/logout")
+	public void logout(HttpSession session) {
 		session.removeAttribute("login_info");
-		return "redirect:/";
 	}
 	
 	// 마이페이지 화면 요청

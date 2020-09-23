@@ -43,5 +43,13 @@ public class BoardDAO implements BoardService {
 		sql.update("board.readcount", board_num);
 		
 	}
+
+	@Override
+	public BoardPage boardList(int board_category, BoardPage page) {
+		page.setTotalList((Integer) sql.selectOne("board.total", page));
+		page.setList(sql.selectList("board.list", page));
+		return page;
+	}
+
 	
 }

@@ -23,14 +23,7 @@
 <h3>제품소개해주세요</h3>
 </div>
 <div id="btnOrder">
-	<c:if test="${login_info eq null}">
-		<p>회원가입하시고 각종 쿠폰을 받으세요!!</p>
-		<a class="btn_fill" href="signup">회원가입먼저하기</a><br/>
-		<a class="btn_fill" href="orderPage">제품구매하러가기</a>
-	</c:if>
-	<c:if test="${login_info ne null}">
-		<a class="btn_fill" href="orderPage">제품구매하러가기</a>
-	</c:if>
+	<a class="btn_fill" href="">제품구매하러가기</a>
 </div>
 
 </body>
