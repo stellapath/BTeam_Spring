@@ -9,9 +9,9 @@
 <body>
 <div id="reviewPhoto">
 <p>포토리뷰</p>
-<c:forEach items="${page.list}" var="bvo">	
-<c:if test="${bvo.board_filename ne null }">
-<img alt="리뷰사진" src="/ContextPath${bvo.board_filepath }/">
+<c:forEach items="${page.list}" var="vo">	
+<c:if test="${vo.board_filename ne null }">
+<img alt="리뷰사진" src="/ContextPath${vo.board_filepath }/">
 </c:if>
 </c:forEach>
 </div>
@@ -24,17 +24,17 @@
 	<th>작성일</th>
 	<th>좋아요</th>
 </tr>
-<c:forEach items="${page.list}" var="bvo">	
+<c:forEach items="${page.list}" var="vo">	
 <tr><td>${bvo.board_nickname }</td>
 	<td class="left">
-		<a id="board_title" onclick="review_detail()">${bvo.board_title }</a>
+		<a id="board_title" onclick="review_detail()">${vo.board_title }</a>
 		<div id="board_content" style="display: none; text-align: left" >
-			${bvo.board_content }<br/>
+			${vo.board_content }<br/>
 			<a class="btn-fill" onclick="">좋아요</a>
 		</div>
 	</td>
-	<td>${bvo.board_date }</td>
-	<td><i class="fas fa-heart" color="#ff0044"></i>${bvo.board_like }</td>
+	<td>${vo.board_date }</td>
+	<td><i class="fas fa-heart" color="#ff0044"></i>${vo.board_like }</td>
 </tr>
 </c:forEach>
 </table>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>사용후기작성</title>
+<title></title>
 <c:if test="${login_info.user_email eq null}">
 <script>
 alert("사용후기는 구매자만 작성가능합니다.");
@@ -13,6 +13,7 @@ location.href="login";
 </c:if>
 </head>
 <body>
+<h3>리뷰 작성화면</h3>
 <div class="container">
 <form action="reviewWriteReq" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="board_nickname" value="${login_info.user_nickname}" />
@@ -36,12 +37,11 @@ location.href="login";
 			<td style="text-align: left;">
 			<label>
 				<img alt="파일선택" src="img/attach.png" class="file_icon">
-				<input type="file" name="file" id="attach_file" accept="image/*"/>
+				<input type="file" name="file" id="attach-file" accept="image/*"/>
 			</label>
-			<span id="board_filename" ></span>
-			<span id="delete_file" style="color : red;">
-				<i class="fas fa-times file_icon"></i>
-			</span>
+			<span id="preview"></span>
+			<span id="board-filename"></span>
+			<span id="delete-file" style="color : red;"><i class="fas fa-times file_icon"></i></span>
 			</td>
 		</tr>
 	</table><br/>
@@ -52,25 +52,56 @@ location.href="login";
 	</div>
 </div>	
 <script type="text/javascript">
-$('#attach_file').on('change', function(){
-	if( this.files[0] ) $('#board_filename').text( this.files[0].name );
-	$('#delete_file').css('display', 'inline');
+function isImage(filename){
+	//abc.txt, abc.png, abc.jpg, ...
+	//파일의 확장자를 소문자처리
+	var ext = filename.substring( filename.lastIndexOf('.')+1).toLowerCase();
+	var imgs = ['jpg', 'jpeg', 'gif', 'png', 'bmp'];			//이미지확장자 배열
+	if(imgs.indexOf(ext) > -1) return true;
+	else return false;	
+}
+
+$('#attach-file').on('change', function(){
+	//파일정보의 파일명이 이미지파일인 경우 미리보기
+	var attach = this.files[0];
+	if (attach){
+// 		alert(isImage( attach.name));
+		if(isImage( attach.name) ){
+			var img ="<img style='border-radius:50%; width:100px;' class='file-img' id='preview-img' src=''/>";
+			$('#preview').html(img);
+
+			var reader = new FileReader();
+			reader.onload = function(e){
+				$('#preview-img').attr('src', e.target.result);
+			}
+			reader.readAsDataURL(attach);
+		}else $('#preview').html('');
+	}
 });
 
-$('#delete_file').on('click', function(){
-	$('#board_filename').text('');
-	$('#attach_file').val('');
-	$('#delete_file').css('display', 'none');
+$('#delete-file').on('click', function(){
+	$('#preview').html('');
+});
+
+$('#attach-file').on('change', function(){
+	if( this.files[0] ) $('#board-filename').text( this.files[0].name );
+	$('#delete-file').css('display', 'inline');
+});
+
+$('#delete-file').on('click', function(){
+	$('#board-filename').text('');
+	$('#attach-file').val('');
+	$('#delete-file').css('display', 'none');
 });
 </script>
 <script type="text/javascript">
-var imageFile = $('#attach_file').val();
+var imageFile = $('#attach-file').val();
 var imgType = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf)$/;
 var maxSize = 5 * 1024 * 1024;
 var imgSize;
 
 if(imageFile != "" && imageFile != null) {
-	imgSize = document.getElementById("attach_file").files[0].size;
+	imgSize = document.getElementById("attach-file").files[0].size;
     
     if(!imageFile.match(imgType)) {
     	alert("이미지 파일만 업로드 가능");

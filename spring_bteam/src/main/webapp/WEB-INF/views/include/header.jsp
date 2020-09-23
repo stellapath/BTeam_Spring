@@ -13,21 +13,21 @@ pageContext.setAttribute("vo", vo);
 	<a href="reviewBoard?board_category=1">사용후기</a>
 	<a href="qnaBoard">문의하기</a>
 	<div class="right">
-	<c:if test="${login_info eq null}">
-	<a href="login">로그인</a>
-	<a href="signup">회원가입</a>
-	</c:if>
-	<c:if test="${login_info ne null}">
-	<img src="profileImgDn?user_email=${login_info.user_email}" style="width:40px; border-radius:40px; border:1px solid black;" />
-				${login_info.user_nickname}님
-		<c:if test="${login_info.user_email eq 'admin'}">
-		<a href="adminPage">관리페이지</a>
+		<c:if test="${login_info eq null}">
+		<a href="login">로그인</a>
+		<a href="signup">회원가입</a>
 		</c:if>
-		<c:if test="${login_info.user_email ne 'admin'}">
-		<a href="myPage">마이페이지</a>
+		<c:if test="${login_info ne null}">
+		<img src="profileImgDn?user_email=${login_info.user_email}" style="width:40px; border-radius:40px; border:1px solid black;" />
+					${login_info.user_nickname}님
+			<c:if test="${login_info.user_email eq 'admin'}">
+			<a href="adminPage">관리페이지</a>
+			</c:if>
+			<c:if test="${login_info.user_email ne 'admin'}">
+			<a href="myPage?user_email=${login_info.user_email }">마이페이지</a>
+			</c:if>
+		<a onclick="go_logout()">로그아웃</a>
 		</c:if>
-	<a onclick="go_logout()">로그아웃</a>
-	</c:if>
 	</div>
 </header>
 <script type="text/javascript">

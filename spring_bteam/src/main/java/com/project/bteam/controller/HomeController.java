@@ -23,5 +23,5 @@ public class HomeController {
 	public String product() {
 		return "page/product";
 	}
-			
+				
 }

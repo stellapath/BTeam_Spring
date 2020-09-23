@@ -25,7 +25,7 @@ public class UserController {
 	@RequestMapping("/update")
 	public String update(UserVO vo) {
 		service.userUpdate(vo);
-		return "redirect:myPage";
+		return "redirect:myPage?user_email=" + vo.getUser_email();
 	}
 	
 	// 회원가입 화면 요청
@@ -71,7 +71,8 @@ public class UserController {
 	
 	// 마이페이지 화면 요청
 	@RequestMapping("/myPage")
-	public String myPage() {
+	public String myPage(Model model, String user_email) {
+		model.addAttribute("vo", service.userDetail(user_email));
 		return "user/myPage";
 	}
 	

@@ -19,32 +19,33 @@ function imageUpload() {
 	);
 }
 </script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!-- 주소입력 -->
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 <script> $(function() { $("#postcodify_search_button").postcodifyPopUp(); }); </script>
 </head>
 <body>
 <form action="update" method="post">
-<input type="hidden" name="user_email" value="${login_info.user_email}"/>
+<input type="hidden" name="user_email" value="${vo.user_email}"/>
 <table>	
 	<tr>
 		<th class="w-px120">프로필 사진</th>
 		<td>
-			<img src="profileImgDn?user_email=${login_info.user_email}" style="width:40px;" /><br />
+			<img src="profileImgDn?user_email=${vo.user_email}" style="width:40px;" /><br />
 			<button type="button" onclick="imageUpload()" >이미지 변경</button>
 		</td>
 	</tr>
 	<tr>
 		<th>이메일</th>
-		<td>${login_info.user_email}</td>
+		<td>${vo.user_email}</td>
 	</tr>
 	<tr>
 		<th>현재비밀번호</th>
-		<td><input type="password" name="input_pw" value="${login_info.user_pw}"/>
+		<td><input type="password" name="input_pw" />
 			<a class="btn_fill" onclick="change_pw()">변경</a>
 			<div class="change_pw" style="display: none;">
 				<p>새 비밀번호</p>
-				<input type="password" name="user_pw" />
+				<input type="password" name="user_pw" value="${login_info.user_pw}"/>
 				<p>비밀번호확인</p>
 				<input type="password" id="check_pw"/><br/>
 				<span class="check_msg"></span>
@@ -54,28 +55,28 @@ function imageUpload() {
 	<tr>
 		<th>닉네임</th>
 		<td><input type="text" name="user_nickname" id="user_nickname" required 
-					value="${login_info.user_nickname}"/></td>
+					value="${vo.user_nickname}"/></td>
 	</tr>
 	<tr>
 		<th>전화번호</th>
 		<td><input type="text" name="user_phone" id="user_phone" required 
-					value="${login_info.user_phone}"/></td>
+					value="${vo.user_phone}"/></td>
 	</tr>
 	<tr>
 		<th>주소</th>
 		<td><input type="text" name="user_zipcode" class="postcodify_postcode5" 
-						value="${login_info.user_zipcode}" />
+						value="${vo.user_zipcode}" />
 			<a class="btn_fill" id="postcodify_search_button">우편번호 검색</a><br/>
 			<input type="text" name="user_address" class="postcodify_address" 
-						value="${login_info.user_address}" /><br/>
+						value="${vo.user_address}" /><br/>
 			<input type="text" name="detail_address" class="postcodify_details" 
-						value="${login_info.detail_address}" />
+						value="${vo.detail_address}" />
 		</td>
 	</tr>
 	<tr>
 		<th>생일</th>
-		<td><span id="user_birth">${login_info.user_birth}</span>
-			<input type="date" name="user_birth" />
+		<td><input type="text" name="user_birth" value="${vo.user_birth}" readonly />
+			<span id="delete" style="color : red; position: relative; right: 30px; display: none; float: left;"><i class="fas fa-eraser font-img"></i></span>
 		</td>
 	</tr>
 </table>
@@ -84,6 +85,33 @@ function imageUpload() {
 	<a class="btn_fill" onclick="$('form').submit()">저장</a>
 	<a class="btn_empty" href="home">취소</a>
 </div>
+<!-- jQuery DatePicker -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript">
+//생년월일 입력시 삭제아이콘 활성화
+$('[name=user_birth]').change(function(){
+	$('#delete').css('display', 'inline-block');
+});
+$('#delete').click(function(){
+	$('[name=user_birth]').val("");
+	$('#delete').css('display', 'none');
+});
+
+//만 13세 이상부터 가입가능
+var today = new Date();
+var endDay = new Date(today.getFullYear() - 13, today.getMonth(), today.getDay() - 1);
+
+//생년월일: jQuery DatePicker 사용
+$('[name=user_birth]').datepicker({
+	showMonthAfterYear: true,
+	dateFormat: 'yy-mm-dd',
+	dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+	monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+	changeMonth: true,
+	changeYear: true,
+	maxDate: endDay
+});
+</script>
 <script type="text/javascript">
 $("[name=user_birth]").change(function(){
 	$("#user_birth").text($('[name=user_birth]').val());
@@ -102,6 +130,8 @@ $(".check_pw").keyup(function(){
 });
 
 function change_pw(){
+
+	$('[name=user_pw]').val('');
 	
 	if(!$('[name=input_pw]').val()){
 		alert('현재비밀번호를 입력하세요.');
@@ -109,9 +139,9 @@ function change_pw(){
  		return false;
 	}
 	
- 	if($('[name=input_pw]').val() == ${login_info.user_pw}){
+ 	if($('[name=input_pw]').val() == ${vo.user_pw}){
  		$('.change_pw').css('display', 'inline-block');
- 	}else if($('[name=input_pw]').val() != ${login_info.user_pw}){
+ 	}else if($('[name=input_pw]').val() != ${vo.user_pw}){
 		alert('현재 비밀번호가 틀렸습니다.\n비밀번호를 다시 입력하세요.');
  		$('[name=input_pw]').val('');
  		$('[name=input_pw]').focus();

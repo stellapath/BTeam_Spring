@@ -48,6 +48,4 @@ public class BoardServiceImpl implements BoardService {
 		return dao.boardList(board_category, page);
 	}
 
-
-
 }

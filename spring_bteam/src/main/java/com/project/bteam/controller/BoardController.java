@@ -37,45 +37,7 @@ public class BoardController {
 		model.addAttribute("board_category", board_category);
 		return "board/qnaBoard";
 	}
-	
-	// 사용후기 업로드 요청
-	@ResponseBody @RequestMapping(value="/reviewWriteReq", produces="text/html; charset=utf-8")
-	public String reviewWriteReq(BoardVO bvo, MultipartFile file, 
-								HttpSession session, HttpServletRequest request) {
-		UserVO user = (UserVO)session.getAttribute("login_info");
-		bvo.setBoard_email(user.getUser_email());
-		if(!file.isEmpty()) {
-			bvo.setBoard_filename(file.getOriginalFilename());
-			bvo.setBoard_filepath(common.upload("board", file, session));
-		}
-		String msg = "<script type='text/javascript'>";
-		if(service.boardWrite(bvo)) {
-			msg += "alert('글이 등록되었습니다.'); ";
-			msg	+= "location='" + request.getContextPath() + "/reviewBoard?board_category=1'";
-		}else {
-			msg += "alert('글 등록에 실패했습니다.');";
-		}	
-		msg += "</script>";
-		return msg;
-	}
-	
-	// 사용후기 작성화면 요청
-	@RequestMapping("/reviewWrite")
-	public String reviewWrite(String board_email,  Model model) {
-		model.addAttribute("board_email", board_email);
-		return "board/reviewWrite";
-	}
 			
-	// 사용후기 화면 요청
-	@RequestMapping("/reviewBoard")
-	public String reviewList(int board_category, Model model, HttpSession session,
-								@RequestParam(defaultValue="1") int curPage) {		
-		page.setBoard_category(board_category);
-		page.setCurPage(curPage);
-		model.addAttribute("page", service.boardList(board_category, page));
-		return "board/reviewBoard";
-	}	
-		
 	// 공지사항 화면 요청
 	@RequestMapping("/noticeBoard")
 	public String boardList(Model model, int board_category, HttpSession session,
