@@ -1,15 +1,16 @@
 package com.project.bteam.controller;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.project.bteam.board.BoardServiceImpl;
+import com.project.bteam.board.BoardVO;
 import com.project.bteam.common.CommonService;
 import com.project.bteam.user.UserServiceImpl;
 import com.project.bteam.user.UserVO;
@@ -65,4 +66,11 @@ public class AndroidController {
 		return "app/andBoardView";
 	}
 	
+	// 안드로이드 글 작성 요청
+	@ResponseBody @RequestMapping("/andBoardInsert")
+	public int andBoardInsert(BoardVO vo, MultipartFile file) {
+		System.out.println("::andBoardInsert::");
+		return 0;
+	}
+
 }
