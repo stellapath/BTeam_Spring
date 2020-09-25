@@ -41,6 +41,9 @@
 	<definition name="user/login" extends="empty">
 		<put-attribute name="content" value="/WEB-INF/views/user/login.jsp"/>
 	</definition>
+	<definition name="user/pwcheck" extends="empty">
+		<put-attribute name="content" value="/WEB-INF/views/user/pwcheck.jsp"/>
+	</definition>
 	<definition name="user/profileImgUp" extends="empty">
 		<put-attribute name="content" value="/WEB-INF/views/user/profileImgUp.jsp"/>
 	</definition>

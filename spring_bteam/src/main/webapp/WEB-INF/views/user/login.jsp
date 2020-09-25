@@ -3,14 +3,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Login</title>
+<title>로그인</title>
 <link rel="stylesheet" href="css/login.css">
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="js/login.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	
+	$(".reset").click(function(){
+		$("#user_id").val("");
+		$("#user_pw").val("");
+		$("#user_id").focus();
+		return true;
+	});//reset click
+	
+});//ready function
+</script>
 </head>
 <body>
 <div id="wrap">
-	<p class="title">로그인</p>
+	<h2 class="title">로그인</h2>
 	
 	<p class="inputline">
 		<label for="user_id" class="email">Email</label><br>
@@ -21,17 +33,13 @@
 		<input type="password" id="user_pw" name="user_pw" class="input" placeholder="비밀번호를 입력하세요"/>
 	</p>
 	<p id="buttons">
-		<input type="button" value="로그인" class="button"><br>
-		<span class="txt_or">또는</span><br>
-		<input type="button" value="NAVER계정으로 로그인" class="naver"><br>
-		<input type="button" value="카카오계정으로 로그인" class="kakao">
+		<input type="submit" value="로그인" class="button"><br>
+		<input type="reset" value="취소 " class="reset"/>
 	</p>
 	
 	<div id="signup">
 		<ul>
-			<li><a href="#" onclick="location.href=''">아이디 찾기</a></li>
-			<li><a>|</a></li>
-			<li><a href="#" onclick="location.href=''">비밀번호 찾기</a></li>
+			<li><a href="#" onclick="location.href='pwcheck'">비밀번호 찾기</a></li>
 			<li><a>|</a></li>
 			<li><a href="#" onclick="location.href='signup'">회원가입</a></li>
 		</ul>

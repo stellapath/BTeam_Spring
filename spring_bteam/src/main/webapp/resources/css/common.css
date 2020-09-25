@@ -23,6 +23,7 @@ table input[name=detail_address]{width: calc(100% - 24px);}
 textarea { width: calc(100% - 6px); resize: none; height: 150px;}
 .check_msg {font-size: 13px; font-weight: bold; float: right;}
 
+.left { text-align:left; }
 a {text-decoration: none; color: black;}
 a:hover{font-weight: bold;}
 
@@ -74,3 +75,5 @@ ul.photoView {width: 80%; margin: 0 10%; float: left;}
 .w-px180{ width: 180px;}
 .w-px200{ width: 200px;}
 .w-px300{ width: 300px;}
+
+footer {width: 80%; margin: 0 auto;}

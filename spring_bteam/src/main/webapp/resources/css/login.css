@@ -1,155 +1,166 @@
 input:focus::-webkit-input-placeholder,
-	textarea:focus::-webkit-input-placeholder {
-		/*Webkit browser*/
-		color: transparent;
-	}
-	input:focus:-moz-input-placeholder,
-	textarea:focus::-moz-input-placeholder {
-		/*Mozila Firefox 4 to 18*/
-		color: transparent;
-	}	
-	input:focus::-moz-input-placeholder,
-	textarea:focus::-moz-input-placeholder {
-		/*Mozila Firefox 19+*/
-		color: transparent;
-	}
-	input:focus:-ms-input-placeholder,
-	textarea:focus:-ms-input-placeholder {
-		/*Internet Explorer 10+*/
-		color: transparent;
-	}
+   textarea:focus::-webkit-input-placeholder {
+      /*Webkit browser*/
+      color: transparent;
+   }
+   input:focus:-moz-input-placeholder,
+   textarea:focus::-moz-input-placeholder {
+      /*Mozila Firefox 4 to 18*/
+      color: transparent;
+   }   
+   input:focus::-moz-input-placeholder,
+   textarea:focus::-moz-input-placeholder {
+      /*Mozila Firefox 19+*/
+      color: transparent;
+   }
+   input:focus:-ms-input-placeholder,
+   textarea:focus:-ms-input-placeholder {
+      /*Internet Explorer 10+*/
+      color: transparent;
+   }
 
 body{
-	margin: 0;
-	height: 100%;
-	overflow: auto;
-	padding-top: 40px;
-	padding-bottom: 40px;
+   margin: 0;
+   height: 100%;
+   overflow: auto;
+   padding-top: 40px;
+   padding-bottom: 40px;
 }
 
 #wrap{
-	width: 600px;
-	height: 750px;
-	margin: 0 auto;
-	box-sizing: border-box;
-	padding: 20px;
-	border: 1px solid #80808075;
+   width: 600px;
+   height: 750px;
+   margin: 0 auto;
+   box-sizing: border-box;
+   padding: 20px;
+   border: 1px solid #80808075;
 }
 
 p, .button{
-	text-align: center;
-	font-family: 'Do Hyeon', sans-serif;
+   text-align: center;
+   font-family: 'Do Hyeon', sans-serif;
 }
 
-.title{	/*로그인*/
-	text-align: center;
-	font-size: 50px;
-	margin-top: 50px;
-	margin-bottom: 50px;
-	font-size: 30px;
+.title{   /*로그인*/
+   text-align: center;
+   font-size: 50px;
+   margin-top: 50px;
+   margin-bottom: 50px;
+   font-size: 30px;
 }
 
-.inputline{	
-	width: 500px;
-	margin: 0 auto;
-	margin-bottom: 20px;
+.inputline{   
+   width: 500px;
+   margin: 0 auto;
+   margin-bottom: 20px;
 }
 
-.input{	/*로그인입력창설정*/
-	border: none;
-	border-bottom: 1px solid #9c9c9c;
-	box-shadow: 1px 1px 1px 1px #9c9c9c;
-	font-size : 17px;
-	opacity: 0.8;
+.input{   /*로그인입력창설정*/
+   border: none;
+   border-bottom: 1px solid #9c9c9c;
+   box-shadow: 1px 1px 1px 1px #9c9c9c;
+   font-size : 17px;
+   opacity: 0.8;
+   width: 400px;
+   height: 50px;
+   padding-left : 7px;
+   margin-top: 10px;
+}
+
+.reset {
 	width: 400px;
-	height: 50px;
-	padding-left : 7px;
-	margin-top: 10px;
-}
-
-.email {	
-	font-size: 20px;
-	padding-right: 360px;
-}
-
-.password {	
-	font-size: 20px;
-	padding-right: 320px;
-}
-
-.txt_or {
-	display: inline-block;
-	width: 40px;
+	height: 45px;
 	font-size: 15px;
-	line-height: 18px;
-	text-align: center;
-	color: #848484;
-}
-
-#buttons{
-	width: 500px;
-	margin: 50px auto 65px;
-}
-
-.button{
-	width: 400px;
-	height: 50px;
-	font-size: 18px;
 	border: none;
 	border-radius: 5px;
 	margin: 0px 0px 15px;
-	background-color: black;
-	color : white;
+	background-color: #8a8a8a;
+	color: white;
+}
+
+.email {   
+   font-size: 20px;
+   padding-right: 360px;
+}
+
+.password {   
+   font-size: 20px;
+   padding-right: 320px;
+}
+
+.txt_or {
+   display: inline-block;
+   width: 40px;
+   font-size: 15px;
+   line-height: 18px;
+   text-align: center;
+   color: #848484;
+}
+
+#buttons{
+   width: 500px;
+   margin: 50px auto 65px;
+}
+
+.button{
+   width: 400px;
+   height: 50px;
+   font-size: 18px;
+   border: none;
+   border-radius: 5px;
+   margin: 0px 0px 15px;
+   background-color: black;
+   color : white;
 }
 
 .naver {
-	width: 400px;
-	height: 50px;
-	font-size: 18px;
-	border: none;
-	border-radius: 5px;
-	margin: 15px 0;
-	background-color: #03c75a;
-	color : white;
+   width: 400px;
+   height: 50px;
+   font-size: 18px;
+   border: none;
+   border-radius: 5px;
+   margin: 15px 0;
+   background-color: #03c75a;
+   color : white;
 }
 
 .kakao {
-	width: 400px;
-	height: 50px;
-	font-size: 18px;
-	border: none;
-	border-radius: 5px;
-	background-color: #FEE500;
+   width: 400px;
+   height: 50px;
+   font-size: 18px;
+   border: none;
+   border-radius: 5px;
+   background-color: #FEE500;
 }
 
 a {
-	text-decoration: none;
-	color: #5f5d5d;
-	font-weight: bold;
+   text-decoration: none;
+   color: #5f5d5d;
+   font-weight: bold;
 }
 
 #signup{
-	font-size: 15px;
-	text-align: center;
+   font-size: 15px;
+   text-align: center;
 }
 
 #signup ul {
-	overflow: hidden;
-	width : 285px;
-	padding : 0px;
-	margin: 0px auto;
+   overflow: hidden;
+   width : 285px;
+   padding : 0px;
+   margin: 0px auto;
 }
 
 #signup li {
-	float: left;
-	list-style: none;
-	margin-right: 10px;
+   float: left;
+   list-style: none;
+   margin-right: 10px;
 }
 
 #signup li:nth-child(2n) {
-	margin-top: -2px;
+   margin-top: -2px;
 }
 
 #signup li:last-child {
-	margin-right : 0px;
+   margin-right : 0px;
 }
