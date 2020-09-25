@@ -7,5 +7,7 @@
 	<typeAliases>		
 		<typeAlias type="com.project.bteam.user.UserVO" alias="UserVO"/>
 		<typeAlias type="com.project.bteam.board.BoardVO" alias="BoardVO"/>
+		<typeAlias type="com.project.bteam.qna.QnaVO" alias="QnaVO"/>
+
 	</typeAliases>
 </configuration>

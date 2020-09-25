@@ -28,16 +28,7 @@ public class BoardController {
 	@Autowired private BoardServiceImpl service;
 	@Autowired private CommonService common;
 	@Autowired private BoardPage page;
-	
-	// 문의하기 화면 요청
-	@RequestMapping("/qnaBoard")
-	public String qnaList(int board_category, Model model, HttpSession session) {
-		List<BoardVO> list = service.boardList(board_category);
-		session.setAttribute("list", list);
-		model.addAttribute("board_category", board_category);
-		return "board/qnaBoard";
-	}
-			
+				
 	// 공지사항 화면 요청
 	@RequestMapping("/noticeBoard")
 	public String boardList(Model model, int board_category, HttpSession session,

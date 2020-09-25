@@ -101,7 +101,8 @@
 </div>
 <script type="text/javascript">
 $('.board_title').click(function(){
-//	$(this).siblings('.review_detail').toggle();	
+//	$(this).siblings('.review_detail').toggle();
+
  	$('.review_detail').toggle();				//전부	
 });
 
