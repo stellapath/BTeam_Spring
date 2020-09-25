@@ -34,6 +34,31 @@ a.btn_empty {	background-color: #edbdff; color: #5c5c5c; }
 #attach-file, #delete-file {display: none;}
 .file_icon {width: 15px;}
 
+ul{list-style: none;}
+#list-top {width: 80%; margin: 0 auto; padding: 0}
+#list-top div{width: 100%; height: 32px;}
+#list-top div ul{display: flex; margin: 0;}
+#list-top div ul:last-child{float:right;}
+#list-top div ul:first-child{float:left;}
+#list-top div ul li * {vertical-align: middle;}
+#list-top div ul li:not(:first-child) {margin-left: 3px;}
+
+label{display: inline-flex; margin-right: 100px;}
+label:last-child{margin-right: 0;}
+
+.file-img {width: 20px;}
+#attach-file, #delete-file {display: none;}
+
+ul.photoView {width: 80%; margin: 0 10%; float: left;}
+.photoView li { float: left; width: 32.5%; height: 300px; border: 1px solid gray; box-sizing: border-box;}
+.photoView li:not(:nth-child(3n)) { margin: 0 1.25% 1.25% 0;}
+.photoView li div:not(:first-child) { text-align: left; padding: 10px; }
+.photoView li div:first-child {text-align: center;}
+
+.file-img {width: 200px; height: 200px;}
+
+.review_detail {}
+
 .w-pct50{ width: 50%;}
 .w-pct60{ width: 60%;}
 .w-pct70{ width: 70%;}

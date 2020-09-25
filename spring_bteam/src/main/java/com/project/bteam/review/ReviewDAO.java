@@ -17,8 +17,7 @@ public class ReviewDAO implements ReviewService{
 
 	@Override
 	public int reviewInsert(BoardVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sql.insert("review.insert", vo);
 	}
 
 	@Override

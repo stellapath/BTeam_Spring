@@ -27,7 +27,7 @@ create table bBoard (
 	board_title		varchar2(1024),
 	board_content	varchar2(2048) default '글 내용이 없습니다.',
 	board_file		varchar2(1024),
-	board_like		number,
+	board_recommend	varchar2(30),
 	constraint email
 	foreign key (board_email)
 	references bUser (user_email)

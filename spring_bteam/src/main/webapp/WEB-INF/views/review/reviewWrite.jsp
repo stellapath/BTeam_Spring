@@ -5,10 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
-<c:if test="${login_info.user_email eq null}">
-<script>
-alert("사용후기는 구매자만 작성가능합니다.");
-location.href="login";
+<c:if test="${empty login_info }">
+<script type="text/javascript">
+alert('구매후기는 구매자만 작성가능합니다.');
+location.href="reviewBoard?board_category=1";
 </script>
 </c:if>
 </head>
@@ -21,8 +21,14 @@ location.href="login";
 	<input type="hidden" name="board_category" value="1" />
 	<table>
 		<tr>
-			<th>작성자</th>
-			<td>${login_info.user_nickname}</td>
+			<th>구매상품</th>
+			<td></td>
+		</tr>
+		<tr><th>추천여부</th>
+			<td>
+				<label><input type="radio" name="board_recommend" value="RECOMMEND"/>추천<i class="far fa-thumbs-up"></i></label>
+				<label><input type="radio" name="board_recommend" value="DERECOMMEND"/>비추천<i class="far fa-thumbs-down"></i></label>
+			</td>
 		</tr>
 		<tr>
 			<th>제목</th>

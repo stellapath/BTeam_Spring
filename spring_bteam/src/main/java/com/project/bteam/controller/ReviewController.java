@@ -44,11 +44,19 @@ public class ReviewController {
 	//리뷰 목록화면 요청
 	@RequestMapping("/reviewBoard")
 	public String reviewList(Model model, HttpSession session, int board_category,
-						@RequestParam(defaultValue="1") int curPage) {
+								@RequestParam(defaultValue="list") String viewType,
+								@RequestParam(defaultValue="all") String recommend,
+								@RequestParam(defaultValue="10") int pageList,
+								@RequestParam(defaultValue="1") int curPage) {
 		
 		//DB에서 정보를 조회하여 목록화면에 출력
 		page.setBoard_category(board_category);
 		page.setCurPage(curPage);
+		page.setPageList(pageList);
+		page.setViewType(viewType);
+		page.setRecommend(recommend);
+		model.addAttribute("crlf", "\r\n");
+		model.addAttribute("lf", "\n");
 		model.addAttribute("page", service.reviewList(page));
 		return "review/reviewBoard";
 	}

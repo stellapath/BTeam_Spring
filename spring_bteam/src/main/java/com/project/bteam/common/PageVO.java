@@ -14,7 +14,37 @@ public class PageVO {
 	private int curBlock, beginPage, endPage;  //현재 블럭에 보여질 페이지의 시작과 끝
 	
 	private int board_category;
-		
+	
+	//검색조건, 검색어
+	private String search, keyword;
+	
+	private String viewType="list";		//리뷰글 형식
+	private String recommend="all";//추천여부
+			
+	public String getSearch() {
+		return search;
+	}
+	public void setSearch(String search) {
+		this.search = search;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	public String getViewType() {
+		return viewType;
+	}
+	public void setViewType(String viewType) {
+		this.viewType = viewType;
+	}
+	public String getRecommend() {
+		return recommend;
+	}
+	public void setRecommend(String recommend) {
+		this.recommend = recommend;
+	}
 	public int getBoard_category() {
 		return board_category;
 	}

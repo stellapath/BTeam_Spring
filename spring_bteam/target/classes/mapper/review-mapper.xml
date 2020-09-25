@@ -2,15 +2,53 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="review">
 
+	<insert id="insert">
+	insert into bBoard(board_category, board_num, board_title, board_content, board_nickname, board_email, board_recommend, board_filename, board_filepath)
+	values (#{board_category}, (select NVL(MAX(board_num), 0) + 1 from bBoard), #{board_title}, #{board_content}, #{board_nickname}, #{board_email}, #{board_recommend}, #{board_filename, jdbcType=VARCHAR}, #{board_filepath, jdbcType=VARCHAR})
+	</insert>
+
+<sql id="search_where">
+<if test="search=='title' or search=='content'">
+   and ${search} like '%' || #{keyword} || '%'
+</if>
+<if test="search=='writer'">
+   and writer in (select id from member where name like '%' || #{keyword} || '%')
+</if>
+
+<if test="search=='all'">
+   and( title like '%' || #{keyword} || '%'
+   		or content like '%' || #{keyword} || '%'
+   		or writer in
+   			(select id from member where name like '%' || #{keyword} || '%'))
+</if>
+</sql>
+
+<sql id="photo_where">
+<if test="viewType=='photo'">
+	and board_filename is not null
+</if>
+</sql>
+
+<sql id="recommend_where">
+<if test="recommend=='recommend'">
+	and board_recommend = 'RECOMMEND'
+</if>
+<if test="recommend=='derecommend'">
+	and board_recommend = 'DERECOMMEND'
+</if>
+</sql>
+
 	<select id="total" resultType="Integer">
 	select count(*)
 	from bBoard
-	where board_category = #{board_category}
+	where board_category = 1 
+	<include refid="recommend_where"/>
+	<include refid="photo_where"/>
 	</select>
 	
 	<select id="list" resultType="BoardVO">
 	select b.* from
-	(select rownum board_no, b.* from (select * from bBoard where board_category=#{board_category} order by board_num) b
+	(select rownum board_no, b.* from (select * from bBoard where board_category=#{board_category} <include refid="recommend_where"/> <include refid="photo_where"/> order by board_num) b
 	order by board_no desc) b
 	where board_no between #{beginList} and #{endList}
 	</select>

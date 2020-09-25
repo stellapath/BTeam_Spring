@@ -4,9 +4,9 @@ import java.sql.Date;
 
 public class BoardVO {
 
-	private String board_email, board_nickname, board_title, board_content, board_filename, board_filepath;
+	private String board_email, board_nickname, board_title, board_content, board_recommend, board_filename, board_filepath;
 	private Date board_date;
-	private int board_num, board_category, board_like, board_readcnt, board_no;
+	private int board_num, board_category, board_readcnt, board_no;
 	
 	public String getBoard_filename() {
 		return board_filename;
@@ -44,11 +44,11 @@ public class BoardVO {
 	public void setBoard_category(int board_category) {
 		this.board_category = board_category;
 	}
-	public int getBoard_like() {
-		return board_like;
+	public String getBoard_recommend() {
+		return board_recommend;
 	}
-	public void setBoard_like(int board_like) {
-		this.board_like = board_like;
+	public void setBoard_recommend(String board_recommend) {
+		this.board_recommend = board_recommend;
 	}
 	public String getBoard_email() {
 		return board_email;
