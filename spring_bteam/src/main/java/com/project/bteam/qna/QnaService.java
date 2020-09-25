@@ -1,6 +1,7 @@
 package com.project.bteam.qna;
 
 public interface QnaService {
+	
 	QnaPage qnaList(QnaPage page);	//문의 목록 조회
 	QnaVO qnaDetail(int id);		//문의 상세조회
 	void qnaReadCnt(int qna_num);	//문의 조회수 증가처리
