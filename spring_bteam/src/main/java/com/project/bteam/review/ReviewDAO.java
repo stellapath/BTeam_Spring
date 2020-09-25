@@ -47,8 +47,7 @@ public class ReviewDAO implements ReviewService{
 
 	@Override
 	public int reviewDelete(int board_num) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sql.delete("review.delete", board_num);
 	}
 	
 	

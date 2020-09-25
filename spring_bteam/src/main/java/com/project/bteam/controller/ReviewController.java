@@ -22,8 +22,17 @@ public class ReviewController {
 	@Autowired private BoardPage page; 
 	@Autowired private CommonService common;
 	
+	//리뷰 삭제처리 요청
+	@RequestMapping("/reviewDelete")
+	public String delete(int board_num, Model model) {
+		service.reviewDelete(board_num);
+		model.addAttribute("page", page);
+		model.addAttribute("url", "reviewBoard");
+		return "review/redirect";
+	}
+	
 	//리뷰 글쓰기 업로드 요청
-	@RequestMapping("reviewWriteReq")
+	@RequestMapping("/reviewWriteReq")
 	public String insert(BoardVO vo, MultipartFile file, HttpSession session) {
 		//첨부파일정보
 		if(! file.isEmpty()) {

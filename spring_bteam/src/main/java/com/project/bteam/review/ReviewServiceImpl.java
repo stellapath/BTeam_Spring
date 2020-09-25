@@ -40,8 +40,7 @@ public class ReviewServiceImpl implements ReviewService{
 
 	@Override
 	public int reviewDelete(int board_num) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.reviewDelete(board_num);
 	}
 
 }

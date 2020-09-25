@@ -6,7 +6,6 @@ UserVO vo = (UserVO) session.getAttribute("login_info");
 pageContext.setAttribute("vo", vo);
 %>
 <header>
-	<h1>HEADER</h1>
 	<a href="companyPage">회사소개</a>
 	<a href="productPage">제품소개</a>
 	<a href="noticeBoard?board_category=0">공지사항</a>

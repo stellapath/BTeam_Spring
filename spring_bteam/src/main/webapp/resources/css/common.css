@@ -1,8 +1,9 @@
-header {width: 80%; margin: 0 auto;}
-/* header div{width: 100%; height: 32px;} */
-/* header div ul{display: inline; margin: 0;} */
-/* header div ul li{list-style: none; float:left; margin-right: 20px; display: inline;} */
-/* header div ul li:last-child{margin-right: 0px;} */
+html, body{margin: 0; padding:0; height: 100%; }
+body{position: relative; min-height: 100%;}
+#content, header {width: 80%; margin: 0 auto;}
+
+#logo_here{width: 500px; margin: 0 auto; text-align: center;}
+img.logo{width: 100px; height: 100px;	}
 
 div.container { margin: 0 auto; width: 100%; padding: 50px 0px; text-align: center;}
 
@@ -29,8 +30,9 @@ a:hover{font-weight: bold;}
 
 .buttons {margin: 0 auto; text-align: center; padding-top: 10px;}
 a.btn_fill, a.btn_empty { text-align: center;	padding: 3px 10px;	border: 1px solid #5c5c5c;	border-radius: 3px;	box-shadow: 2px 2px 3px #e0e0e0;}
-a.btn_fill {	background-color: #ad53ff; color: #ffffff; }
-a.btn_empty {	background-color: #edbdff; color: #5c5c5c; }
+a.btn_fill_s, a.btn_empty_s { font-size:13px; text-align: center;	padding: 1px 5px;	border: 1px solid #5c5c5c;	border-radius: 3px;	box-shadow: 2px 2px 3px #e0e0e0;}
+a.btn_fill, a.btn_fill_s {	background-color: #ad53ff; color: #ffffff; }
+a.btn_empty, a.btn_empty_s {	background-color: #edbdff; color: #5c5c5c; }
 
 #attach-file, #delete-file {display: none;}
 .file_icon {width: 15px;}
@@ -53,8 +55,9 @@ label:last-child{margin-right: 0;}
 ul.photoView {width: 80%; margin: 0 10%; float: left;}
 .photoView li { float: left; width: 32.5%; height: 300px; border: 1px solid gray; box-sizing: border-box;}
 .photoView li:not(:nth-child(3n)) { margin: 0 1.25% 1.25% 0;}
-.photoView li div:not(:first-child) { text-align: left; padding: 10px; }
+.photoView li div:not(:first-child) { text-align: left; padding: 5px;}
 .photoView li div:first-child {text-align: center;}
+.photoView li div.buttons{text-align: right;}
 
 .file-img {width: 200px; height: 200px;}
 
@@ -77,3 +80,40 @@ ul.photoView {width: 80%; margin: 0 10%; float: left;}
 .w-px300{ width: 300px;}
 
 footer {width: 80%; margin: 0 auto;}
+
+.reset {
+	width: 400px;
+	height: 45px;
+	font-size: 15px;
+	border: none;
+	border-radius: 5px;
+	margin: 0px 0px 15px;
+	background-color: #8a8a8a;
+	color: white;
+}
+
+footer{ padding:30px; background-color: #000; opacity: 0.6; width:100%; height: 100px; margin:0; } 
+footer *{ color: white; text-align: center; font-weight: normal; font-size: 15px;}
+footer p{ margin: 0; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

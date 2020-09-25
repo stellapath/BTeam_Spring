@@ -19,6 +19,11 @@
 	</definition>
 	
 	<!-- 타일즈적용 제외 -->
+	<definition name="logo_footer" template="/WEB-INF/views/tiles/logo_footer.jsp">
+		<put-attribute name="content" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp"/>
+	</definition>
+	
 	<definition name="empty" template="/WEB-INF/views/tiles/empty.jsp">
 		<put-attribute name="content" value="" />
 	</definition>
@@ -35,13 +40,13 @@
 	</definition>
 	
 	<!-- 타일즈 제외 선언 -->
-	<definition name="user/signup" extends="empty">
+	<definition name="user/signup" extends="logo_footer">
 		<put-attribute name="content" value="/WEB-INF/views/user/signup.jsp"/>
 	</definition>
-	<definition name="user/login" extends="empty">
+	<definition name="user/login" extends="logo_footer">
 		<put-attribute name="content" value="/WEB-INF/views/user/login.jsp"/>
 	</definition>
-	<definition name="user/pwcheck" extends="empty">
+	<definition name="user/pwcheck" extends="logo_footer">
 		<put-attribute name="content" value="/WEB-INF/views/user/pwcheck.jsp"/>
 	</definition>
 	<definition name="user/profileImgUp" extends="empty">

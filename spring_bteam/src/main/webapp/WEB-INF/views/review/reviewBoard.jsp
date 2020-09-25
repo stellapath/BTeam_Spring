@@ -45,55 +45,73 @@
 </div>
 <div id="reviewList">
 <c:if test="${page.viewType eq 'list' }">
-<table>
-<tr><th class="w-px80">글번호</th>
-	<th>리뷰</th>
-	<th class="w-px120">작성자</th>
-	<th class="w-px120">작성일</th>
-	<th class="w-px80">추천</th>
-</tr>
-<c:forEach items="${page.list}" var="vo">	
-<tr><td>${vo.board_no }</td>
-	<td class="left">
-		<a class="board_title" >${vo.board_title }</a><br/>
-		<div class="review_detail" style="display: none">
-			<c:if test="${!empty vo.board_filename }">
-			<img src="<c:url value='/' />${vo.board_filepath}" class="file-img"/><br/>
-			</c:if>
-			${vo.board_content }
-		</div>
-	</td>
-	<td>${vo.board_nickname }</td>
-	<td>${vo.board_date }</td>
-	<td>
-		<c:if test="${vo.board_recommend eq 'RECOMMEND' }">
-		<i class="far fa-thumbs-up" style="color: green"></i>
-		</c:if>
-		<c:if test="${vo.board_recommend eq 'DERECOMMEND' }">
-		<i class="far fa-thumbs-down" style="color: red"></i>
-		</c:if>
-	</td>
-</tr>
-</c:forEach>
-</table>
+	<table>
+	<tr><th class="w-px80">글번호</th>
+		<th>리뷰</th>
+		<th class="w-px120">작성자</th>
+		<th class="w-px120">작성일</th>
+		<th class="w-px80">추천</th>
+	</tr>
+	<c:forEach items="${page.list}" var="vo">	
+		<tr><td>${vo.board_no }</td>
+			<td class="left">
+				<a class="board_title" >${vo.board_title }</a>
+			</td>	
+			<td>${vo.board_nickname }</td>
+			<td>${vo.board_date }</td>
+			<td>
+				<c:if test="${vo.board_recommend eq 'RECOMMEND' }">
+				<i class="far fa-thumbs-up" style="color: green"></i>
+				</c:if>
+				<c:if test="${vo.board_recommend eq 'DERECOMMEND' }">
+				<i class="far fa-thumbs-down" style="color: red"></i>
+				</c:if>
+			</td>
+		</tr>
+		<tr class="review_detail" style="display: none">	
+			<td colspan="5">	
+				<div>
+					<c:if test="${!empty vo.board_filename }">
+					<img src="<c:url value='/' />${vo.board_filepath}" class="file-img"/><br/>
+					</c:if>
+					${vo.board_content }
+				</div>
+			</td>
+		</tr>
+	</c:forEach>
+	</table>
 </c:if>
 <c:if test="${page.viewType eq 'photo' }">
-<ul class="photoView" style="padding: 0">
-<c:forEach items="${page.list }" var="vo">
-<!-- 	<li><div><img src="https://image.aladin.co.kr/product/60/40/cover/scm3753351354.jpg" class="file-img"/></div> -->
-	<li><div><img src="<c:url value='/' />${vo.board_filepath}" class="file-img"/></div>
-		<div><a href="#">${vo.board_title }</a>
-			 <c:if test="${vo.board_recommend eq 'RECOMMEND' }">
-			 <i class="far fa-thumbs-up" style="color: green"></i>
-			 </c:if>
-			 <c:if test="${vo.board_recommend eq 'DERECOMMEND' }">
-			 <i class="far fa-thumbs-down" style="color: red"></i>
-			 </c:if>
-		</div>
-		<div>${vo.board_date }</div>
-	</li>
-</c:forEach>
-</ul>
+	<ul class="photoView" style="padding: 0">
+	<c:forEach items="${page.list }" var="vo">
+		<li><div><img src="<c:url value='/' />${vo.board_filepath}" class="file-img"/></div>
+			<div><a onclick="popup_detail">${vo.board_title }</a>
+				 <c:if test="${vo.board_recommend eq 'RECOMMEND' }">
+				 <i class="far fa-thumbs-up" style="color: green"></i>
+				 </c:if>
+				 <c:if test="${vo.board_recommend eq 'DERECOMMEND' }">
+				 <i class="far fa-thumbs-down" style="color: red"></i>
+				 </c:if>
+			</div>
+			<div>${vo.board_date }</div>
+			<c:if test="${vo.board_email eq login_info.user_email }">
+				<div class="buttons">
+					<a class="btn_empty_s" href="">수정</a>
+					<a class="btn_fill_s" 
+						onclick="if(confirm('정말 삭제할건가요??')){$('form').submit()}">삭제</a>
+				</div>
+				<form action="reviewDelete" method="post">
+					<input type="hidden" name="board_num" value="${vo.board_num }"/>
+					<input type="hidden" name="board_category" value="${vo.board_category }"/>
+					<input type="hidden" name="curPage" value="${page.curPage }"/>
+					<input type="hidden" name="pageList" value="${page.pageList }"/>
+					<input type="hidden" name="recommend" value="${page.recommend }"/>
+					<input type="hidden" name="viewType" value="${page.viewType }"/>
+				</form>
+			</c:if>
+		</li>
+	</c:forEach>
+	</ul>
 </c:if>
 <div class="buttons">
 <jsp:include page="/WEB-INF/views/include/page.jsp"/>
@@ -101,9 +119,8 @@
 </div>
 <script type="text/javascript">
 $('.board_title').click(function(){
-//	$(this).siblings('.review_detail').toggle();
-
- 	$('.review_detail').toggle();				//전부	
+	$(this).parents('tr').next().toggle();
+// 	$('.review_detail').toggle();				//전부	
 });
 
 </script>
