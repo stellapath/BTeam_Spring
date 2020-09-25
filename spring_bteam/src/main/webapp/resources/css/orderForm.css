@@ -1,0 +1,201 @@
+@charset "UTF-8";
+
+input:focus::-webkit-input-placeholder,
+textarea:focus::-webkit-input-placeholder {
+	/*Webkit browser*/
+	color: transparent;
+}
+input:focus:-moz-input-placeholder,
+textarea:focus::-moz-input-placeholder {
+	/*Mozila Firefox 4 to 18*/
+	color: transparent;
+}	
+input:focus::-moz-input-placeholder,
+textarea:focus::-moz-input-placeholder {
+	/*Mozila Firefox 19+*/
+	color: transparent;
+}
+input:focus:-ms-input-placeholder,
+textarea:focus:-ms-input-placeholder {
+	/*Internet Explorer 10+*/
+	color: transparent;
+}
+
+#order {
+	overflow: hidden;
+	width: 1085px;
+	margin: 20px auto;
+}
+
+#orderForm {
+	float : left;
+	height : 570px;
+	padding: 20px 40px;
+	margin : 20px;
+	width: 420px; 
+	border: 1px solid #ccc;
+}
+
+#payForm {
+	float : left;
+	height : 570px;
+	padding: 20px 40px;
+	margin : 20px;
+	width: 420px; 
+	border: 1px solid #ccc;
+}
+
+div {
+	margin: 20px 0px;
+}
+
+h2 {
+	text-align: center;
+	margin: 50px 0px;
+}
+
+h4 {
+	margin: 0px 0px 16px;
+}
+
+input {
+	border : none;
+	border-bottom: 1px solid gray;
+	padding : 5px;
+	font-size: 15px;
+	height: 30px;
+}
+
+input:focus {
+	outline : none;
+}
+
+.deliv_select {
+	border : none;
+	border-bottom: 1px solid gray;
+	font-size: 15px;
+	height: 30px;
+}
+
+.deliv_select:focus {
+	outline: none;
+}
+
+#user_email, .postcodify_address, .postcodify_details, .deliv_select, .deliv_memo {
+	width: 405px;
+}
+
+#postcodify_postcode5 {
+	width: 300px;	
+}
+
+#postcodify_search_button {
+	color: #2f6471;
+}
+
+a {
+	height: 25px;
+	padding: 10px;
+	border-radius: 3px;
+	font-size: 14px;
+	font-weight: bolder;
+	text-align: center;
+}
+
+#orderForm a:hover {
+	cursor: pointer;
+}
+
+ul {
+	overflow: hidden;
+	padding : 0px;
+	width: 
+}
+
+li {
+	float: left;
+	list-style: none;
+	padding-right: 5px;
+}
+
+#detail {
+	height: 75px;
+	margin: 0 auto 25px;
+}
+
+img {
+	width : 60px;
+	height: 60px;
+}
+
+p {
+	margin: 0px 0px 16px;
+}
+
+#goods_price {
+	text-align: right;
+	margin: 10px 0px;
+}
+
+#goods_delivery {
+	text-align: right;
+	margin: 10px 0px;
+}
+
+#goods_delivery label {
+	padding-right: 35px;
+}
+
+#totalPayment {
+	text-align: right;
+	margin: 10px 0px;
+	font-size: 17px;
+}
+
+.price {
+	border: none;
+	display: inline;
+}
+
+.delivery {
+	border: none;
+	text-align: right;
+	display: inline;
+}
+
+.payment {
+	border: none;
+	text-align: right;
+	color: green;
+	font-weight: bold;
+	font-size: 17px;
+	display: inline;
+}
+
+#buttons {
+	margin: 70px 0px 50px;
+}
+
+.button {
+	margin: 25px 0px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	border: none;
+	border-radius: 5px;
+	background-color: #53a0b3;
+	box-shadow: 2px 2px 2px #006a6a;
+	color: white;
+	font-weight: bold;
+}
+
+.button:hover {
+	cursor: pointer;
+	background-color: gray;
+	box-shadow: 2px 2px 2px #3b3b3b;
+}
+
+
+
+
+

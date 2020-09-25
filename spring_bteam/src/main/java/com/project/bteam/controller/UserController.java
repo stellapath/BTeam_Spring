@@ -21,6 +21,18 @@ public class UserController {
 	@Autowired private UserServiceImpl service;
 	@Autowired private CommonService common;
 	
+	// 주문서작성 화면 요청
+	@RequestMapping("/order")
+	public String order() {
+		return "page/order";
+	}
+	
+	// 비밀번호찾기 화면 요청
+	@RequestMapping("/pwcheck")
+	public String pwcheck() {
+		return "user/pwcheck";
+	}
+	
 	// 회원정보수정
 	@RequestMapping("/update")
 	public String update(UserVO vo) {

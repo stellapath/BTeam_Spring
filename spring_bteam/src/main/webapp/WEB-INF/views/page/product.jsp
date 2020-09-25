@@ -23,7 +23,7 @@
 <h3>제품소개해주세요</h3>
 </div>
 <div id="btnOrder">
-	<a class="btn_fill" href="">제품구매하러가기</a>
+	<a class="btn_fill" href="order">제품구매하러가기</a>
 </div>
 
 </body>
