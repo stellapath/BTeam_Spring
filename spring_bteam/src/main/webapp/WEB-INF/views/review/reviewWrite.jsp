@@ -22,7 +22,7 @@ location.href="reviewBoard?board_category=1";
 	<table>
 		<tr>
 			<th>구매상품</th>
-			<td></td>
+			<td>주문테이블에서 주문내역 가져오기</td>
 		</tr>
 		<tr><th>추천여부</th>
 			<td>
@@ -32,11 +32,11 @@ location.href="reviewBoard?board_category=1";
 		</tr>
 		<tr>
 			<th>제목</th>
-			<td><input type="text" name="board_title" required /></td>
+			<td><input type="text" name="board_title" class="need" title="제목"/></td>
 		</tr>
 		<tr>
 			<th>내용</th>
-			<td><textarea rows="5" cols="20" name="board_content"></textarea></td>
+			<td><textarea rows="5" cols="20" name="board_content" class="need" title="내용"></textarea></td>
 		</tr>
 		<tr>
 			<th>첨부파일</th>
@@ -53,70 +53,24 @@ location.href="reviewBoard?board_category=1";
 	</table><br/>
 </form>
 	<div id="btnSet">
-		<a class="btn_fill" onclick="$('form').submit()">등록</a>
-		<a class="btn_empty" onclick="javascript:if( confirm('작성을 취소하시겠습니까?') ){href='noticeBoard?board_category=0'}">취소</a>
+		<a class="btn_fill" onclick="if(necessary()){$('form').submit()}">등록</a>
+		<a class="btn_empty" href="reviewBoard?board_category=1">취소</a>
 	</div>
 </div>	
 <script type="text/javascript">
-function isImage(filename){
-	//abc.txt, abc.png, abc.jpg, ...
-	//파일의 확장자를 소문자처리
-	var ext = filename.substring( filename.lastIndexOf('.')+1).toLowerCase();
-	var imgs = ['jpg', 'jpeg', 'gif', 'png', 'bmp'];			//이미지확장자 배열
-	if(imgs.indexOf(ext) > -1) return true;
-	else return false;	
-}
-
-$('#attach-file').on('change', function(){
-	//파일정보의 파일명이 이미지파일인 경우 미리보기
-	var attach = this.files[0];
-	if (attach){
-// 		alert(isImage( attach.name));
-		if(isImage( attach.name) ){
-			var img ="<img style='border-radius:50%; width:100px;' class='file-img' id='preview-img' src=''/>";
-			$('#preview').html(img);
-
-			var reader = new FileReader();
-			reader.onload = function(e){
-				$('#preview-img').attr('src', e.target.result);
-			}
-			reader.readAsDataURL(attach);
-		}else $('#preview').html('');
+$('input[name=board_title], input[name=board_content]').on('keydown', function(){
+//	alert($('input:radio[name=board_recommend]').is(':checked'));
+	var need = true;
+	if($('input:radio[name=board_recommend]:checked').length < 1){
+ 		alert('추천여부를 선택하세요!!');
+ 		need = false;
+ 		return need;
 	}
+	return need;
 });
-
-$('#delete-file').on('click', function(){
-	$('#preview').html('');
-});
-
-$('#attach-file').on('change', function(){
-	if( this.files[0] ) $('#board-filename').text( this.files[0].name );
-	$('#delete-file').css('display', 'inline');
-});
-
-$('#delete-file').on('click', function(){
-	$('#board-filename').text('');
-	$('#attach-file').val('');
-	$('#delete-file').css('display', 'none');
-});
-</script>
-<script type="text/javascript">
-var imageFile = $('#attach-file').val();
-var imgType = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf)$/;
-var maxSize = 5 * 1024 * 1024;
-var imgSize;
-
-if(imageFile != "" && imageFile != null) {
-	imgSize = document.getElementById("attach-file").files[0].size;
-    
-    if(!imageFile.match(imgType)) {
-    	alert("이미지 파일만 업로드 가능");
-        return;
-    } else if(imgSize = maxSize) {
-    	alert("파일 사이즈는 5MB까지 가능");
-        return;
-    }
-}
-</script>
+</script>	
+<script type="text/javascript" src="js/image_preview.js"></script>
+<script type="text/javascript" src="js/need_check.js"></script>
+<script type="text/javascript" src="js/file_attach.js"></script>
 </body>
 </html>

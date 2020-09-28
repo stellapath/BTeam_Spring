@@ -22,8 +22,7 @@ public class ReviewServiceImpl implements ReviewService{
 
 	@Override
 	public BoardVO reviewDetail(int board_num) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.reviewDetail(board_num);
 	}
 
 	@Override
@@ -33,9 +32,8 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public int reviewUpdate(int board_num) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int reviewUpdate(BoardVO vo) {
+		return dao.reviewUpdate(vo);
 	}
 
 	@Override

@@ -9,6 +9,6 @@ public interface ReviewService {
 	BoardPage reviewList(BoardPage page);
 	BoardVO reviewDetail(int board_num);
 	int reviewLike(int board_num);
-	int reviewUpdate(int board_num);
+	int reviewUpdate(BoardVO vo);
 	int reviewDelete(int board_num);
 }

@@ -29,8 +29,7 @@ public class ReviewDAO implements ReviewService{
 
 	@Override
 	public BoardVO reviewDetail(int board_num) {
-		// TODO Auto-generated method stub
-		return null;
+		return sql.selectOne("review.detail", board_num);
 	}
 
 	@Override
@@ -40,9 +39,8 @@ public class ReviewDAO implements ReviewService{
 	}
 
 	@Override
-	public int reviewUpdate(int board_num) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int reviewUpdate(BoardVO vo) {
+		return sql.update("review.update", vo);
 	}
 
 	@Override

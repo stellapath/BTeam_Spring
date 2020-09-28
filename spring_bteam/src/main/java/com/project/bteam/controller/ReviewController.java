@@ -1,5 +1,7 @@
 package com.project.bteam.controller;
 
+import java.io.File;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,40 @@ public class ReviewController {
 	@Autowired private BoardPage page; 
 	@Autowired private CommonService common;
 	
+	//리뷰 수정업로드 처리 요청
+	@RequestMapping("/reviewUpdateReq")
+	public String update(BoardVO vo, String attach, Model model,
+							MultipartFile file, HttpSession session) {
+		BoardVO board = service.reviewDetail(vo.getBoard_num());
+		String uuid = session.getServletContext().getRealPath("resources") + board.getBoard_filepath();
+		if(!file.isEmpty()) {
+			vo.setBoard_filename(file.getOriginalFilename());
+			vo.setBoard_filepath(common.upload("board", file, session));
+			
+			if(board.getBoard_filename() != null) {
+				File f = new File(uuid);
+				if(f.exists()) f.delete();
+			}
+		}else {
+			if(attach.isEmpty()) {
+				File f = new File(uuid);
+				if(f.exists()) f.delete();
+			}else {
+				vo.setBoard_filename(board.getBoard_filename());
+				vo.setBoard_filepath(board.getBoard_filepath());
+			}
+		}
+		service.reviewUpdate(vo);
+		return "redirect:reviewBoard?board_category=1";
+	}
+	
+	//리뷰 수정 화면 요청
+	@RequestMapping("/reviewUpdate")
+	public String modify(int board_num, Model model) {
+		model.addAttribute("vo", service.reviewDetail(board_num));
+		return "review/reviewUpdate";
+	}
+	
 	//리뷰 삭제처리 요청
 	@RequestMapping("/reviewDelete")
 	public String delete(int board_num, Model model) {
@@ -29,7 +65,7 @@ public class ReviewController {
 		model.addAttribute("page", page);
 		model.addAttribute("url", "reviewBoard");
 		return "review/redirect";
-	}
+	}		
 	
 	//리뷰 글쓰기 업로드 요청
 	@RequestMapping("/reviewWriteReq")

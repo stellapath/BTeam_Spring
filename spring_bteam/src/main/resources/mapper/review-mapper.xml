@@ -2,10 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="review">
 
+	<update id="update">
+	update bBoard set board_category=#{board_category}, board_title=#{board_title}, board_content=#{board_content}, board_recommend=#{board_recommend}, board_filename=#{board_filename, jdbcType=VARCHAR}, board_filepath=#{board_filepath, jdbcType=VARCHAR}
+	where board_num=#{board_num}
+	</update>
+
+	<select id="detail" resultType="BoardVO">
+	select * from bBoard where board_num=#{board_num} 
+	</select>
+
 	<delete id="delete">
 	delete from bBoard where board_num=#{board_num}
 	</delete>
-
 
 	<insert id="insert">
 	insert into bBoard(board_category, board_num, board_title, board_content, board_nickname, board_email, board_recommend, board_filename, board_filepath)

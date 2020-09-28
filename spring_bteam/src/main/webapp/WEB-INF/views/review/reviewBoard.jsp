@@ -6,6 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>사용후기</title>
+<style type="text/css">
+#content{display: table;}
+#popup{ position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); height: 500px; width:500px; border: 2px solid #666; display: none;}
+#popup img{width: 500px; height: 500px;}
+</style>
 </head>
 <body>
 <div id="list-top">
@@ -55,7 +60,7 @@
 	<c:forEach items="${page.list}" var="vo">	
 		<tr><td>${vo.board_no }</td>
 			<td class="left">
-				<a class="board_title" >${vo.board_title }</a>
+				<a class="board_title">${vo.board_title }</a>
 			</td>	
 			<td>${vo.board_nickname }</td>
 			<td>${vo.board_date }</td>
@@ -68,61 +73,75 @@
 				</c:if>
 			</td>
 		</tr>
-		<tr class="review_detail" style="display: none">	
-			<td colspan="5">	
-				<div>
-					<c:if test="${!empty vo.board_filename }">
-					<img src="<c:url value='/' />${vo.board_filepath}" class="file-img"/><br/>
-					</c:if>
-					${vo.board_content }
+		<tr class="review_detail" style="display: none; background-color: #f0f0f0;">	
+			<td colspan="5" >	
+				<c:if test="${!empty vo.board_filename }">
+				<div class="detail_p" style="width: 200px;">
+					<a onclick="popupPhoto('${vo.board_filepath}')"><img src="<c:url value='/' />${vo.board_filepath}" class="file-img"/></a>
 				</div>
+				</c:if>
+				<div class="detail_c" style="text-align: left;">${fn:replace(vo.board_content, crlf, '<br/>')}</div>
+				<c:if test="${login_info.user_email eq vo.board_email }">
+				<div class="buttons" style="float: right;">
+					<a class="btn_empty_s" href="reviewUpdate?board_num=${vo.board_num}">수정</a>
+					<a class="btn_fill_s" onclick="go_delete(${vo.board_num})">삭제</a>
+				</div>
+				</c:if>
 			</td>
 		</tr>
 	</c:forEach>
 	</table>
+	<div class="buttons">
+	<jsp:include page="/WEB-INF/views/include/page.jsp"/>
+	</div>
 </c:if>
 <c:if test="${page.viewType eq 'photo' }">
 	<ul class="photoView" style="padding: 0">
 	<c:forEach items="${page.list }" var="vo">
-		<li><div><img src="<c:url value='/' />${vo.board_filepath}" class="file-img"/></div>
-			<div><a onclick="popup_detail">${vo.board_title }</a>
-				 <c:if test="${vo.board_recommend eq 'RECOMMEND' }">
-				 <i class="far fa-thumbs-up" style="color: green"></i>
-				 </c:if>
-				 <c:if test="${vo.board_recommend eq 'DERECOMMEND' }">
-				 <i class="far fa-thumbs-down" style="color: red"></i>
-				 </c:if>
-			</div>
-			<div>${vo.board_date }</div>
-			<c:if test="${vo.board_email eq login_info.user_email }">
-				<div class="buttons">
-					<a class="btn_empty_s" href="">수정</a>
-					<a class="btn_fill_s" 
-						onclick="if(confirm('정말 삭제할건가요??')){$('form').submit()}">삭제</a>
+		<li><div><a onclick="popupPhoto('${vo.board_filepath}')"><img src="<c:url value='/' />${vo.board_filepath}" class="file-img"/></a></div>
+			<div class="reviewContent">
+				<div><c:if test="${vo.board_recommend eq 'RECOMMEND' }">
+					<i class="far fa-thumbs-up" style="color: green"></i>${vo.board_title }
+					</c:if>
+					<c:if test="${vo.board_recommend eq 'DERECOMMEND' }">
+					<i class="far fa-thumbs-down" style="color: red"></i>${vo.board_title }
+					</c:if>
 				</div>
-				<form action="reviewDelete" method="post">
-					<input type="hidden" name="board_num" value="${vo.board_num }"/>
-					<input type="hidden" name="board_category" value="${vo.board_category }"/>
-					<input type="hidden" name="curPage" value="${page.curPage }"/>
-					<input type="hidden" name="pageList" value="${page.pageList }"/>
-					<input type="hidden" name="recommend" value="${page.recommend }"/>
-					<input type="hidden" name="viewType" value="${page.viewType }"/>
-				</form>
-			</c:if>
+				<div>${fn:replace(vo.board_content, crlf, '<br/>')}</div>
+				<div>${vo.board_date }</div>
+				<c:if test="${login_info.user_email eq vo.board_email }">
+				<div class="buttons" style="float: right;">
+					<a class="btn_empty_s" href="reviewUpdate?board_num=${vo.board_num}">수정</a>
+					<a class="btn_fill_s" onclick="go_delete(${vo.board_num})">삭제</a>
+				</div>
+				</c:if>
+			</div>
 		</li>
 	</c:forEach>
 	</ul>
 </c:if>
-<div class="buttons">
-<jsp:include page="/WEB-INF/views/include/page.jsp"/>
+<div id="popup-background" 
+		onclick="$('#popup, #popup-background').css('display', 'none');"></div>
+<div id="popup">
 </div>
+
 </div>
 <script type="text/javascript">
 $('.board_title').click(function(){
 	$(this).parents('tr').next().toggle();
-// 	$('.review_detail').toggle();				//전부	
 });
 
+function popupPhoto(data){
+	var imgpath = '<img src = "/bteam//' + data.substring(1) + '" class="file-img"/>';
+	$('#popup, #popup-background').css('display', 'block');
+	$('#popup').html(imgpath);
+}
+
+function go_delete(board_num){
+	var result = confirm('정말 삭제하시겠습니까?');
+	if(result) { location.href="reviewDelete?board_num="+board_num;	
+				 alert('리뷰가 삭제되었습니다.');	}
+}
 </script>
 </body>
 </html>
