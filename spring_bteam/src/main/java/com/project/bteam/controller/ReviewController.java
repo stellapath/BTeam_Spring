@@ -93,7 +93,7 @@ public class ReviewController {
 								@RequestParam(defaultValue="all") String recommend,
 								@RequestParam(defaultValue="10") int pageList,
 								@RequestParam(defaultValue="1") int curPage) {
-		
+		session.setAttribute("menu", "review");
 		//DB에서 정보를 조회하여 목록화면에 출력
 		page.setBoard_category(board_category);
 		page.setCurPage(curPage);

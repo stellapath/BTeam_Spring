@@ -31,15 +31,19 @@ public class BoardController {
 				
 	// 공지사항 화면 요청
 	@RequestMapping("/noticeBoard")
-	public String boardList(Model model, int board_category, HttpSession session,
-							@RequestParam(defaultValue="1") int curPage) {	
-		// 카테고리 : 0 => 공지사항
-		List<BoardVO> list = service.boardList(board_category);
-		session.setAttribute("list", list);
+	public String boardList(int board_category, String search, String keyword,
+							HttpSession session, Model model, 
+							@RequestParam(defaultValue="1") int curPage) {
+		session.setAttribute("menu", "notice");
 		
-		page.setBoard_category(board_category);
+		// 카테고리 : 0 => 공지사항
+//		List<BoardVO> list = service.boardList(board_category);
+//		session.setAttribute("list", list);
 		
 		page.setCurPage(curPage);
+		page.setBoard_category(board_category);
+		page.setSearch(search);
+		page.setKeyword(keyword);
 		model.addAttribute("page", service.boardList(board_category, page));
 		return "board/noticeBoard";
 	}

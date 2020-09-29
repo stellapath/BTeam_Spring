@@ -6,30 +6,70 @@ UserVO vo = (UserVO) session.getAttribute("login_info");
 pageContext.setAttribute("vo", vo);
 %>
 <header>
-	<a href="companyPage">회사소개</a>
-	<a href="productPage">제품소개</a>
-	<a href="noticeBoard?board_category=0">공지사항</a>
-	<a href="reviewBoard?board_category=1">사용후기</a>
-	<a href="qnaBoard">문의하기</a>
-	<div class="right">
-		<c:if test="${login_info eq null}">
-		<a href="login">로그인</a>
-		<a href="signup">회원가입</a>
-		</c:if>
-		<c:if test="${login_info ne null}">
-		<img src="profileImgDn?user_email=${login_info.user_email}" style="width:40px; border-radius:40px; border:1px solid black;" />
-					${login_info.user_nickname}님
+	<div class="menuBar">
+		<ul>
+			<li><a href="companyPage" ${menu eq 'company' ? 'class="active"' : '' }>회사소개</a></li>
+			<li><a href="productPage" ${menu eq 'product' ? 'class="active"' : '' }>제품소개</a></li>
+			<li><a href="noticeBoard?board_category=0" ${menu eq 'notice' ? 'class="active"' : '' }>공지사항</a></li>
+			<li><a href="reviewBoard?board_category=1" ${menu eq 'review' ? 'class="active"' : '' }>사용후기</a></li>
+			<li><a href="qnaBoard" ${menu eq 'qna' ? 'class="active"' : '' }>문의하기</a></li>
+		</ul>	
+	</div>
+	<div class="header_user">
+	<c:if test="${!empty login_info }">
+		<ul>
+			<li><img src="profileImgDn?user_email=${login_info.user_email}" style="width:40px; border-radius:40px; border:1px solid black;" />
+				${login_info.user_nickname }님 </li>
 			<c:if test="${login_info.user_email eq 'admin'}">
-			<a href="adminPage">관리페이지</a>
+			<li><a href="adminPage">관리페이지</a></li>
 			</c:if>
 			<c:if test="${login_info.user_email ne 'admin'}">
-			<a href="myPage?user_email=${login_info.user_email }">마이페이지</a>
-			</c:if>
-		<a onclick="go_logout()">로그아웃</a>
-		</c:if>
+			<li><a href="myPage?user_email=${login_info.user_email }">마이페이지</a></li>
+			</c:if>	
+			<li><a class="btn-fill" onclick="go_logout()">로그아웃</a></li>
+		</ul>
+	</c:if>	
+	<c:if test="${empty login_info }">
+		<ul>
+			<li><input type="text" id="user_email" placeholder="아이디(이메일)"/>
+				<input onkeypress="if( event.keyCode==13){ go_login() }" type="password" id="user_pw" placeholder="비밀번호"/>
+			</li>
+			<li><a class="btn_fill" onclick="go_login()">로그인</a></li>
+			<li><a class="btn_fill" href="signup">회원가입</a></li>
+		</ul>
+	</c:if>	
 	</div>
 </header>
 <script type="text/javascript">
+function go_login(){
+	if($("#user_email").val() == ""){
+		alert("아이디를 입력하세요!");
+		$("#user_email").focus();
+		return;
+	}else if($("#user_pw").val() == ""){
+		alert("비밀번호를 입력하세요!");
+		$("#user_pw").focus();
+		return;
+	}
+	//정보를 세션에 넣어놓은 후 로그인처리 화면은 전환될 필요가 없음. 
+	//통신을 통해서 데이터 여부 파악하여 화면 세션에 넣어 에이잭스를 사용하여 리프레쉬
+	$.ajax({
+		url: 'loginReq',
+		data: { user_email:$("#user_email").val(), user_pw:$("#user_pw").val() },
+		success: function(data){
+			if(data == "1"){	
+// 				alert("로그인 성공!!!");
+				location.reload();
+			}else{
+				alert("아이디 또는 비밀번호가 일치하지 않습니다!!!");
+			}
+		},
+		error: function(req, text){
+			alert(text+':'+req.status);
+		}		
+	});	
+}
+
 function go_logout(){
 	$.ajax({
 		url: 'logout',

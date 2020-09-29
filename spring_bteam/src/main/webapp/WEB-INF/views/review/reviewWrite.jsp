@@ -26,7 +26,7 @@ location.href="reviewBoard?board_category=1";
 		</tr>
 		<tr><th>추천여부</th>
 			<td>
-				<label><input type="radio" name="board_recommend" value="RECOMMEND"/>추천<i class="far fa-thumbs-up"></i></label>
+				<label style="margin-right: 100px;"><input type="radio" name="board_recommend" value="RECOMMEND"/>추천<i class="far fa-thumbs-up"></i></label>
 				<label><input type="radio" name="board_recommend" value="DERECOMMEND"/>비추천<i class="far fa-thumbs-down"></i></label>
 			</td>
 		</tr>
@@ -41,7 +41,7 @@ location.href="reviewBoard?board_category=1";
 		<tr>
 			<th>첨부파일</th>
 			<td style="text-align: left;">
-			<label>
+			<label class="fileUpload">
 				<img alt="파일선택" src="img/attach.png" class="file_icon">
 				<input type="file" name="file" id="attach-file" accept="image/*"/>
 			</label>

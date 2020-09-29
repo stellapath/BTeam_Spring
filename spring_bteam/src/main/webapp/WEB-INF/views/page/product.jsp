@@ -6,16 +6,15 @@
 <meta charset="UTF-8">
 <title>제품소개</title>
 <style type="text/css">
-#btnOrder{
-	width: 200px;
-	padding: 20px;
- 	position: absolute;
- 	border-radius: 10px;
-	right: 10%;
-	bottom: 10%;
-/* 	background-color: rgba( 255, 255, 255, 0.5 ); */
-	background-color: rgba( 235, 64, 52, 0.5 );
-}
+/* #btnOrder{ */
+/* 	width: 200px; */
+/* 	padding: 20px; */
+/*  	position: absolute; */
+/*  	border-radius: 10px; */
+/* 	right: 10%; */
+/* 	bottom: 10%; */
+/* 	background-color: rgba( 235, 64, 52, 0.5 ); */
+/* } */
 </style>
 </head>
 <body>

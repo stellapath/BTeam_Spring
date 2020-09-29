@@ -1,12 +1,25 @@
 html, body{margin: 0; padding:0; height: 100%; }
-body{position: relative; min-height: 100%;}
+body{position: relative; min-height: 100%; display: flex; flex-direction: column;}
 #content, header {width: 80%; margin: 0 auto;}
-#content {margin: 0 auto; padding-bottom: 100px; padding: 50px 0px; text-align: center;}
+#content {margin: 0 auto; margin-top: 20px; padding-bottom: 100px; padding:0px; text-align: center;}
 
 #logo_here{width: 500px; margin: 0 auto; text-align: center;}
 img.logo{width: 100px; height: 100px;	}
 
-table {	width: 100%;	margin: 0 auto;	border-collapse: collapse;}
+header ul, header ul li {	margin: 0;	padding: 0;	display: inline; float: left;}
+
+.menuBar ul li {margin-right: 20px;}
+.menuBar ul li a{font-size: 20px;}
+.menuBar ul li a:hover, .menuBar ul li a.active{font-weight: bold; color: #ad53ff;}
+
+.header_user{ right: 0; top: 25px; float: right; font-size: 15px;}
+.header_user li:not(:first-child){	padding-left: 10px;}
+.header_user input {display: block; float: left; margin-left: 5px;	border : none;	border-bottom: 1px solid gray;	padding : 5px;	font-size: 15px; height: 30px;}
+.header_user input:focus {	outline : none;}
+
+#user_email, #user_pw {width: 150px; height: 20px; font-size: 14px;}
+
+table {	width: 100%; margin: 0 auto; border-collapse: collapse;}
 table th, table td {	border-top: 1px solid #5c5c5c; border-bottom:1px solid #5c5c5c;	padding: 5px 10px; vertical-align: middle;}
 table th {background-color: #e0e0e0; font-weight: bold;}
 table td {text-align: center;}
@@ -27,7 +40,7 @@ textarea { width: calc(100% - 6px); resize: none; height: 150px;}
 a {text-decoration: none; color: black;}
 a:hover{font-weight: bold; cursor: pointer;}
 
-.buttons {margin: 0 auto; text-align: center; padding-top: 10px;}
+.buttons {margin: 0 auto; text-align: center;}
 a.btn_fill, a.btn_empty { text-align: center;	padding: 3px 10px;	border: 1px solid #5c5c5c;	border-radius: 3px;	box-shadow: 2px 2px 3px #e0e0e0;}
 a.btn_fill_s, a.btn_empty_s { font-size:13px; text-align: center;	padding: 1px 5px;	border: 1px solid #5c5c5c;	border-radius: 3px;	box-shadow: 2px 2px 3px #e0e0e0;}
 a.btn_fill, a.btn_fill_s {	background-color: #ad53ff; color: #ffffff; }
@@ -35,6 +48,13 @@ a.btn_empty, a.btn_empty_s {	background-color: #edbdff; color: #5c5c5c; }
 
 #attach-file, #delete-file {display: none;}
 .file_icon {width: 15px;}
+
+#searchTap {width: 100%; margin: 0 auto; padding: 0; margin-bottom: 10px; height: 30px; line-height: 30px; display: grid; }
+#searchTap ul{display: flex; padding:5px; background-color: #e7e7e7; }
+#searchTap ul:last-child{float:right;}
+#searchTap ul:first-child{float:left;}
+#searchTap ul li {margin: 0 auto;}
+#searchTap ul li * {vertical-align: middle;}
 
 ul{list-style: none;}
 #list-top {width: 100%; margin: 0 auto; padding: 0}
@@ -45,7 +65,7 @@ ul{list-style: none;}
 #list-top div ul li * {vertical-align: middle;}
 #list-top div ul li:not(:first-child) {margin-left: 3px;}
 
-label{display: inline-flex; margin-right: 100px;}
+label{display: inline-flex;}
 label:last-child{margin-right: 0;}
 
 .preview-img {width: 30px; height: 30px;}
@@ -58,13 +78,13 @@ label:last-child{margin-right: 0;}
 .reviewContent div:nth-child(2) { height: auto; overflow: hidden;}
 .reviewContent div:last-child {float: right;}
 
+.review_detail td{padding: 20px;}
+.review_detail td div.detail_p a{margin-right: 20px;}
 
 ul.photoView {width: 100%; margin: 0; float: left;}
 .photoView li { width: 100%; min-width:600px; height:auto; min-height: 250px; margin-bottom:5px; border: 1px solid gray; box-sizing: border-box; padding: 20px; overflow: auto;}
 .photoView li div{ float: left; display: inline-block; text-align: left; padding: 5px;}
 .photoView li div.buttons{text-align: right;}
-
-.file-img {width: 200px; height: 200px;}
 
 #popup-background {position: absolute; left: 0; top: 0; width: 100%; height: 100%; background-color: #000; opacity: 0.6; display: none;}
 
@@ -96,7 +116,7 @@ ul.photoView {width: 100%; margin: 0; float: left;}
 	color: white;
 }
 
-footer{ padding:30px; background-color: #000; opacity: 0.6; width:100%; height: 100px; margin:0; bottom: 0; } 
+footer{ padding:30px; background-color: #000; opacity: 0.6; width:100%; height: 100px; margin:0; bottom: 0; margin-top: auto; z-index: 9999;} 
 footer *{ color: white; text-align: center; font-weight: normal; font-size: 15px;}
 footer p{ margin: 0; }
 

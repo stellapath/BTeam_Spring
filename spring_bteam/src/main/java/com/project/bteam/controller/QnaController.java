@@ -23,6 +23,7 @@ public class QnaController {
 	@RequestMapping("/qnaBoard")
 	public String qnaList(Model model, HttpSession session,
 						@RequestParam(defaultValue = "1") int curPage) {
+		session.setAttribute("menu", "qna");
 		page.setCurPage(curPage);
 		model.addAttribute("page", service.qnaList(page));
 		

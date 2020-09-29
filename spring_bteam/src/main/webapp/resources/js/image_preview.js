@@ -17,7 +17,7 @@ $('#attach-file').on('change', function(){
 	if (attach){
 // 		alert(isImage( attach.name));
 		if(isImage( attach.name) ){
-			var img ="<img style='class='preview-img' id='preview-img' src=''/>";
+			var img ="<img class='preview-img' id='preview-img' src=''/>";
 			$('#preview').html(img);
 
 			var reader = new FileReader();

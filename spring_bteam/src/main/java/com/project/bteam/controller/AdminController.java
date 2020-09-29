@@ -41,7 +41,8 @@ public class AdminController {
 	
 	// 관리자페이지 요청
 	@RequestMapping("/adminPage")
-	public String adminPage() {
+	public String adminPage(HttpSession session) {
+		session.setAttribute("menu", "admin");
 		return "admin/adminPage";
 	}
 

@@ -91,7 +91,7 @@
 		</tr>
 	</c:forEach>
 	</table>
-	<div class="buttons">
+	<div class="buttons" style="margin: 10px 0;">
 	<jsp:include page="/WEB-INF/views/include/page.jsp"/>
 	</div>
 </c:if>

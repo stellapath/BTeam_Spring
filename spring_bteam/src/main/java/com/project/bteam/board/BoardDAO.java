@@ -41,7 +41,6 @@ public class BoardDAO implements BoardService {
 	@Override
 	public void boardReadCnt(int board_num) {
 		sql.update("board.readcount", board_num);
-		
 	}
 
 	@Override
@@ -49,7 +48,5 @@ public class BoardDAO implements BoardService {
 		page.setTotalList((Integer) sql.selectOne("board.total", page));
 		page.setList(sql.selectList("board.list", page));
 		return page;
-	}
-
-	
+	}	
 }

@@ -22,11 +22,11 @@
 		</tr>
 		<tr><th>추천여부</th>
 			<td><c:if test="${vo.board_recommend == 'RECOMMEND' }">
-				<label><input type="radio" name="board_recommend" value="RECOMMEND" checked="checked"/>추천<i class="far fa-thumbs-up"></i></label>
+				<label style="margin-right: 100px;"><input type="radio" name="board_recommend" value="RECOMMEND" checked="checked"/>추천<i class="far fa-thumbs-up"></i></label>
 				<label><input type="radio" name="board_recommend" value="DERECOMMEND"/>비추천<i class="far fa-thumbs-down"></i></label>
 				</c:if>
 				<c:if test="${vo.board_recommend == 'DERECOMMEND' }">
-				<label><input type="radio" name="board_recommend" value="RECOMMEND"/>추천<i class="far fa-thumbs-up"></i></label>
+				<label style="margin-right: 100px;"><input type="radio" name="board_recommend" value="RECOMMEND"/>추천<i class="far fa-thumbs-up"></i></label>
 				<label><input type="radio" name="board_recommend" value="DERECOMMEND" checked="checked"/>비추천<i class="far fa-thumbs-down"></i></label>
 				</c:if>
 			</td>

@@ -35,9 +35,17 @@ public class UserController {
 	
 	// 회원정보수정
 	@RequestMapping("/update")
-	public String update(UserVO vo) {
+	public String update(UserVO vo, HttpSession session) {
 		service.userUpdate(vo);
+		session.setAttribute("login_info", vo);
 		return "redirect:myPage?user_email=" + vo.getUser_email();
+	}
+
+	// 마이페이지 화면 요청
+	@RequestMapping("/myPage")
+	public String myPage(Model model, String user_email) {
+		model.addAttribute("vo", service.userDetail(user_email));
+		return "user/myPage";
 	}
 	
 	// 회원가입 화면 요청
@@ -80,14 +88,7 @@ public class UserController {
 	public void logout(HttpSession session) {
 		session.removeAttribute("login_info");
 	}
-	
-	// 마이페이지 화면 요청
-	@RequestMapping("/myPage")
-	public String myPage(Model model, String user_email) {
-		model.addAttribute("vo", service.userDetail(user_email));
-		return "user/myPage";
-	}
-	
+		
 	// 프로필 이미지 변경 화면 요청
 	@RequestMapping("/profileImgUp")
 	public String profileImgUp() {

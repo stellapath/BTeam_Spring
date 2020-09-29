@@ -13,14 +13,12 @@ pageContext.setAttribute("bvo", bvo);
 </head>
 <body>
 <form action="noticeBoard?board_category=0" method="post">
-<input type="hidden" name="curPage" value='1'/>
 <div class="btnSet">
 	<c:if test="${login_info.user_email eq 'admin'}">
 	<a class="btn_fill" href="boardWrite?board_category=0">글작성</a>
 	</c:if>
 </div>
-</form>
-<div class="container" align="center">
+</form>	
 <table>
 	<tr><th class="w-px100">번호</th>
 		<th>제목</th>
@@ -42,9 +40,25 @@ pageContext.setAttribute("bvo", bvo);
 	</tr>
 	</c:forEach>
 </table><br/>
-<div class="btnSet">
+<div class="buttons">
 <jsp:include page="/WEB-INF/views/include/page.jsp"/>
 </div>
-</div>
+<form action="noticeBoard?board_category=0" method="post" >
+<input type="hidden" name="curPage" value='1'/>
+<div id='searchTap'>
+	<ul>
+		<li>
+			<select name="search" class="w-80px">
+			<option value="all" ${page.search eq 'all' ? 'selected' : '' }>전체</option>
+			<option value="board_title" ${page.search eq 'board_title' ? 'selected' : '' }>제목</option>
+			<option value="board_content" ${page.search eq 'board_content' ? 'selected' : '' }>내용</option>
+			<option value="board_nickname" ${page.search eq 'board_nickname' ? 'selected' : '' }>작성자</option>
+			</select>
+		</li>
+		<li><input type="text" name="keyword" class="w-px300" value="${page.keyword }"/></li>
+		<li><a class="btn_fill" onclick="$('form').submit()">검색</a></li>
+	</ul>
+</div>		
+</form>
 </body>
 </html>

@@ -23,14 +23,12 @@ $(document).ready(function() {
 <body>
 <div id="wrap">
 	<h2 class="title">로그인</h2>
-	
 	<p class="inputline">
 		<label for="user_id" class="email">Email</label><br>
 		<input type="text" id="user_id" name="user_email" class="input" placeholder="이메일을 입력하세요"/>
 	</p>
 	<p class="inputline">
 		<label for="user_pw" class="password">Password</label><br>
-		<input type="password" id="user_pw" name="user_pw" class="input" placeholder="비밀번호를 입력하세요"/>
 	</p>
 	<p id="buttons">
 		<input type="submit" value="로그인" class="button"><br>
@@ -44,7 +42,6 @@ $(document).ready(function() {
 			<li><a href="#" onclick="location.href='signup'">회원가입</a></li>
 		</ul>
 	</div>
-
 </div>
 </body>
 </html>
