@@ -12,19 +12,29 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.project.bteam.common.CommonService;
+import com.project.bteam.order.OrderServiceImpl;
+import com.project.bteam.order.OrderVO;
 import com.project.bteam.user.UserServiceImpl;
 import com.project.bteam.user.UserVO;
 
 @Controller
 public class UserController {
 	
+	@Autowired private OrderServiceImpl order;
 	@Autowired private UserServiceImpl service;
 	@Autowired private CommonService common;
+	
+	// 주문서작성 업로드 요청
+	@RequestMapping("/orderReq")
+	public String orderUpload(OrderVO vo, Model model, HttpSession session) {
+		order.orderInsert(vo);
+		return "order/orderResult";
+	}
 	
 	// 주문서작성 화면 요청
 	@RequestMapping("/order")
 	public String order() {
-		return "page/order";
+		return "order/orderForm";
 	}
 	
 	// 비밀번호찾기 화면 요청

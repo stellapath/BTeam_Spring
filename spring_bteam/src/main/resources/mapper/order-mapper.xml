@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="order">
+
+	<insert id="insert">
+	insert into bOrder ( order_num, order_email, order_name, order_phone, order_date, 
+						order_color, order_count, order_amount, order_pay, 
+						deliv_name, deliv_phone, deliv_zipcode, deliv_address, deliv_detailaddress, deliv_memo )
+	values ( (select concat(to_char(sysdate, 'yymmdd'), (select lpad((select count(*) from bOrder where to_char(order_date, 'yymmdd') = to_char(sysdate, 'yymmdd')), 3, '0') from dual)) 
+				order_num from dual),
+			#{order_email}, #{order_name}, #{order_phone}, sysdate, 
+			#{order_color}, #{order_count}, #{order_amount}, #{order_pay}, 
+			#{deliv_name}, #{deliv_phone}, #{deliv_zipcode}, #{deliv_address}, #{deliv_detailaddress, jdbcType=VARCHAR}, #{deliv_memo, jdbcType=VARCHAR} )
+	</insert>
+
+</mapper>

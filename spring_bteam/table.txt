@@ -45,16 +45,22 @@ alter table bBoard add	board_filepath varchar2(1024);
 
 -- 주문
 create table bOrder (
-	order_num			number			primary key,
-	order_email			varchar2(30) 	not null,
+	order_num			number			    primary key,
+	order_email			varchar2(30) 	    not null,
 	order_nickname	  	varchar2(30),
-	order_phone 	 	varchar2(30) 	not null,
-	order_zipcode	  	number 			not null,
-	order_address    	varchar2(30) 	not null,
-	order_detailaddress varchar2(30) 	not null,
-	order_date			date,
-	order_color			varchar2(30) 	not null,
-	order_memo			varchar2(1024),
+	order_phone 	 	varchar2(50) 	    not null,
+	order_date			date              	not null,
+	order_color			varchar2(30),
+  	order_count     	number,
+ 	order_amount    	number,
+ 	order_pay       	varchar2(30),
+ 	deliv_name      	varchar2(30)      	not null,
+ 	deliv_phone     	varchar2(50) 	    not null,
+	deliv_zipcode	  	number 			    not null,
+	deliv_address    	varchar2(1024) 	  	not null,
+	deliv_detailaddress varchar2(1024) 		not null,
+  	deliv_memo			varchar2(1024)	
+
 );
 
 -- 문의

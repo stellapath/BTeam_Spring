@@ -12,11 +12,10 @@
 <link rel='stylesheet' type='text/css' href='css/orderForm.css?v=1<%= new java.util.Date().getTime()%>'>
 </head>
 <body>
-<form action="orderIn" method="post">
+<form action="orderReq" method="post">
 <div>
 	<h2>결제하기</h2>
 	<div id="order">
-		
 		<div id="orderForm">
 			<h4>주문/배송 정보</h4>
 			<c:if test="${!empty login_info }">
@@ -68,14 +67,14 @@
 					</li>
 					<li class="goods_detail">
 						<h4>★☆분실방지-스마트우산☆★</h4>
-						<select class="quantity" name="quantity">
+						<select class="quantity" name="order_count">
 							<option value="1">1개</option>
 							<option value="2">2개</option>
 							<option value="3">3개</option>
 							<option value="4">4개</option>
 							<option value="5">5개</option>
 						</select>
-						<select class="option" name="option">
+						<select class="option" name="order_color">
 							<option value="Black">Black</option>
 							<option value="Red">Red</option>
 						</select>
@@ -85,18 +84,19 @@
 			
 			<div id="goods_price">
 				<label for="price">상품가격</label>&nbsp;&nbsp;
-				<p class="price"></p>
+				<p class="price">10000</p>
 			</div>
 			
 			<div id="goods_delivery">
 				<label for="delivery">배송비</label>&nbsp;&nbsp;
-				<p class="delivery"></p>
+				<p class="delivery">2,500</p>
 				<p class="delivery_info"></p>
 			</div><hr>
 			
 			<div id="totalPayment">
 				<label for="payment">총 결제금액</label>&nbsp;&nbsp;
-				<p class="payment"></p>
+				<p class="payment">12500</p>
+				<input type="hidden" name="order_amount"/>
 			</div>
 			
 			<div id="buttons">
@@ -123,27 +123,19 @@ $(document).on('change', '.quantity', function(){
   	 	$('p.delivery').text('무료');
  	 	$('p.payment').text(total);
   	 	$('p.delivery_info').text('');
+	  	$('input[name="order_amount"]').attr('value', total);
   	}else{
   	 	$('p.delivery').text('2,500');
   	 	$('p.delivery_info').text('* 3만원이상 배송비 무료');
  	 	$('p.payment').text(total + 2500);
+ 	 	
+	  	$('input[name="order_amount"]').attr('value', total+2500);
   	}
 });
 
-var index = $('#delivMemo option').index($('#delivMemo option:selected'));
-
-$('#delivMemo option').on('change', function(){
-	alert(index);
-
-});
-//	if (index = 5){
-//		$('#memoInput').css('display', 'block');
-//	}else{
-//		$('#memoInput').css('display', 'none');
-//	}
-//alert($('[name="deliv_memo"]').val());
-
 function pay_bank(){
+	$('form').append('<input type="hidden" name="order_pay" value="card"/>');
+	$('form').submit();
 	alert('주문이 완료되었습니다.');
 }
 </script>
