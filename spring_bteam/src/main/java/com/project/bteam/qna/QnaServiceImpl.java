@@ -27,13 +27,20 @@ public class QnaServiceImpl implements QnaService {
 	}
 
 	@Override
-	public boolean qnaWrite(QnaVO bvo) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean qnaWrite(QnaVO qvo) {
+		return dao.qnaWrite(qvo);
+	}
+
+	public QnaDAO getDao() {
+		return dao;
+	}
+
+	public void setDao(QnaDAO dao) {
+		this.dao = dao;
 	}
 
 	@Override
-	public boolean qnaUpdate(QnaVO bvo) {
+	public boolean qnaUpdate(QnaVO qvo) {
 		// TODO Auto-generated method stub
 		return false;
 	}

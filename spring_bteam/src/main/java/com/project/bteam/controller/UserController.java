@@ -43,7 +43,8 @@ public class UserController {
 
 	// 마이페이지 화면 요청
 	@RequestMapping("/myPage")
-	public String myPage(Model model, String user_email) {
+	public String myPage(Model model, String user_email, HttpSession session) {
+		session.setAttribute("menu", "mypage");
 		model.addAttribute("vo", service.userDetail(user_email));
 		return "user/myPage";
 	}

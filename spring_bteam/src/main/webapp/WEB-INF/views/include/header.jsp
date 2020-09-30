@@ -24,9 +24,9 @@ pageContext.setAttribute("vo", vo);
 			<li><a href="adminPage">관리페이지</a></li>
 			</c:if>
 			<c:if test="${login_info.user_email ne 'admin'}">
-			<li><a href="myPage?user_email=${login_info.user_email }">마이페이지</a></li>
+			<li><a id="mypage" href="myPage?user_email=${login_info.user_email }" ${menu eq 'mypage' ? 'class="active"' : '' }>마이페이지</a></li>
 			</c:if>	
-			<li><a class="btn-fill" onclick="go_logout()">로그아웃</a></li>
+			<li><a class="btn_fill" onclick="go_logout()">로그아웃</a></li>
 		</ul>
 	</c:if>	
 	<c:if test="${empty login_info }">

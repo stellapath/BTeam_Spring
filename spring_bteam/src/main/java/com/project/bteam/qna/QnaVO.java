@@ -4,10 +4,28 @@ import java.sql.Date;
 
 public class QnaVO {
 	
-	private String qna_category, qna_question, qna_nickname, qna_email;
+	private String qna_category, qna_question, qna_content, qna_nickname, qna_email, qna_filename, qna_filepath ;
 	private Date qna_writedate;
 	private int qna_num, qna_readcnt, qna_no;
 	
+	public String getQna_content() {
+		return qna_content;
+	}
+	public void setQna_content(String qna_content) {
+		this.qna_content = qna_content;
+	}
+	public String getQna_filename() {
+		return qna_filename;
+	}
+	public void setQna_filename(String qna_filename) {
+		this.qna_filename = qna_filename;
+	}
+	public String getQna_filepath() {
+		return qna_filepath;
+	}
+	public void setQna_filepath(String qna_filepath) {
+		this.qna_filepath = qna_filepath;
+	}
 	public String getQna_email() {
 		return qna_email;
 	}

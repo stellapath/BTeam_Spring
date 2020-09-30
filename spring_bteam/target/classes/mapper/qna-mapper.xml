@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="qna.mapper">
 
+	<insert id="write">
+		insert into bQna (qna_num, qna_category, qna_question, qna_content, 
+							qna_nickname, qna_email, qna_filename, qna_filepath)
+		values ((select NVL(MAX(qna_num), 0) + 1 from bQna), #{qna_category}, #{qna_question}, #{qna_content},
+					#{qna_nickname}, #{qna_email},#{qna_filename, jdbcType=VARCHAR}, #{qna_filepath, jdbcType=VARCHAR})
+	</insert>
+
 	<select id="total" resultType="Integer">
-	select count(*)
-	from bQna
+	select count(*)from bQna 
 	</select>
 
 	<select id="list" resultType="QnaVO">
 	select q.* from
-	(select rownum qna_no, q.* from (select * from bQna order by qna_num) q
-	order by qna_no desc) q
+		(select rownum qna_no, q.* from 
+			(select * from bQna order by qna_num) q
+		order by qna_no desc) q
 	where qna_no between #{beginList} and #{endList}
 	</select>
-	
+
 </mapper>

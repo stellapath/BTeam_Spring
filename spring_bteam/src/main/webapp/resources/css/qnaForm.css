@@ -3,10 +3,44 @@
 #wrap {
 	margin: 0 auto;
     width: 80%;
-    padding: 50px 0px;
+    padding: 40px 0px;
 }
 
 table {
 	margin: 0 auto;
 	width: 100%;
 }
+
+.contents td {
+	padding : 0px;
+	border: 0px;
+}
+
+.myContent {
+	margin: 0 auto;
+    width: 80%;
+    text-align: right;
+}
+
+#content a:hover {
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.answers {
+    word-break: break-all;
+    background-color: #f0f0f0;
+    text-align: left;
+    padding: 10px 85px;
+    height: 100%;
+    line-height: 2em;
+    font-size: 15px;
+}
+
+h5 {
+	margin: 10px 0px;
+	color: gray;
+}
+
+
+

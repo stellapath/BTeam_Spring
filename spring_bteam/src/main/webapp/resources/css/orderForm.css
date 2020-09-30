@@ -49,12 +49,12 @@ div {
 	margin: 20px 0px;
 }
 
-h2 {
+#content h2 {
 	text-align: center;
 	margin: 50px 0px;
 }
 
-h4 {
+#content h4 {
 	margin: 0px 0px 16px;
 }
 
@@ -81,7 +81,7 @@ h4 {
 	outline: none;
 }
 
-#user_email, .postcodify_address, .postcodify_details, .deliv_select, .deliv_memo {
+#order_email, .postcodify_address, .postcodify_details, .deliv_select, .deliv_memo {
 	width: 405px;
 }
 
@@ -93,7 +93,7 @@ h4 {
 	color: #2f6471;
 }
 
-a {
+#content  a {
 	height: 25px;
 	padding: 10px;
 	border-radius: 3px;
@@ -106,13 +106,12 @@ a {
 	cursor: pointer;
 }
 
-ul {
+#content  ul {
 	overflow: hidden;
 	padding : 0px;
-	width: 
 }
 
-li {
+#content li {
 	float: left;
 	list-style: none;
 	padding-right: 5px;
@@ -123,7 +122,7 @@ li {
 	margin: 0 auto 25px;
 }
 
-img {
+#content  img {
 	width : 60px;
 	height: 60px;
 }

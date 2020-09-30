@@ -11,6 +11,7 @@ header ul, header ul li {	margin: 0;	padding: 0;	display: inline; float: left;}
 .menuBar ul li {margin-right: 20px;}
 .menuBar ul li a{font-size: 20px;}
 .menuBar ul li a:hover, .menuBar ul li a.active{font-weight: bold; color: #ad53ff;}
+a#mypage.active{font-weight: bold; color: #ad53ff;}
 
 .header_user{ right: 0; top: 25px; float: right; font-size: 15px;}
 .header_user li:not(:first-child){	padding-left: 10px;}

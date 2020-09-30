@@ -19,31 +19,26 @@ public class QnaDAO implements QnaService{
 
 	@Override
 	public QnaVO qnaDetail(int id) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void qnaReadCnt(int qna_num) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public boolean qnaWrite(QnaVO qvo) {
-		// TODO Auto-generated method stub
-		return false;
+		return sql.insert("qna.mapper.write", qvo)>0 ? true : false;
 	}
 
 	@Override
 	public boolean qnaUpdate(QnaVO qvo) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public void qnaDelete(int qna_num) {
-		// TODO Auto-generated method stub
 		
 	}
 	

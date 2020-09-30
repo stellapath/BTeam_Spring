@@ -84,6 +84,7 @@ function imageUpload() {
 <div class="buttons">
 	<a class="btn_fill" onclick="$('form').submit()">저장</a>
 	<a class="btn_empty" href="home">취소</a>
+	<a class="btn_fill" style="float: right;" onclick="goodbye_member()">회원탈퇴</a>
 </div>
 <!-- jQuery DatePicker -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -147,6 +148,38 @@ function change_pw(){
  		$('[name=input_pw]').focus();
  		return false;
  	}
+}
+</script>
+<script type="text/javascript">
+function goodbye_member(){
+//	alert(user_email);
+	var email = '${login_info.user_email}';
+	var pw = '${login_info.user_pw}';
+	var nickname = '${login_info.user_nickname}';
+
+	//비밀번호 다시 확인
+	var goodbye_pw = prompt("회원탈퇴를 위해 비밀번호를 확인합니다.\n회원님의 비밀번호를 입력하세요.");
+	if(goodbye_pw == pw){
+		alert('탈퇴를 진행합니다.');
+// 		$.ajax({
+// 			url: 'goodbye',
+// 			data: { user_email:$("#user_email").val(), user_pw:$("#user_pw").val() },
+// 			success: function(data){
+// 				if(data == "1"){	
+// //	 				alert("로그인 성공!!!");
+// 					location.reload();
+// 				}else{
+// 					alert("아이디 또는 비밀번호가 일치하지 않습니다!!!");
+// 				}
+// 			},
+// 			error: function(req, text){
+// 				alert(text+':'+req.status);
+// 			}		
+// 		});	
+	}else{
+		alert('비밀번호가 일치하지 않아 탈퇴가 취소되었습니다.');
+		return;
+	}
 }
 </script>
 </body>
