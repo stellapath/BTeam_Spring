@@ -2,6 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="order">
 
+	<select id="detail" resultType="OrderVO">
+	select * from bOrder where order_num = #{order_num}
+	</select>
+
+	<select id="returnOrderNum" resultType="Integer">
+	select Max(order_num) from bOrder where order_email = #{order_email} and order_count = #{order_count}
+	</select>
+
 	<insert id="insert">
 	insert into bOrder ( order_num, order_email, order_name, order_phone, order_date, 
 						order_color, order_count, order_amount, order_pay, 

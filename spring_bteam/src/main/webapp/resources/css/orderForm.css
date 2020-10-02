@@ -45,18 +45,10 @@ textarea:focus:-ms-input-placeholder {
 	border: 1px solid #ccc;
 }
 
-div {
-	margin: 20px 0px;
-}
+#orderForm div {	margin: 20px 0px;}
+#content h2 {	text-align: center;	margin: 50px 0px;}
+#content h4 {	margin: 0px 0px 16px; text-align: left;}
 
-#content h2 {
-	text-align: center;
-	margin: 50px 0px;
-}
-
-#content h4 {
-	margin: 0px 0px 16px;
-}
 
 #content input {
 	border : none;
@@ -81,13 +73,11 @@ div {
 	outline: none;
 }
 
-#order_email, .postcodify_address, .postcodify_details, .deliv_select, .deliv_memo {
+.input_long {
 	width: 405px;
 }
 
-#postcodify_postcode5 {
-	width: 300px;	
-}
+select#delivMemo{ height: 30px;}
 
 #postcodify_search_button {
 	color: #2f6471;

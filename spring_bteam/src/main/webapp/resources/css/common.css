@@ -28,6 +28,8 @@ table td[name=board_title], table td[name=board_filename] {text-align: left; }
 table td[name=board_content] {text-align: left; height: 200px;}
 table a {float: left; margin-left: 5px;}
 
+table#order_info tr td{ text-align: left;}
+
 input {	height: 22px;	padding: 5px 10px;	font-size: 15px; }
 input[name=board_title] {width: calc(100% - 24px); }
 input[name=board_filename] {float: left; }

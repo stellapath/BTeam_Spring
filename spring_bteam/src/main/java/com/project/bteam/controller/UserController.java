@@ -27,7 +27,8 @@ public class UserController {
 	// 주문서작성 업로드 요청
 	@RequestMapping("/orderReq")
 	public String orderUpload(OrderVO vo, Model model, HttpSession session) {
-		order.orderInsert(vo);
+		OrderVO result = order.orderInsert(vo);
+		model.addAttribute("vo", result);
 		return "order/orderResult";
 	}
 	

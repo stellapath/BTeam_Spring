@@ -11,8 +11,10 @@ public class OrderDAO implements OrderService{
 	@Autowired private SqlSession sql;
 
 	@Override
-	public int orderInsert(OrderVO vo) {
-		return sql.insert("order.insert", vo);
+	public OrderVO orderInsert(OrderVO vo) {
+		sql.insert("order.insert", vo);
+		int order_num = sql.selectOne("order.returnOrderNum", vo);
+		return sql.selectOne("order.detail", order_num);
 	}
 
 	@Override
@@ -23,8 +25,7 @@ public class OrderDAO implements OrderService{
 
 	@Override
 	public OrderVO orderDetail(int order_num) {
-		// TODO Auto-generated method stub
-		return null;
+		return sql.selectOne("order.detail", order_num);
 	}
 
 	@Override

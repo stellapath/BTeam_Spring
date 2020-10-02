@@ -10,7 +10,7 @@ public class OrderServiceImpl implements OrderService{
 	@Autowired private OrderDAO dao;
 
 	@Override
-	public int orderInsert(OrderVO vo) {
+	public OrderVO orderInsert(OrderVO vo) {
 		return dao.orderInsert(vo);
 	}
 
@@ -22,8 +22,7 @@ public class OrderServiceImpl implements OrderService{
 
 	@Override
 	public OrderVO orderDetail(int order_num) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.orderDetail(order_num);
 	}
 
 	@Override
