@@ -189,7 +189,7 @@
 			<version>3.0.8</version>
 		</dependency>
 		
-		<!-- 회원가입축하메일 보내기 -->
+		<!-- 이메일 보내기 -->
 		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-email -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>

@@ -91,5 +91,12 @@ public class UserDAO implements UserService {
 		return randomKey();
 	}
 
+	@Override
+	public String userEmailCertification() {
+//		String key = randomKey();
+		String key = getKey(false, 6);
+		return key;
+	}
+
 	
 }

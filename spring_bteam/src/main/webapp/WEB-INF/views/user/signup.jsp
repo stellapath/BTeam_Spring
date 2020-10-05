@@ -13,7 +13,65 @@
 <script> $(function() { $("#postcodify_search_button").postcodifyPopUp(); }); </script>
 <!-- 회원가입폼.css -->
 <link rel='stylesheet' type='text/css' href='css/signupForm.css?v=1<%= new java.util.Date().getTime()%>'>
-
+<script type="text/javascript">
+$(document).on('click', '#email_certification', function(){
+	if($('#user_email').val() == ''){
+		//이메일 미입력
+		alert('이메일을 입력하세요.');
+		$('#user_email').focus();
+	}else{
+		let isEmail = 0;
+		let isChecked = 0;
+		//이메일 중복확인
+		$.ajax({
+			url: 'emailCheck',
+			data: { user_email: $('#user_email').val()	},
+			error: function(req, text){
+				alert(text+':'+req.status);
+			}
+		}).done((data) => {		
+			if (data == 1) {
+				alert("이미 사용중인 이메일 입니다.");
+				$('#user_email').focus();
+				isEmail = 1;
+			} else {
+				isEmail = 0;
+				//인증 이메일 발송
+				$.ajax({
+					url: 'email_certification',
+					data: { email: $('#user_email').val()	},
+					success: function( email ){
+						alert('이메일이 성공적으로 발송되었습니다.\n입력하신 이메일을 확인해주세요.');
+					},
+					error: function(req, text){
+						alert(text+':'+req.status);
+					}
+				});
+			}
+			isChecked = 1;
+		});
+	}
+}).on('click','#check_certification', function(){
+	if($('#input_certification').val() == ''){
+		//이메일 미입력
+		alert('인증번호를 입력하세요.');
+		$('#input_certification').focus();
+	}else{
+// 		var key = ;
+// 		alert( "인증키: " + key );
+// 		$.ajax({
+// 			url: 'check_certification',
+// 			data: { email_key: $('#input_certification').val()	},
+// 			success: function( email_key ){
+// 				alert('이메일 인증이 완료되었습니다.');
+// 			},
+// 			error: function(req, text){
+// 				alert(text+':'+req.status);
+// 			}
+// 		});
+	}	
+});
+</script>
 </head>
 <body>
 <div id="signupForm">
@@ -26,6 +84,9 @@
 					<input type="text" name="user_email" id="user_email" required 
 						placeholder="이메일을 입력하세요."/><br/>
 					<a class="btn-fill" id="email_chkBtn">이메일 중복 확인</a>
+					<a class="btn-fill" id="email_certification" >인증메일발송</a><br/>
+					<input type="text" name="input_certification" placeholder="메일에 적힌 인증번호를 입력하세요."/><br/>
+					<a class="btn-fill" id="check_certification" >인증확인</a>
 				</td>
 			</tr>
 			<tr>

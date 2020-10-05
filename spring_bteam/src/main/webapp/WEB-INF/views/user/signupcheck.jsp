@@ -55,7 +55,7 @@
 
 			//별명 유효성
 			if (!getNickname.test($("#user_nickname").val())) {
-				alert("별명은 한글 2~10자로 입력하세요.")
+				alert("닉네임은 한글 2~10자로 입력하세요.")
 				$("#user_nickname").val("");
 				$("#user_nickname").focus();
 				return false;

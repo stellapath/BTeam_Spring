@@ -1,5 +1,7 @@
 package com.project.bteam.order;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +18,6 @@ public class OrderServiceImpl implements OrderService{
 
 	@Override
 	public BoardPage orderList(BoardPage page) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -27,7 +28,6 @@ public class OrderServiceImpl implements OrderService{
 
 	@Override
 	public int orderDelete(int order_num) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 

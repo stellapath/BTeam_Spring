@@ -35,5 +35,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<UserVO> userList() { return dao.userList();	}
+
+	@Override
+	public String userEmailCertification() { return dao.userEmailCertification(); }
 		
 }

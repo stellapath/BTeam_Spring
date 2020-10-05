@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.project.bteam.common.CommonService;
 import com.project.bteam.order.OrderServiceImpl;
@@ -29,6 +30,7 @@ public class UserController {
 	public String orderUpload(OrderVO vo, Model model, HttpSession session) {
 		OrderVO result = order.orderInsert(vo);
 		model.addAttribute("vo", result);
+		common.mailOrder(result, session);
 		return "order/orderResult";
 	}
 	
@@ -73,6 +75,17 @@ public class UserController {
 		return Integer.toString(result);
 	}
 	
+	// 인증번호 이메일 발송
+	@ResponseBody @RequestMapping("/email_certification")
+	public void sendEmailCertify(String email, HttpSession session, Model model) {
+		String key = service.userEmailCertification();
+		session.setAttribute("key", key);
+		
+//		model.addAttribute("email_key", key);
+		common.mailCheck(email, key, session);
+//		return key;
+	}
+		
 	// 회원가입 처리 요청
 	@RequestMapping("/signupReq")
 	public String singupReq(UserVO vo, Model model) {

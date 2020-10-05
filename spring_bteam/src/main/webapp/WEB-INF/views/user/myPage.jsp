@@ -25,6 +25,14 @@ function imageUpload() {
 <script> $(function() { $("#postcodify_search_button").postcodifyPopUp(); }); </script>
 </head>
 <body>
+<h3>${vo.user_nickname}님의 마이페이지</h3>
+<div class="myMenuBar">
+<ul>
+	<li><a onclick="show_div('my_info')">개인정보수정</a></li>
+	<li><a onclick="show_div('my_order')">나의 주문내역</a></li>
+	<li><a onclick="show_div('my_qna')">나의 문의내역</a></li>
+</ul>
+</div>
 <form action="update" method="post">
 <input type="hidden" name="user_email" value="${vo.user_email}"/>
 <table>	

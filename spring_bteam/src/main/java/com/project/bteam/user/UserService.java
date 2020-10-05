@@ -5,12 +5,13 @@ import java.util.List;
 public interface UserService {
 
 	int userSignup(UserVO vo);					// 회원가입
-	int userEmailCheck(String user_email);	// 이메일 중복확인
+	int userEmailCheck(String user_email);		// 이메일 중복확인
+	String userEmailCertification();			// 이메일 인증
 	UserVO userLogin(UserVO vo);				// 로그인
 	UserVO userDetail(String user_email);		// 회원정보 상세보기
 	int userImageUpload(UserVO vo);
 	boolean userUpdate(UserVO vo);				// 회원정보수정
-	boolean userDelete(String user_email); 	// 회원탈퇴
+	boolean userDelete(String user_email); 		// 회원탈퇴
 	List<UserVO> userList();
 	
 }

@@ -13,6 +13,8 @@ header ul, header ul li {	margin: 0;	padding: 0;	display: inline; float: left;}
 .menuBar ul li a:hover, .menuBar ul li a.active{font-weight: bold; color: #ad53ff;}
 a#mypage.active{font-weight: bold; color: #ad53ff;}
 
+.myMenuBar ul li{	margin: 0;	padding: 0;	display: inline; float: left; margin-right: 20px;}
+
 .header_user{ right: 0; top: 25px; float: right; font-size: 15px;}
 .header_user li:not(:first-child){	padding-left: 10px;}
 .header_user input {display: block; float: left; margin-left: 5px;	border : none;	border-bottom: 1px solid gray;	padding : 5px;	font-size: 15px; height: 30px;}
@@ -119,7 +121,7 @@ ul.photoView {width: 100%; margin: 0; float: left;}
 	color: white;
 }
 
-footer{ padding:30px; background-color: #000; opacity: 0.6; width:100%; height: 100px; margin:0; bottom: 0; margin-top: auto; z-index: 9999;} 
+footer{ padding:30px; background-color: #000; opacity: 0.6; width:auto; height: 100px; margin:0; bottom: 0; margin-top: auto; z-index: 9999;} 
 footer *{ color: white; text-align: center; font-weight: normal; font-size: 15px;}
 footer p{ margin: 0; }
 
