@@ -1,16 +1,17 @@
 package com.project.bteam.controller;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
+import com.project.bteam.android.AndroidServiceImpl;
 import com.project.bteam.board.BoardServiceImpl;
-import com.project.bteam.board.BoardVO;
 import com.project.bteam.common.CommonService;
 import com.project.bteam.user.UserServiceImpl;
 import com.project.bteam.user.UserVO;
@@ -20,6 +21,7 @@ public class AndroidController {
 	
 	@Autowired private UserServiceImpl user;
 	@Autowired private BoardServiceImpl board;
+	@Autowired private AndroidServiceImpl service;
 	@Autowired private CommonService common;
 	
 	// 안드로이드 회원가입
@@ -47,14 +49,6 @@ public class AndroidController {
 		return "app/andLogin";
 	}
 	
-	// 안드로이드 게시판 목록 TODO 페이징 처리
-	@RequestMapping("/andBoardList")
-	public String andBoardList(int category, Model model) {
-		System.out.println("::andBoardList::");
-		model.addAttribute("boardList", board.boardList(category));
-		return "app/andBoardList";
-	}
-	
 	// 안드로이드 게시글 자세히
 	@RequestMapping("/andBoardView")
 	public String andBoardView(int board_num, int category, Model model) {
@@ -66,11 +60,14 @@ public class AndroidController {
 		return "app/andBoardView";
 	}
 	
-	// 안드로이드 글 작성 요청
-	@ResponseBody @RequestMapping("/andBoardInsert")
-	public int andBoardInsert(BoardVO vo, MultipartFile file) {
-		System.out.println("::andBoardInsert::");
-		return 0;
+	// 공지사항 불러오기
+	@RequestMapping("/andNotice")
+	public String andNotice(@RequestParam(defaultValue="1") int begin,
+						    @RequestParam(defaultValue="10") int end, Model model) {
+		Map<String, Integer> map = new HashMap<>();
+		map.put("begin", begin);
+		map.put("end", end);
+		model.addAttribute("notice", service.noticeList(map));
+		return "app/andNotice";
 	}
-
 }
