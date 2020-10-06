@@ -1,5 +1,7 @@
 package com.project.bteam.order;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +20,14 @@ public class OrderServiceImpl implements OrderService{
 
 	@Override
 	public BoardPage orderList(BoardPage page) {
-		return null;
+		return dao.orderList(page);
 	}
-
+	
+//	@Override
+//	public List<OrderVO> orderList(String user_email) {
+//		return dao.orderList(user_email);
+//	}
+	
 	@Override
 	public OrderVO orderDetail(int order_num) {
 		return dao.orderDetail(order_num);

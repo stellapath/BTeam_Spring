@@ -64,7 +64,7 @@ a.btn_empty, a.btn_empty_s {	background-color: #edbdff; color: #5c5c5c; }
 ul{list-style: none;}
 #list-top {width: 100%; margin: 0 auto; padding: 0}
 #list-top div{width: 100%; height: 32px;}
-#list-top div ul{display: flex; margin: 0;}
+#list-top div ul{display: flex; margin: 0; }
 #list-top div ul:last-child{float:right;}
 #list-top div ul:first-child{float:left;}
 #list-top div ul li * {vertical-align: middle;}

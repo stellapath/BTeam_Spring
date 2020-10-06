@@ -2,6 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="order">
 
+	<select id="list" resultType="OrderVO">
+	select b.* from
+	(select rownum board_no, b.* from 
+		(select * from bOrder where order_email=#{keyword} order by order_date desc) b
+	order by board_no desc) b
+	where board_no between #{beginList} and #{endList}
+	</select>
+
+	<select id="total" resultType="Integer">
+	select count(*)	from bOrder where order_email=#{keyword}
+	</select>
+
+<!-- 	<select id="list" resultType="OrderVO"> -->
+<!-- 	select b.* from -->
+<!-- 		(select * from bOrder where order_email=#{user_email} order by order_date desc) b -->
+<!-- 	</select> -->
+
 	<select id="detail" resultType="OrderVO">
 	select * from bOrder where order_num = #{order_num}
 	</select>

@@ -28,9 +28,9 @@ function imageUpload() {
 <h3>${vo.user_nickname}님의 마이페이지</h3>
 <div class="myMenuBar">
 <ul>
-	<li><a onclick="show_div('my_info')">개인정보수정</a></li>
-	<li><a onclick="show_div('my_order')">나의 주문내역</a></li>
-	<li><a onclick="show_div('my_qna')">나의 문의내역</a></li>
+	<li><a href="myPage?user_email=${login_info.user_email }" ${mypage eq 'info' ? 'class="active"' : '' }>개인정보수정</a></li>
+	<li><a href="myOrder?user_email=${login_info.user_email }" ${mypage eq 'order' ? 'class="active"' : '' }>나의 주문내역</a></li>
+	<li><a href="myQna?user_email=${login_info.user_email }" ${mypage eq 'qna' ? 'class="active"' : '' }>나의 문의내역</a></li>
 </ul>
 </div>
 <form action="update" method="post">
@@ -92,8 +92,9 @@ function imageUpload() {
 <div class="buttons">
 	<a class="btn_fill" onclick="$('form').submit()">저장</a>
 	<a class="btn_empty" href="home">취소</a>
-	<a class="btn_fill" style="float: right;" onclick="goodbye_member()">회원탈퇴</a>
+	<a style="float: right; color: red; font-weight: bold;" onclick="goodbye_member()">회원탈퇴</a>
 </div>
+
 <!-- jQuery DatePicker -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
