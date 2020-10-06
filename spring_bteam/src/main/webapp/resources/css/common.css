@@ -1,6 +1,7 @@
 html, body{margin: 0; padding:0; height: 100%; }
 body{position: relative; min-height: 100%; display: flex; flex-direction: column;}
 #content, header {width: 80%; margin: 0 auto;}
+
 #content {margin: 0 auto; margin-top: 20px; padding-bottom: 100px; padding:0px; text-align: center;}
 
 #logo_here{width: 500px; margin: 0 auto; text-align: center;}
@@ -28,7 +29,6 @@ table th {background-color: #e0e0e0; font-weight: bold;}
 table td {text-align: center;}
 table td[name=board_title], table td[name=board_filename] {text-align: left; }
 table td[name=board_content] {text-align: left; height: 200px;}
-table a {float: left; margin-left: 5px;}
 
 table#order_info tr td{ text-align: left;}
 

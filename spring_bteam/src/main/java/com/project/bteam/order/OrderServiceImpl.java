@@ -22,12 +22,7 @@ public class OrderServiceImpl implements OrderService{
 	public BoardPage orderList(BoardPage page) {
 		return dao.orderList(page);
 	}
-	
-//	@Override
-//	public List<OrderVO> orderList(String user_email) {
-//		return dao.orderList(user_email);
-//	}
-	
+		
 	@Override
 	public OrderVO orderDetail(int order_num) {
 		return dao.orderDetail(order_num);

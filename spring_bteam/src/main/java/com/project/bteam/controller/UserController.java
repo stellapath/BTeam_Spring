@@ -30,6 +30,14 @@ public class UserController {
 	@Autowired private CommonService common;
 	@Autowired private BoardPage page; 
 	
+	// 내 주문내역 상세보기
+	@RequestMapping("/myOrderView")
+	public String myOrderView(String order_num, Model model) {
+		int orderNum = Integer.parseInt(order_num);
+		model.addAttribute("vo", order.orderDetail(orderNum));
+		return "order/orderResult";
+	}
+	
 	// 내 주문내역조회
 	@RequestMapping("/myOrder")
 	public String myOrderList(String user_email, Model model, HttpSession session,
@@ -42,12 +50,6 @@ public class UserController {
 		model.addAttribute("page", order.orderList(page));
 		return "user/myOrder";
 	}
-//	@RequestMapping("/myOrder")
-//	public String myOrderList(String user_email, Model model, HttpSession session) {
-//		session.setAttribute("mypage", "order");
-//		model.addAttribute("page", order.orderList(user_email));
-//		return "user/myOrder";
-//	}
 	
 	// 주문서작성 업로드 요청
 	@RequestMapping("/orderReq")

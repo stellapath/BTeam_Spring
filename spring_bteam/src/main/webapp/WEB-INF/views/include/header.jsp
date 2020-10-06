@@ -43,31 +43,30 @@ pageContext.setAttribute("vo", vo);
 <script type="text/javascript">
 function go_login(){
 	if($("#user_email").val() == ""){
-		alert("아이디를 입력하세요!");
-		$("#user_email").focus();
-		return;
-	}else if($("#user_pw").val() == ""){
-		alert("비밀번호를 입력하세요!");
-		$("#user_pw").focus();
-		return;
-	}
-	//정보를 세션에 넣어놓은 후 로그인처리 화면은 전환될 필요가 없음. 
-	//통신을 통해서 데이터 여부 파악하여 화면 세션에 넣어 에이잭스를 사용하여 리프레쉬
-	$.ajax({
-		url: 'loginReq',
-		data: { user_email:$("#user_email").val(), user_pw:$("#user_pw").val() },
-		success: function(data){
-			if(data == "1"){	
-// 				alert("로그인 성공!!!");
-				location.reload();
-			}else{
-				alert("아이디 또는 비밀번호가 일치하지 않습니다!!!");
-			}
-		},
-		error: function(req, text){
-			alert(text+':'+req.status);
-		}		
-	});	
+		location.href="login";
+	}else{
+		if($("#user_pw").val() == ""){
+			alert('비밀번호를 입력하세요.');
+			return;
+		}
+		//정보를 세션에 넣어놓은 후 로그인처리 화면은 전환될 필요가 없음. 
+		//통신을 통해서 데이터 여부 파악하여 화면 세션에 넣어 에이잭스를 사용하여 리프레쉬
+		$.ajax({
+			url: 'loginReq',
+			data: { user_email:$("#user_email").val(), user_pw:$("#user_pw").val() },
+			success: function(data){
+				if(data == "1"){	
+	// 				alert("로그인 성공!!!");
+					location.reload();
+				}else{
+					alert("아이디 또는 비밀번호가 일치하지 않습니다!!!");
+				}
+			},
+			error: function(req, text){
+				alert(text+':'+req.status);
+			}		
+		});
+	}	
 }
 
 function go_logout(){

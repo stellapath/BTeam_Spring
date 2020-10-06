@@ -13,7 +13,7 @@
 	<td>${vo.order_num }</td>
 </tr>
 <tr><th>제품명</th>
-	<td>★☆분실방지-스마트우산☆★</td>
+	<td>${vo.order_option }(${vo.order_color })</td>
 </tr>	
 <tr><th>구매수량</th>
 	<td>${vo.order_count}</td>

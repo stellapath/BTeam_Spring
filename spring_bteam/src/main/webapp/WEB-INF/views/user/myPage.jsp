@@ -49,11 +49,13 @@ function imageUpload() {
 	</tr>
 	<tr>
 		<th>현재비밀번호</th>
-		<td><input type="password" name="input_pw" />
-			<a class="btn_fill" onclick="change_pw()">변경</a>
+		<td><div>
+			<input type="password" name="input_pw" />
+			<a class="btn_fill" onclick="change_pw('${vo.user_pw}')">변경</a>
+			</div>
 			<div class="change_pw" style="display: none;">
 				<p>새 비밀번호</p>
-				<input type="password" name="user_pw" value="${login_info.user_pw}"/>
+				<input type="password" name="user_pw" value="${vo.user_pw}"/>
 				<p>비밀번호확인</p>
 				<input type="password" id="check_pw"/><br/>
 				<span class="check_msg"></span>
@@ -139,7 +141,7 @@ $(".check_pw").keyup(function(){
 	}
 });
 
-function change_pw(){
+function change_pw(pw){
 
 	$('[name=user_pw]').val('');
 	
@@ -148,11 +150,11 @@ function change_pw(){
  		$('[name=input_pw]').focus();
  		return false;
 	}
-	
- 	if($('[name=input_pw]').val() == ${vo.user_pw}){
+
+ 	if($('[name=input_pw]').val() == pw){
  		$('.change_pw').css('display', 'inline-block');
- 	}else if($('[name=input_pw]').val() != ${vo.user_pw}){
-		alert('현재 비밀번호가 틀렸습니다.\n비밀번호를 다시 입력하세요.');
+ 	}else if($('[name=input_pw]').val() != pw){
+		alert('현재 비밀번호와 일치하지 않습니다.\n비밀번호를 다시 입력하세요.');
  		$('[name=input_pw]').val('');
  		$('[name=input_pw]').focus();
  		return false;

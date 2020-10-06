@@ -21,11 +21,6 @@ public class OrderDAO implements OrderService{
 		return sql.selectOne("order.detail", order_num);
 	}
 	
-//	@Override
-//	public List<OrderVO> orderList(String user_email) {
-//		return sql.selectList("order.list", user_email);
-//	}
-
 	@Override
 	public BoardPage orderList(BoardPage page) {
 		page.setTotalList((Integer)sql.selectOne("order.total", page));

@@ -5,7 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<c:if test="${login_info eq null}">
+<script>
+	alert("로그인이 필요한 페이지 입니다.");
+	location.href = "login";
+</script>
+</c:if>
 </head>
 <body>
 <h3>${login_info.user_nickname}님의 주문내역</h3>
@@ -18,9 +23,9 @@
 </div>
 <div id="list-top">
 <form action="myOrder" method="post">
-<input type="hidden" name="user_email" value="${login_info.user_email }"/>
 <input type="hidden" name="curPage" value="1"/>
-<input type="hidden" name="board_category" value="1"/>
+<input type="hidden" name="user_email" value="${login_info.user_email }"/>
+<input type="hidden" name="order_num"/>
 <div>
 <ul style="float: right;">
 	<li>
@@ -35,21 +40,31 @@
 </form>
 </div>
 <table>
-<tr><th class="w-px120">주문번호</th><th>제품명</th><th class="w-px80">주문수량</th><th class="w-px120">주문금액</th><th class="w-px80">진행상태</th><th class="w-px80">문의하기</th></tr>
+<tr><th class="w-px120">주문번호</th><th>제품명</th><th class="w-px80">주문수량</th><th class="w-px80">주문금액</th><th class="w-px80">진행상태</th><th class="w-px120">문의하기</th></tr>
 <c:if test="${page.list eq null }">
 <tr><td colspan="6">주문내역이 없습니다.</td></tr>
 </c:if>
 <c:if test="${page.list ne null }">
 <c:forEach var="vo" items="${page.list }">
-<tr><td><a href="#" style="float: none;">${vo.order_num }<br/>(${vo.order_date })</a></td>
-	<td>★☆분실방지-스마트우산☆★</td>
+<tr><td><a onclick="go_detail(${vo.order_num })" style="float: none;">${vo.order_num }<br/>(${vo.order_date })</a></td>
+	<td>${vo.order_option }</td>
 	<td>${vo.order_count }</td>
 	<td>${vo.order_amount }</td>
 	<td>배송준비중</td>
-	<td><a class="btn_fill" href="#">일대일문의</a></td>
+	<td><a class="btn_fill" onclick="">일대일문의</a></td>
 </tr>
 </c:forEach>
 </c:if>
 </table>
+<div class="buttons">
+<jsp:include page="/WEB-INF/views/include/page.jsp"/>
+</div>
+<script type="text/javascript">
+function go_detail(order_num){
+	$('[name=order_num]').val(order_num);
+	$('form').attr('action', 'myOrderView');
+	$('form').submit();
+}
+</script>
 </body>
 </html>

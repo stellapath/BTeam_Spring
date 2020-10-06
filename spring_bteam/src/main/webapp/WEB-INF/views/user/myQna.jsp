@@ -5,6 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<c:if test="${login_info eq null}">
+<script>
+	alert("로그인이 필요한 페이지 입니다.");
+	location.href = "login";
+</script>
+</c:if>
 </head>
 <body>
 <h3>${vo.user_nickname}님의 마이페이지</h3>

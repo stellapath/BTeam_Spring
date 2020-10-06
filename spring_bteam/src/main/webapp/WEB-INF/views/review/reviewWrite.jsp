@@ -4,16 +4,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>사용후기작성</title>
 <c:if test="${empty login_info }">
 <script type="text/javascript">
 alert('구매후기는 구매자만 작성가능합니다.');
-location.href="reviewBoard?board_category=1";
+history.go(-1);
 </script>
 </c:if>
 </head>
 <body>
-<h3>리뷰 작성화면</h3>
+<h3>사용후기 작성화면</h3>
 <div class="container">
 <form action="reviewWriteReq" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="board_nickname" value="${login_info.user_nickname}" />
@@ -22,7 +22,12 @@ location.href="reviewBoard?board_category=1";
 	<table>
 		<tr>
 			<th>구매상품</th>
-			<td>주문테이블에서 주문내역 가져오기</td>
+			<td><select>
+				<c:forEach items="${page.list}" var="vo">
+					<option>${vo.order_option }(${vo.order_color }) 구매일자: ${vo.order_date }</option>
+				</c:forEach>	
+				</select>
+			</td>
 		</tr>
 		<tr><th>추천여부</th>
 			<td>
