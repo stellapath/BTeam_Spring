@@ -1,5 +1,7 @@
 package com.project.bteam.order;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -18,11 +20,12 @@ public class OrderDAO implements OrderService{
 		int order_num = sql.selectOne("order.returnOrderNum", vo);
 		return sql.selectOne("order.detail", order_num);
 	}
-
+	
 	@Override
 	public BoardPage orderList(BoardPage page) {
-		// TODO Auto-generated method stub
-		return null;
+		page.setTotalList((Integer)sql.selectOne("order.total", page));
+		page.setList(sql.selectList("order.list", page));
+		return page;
 	}
 
 	@Override

@@ -2,6 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="order">
 
+	<select id="list" resultType="OrderVO">
+	select b.* from
+	(select rownum board_no, b.* from 
+		(select * from bOrder where order_email=#{keyword} order by order_date desc) b
+	order by board_no desc) b
+	where board_no between #{beginList} and #{endList}
+	</select>
+
+	<select id="total" resultType="Integer">
+	select count(*)	from bOrder where order_email=#{keyword}
+	</select>
+
 	<select id="detail" resultType="OrderVO">
 	select * from bOrder where order_num = #{order_num}
 	</select>
@@ -11,12 +23,12 @@
 	</select>
 
 	<insert id="insert">
-	insert into bOrder ( order_num, order_email, order_name, order_phone, order_date, 
+	insert into bOrder ( order_num, order_email, order_name, order_phone, order_date, order_option,
 						order_color, order_count, order_amount, order_pay, 
 						deliv_name, deliv_phone, deliv_zipcode, deliv_address, deliv_detailaddress, deliv_memo )
 	values ( (select concat(to_char(sysdate, 'yymmdd'), (select lpad((select count(*) from bOrder where to_char(order_date, 'yymmdd') = to_char(sysdate, 'yymmdd')), 3, '0') from dual)) 
 				order_num from dual),
-			#{order_email}, #{order_name}, #{order_phone}, sysdate, 
+			#{order_email}, #{order_name}, #{order_phone}, sysdate, #{order_option},
 			#{order_color}, #{order_count}, #{order_amount}, #{order_pay}, 
 			#{deliv_name}, #{deliv_phone}, #{deliv_zipcode}, #{deliv_address}, #{deliv_detailaddress, jdbcType=VARCHAR}, #{deliv_memo, jdbcType=VARCHAR} )
 	</insert>

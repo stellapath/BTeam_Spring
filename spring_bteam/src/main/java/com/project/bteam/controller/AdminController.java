@@ -17,7 +17,11 @@ import com.project.bteam.user.UserVO;
 public class AdminController {
 	@Autowired private UserServiceImpl user;
 	
-	//
+	// 판매제품관리 페이지 요청
+	@RequestMapping("/productList")
+	public String productList() {
+		return "admin/productList";
+	}
 	
 	// 문의관리 페이지 요청
 	@RequestMapping("/qnaList")

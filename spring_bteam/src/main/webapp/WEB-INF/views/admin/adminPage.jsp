@@ -14,9 +14,10 @@ history.back();
 </head>
 <body>
 <div class="bigBtn">
-	<a class="btn-fill" href="userList">고객관리</a><br/>
-	<a class="btn-fill" href="orderList">주문관리</a><br/>
-	<a class="btn-fill" href="qnaList">문의관리</a>
+	<a href="userList">고객관리</a><br/>
+	<a href="productList">제품등록 및 관리</a><br/>
+	<a href="orderList">주문관리</a><br/>
+	<a href="qnaList">문의관리</a>
 </div>
 </body>
 </html>

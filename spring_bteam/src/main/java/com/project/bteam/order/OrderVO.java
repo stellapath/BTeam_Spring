@@ -4,8 +4,9 @@ import java.sql.Date;
 
 public class OrderVO {
 	private int order_count, order_amount, deliv_zipcode;
-	private String order_num, order_email, order_name, order_phone, order_color, order_pay,
+	private String order_num, order_email, order_name, order_phone, order_option, order_color, order_pay,
 					deliv_name, deliv_phone, deliv_address, deliv_detailaddress, deliv_memo;
+	
 	private Date order_date;
 	
 	public String getOrder_num() {
@@ -49,6 +50,12 @@ public class OrderVO {
 	}
 	public void setOrder_phone(String order_phone) {
 		this.order_phone = order_phone;
+	}
+	public String getOrder_option() {
+		return order_option;
+	}
+	public void setOrder_option(String order_option) {
+		this.order_option = order_option;
 	}
 	public String getOrder_color() {
 		return order_color;

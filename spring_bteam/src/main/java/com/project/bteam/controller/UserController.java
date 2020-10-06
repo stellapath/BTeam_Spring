@@ -1,5 +1,7 @@
 package com.project.bteam.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -7,11 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.bteam.board.BoardPage;
 import com.project.bteam.common.CommonService;
 import com.project.bteam.order.OrderServiceImpl;
 import com.project.bteam.order.OrderVO;
@@ -24,6 +28,28 @@ public class UserController {
 	@Autowired private OrderServiceImpl order;
 	@Autowired private UserServiceImpl service;
 	@Autowired private CommonService common;
+	@Autowired private BoardPage page; 
+	
+	// 내 주문내역 상세보기
+	@RequestMapping("/myOrderView")
+	public String myOrderView(String order_num, Model model) {
+		int orderNum = Integer.parseInt(order_num);
+		model.addAttribute("vo", order.orderDetail(orderNum));
+		return "order/orderResult";
+	}
+	
+	// 내 주문내역조회
+	@RequestMapping("/myOrder")
+	public String myOrderList(String user_email, Model model, HttpSession session,
+								@RequestParam(defaultValue="10") int pageList,
+								@RequestParam(defaultValue="1") int curPage) {
+		session.setAttribute("mypage", "order");
+		page.setCurPage(curPage);
+		page.setPageList(pageList);
+		page.setKeyword(user_email);
+		model.addAttribute("page", order.orderList(page));
+		return "user/myOrder";
+	}
 	
 	// 주문서작성 업로드 요청
 	@RequestMapping("/orderReq")

@@ -21,149 +21,65 @@ textarea:focus:-ms-input-placeholder {
 	color: transparent;
 }
 
-#order {
-	overflow: hidden;
-	width: 1085px;
-	margin: 20px auto;
-}
+#order {	overflow: hidden;	width: 1085px;	margin: 20px auto;}
 
-#orderForm {
-	float : left;
-	height : 570px;
-	padding: 20px 40px;
-	margin : 20px;
-	width: 420px; 
-	border: 1px solid #ccc;
-}
+#orderForm {	float : left;	height : 570px;	padding: 20px 40px;	margin : 20px;	width: 420px; 	border: 1px solid #ccc;}
 
-#payForm {
-	float : left;
-	height : 570px;
-	padding: 20px 40px;
-	margin : 20px;
-	width: 420px; 
-	border: 1px solid #ccc;
-}
+#payForm {	float : left;	height : 570px;	padding: 20px 40px;	margin : 20px;	width: 420px; 	border: 1px solid #ccc;}
 
 #orderForm div {	margin: 20px 0px;}
 #content h2 {	text-align: center;	margin: 50px 0px;}
 #content h4 {	margin: 0px 0px 16px; text-align: left;}
 
+#content input {	border : none;	border-bottom: 1px solid gray;	padding : 5px;	font-size: 15px;	height: 30px;}
 
-#content input {
-	border : none;
-	border-bottom: 1px solid gray;
-	padding : 5px;
-	font-size: 15px;
-	height: 30px;
-}
+#content input:focus {	outline : none;}
 
-#content input:focus {
-	outline : none;
-}
+.deliv_select {	border : none;	border-bottom: 1px solid gray;	font-size: 15px;	height: 30px;}
 
-.deliv_select {
-	border : none;
-	border-bottom: 1px solid gray;
-	font-size: 15px;
-	height: 30px;
-}
+.deliv_select:focus {	outline: none;}
 
-.deliv_select:focus {
-	outline: none;
-}
-
-.input_long {
-	width: 405px;
-}
+.input_long {	width: 405px;}
 
 select#delivMemo{ height: 30px;}
 
-#postcodify_search_button {
-	color: #2f6471;
-}
+#postcodify_search_button {	color: #2f6471;}
 
-#content  a {
-	height: 25px;
-	padding: 10px;
-	border-radius: 3px;
-	font-size: 14px;
-	font-weight: bolder;
-	text-align: center;
-}
+#content  a {	height: 25px;	padding: 10px;	border-radius: 3px;	font-size: 14px;	font-weight: bolder;	text-align: center;}
 
-#orderForm a:hover {
-	cursor: pointer;
-}
+#orderForm a:hover {	cursor: pointer;}
 
-#content  ul {
-	overflow: hidden;
-	padding : 0px;
-}
+#content  ul {	overflow: hidden;	padding : 0px;}
 
-#content li {
-	float: left;
-	list-style: none;
-	padding-right: 5px;
-}
+#content li {	float: left;	list-style: none;	padding-right: 5px;}
 
-#detail {
-	height: 75px;
-	margin: 0 auto 25px;
-}
+#detail {	height: 75px;	margin: 0 auto 25px;}
 
-#content  img {
-	width : 60px;
-	height: 60px;
-}
+#content  img {	width : 60px;	height: 60px;}
 
-p {
-	margin: 0px 0px 16px;
-}
+p {	margin: 0px 0px 16px;}
 
-#goods_price {
-	text-align: right;
-	margin: 10px 0px;
-}
+#goods_price {	text-align: right;	margin: 10px 0px;}
 
-#goods_delivery {
-	text-align: right;
-	margin: 10px 0px;
-}
+#goods_delivery {	text-align: right;	margin: 10px 0px;}
 
-#goods_delivery label {
-	padding-right: 35px;
-}
+#goods_delivery label {	padding-right: 35px;}
 
-#totalPayment {
-	text-align: right;
-	margin: 10px 0px;
-	font-size: 17px;
-}
+#totalPayment {	text-align: right;	margin: 10px 0px;	font-size: 17px;}
 
-.price {
-	border: none;
-	display: inline;
-}
+.price {	border: none;	display: inline;}
 
-.delivery {
-	border: none;
-	text-align: right;
-	display: inline;
-}
+.delivery {	border: none;	text-align: right;	display: inline;}
 
-.payment {
-	border: none;
-	text-align: right;
-	color: green;
-	font-weight: bold;
-	font-size: 17px;
-	display: inline;
-}
+.payment {	border: none;	text-align: right;	color: green;	font-weight: bold;	font-size: 17px;	display: inline;}
 
-#buttons {
-	margin: 70px 0px 50px;
-}
+#buttons {	margin: 70px 0px 50px;}
+
+
+.goods_detail { text-align: right; }
+
+.goods_detail select { height: 25px; margin-bottom: 3px;}
+
 
 .button {
 	margin: 25px 0px;

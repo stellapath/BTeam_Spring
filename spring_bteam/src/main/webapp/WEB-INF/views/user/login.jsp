@@ -29,6 +29,7 @@ $(document).ready(function() {
 	</p>
 	<p class="inputline">
 		<label for="user_pw" class="password">Password</label><br>
+		<input type="text" id="user_pw" name="user_pw" class="input" placeholder="비밀번호를 입력하세요"/>
 	</p>
 	<p id="buttons">
 		<input type="submit" value="로그인" class="button"><br>

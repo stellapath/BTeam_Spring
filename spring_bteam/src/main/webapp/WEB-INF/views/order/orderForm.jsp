@@ -77,16 +77,20 @@
 					<li class="goods_img">
 						<a href="productPage"><img src="img/pic_1.jpg"/></a>
 					</li>
-					<li class="goods_detail">
-						<h4>★☆분실방지-스마트우산☆★</h4>
-						<select class="quantity" name="order_count">
+					<li class="goods_detail" style="float: right;">
+						옵션 <select class="option" name="order_option">
+							<option value="★☆분실방지-스마트우산☆★" selected="selected">★☆분실방지-스마트우산☆★</option>
+							<option value="★☆분실방지-스마트우산(우산미포함)☆★">★☆분실방지-스마트우산(우산미포함)☆★</option>
+							<option value="(이벤트) 스마트우산1+1">(이벤트) 스마트우산1+1</option>
+						</select><br/>
+						수량 <select class="quantity" name="order_count">
 							<option value="1" selected="selected">1개</option>
 							<option value="2">2개</option>
 							<option value="3">3개</option>
 							<option value="4">4개</option>
 							<option value="5">5개</option>
-						</select>
-						<select class="option" name="order_color">
+						</select><br/>
+						색상선택 <select class="color" name="order_color">
 							<option value="Black" selected="selected">Black</option>
 							<option value="Red">Red</option>
 						</select>
@@ -112,9 +116,9 @@
 			</div>
 			
 			<div id="buttons">
-				<p class="button" onclick="go_payment('bank')">무통장 입금</p>
-				<p class="button" onclick="go_payment('card')">신용카드 결제</p>
-				<p class="button" onclick="go_payment('phone')">휴대폰 결제</p>
+				<p class="button" onclick="go_payment('무통장입금')">무통장 입금</p>
+				<p class="button" onclick="go_payment('카드결제')">신용카드 결제</p>
+				<p class="button" onclick="go_payment('휴대폰 소액결제')">휴대폰 소액결제</p>
 			</div>
 		</div>
 	</div>
@@ -167,10 +171,28 @@ $('select#delivMemo').on('change', function(){
 	}
 });
 
-$(document).on('change', '.quantity', function(){
-	var total = $('.quantity').val() * 10000;
+$(document).on('change', '.option', function(){	
+	calc_pay();
+}).on('change', '.quantity', function(){
+	calc_pay();
+});
+
+function calc_pay(){
+	var option = $('.option').val();
+	var price = 10000;
+	//옵션에 따른 가격설정
+	if(option == '★☆분실방지-스마트우산☆★'){
+		price = 10000;
+	}else if(option == '★☆분실방지-스마트우산(우산미포함)☆★'){
+		price = 8000;
+	}else if(option == '(이벤트) 스마트우산1+1'){
+		price = 20000;
+	}
+	//구매수량에 따른 가격설정
+	var total = $('.quantity').val() * price;
   	$('p.price').text(total);
-  	if(total >= 30000){
+	//가격에 따른 배송비 설정
+	if(total >= 30000){
   	 	$('p.delivery').text('무료');
  	 	$('p.payment').text(total);
   	 	$('p.delivery_info').text('');
@@ -183,7 +205,7 @@ $(document).on('change', '.quantity', function(){
  	 	
 	  	$('input[name="order_amount"]').attr('value', total+2500);
   	}
-});
+}
 
 function go_payment(method){
 
@@ -192,12 +214,12 @@ function go_payment(method){
 		$('select#delivMemo option:selected').val(input_memo);
 	}
 	
-	if(method == 'bank'){
+	if(method == '무통장입금'){
 		if(necessary()){
 			$('form').append('<input type="hidden" name="order_pay" value="bank"/>');
 			$('form').submit();
 		}
-	} else if(method == 'card' || method == 'phone'){
+	} else if(method == '카드결제' || method == '핸드폰 소액결제'){
 		alert(method + ' 결제 방식은 가상으로 진행됩니다.');
 		$('form').append('<input type="hidden" name="order_pay" value="'+ method +'"/>');
 		$('form').submit();
