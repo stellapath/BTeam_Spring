@@ -77,6 +77,8 @@ label:last-child{margin-right: 0;}
 .file-img {width: 200px; height: 200px;}
 #attach-file, #delete-file {display: none;}
 
+#btnOrder{ position: absolute; top: 50%; right: 10%;}
+
 .reviewContent {height: auto; margin: 0 20px; width: calc(100% - 260px); box-sizing: content-box;}
 .reviewContent div{width: 100%; }
 .reviewContent div:first-child {font-weight: bold; text-align: left;}

@@ -19,14 +19,14 @@ alter table bUser add user_imagepath varchar2(200) default '';
 
 -- 게시판
 create table bBoard (
-	board_num		number	primary key,
+	board_num	number	primary key,
 	board_category	number	not null,
-	board_email		varchar2(30),
+	board_email	varchar2(30),
 	board_nickname	varchar2(30),
-	board_date		date,
-	board_title		varchar2(1024),
-	board_content	varchar2(2048) default '글 내용이 없습니다.',
-	board_file		varchar2(1024),
+	board_date	date,
+	board_title	varchar2(1024),
+	board_content	varchar2(2048) 		default '글 내용이 없습니다.',
+	board_file	varchar2(1024),
 	board_recommend	varchar2(30),
 	constraint email
 	foreign key (board_email)
@@ -45,21 +45,22 @@ alter table bBoard add	board_filepath varchar2(1024);
 
 -- 주문
 create table bOrder (
-	order_num			number			    primary key,
-	order_email			varchar2(30) 	    not null,
+	order_num		number			primary key,
+	order_email		varchar2(30) 	    	not null,
 	order_nickname	  	varchar2(30),
-	order_phone 	 	varchar2(50) 	    not null,
-	order_date			date              	not null,
-	order_color			varchar2(30),
+	order_phone 	 	varchar2(50) 	    	not null,
+	order_date		date              	not null,
+	order_option		varchar2(50),
+	order_color		varchar2(30),
   	order_count     	number,
  	order_amount    	number,
  	order_pay       	varchar2(30),
  	deliv_name      	varchar2(30)      	not null,
- 	deliv_phone     	varchar2(50) 	    not null,
-	deliv_zipcode	  	number 			    not null,
+ 	deliv_phone     	varchar2(50) 	    	not null,
+	deliv_zipcode	  	number 			not null,
 	deliv_address    	varchar2(1024) 	  	not null,
-	deliv_detailaddress varchar2(1024) 		not null,
-  	deliv_memo			varchar2(1024)	
+	deliv_detailaddress 	varchar2(1024) 		not null,
+  	deliv_memo		varchar2(1024)	
 
 );
 
@@ -67,8 +68,8 @@ create table bOrder (
 create table bQna (
 	qna_num			number			primary key,
 	qna_email		varchar2(30) 	not null,
-	qna_nickname	varchar2(30),
-	qna_category	varchar2(30),
+	qna_nickname		varchar2(30),
+	qna_category		varchar2(30),
 	qna_content		varchar2(1024) 	not null,
 );
 

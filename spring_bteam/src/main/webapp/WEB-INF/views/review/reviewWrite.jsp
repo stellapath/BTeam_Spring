@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>사용후기작성</title>
-<c:if test="${empty login_info }">
+<c:if test="${empty order.list}">
 <script type="text/javascript">
 alert('구매후기는 구매자만 작성가능합니다.');
 history.go(-1);
@@ -18,12 +18,11 @@ history.go(-1);
 <form action="reviewWriteReq" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="board_nickname" value="${login_info.user_nickname}" />
 	<input type="hidden" name="board_email" value="${login_info.user_email}" />
-	<input type="hidden" name="board_category" value="1" />
 	<table>
 		<tr>
 			<th>구매상품</th>
 			<td><select>
-				<c:forEach items="${page.list}" var="vo">
+				<c:forEach items="${order.list}" var="vo">
 					<option>${vo.order_option }(${vo.order_color }) 구매일자: ${vo.order_date }</option>
 				</c:forEach>	
 				</select>

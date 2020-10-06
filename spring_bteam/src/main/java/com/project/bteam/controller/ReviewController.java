@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.project.bteam.board.BoardPage;
 import com.project.bteam.board.BoardVO;
 import com.project.bteam.common.CommonService;
+import com.project.bteam.order.OrderServiceImpl;
 import com.project.bteam.review.ReviewServiceImpl;
 import com.project.bteam.user.UserVO;
 
@@ -23,6 +24,7 @@ public class ReviewController {
 	@Autowired private ReviewServiceImpl service;
 	@Autowired private BoardPage page; 
 	@Autowired private CommonService common;
+	@Autowired private OrderServiceImpl order;
 	
 	//리뷰 수정업로드 처리 요청
 	@RequestMapping("/reviewUpdateReq")
@@ -82,13 +84,15 @@ public class ReviewController {
 	
 	//리뷰 글쓰기 화면 요청
 	@RequestMapping("/reviewWrite")
-	public String reviewWrite() {
+	public String reviewWrite(String user_email, Model model) {
+		page.setKeyword(user_email);
+		model.addAttribute("order", order.orderList(page));
 		return "review/reviewWrite";
 	};
 	
 	//리뷰 목록화면 요청
 	@RequestMapping("/reviewBoard")
-	public String reviewList(Model model, HttpSession session, int board_category,
+	public String reviewList(Model model, HttpSession session, int board_category, 
 								@RequestParam(defaultValue="list") String viewType,
 								@RequestParam(defaultValue="all") String recommend,
 								@RequestParam(defaultValue="10") int pageList,

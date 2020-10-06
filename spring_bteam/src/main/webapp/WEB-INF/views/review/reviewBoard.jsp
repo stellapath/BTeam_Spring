@@ -20,7 +20,7 @@
 <div>
 <ul>
 	<c:if test="${!empty login_info}">
-	<li><a class="btn_fill right" href="reviewWrite">후기작성하기</a></li>
+	<li><a class="btn_fill right" href="reviewWrite?user_email=${login_info.user_email }">후기작성하기</a></li>
 	</c:if>
 </ul>
 <ul>
