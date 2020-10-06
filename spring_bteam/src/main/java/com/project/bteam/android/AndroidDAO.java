@@ -20,7 +20,12 @@ public class AndroidDAO implements AndroidService {
 	}
 
 	@Override
-	public void commentInsert(AndCommentVO vo) {
-		sql.insert("android.commentInsert");		
+	public void trafficInsert(TrafficVO vo) {
+		sql.insert("android.trafficInsert");		
+	}
+
+	@Override
+	public List<TrafficVO> trafficList(Map<String, Integer> map) {
+		return sql.selectList("android.trafficList", map);
 	}
 }

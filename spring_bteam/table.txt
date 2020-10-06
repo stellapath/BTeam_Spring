@@ -71,3 +71,28 @@ create table bQna (
 	qna_category	varchar2(30),
 	qna_content		varchar2(1024) 	not null,
 );
+
+-- 안드로이드 전용 교통 게시판
+create table traffic (
+    tra_num             number constraint tra_num_pk primary key,
+    tra_user_email      varchar2(30),
+    tra_user_imageURL   varchar2(30),
+    tra_content         varchar2(1024),
+    tra_imageURL        varchar2(30),
+    tra_time            varchar2(20) default to_char(sysdate, 'yyyy/mm/dd hh:mi:ss'),
+    constraint tra_email_fk
+    foreign key (tra_user_email)
+    references buser(user_email)
+    on delete cascade
+);
+
+-- 시퀀스
+create sequence seq_traffic start with 1;
+
+-- 시퀀스 자동 삽입 트리거
+create or replace trigger trg_traffic
+before insert
+on traffic for each row
+begin
+select seq_traffic.nextval into :new.tra_num from dual;
+end;

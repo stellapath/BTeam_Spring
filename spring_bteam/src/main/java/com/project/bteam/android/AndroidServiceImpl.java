@@ -19,7 +19,12 @@ public class AndroidServiceImpl implements AndroidService {
 	}
 
 	@Override
-	public void commentInsert(AndCommentVO vo) {
-		dao.commentInsert(vo);
+	public void trafficInsert(TrafficVO vo) {
+		dao.trafficInsert(vo);
+	}
+
+	@Override
+	public List<TrafficVO> trafficList(Map<String, Integer> map) {
+		return dao.trafficList(map);
 	}
 }

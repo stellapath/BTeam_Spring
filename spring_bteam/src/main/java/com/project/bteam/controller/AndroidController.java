@@ -3,14 +3,18 @@ package com.project.bteam.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.project.bteam.android.AndroidServiceImpl;
+import com.project.bteam.android.TrafficVO;
 import com.project.bteam.board.BoardServiceImpl;
 import com.project.bteam.common.CommonService;
 import com.project.bteam.user.UserServiceImpl;
@@ -69,5 +73,25 @@ public class AndroidController {
 		map.put("end", end);
 		model.addAttribute("notice", service.noticeList(map));
 		return "app/andNotice";
+	}
+
+	// 교통 게시판 리스트
+	@RequestMapping("/andTraffic")
+	public String andTraffic(@RequestParam(defaultValue="1") int begin, 
+							 @RequestParam(defaultValue="10") int end, Model model) {
+		Map<String, Integer> map = new HashMap<>();
+		map.put("begin", begin);
+		map.put("end", end);
+		model.addAttribute("list", service.trafficList(map));
+		return "app/traffic";
+	}
+	
+	// 교통 게시판 삽입
+	@ResponseBody @RequestMapping("/andTrafficInsert")
+	public void andTrafficInsert(TrafficVO vo, MultipartFile file, HttpSession session, Model model) {
+		if (!file.isEmpty()) {
+			vo.setTra_imageURL(common.upload("traffic", file, session));
+		}
+		service.trafficInsert(vo);
 	}
 }

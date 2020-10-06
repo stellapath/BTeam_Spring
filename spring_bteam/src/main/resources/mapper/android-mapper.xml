@@ -2,14 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="android">
 	<select id="noticeList" resultType="BoardVO">
-		<![CDATA[
 		select rownum no, n.*
 		from (select * from bboard where board_category = 0 order by board_num desc) n
 		where rownum between #{begin} and #{end}
-		]]>
 	</select>
 	
-	<insert id="commentInsert">
-		
+	<select id="trafficList" resultType="TrafficVO">
+		select rownum, n.*
+		from (select * from traffic order by tra_num desc) n
+		where rownum between #{begin} and #{end}
+	</select>
+	
+	<insert id="trafficInsert">
+		insert into traffic (tra_user_email, tra_user_imageURL, tra_content, tra_imageURL)
+		values (#{tra_user_email}, #{tra_user_imageURL}, #{tra_content}, #{tra_imageURL, jdbcType=VARCHAR})
 	</insert>
 </mapper>

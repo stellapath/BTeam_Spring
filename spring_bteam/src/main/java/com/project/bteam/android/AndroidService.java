@@ -7,5 +7,6 @@ import com.project.bteam.board.BoardVO;
 
 public interface AndroidService {
 	List<BoardVO> noticeList(Map<String, Integer> map);
-	void commentInsert(AndCommentVO vo);
+	List<TrafficVO> trafficList(Map<String, Integer> map);
+	void trafficInsert(TrafficVO vo);
 }
