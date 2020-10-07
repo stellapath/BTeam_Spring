@@ -19,8 +19,8 @@ public class AndroidServiceImpl implements AndroidService {
 	}
 
 	@Override
-	public void trafficInsert(TrafficVO vo) {
-		dao.trafficInsert(vo);
+	public int trafficInsert(TrafficVO vo) {
+		return dao.trafficInsert(vo);
 	}
 
 	@Override

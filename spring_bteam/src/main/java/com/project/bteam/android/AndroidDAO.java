@@ -20,8 +20,8 @@ public class AndroidDAO implements AndroidService {
 	}
 
 	@Override
-	public void trafficInsert(TrafficVO vo) {
-		sql.insert("android.trafficInsert");		
+	public int trafficInsert(TrafficVO vo) {
+		return sql.insert("android.trafficInsert");		
 	}
 
 	@Override

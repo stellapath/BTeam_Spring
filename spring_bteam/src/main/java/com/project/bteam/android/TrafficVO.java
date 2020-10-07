@@ -2,7 +2,7 @@ package com.project.bteam.android;
 
 public class TrafficVO {
 	
-	private String tra_num, tra_user_email, tra_user_imageURL, tra_content, tra_imageURL, tra_time;
+	private String tra_num, tra_username, tra_user_email, tra_user_imageURL, tra_content, tra_imageURL, tra_time;
 
 	public String getTra_num() {
 		return tra_num;
@@ -10,6 +10,14 @@ public class TrafficVO {
 
 	public void setTra_num(String tra_num) {
 		this.tra_num = tra_num;
+	}
+
+	public String getTra_username() {
+		return tra_username;
+	}
+
+	public void setTra_username(String tra_username) {
+		this.tra_username = tra_username;
 	}
 
 	public String getTra_user_email() {

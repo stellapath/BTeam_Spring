@@ -75,6 +75,18 @@ public class AndroidController {
 		return "app/andNotice";
 	}
 
+	// 프로필 이미지 변경 처리
+	@ResponseBody @RequestMapping("/andImageUpload")
+	public int andImageUpload(String email, MultipartFile file, HttpSession session) {
+		System.out.println("::andImageUpload::");
+		UserVO vo = user.userDetail(email);
+		if (!file.isEmpty()) {
+			vo.setUser_image(file.getOriginalFilename());
+			vo.setUser_imagepath(common.upload("android", file, session));
+		}
+		return user.userImageUpload(vo);
+	}
+	
 	// 교통 게시판 리스트
 	@RequestMapping("/andTraffic")
 	public String andTraffic(@RequestParam(defaultValue="1") int begin, 
@@ -88,10 +100,10 @@ public class AndroidController {
 	
 	// 교통 게시판 삽입
 	@ResponseBody @RequestMapping("/andTrafficInsert")
-	public void andTrafficInsert(TrafficVO vo, MultipartFile file, HttpSession session, Model model) {
+	public int andTrafficInsert(TrafficVO vo, MultipartFile file, HttpSession session) {
 		if (!file.isEmpty()) {
 			vo.setTra_imageURL(common.upload("traffic", file, session));
 		}
-		service.trafficInsert(vo);
+		return service.trafficInsert(vo);
 	}
 }

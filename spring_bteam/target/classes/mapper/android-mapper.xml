@@ -14,7 +14,7 @@
 	</select>
 	
 	<insert id="trafficInsert">
-		insert into traffic (tra_user_email, tra_user_imageURL, tra_content, tra_imageURL)
-		values (#{tra_user_email}, #{tra_user_imageURL}, #{tra_content}, #{tra_imageURL, jdbcType=VARCHAR})
+		insert into traffic (tra_user_email, tra_username, tra_user_imageURL, tra_content, tra_imageURL)
+		values (#{tra_user_email}, #{tra_username}, #{tra_user_imageURL, jdbcType=VARCHAR}, #{tra_content}, #{tra_imageURL, jdbcType=VARCHAR})
 	</insert>
 </mapper>
