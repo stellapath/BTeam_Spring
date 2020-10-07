@@ -41,7 +41,7 @@
 </div>
 <table>
 <tr><th class="w-px120">주문번호</th><th>제품명</th><th class="w-px80">주문수량</th><th class="w-px80">주문금액</th><th class="w-px80">진행상태</th><th class="w-px120">문의하기</th></tr>
-<c:if test="${page.list eq null }">
+<c:if test="${empty page.list }">
 <tr><td colspan="6">주문내역이 없습니다.</td></tr>
 </c:if>
 <c:if test="${page.list ne null }">
