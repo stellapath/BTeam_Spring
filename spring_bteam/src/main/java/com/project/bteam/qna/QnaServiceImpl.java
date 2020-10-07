@@ -15,9 +15,8 @@ public class QnaServiceImpl implements QnaService {
 	}
 
 	@Override
-	public QnaVO qnaDetail(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public QnaVO qnaDetail(int qna_num) {
+		return dao.qnaDetail(qna_num);
 	}
 
 	@Override
@@ -51,4 +50,9 @@ public class QnaServiceImpl implements QnaService {
 
 	}
 
+	@Override
+	public String userEmailReply() {
+		return dao.userEmailReply();
+	}
+	
 }

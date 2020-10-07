@@ -28,15 +28,15 @@ table {
 .answers {
     background-color: #f0f0f0;
     text-align: left;
-    padding: 10px 75px;
+    padding: 1px 75px 40px;
     height: 100%;
 }
 
-#email_reply {
-	font-size: 13px;
-	height: 30px;
-	border : 1px solid;
-	background-color: white;
+#reply {
+	font-size: 15px;
+	height: 22px;
+	line-height: 22px;
+	float: right;
 }
 
 h5 {
@@ -46,7 +46,7 @@ h5 {
 }
 
 p {
-	margin: 10px 0px;
+	margin: 10px 0px 0px;
 }
 
 

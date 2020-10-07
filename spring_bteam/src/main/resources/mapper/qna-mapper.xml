@@ -3,6 +3,11 @@
 
 <mapper namespace="qna.mapper">
 
+	<select id="view" resultType="QnaVO">
+	select * from bQna
+	where qna_num=#{qna_num}
+	</select>
+
 	<insert id="write">
 		insert into bQna (qna_num, qna_category, qna_question, qna_content, 
 							qna_nickname, qna_email, qna_filename, qna_filepath)

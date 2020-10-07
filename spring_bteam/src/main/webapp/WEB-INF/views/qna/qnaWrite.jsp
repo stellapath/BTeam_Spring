@@ -75,11 +75,14 @@ input:focus:-ms-input-placeholder, textarea:focus:-ms-input-placeholder
 				</tr>
 				<tr>
 					<th class="w-px120">첨부파일</th>
-					<td class='left'><label> <input type="file"
-							name="file" id="attach-file" /> <img alt="파일선택" class="file_icon"
-							src="img/attach.png">
-					</label> <span id="file-name"></span> <span id="delete-file"
-						style="color: red;"><i class="fas fa-times font-img"></i></span></td>
+					<td class='left'>
+						<label> 
+							<input type="file" name="file" id="attach-file" /> 
+							<img alt="파일선택" class="file_icon"src="img/attach.png">
+						</label> 
+						<span id='board-filename'></span>
+						<span id="delete-file" style="color: red;"><i class="fas fa-times font-img"></i></span>
+					</td>
 				</tr>
 			</table>
 		</div>

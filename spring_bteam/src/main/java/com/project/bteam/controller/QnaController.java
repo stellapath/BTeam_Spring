@@ -1,7 +1,5 @@
 package com.project.bteam.controller;
 
-import java.util.HashMap;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -11,9 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.project.bteam.board.BoardVO;
 import com.project.bteam.common.CommonService;
 import com.project.bteam.qna.QnaPage;
 import com.project.bteam.qna.QnaServiceImpl;
@@ -52,7 +50,8 @@ public class QnaController {
 	
 	// 일대일 문의글 화면 요청
 	@RequestMapping("/qnaWrite")
-	public String qnaWrite() {
+	public String qnaWrite(HttpSession session) {
+		session.setAttribute("menu", "qna");
 		return "qna/qnaWrite";
 	}
 			
@@ -63,19 +62,53 @@ public class QnaController {
 		session.setAttribute("menu", "qna");
 		page.setCurPage(curPage);
 		
+		model.addAttribute("crlf", "\r\n" );
+		model.addAttribute("lf", "\n" );
 		model.addAttribute("page", service.qnaList(page));
 		
 		return "qna/qnaBoard";
 	}
 	
-//	//첨부파일 다운로드
-//	@RequestMapping("/download")
-//	public void download(int qna_num, HttpSession session, HttpServletResponse response) {
-//		HashMap<String, Integer> map = new HashMap<String, Integer>();
-//		map.put("board_num", qna_num);
-//		QnaVO qvo = service.qnaDetail(map);
-//		common.download(qvo.getQna_filename(), qvo.getQna_filepath(), session, response);
-//	}
+	// 문의관리 페이지 요청
+	@RequestMapping("/qnaList")
+	public String qnaList1(Model model, HttpSession session,
+						@RequestParam(defaultValue = "1") int curPage) {
+	session.setAttribute("menu", "admin");
+	page.setCurPage(curPage);
+	
+	model.addAttribute("crlf", "\r\n" );
+	model.addAttribute("lf", "\n" );
+	model.addAttribute("page", service.qnaList(page));
+	
+	return "admin/qnaList";
+	}
+	
+	//첨부파일 다운로드
+	@RequestMapping("/download.qo")
+	public void download(int qna_num, HttpSession session, HttpServletResponse response) {
+		QnaVO qvo = service.qnaDetail(qna_num);
+		common.download(qvo.getQna_filename(), qvo.getQna_filepath(), session, response);
+	}
+	
+	// 이메일 답변 작성 화면 요청
+	@RequestMapping("/emailReply")
+	public String emailReply(int qna_num, Model model, HttpSession session) {
+		session.setAttribute("menu", "qna");
+		
+		model.addAttribute("crlf", "\r\n");
+		model.addAttribute("lf", "\n");
+		model.addAttribute("qvo", service.qnaDetail(qna_num));
+		return "qna/emailReply";
+	}
+	
+	// 인증번호 이메일 발송
+	@ResponseBody @RequestMapping("/mailAnswer")
+	public void sendEmailCertify(String email, HttpSession session, Model model, QnaVO vo) {
+		String key = service.userEmailReply();
+		session.setAttribute("key", key);
+		
+		common.mailAnswer(email, key, session, vo);
+	}
 	
 }
 

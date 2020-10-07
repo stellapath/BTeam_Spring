@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,18 +10,17 @@
 </head>
 <body>
 <div id="wrap">
-	<h5>*답변은 해당 이메일로 전송됩니다</h5>
+	<h5>*답변은 본인 이메일로 전송됩니다</h5>
 	<form action="qnaBoard" method="post">
 	<input type="hidden" name="curPage" value='1'/>
 	</form>
 	<div align="center">
 	<table>
-		<tr><th class="w-px60">번호</th>
-			<th class="w-px100">구분</th>
-			<th class="w-px300">질문</th>
+		<tr><th class="w-px80">번호</th>
+			<th class="w-px120">구분</th>
+			<th>질문</th>
 			<th class="w-px120">작성자</th>
 			<th class="w-px120">등록일</th>
-			<th class="w-px180">이메일</th>
 			<th class="w-px160">첨부파일</th>
 		</tr>
 		<c:forEach items="${page.list}" var="qvo">
@@ -32,12 +32,11 @@
 			</td>
 			<td>${qvo.qna_nickname}</td>
 			<td>${qvo.qna_writedate}</td>
-			<td>${qvo.qna_email}</td>
 			<td>
 				<c:if test="${!empty qvo.qna_filename }">
 					<label>
 						<img alt="첨부파일" src="img/attach.png" class="file_icon">
-						<a name="qna_filename" href="download?qna_num=${qvo.qna_num }&qna_category=0">${qvo.qna_filename }</a>
+						<a name="qna_filename" href="download.qo?qna_num=${qvo.qna_num }">${qvo.qna_filename }</a>
 					</label>
 				</c:if>
 			</td>
@@ -45,7 +44,7 @@
 		<tr class="contents" style="display: none;">
 			<td colspan="7">
 				<div class="answers">
-					<p>${qvo.qna_content}</p>
+					<p>${fn:replace(qvo.qna_content, crlf, '<br/>')}</p>
 				</div>
 			</td>
 		</tr>

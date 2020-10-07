@@ -16,8 +16,10 @@ import org.apache.commons.mail.EmailAttachment;
 import org.apache.commons.mail.HtmlEmail;
 import org.apache.commons.mail.MultiPartEmail;
 import org.apache.commons.mail.SimpleEmail;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.bteam.order.OrderVO;
@@ -25,6 +27,7 @@ import com.project.bteam.qna.QnaVO;
 
 @Service
 public class CommonService {
+	@Autowired private CommonService common;
 
 	// 파일 업로드
 	public String upload(String category, MultipartFile file, HttpSession session) {
@@ -59,12 +62,13 @@ public class CommonService {
 		return file;
 	}	
 	
-	
-	
 	//문의글 답변 발송요청
-	public void mailAnswer() {
-		
+	@RequestMapping("/mailAnswer")
+	public String mailAnswer(String email, String key, HttpSession session, QnaVO vo) {
+		common.send_qnaAnswer(vo, session);
+		return "";
 	}
+		
 	//문의글 메일전송
 	private void send_qnaAnswer(QnaVO vo, HttpSession session) {
 		HtmlEmail mail = new HtmlEmail();
@@ -172,6 +176,12 @@ public class CommonService {
 			msg.append("<hr>");
 			msg.append(key);
 			msg.append("<h3>받으신 인증번호를 입력해주시면 이메일 인증이 완료됩니다.</h3>");
+			msg.append("<form>");
+			msg.append("<a href='http://192.168.0.72:8282/bteam/emailConfirm?email=" 
+                    + email + "&key=" + key + "' target='_blenk'>이메일 인증 확인</a>");
+			msg.append("<input type='hidden' name='email' value='"+email+"'/>");
+			msg.append("<input type='hidden' name='key' value='"+key+"'/>");
+			msg.append("</form>");
 			msg.append("</body>");
 			msg.append("</html>");
 			mail.setHtmlMsg(msg.toString());

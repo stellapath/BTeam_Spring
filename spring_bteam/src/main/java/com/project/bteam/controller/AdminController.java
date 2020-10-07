@@ -23,12 +23,6 @@ public class AdminController {
 		return "admin/productList";
 	}
 	
-	// 문의관리 페이지 요청
-	@RequestMapping("/qnaList")
-	public String qnaList() {
-		return "admin/userList";
-	}
-	
 	// 주문관리 페이지 요청
 	@RequestMapping("/orderList")
 	public String orderList() {
