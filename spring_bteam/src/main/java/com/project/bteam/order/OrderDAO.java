@@ -39,5 +39,15 @@ public class OrderDAO implements OrderService{
 		return 0;
 	}
 
+	@Override
+	public List<OrderVO> orderReviewHistory(String order_email) {
+		return sql.selectList("order.review_history", order_email);
+	}
+
+	@Override
+	public void orderReviewUpdate(int order_num) {
+		sql.update("order.review_update", order_num);
+	}
+
 	
 }

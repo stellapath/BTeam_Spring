@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>사용후기 작성</title>
 </head>
 <body>
-<h3>리뷰 작성화면</h3>
+<h3>사용후기 작성화면</h3>
 <form action="reviewUpdateReq" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="board_nickname" value="${login_info.user_nickname}" />
 	<input type="hidden" name="board_email" value="${login_info.user_email}" />
@@ -54,7 +54,7 @@
 	</table><br/>
 </form>
 	<div id="btnSet">
-		<a class="btn_fill" onclick="if(necessary()){$('form').submit()}">수정</a>
+		<a class="btn_fill" onclick="if(necessary()){ $('[name=attach]').val($('#board-filename').text()); $('form').submit()}">수정</a>
 		<a class="btn_empty" href="javascript:history.go(-1)">취소</a>
 	</div>
 <script type="text/javascript">

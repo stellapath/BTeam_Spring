@@ -1,5 +1,6 @@
 package com.project.bteam.controller;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 
@@ -37,8 +38,6 @@ public class BoardController {
 		session.setAttribute("menu", "notice");
 		
 		// 카테고리 : 0 => 공지사항
-//		List<BoardVO> list = service.boardList(board_category);
-//		session.setAttribute("list", list);
 		
 		page.setCurPage(curPage);
 		page.setBoard_category(board_category);
@@ -50,16 +49,13 @@ public class BoardController {
 	
 	// 공지글 상세보기 화면 요청
 	@RequestMapping("/boardView")
-	public String boardView(Model model, int board_num, int board_category, HttpSession session) {
+	public String boardView(Model model, int board_num) {
 		//조회수 증가
 		service.boardReadCnt(board_num);
 		//해당 공지글 상세보기
-		HashMap<String, Integer> map = new HashMap<String, Integer>();
-		map.put("board_num", board_num);
-		map.put("board_category", board_category);
-		BoardVO bvo = service.boardDetail(map);
-		session.setAttribute("boardList", bvo);
-		model.addAttribute("bvo", service.boardDetail(map));
+		model.addAttribute("crlf", "\r\n");
+		model.addAttribute("lf", "\n");
+		model.addAttribute("bvo", service.boardDetail(board_num));
 		return "board/boardView";
 	}
 	
@@ -93,37 +89,57 @@ public class BoardController {
 	
 	//첨부파일 다운로드
 	@RequestMapping("/download")
-	public void download(int board_num, int board_category, 
-						HttpSession session, HttpServletResponse response) {
-		HashMap<String, Integer> map = new HashMap<String, Integer>();
-		map.put("board_num", board_num);
-		map.put("board_category", board_category);
-		BoardVO bvo = service.boardDetail(map);
+	public void download(int board_num, HttpSession session, HttpServletResponse response) {
+		BoardVO bvo = service.boardDetail(board_num);
 		common.download(bvo.getBoard_filename(), bvo.getBoard_filepath(), session, response);
 	}
 	
 	// 글 수정 화면 요청
 	@RequestMapping("/boardUpdate")
-	public String boardUpdate(Model model, int board_num, int board_category) {
-		HashMap<String, Integer> map = new HashMap<String, Integer>();
-		map.put("board_num", board_num);
-		map.put("board_category", board_category);
-		model.addAttribute("bvo", service.boardDetail(map));
+	public String boardUpdate(Model model, int board_num) {
+		model.addAttribute("bvo", service.boardDetail(board_num));
 		return "board/boardUpdate";
 	}
 	
 	// 글 수정 업로드 요청
-	@ResponseBody @RequestMapping(value="/boardUpdateReq", produces="text/html; charset=utf-8")
-	public String boardUpdate(BoardVO bvo, HttpServletRequest request) {
-		String msg = "<script type='text/javascript'>";
-		if(service.boardUpdate(bvo)) {
-			msg += "alert('글이 수정되었습니다.'); ";
-			msg	+= "location='" + request.getContextPath() + "/noticeBoard?board_category=0'";
+	@RequestMapping("/boardUpdateReq")
+	public String boardUpdate(BoardVO bvo, String attach, Model model,
+								MultipartFile file, HttpSession session) {
+		BoardVO board = service.boardDetail(bvo.getBoard_num());
+		String uuid = session.getServletContext().getRealPath("resources") + board.getBoard_filepath();
+		if(!file.isEmpty()) {
+			//▼새로운 파일을 업로드 하는 경우
+			//기존파일 없음 >> 추가 
+			//기존파일 있음 >> 변경
+			
+			//새로운 파일 업로드
+			bvo.setBoard_filename(file.getOriginalFilename());
+			bvo.setBoard_filepath(common.upload("board", file, session));
+			//기존파일 삭제
+			if(board.getBoard_filename() != null) {
+				File f = new File(uuid);
+				if(f.exists()) f.delete();
+			}
 		}else {
-			msg += "alert('글 수정에 실패했습니다.');";
-		}	
-		msg += "</script>";
-		return msg;
+			//▼새로운 파일을 업로드를 하지 않는 경우
+			//기존파일 없음
+			//기존파일 있음 >> 삭제
+			//기존파일 유지
+			if(attach.isEmpty()) {
+				if(board.getBoard_filename() != null) {
+					//기존파일 삭제
+					File f = new File(uuid);
+					if(f.exists()) f.delete();
+				}	
+			}else {
+				//기존파일 유지
+				bvo.setBoard_filename(board.getBoard_filename());
+				bvo.setBoard_filepath(board.getBoard_filepath());
+			}	
+		}
+
+		service.boardUpdate(bvo);
+		return "redirect:reviewBoard?board_category=1";
 	}
 	
 	// 글 삭제 처리 요청

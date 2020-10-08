@@ -1,32 +1,5 @@
 $(document).ready(() => {
 
-	// 이메일 중복 확인
-	let isEmail = 0;
-	let isChecked = 0;
-	$("#email_chkBtn").on("click", () => {
-		let user_email = $("#user_email").val();
-		if (!user_email) {
-			alert("이메일을 입력해주세요.");
-			return false;
-		}
-		// alert(user_email);
-		$.ajax({
-			url: "emailCheck?user_email=" + user_email,
-			// success: (data) => { isEmail = data; },
-			error: () => { alert("Error!"); }
-		}).done((data) => {		
-			// alert(data);
-			if (data == 1) {
-				alert("이미 사용중인 이메일 입니다.");
-				isEmail = 1;
-			} else {
-				alert("사용가능한 이메일 입니다.");
-				isEmail = 0;
-			}
-			isChecked = 1;
-		});
-	});
-
 	//비밀번호 확인
 	$("#check_pw").keyup(function(){
 
@@ -52,7 +25,7 @@ $(document).ready(() => {
 
 		// 중복검사 유무
 		if (isChecked == 0) {
-			alert("이메일 중복 확인을 해주세요.");
+			alert("이메일 인증을 완료해주세요.");
 			return false;
 		}
 

@@ -4,6 +4,9 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+<style type="text/css">
+#emailConfirmResult{ color: black; position: absolute; margin-left: -25px; margin-top: 7px;}
+</style>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <!-- 유효성 검사 -->
 <jsp:include page="/WEB-INF/views/user/signupcheck.jsp"></jsp:include>
@@ -39,9 +42,9 @@ $(document).on('click', '#email_certification', function(){
 				//인증 이메일 발송
 				$.ajax({
 					url: 'email_certification',
-					data: { email: $('#user_email').val()	},
+					data: { email: $('#user_email').val() },
 					success: function( email ){
-						alert('이메일이 성공적으로 발송되었습니다.\n입력하신 이메일을 확인해주세요.');
+ 						alert('이메일이 성공적으로 발송되었습니다.\n발송된 메일을 확인해주세요.');
 					},
 					error: function(req, text){
 						alert(text+':'+req.status);
@@ -52,24 +55,31 @@ $(document).on('click', '#email_certification', function(){
 		});
 	}
 }).on('click','#check_certification', function(){
-	if($('#input_certification').val() == ''){
-		//이메일 미입력
-		alert('인증번호를 입력하세요.');
-		$('#input_certification').focus();
-	}else{
-// 		var key = ;
-// 		alert( "인증키: " + key );
-// 		$.ajax({
-// 			url: 'check_certification',
-// 			data: { email_key: $('#input_certification').val()	},
-// 			success: function( email_key ){
-// 				alert('이메일 인증이 완료되었습니다.');
-// 			},
-// 			error: function(req, text){
-// 				alert(text+':'+req.status);
-// 			}
-// 		});
-	}	
+
+	$.ajax({
+		url: 'emailConfirm',
+		data: { input_key: $('input[name="input_certification"]').val() },
+		success: function( input_key ){
+			if( input_key ){
+				alert('이메일 인증이 완료되었습니다.');
+				$('#emailConfirmResult').children().attr('class', 'fas fa-check-circle');
+				$('#emailConfirmResult').css('color', 'green');
+				$('#email_confirm').attr('value', 1);
+			}else{
+		 		alert('이메일 인증에 실패했습니다.\n입력하신 인증번호를 확인하세요.');
+		 		$('#emailConfirmResult').children().attr('class', 'fas fa-check-circle');
+		 		$('#emailConfirmResult').css('color', 'red');
+				$('#email_confirm').attr('value', 0);
+			}
+		},
+		error: function(req, text){
+			alert(text+':'+req.status);
+		}
+	});
+}).on('change', '[name="user_email"]', function(){
+	$('#emailConfirmResult').children().attr('class', 'far fa-check-circle');
+	$('#emailConfirmResult').css('color', 'black');
+	$('#email_confirm').attr('value', 0);
 });
 </script>
 </head>
@@ -77,15 +87,17 @@ $(document).on('click', '#email_certification', function(){
 <div id="signupForm">
 	<h2>회원가입</h2>
 	<form action="signupReq" method="post" id="form">
+	<input type="hidden" id="email_confirm" value="0"/> 
 		<table>
 			<tr>
 				<th><img alt="email" src="resources/img/icon_email.png"></th>
-				<td>
+				<td id="email">
 					<input type="text" name="user_email" id="user_email" required 
-						placeholder="이메일을 입력하세요."/><br/>
-					<a class="btn-fill" id="email_chkBtn">이메일 중복 확인</a>
+						placeholder="이메일을 입력하세요." value="${user_email }"/><br/>
+<!-- 					<a class="btn-fill" id="email_chkBtn">이메일 중복 확인</a> -->
 					<a class="btn-fill" id="email_certification" >인증메일발송</a><br/>
-					<input type="text" name="input_certification" placeholder="메일에 적힌 인증번호를 입력하세요."/><br/>
+					<input type="text" name="input_certification" placeholder="메일에 적힌 인증번호를 입력하세요."/>
+					<span id="emailConfirmResult" ><i class="far fa-check-circle"></i></span><br/>
 					<a class="btn-fill" id="check_certification" >인증확인</a>
 				</td>
 			</tr>
@@ -130,9 +142,23 @@ $(document).on('click', '#email_certification', function(){
 		</table>
 	<div id="buttons">
 		<input type="submit" id="btn_submit" value="회원가입" /><br/>
+		<a onclick="go_submit()">회원가입</a>
 		<input type="reset" value="가입취소" onclick="location.href='/bteam/home'" />
 	</div>
 	</form>
 </div>
+<script type="text/javascript">
+function go_submit(){
+	var email_comfirm = $('#email_confirm').val();
+	if(email_comfirm == 1){
+//		alert('회원가입진행');
+		$('form').submit();
+	}else{
+		alert('이메일 인증을 다시 진행하세요.');
+ 	 	$('input[name="input_certification"]').focus();
+		return false;
+	}
+}
+</script>
 </body>
 </html>

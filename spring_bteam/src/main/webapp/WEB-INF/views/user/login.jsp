@@ -29,7 +29,7 @@ $(document).ready(function() {
 	</p>
 	<p class="inputline">
 		<label for="user_pw" class="password">Password</label><br>
-		<input type="text" id="user_pw" name="user_pw" class="input" placeholder="비밀번호를 입력하세요"/>
+		<input type="password" id="user_pw" name="user_pw" class="input" placeholder="비밀번호를 입력하세요"/>
 	</p>
 	<p id="buttons">
 		<input type="submit" value="로그인" class="button"><br>
@@ -38,9 +38,9 @@ $(document).ready(function() {
 	
 	<div id="signup">
 		<ul>
-			<li><a href="#" onclick="location.href='pwcheck'">비밀번호 찾기</a></li>
+			<li><a href="pwcheck" >비밀번호 찾기</a></li>
 			<li><a>|</a></li>
-			<li><a href="#" onclick="location.href='signup'">회원가입</a></li>
+			<li><a href="signup" >회원가입</a></li>
 		</ul>
 	</div>
 </div>

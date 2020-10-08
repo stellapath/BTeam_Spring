@@ -1,6 +1,7 @@
 package com.project.bteam.controller;
 
 import java.io.File;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +16,7 @@ import com.project.bteam.board.BoardPage;
 import com.project.bteam.board.BoardVO;
 import com.project.bteam.common.CommonService;
 import com.project.bteam.order.OrderServiceImpl;
+import com.project.bteam.order.OrderVO;
 import com.project.bteam.review.ReviewServiceImpl;
 import com.project.bteam.user.UserVO;
 
@@ -33,22 +35,36 @@ public class ReviewController {
 		BoardVO board = service.reviewDetail(vo.getBoard_num());
 		String uuid = session.getServletContext().getRealPath("resources") + board.getBoard_filepath();
 		if(!file.isEmpty()) {
+			//▼새로운 파일을 업로드 하는 경우
+			//기존파일 없음 >> 추가 
+			//기존파일 있음 >> 변경
+			
+			//새로운 파일 업로드
 			vo.setBoard_filename(file.getOriginalFilename());
 			vo.setBoard_filepath(common.upload("board", file, session));
-			
+			//기존파일 삭제
 			if(board.getBoard_filename() != null) {
 				File f = new File(uuid);
 				if(f.exists()) f.delete();
 			}
 		}else {
+			//▼새로운 파일을 업로드를 하지 않는 경우
+			//기존파일 없음
+			//기존파일 있음 >> 삭제
+			//기존파일 유지
 			if(attach.isEmpty()) {
-				File f = new File(uuid);
-				if(f.exists()) f.delete();
+				if(board.getBoard_filename() != null) {
+					//기존파일 삭제
+					File f = new File(uuid);
+					if(f.exists()) f.delete();
+				}	
 			}else {
+				//기존파일 유지
 				vo.setBoard_filename(board.getBoard_filename());
 				vo.setBoard_filepath(board.getBoard_filepath());
-			}
+			}	
 		}
+
 		service.reviewUpdate(vo);
 		return "redirect:reviewBoard?board_category=1";
 	}
@@ -71,7 +87,8 @@ public class ReviewController {
 	
 	//리뷰 글쓰기 업로드 요청
 	@RequestMapping("/reviewWriteReq")
-	public String insert(BoardVO vo, MultipartFile file, HttpSession session) {
+	public String insert(int order_num, BoardVO vo, MultipartFile file, HttpSession session) {
+		order.orderReviewUpdate(order_num);
 		//첨부파일정보
 		if(! file.isEmpty()) {
 			vo.setBoard_filename(file.getOriginalFilename());
@@ -85,8 +102,10 @@ public class ReviewController {
 	//리뷰 글쓰기 화면 요청
 	@RequestMapping("/reviewWrite")
 	public String reviewWrite(String user_email, Model model) {
-		page.setKeyword(user_email);
-		model.addAttribute("order", order.orderList(page));
+//		page.setKeyword(user_email);
+//		model.addAttribute("order", order.orderList(page));
+		List<OrderVO> list = order.orderReviewHistory(user_email);
+		model.addAttribute("order", list);
 		return "review/reviewWrite";
 	};
 	

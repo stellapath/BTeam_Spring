@@ -176,12 +176,6 @@ public class CommonService {
 			msg.append("<hr>");
 			msg.append(key);
 			msg.append("<h3>받으신 인증번호를 입력해주시면 이메일 인증이 완료됩니다.</h3>");
-			msg.append("<form>");
-			msg.append("<a href='http://192.168.0.72:8282/bteam/emailConfirm?email=" 
-                    + email + "&key=" + key + "' target='_blenk'>이메일 인증 확인</a>");
-			msg.append("<input type='hidden' name='email' value='"+email+"'/>");
-			msg.append("<input type='hidden' name='key' value='"+key+"'/>");
-			msg.append("</form>");
 			msg.append("</body>");
 			msg.append("</html>");
 			mail.setHtmlMsg(msg.toString());

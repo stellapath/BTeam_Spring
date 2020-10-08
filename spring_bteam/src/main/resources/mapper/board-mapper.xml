@@ -18,7 +18,7 @@
 	
 	<select id="view" resultType="BoardVO">
 	select * from bBoard 
-	where board_num=#{board_num} and board_category=#{board_category}
+	where board_num=#{board_num}
 	</select>
 	
 	<update id="readcount">
