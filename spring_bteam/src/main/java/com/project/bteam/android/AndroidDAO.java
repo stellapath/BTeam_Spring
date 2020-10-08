@@ -13,19 +13,29 @@ import com.project.bteam.board.BoardVO;
 public class AndroidDAO implements AndroidService {
 
 	@Autowired SqlSession sql;
+
+	@Override
+	public List<BoardVO> andBoardList(Map<String, Integer> map) {
+		return sql.selectList("android.boardList", map);
+	}
 	
 	@Override
-	public List<BoardVO> noticeList(Map<String, Integer> map) {
-		return sql.selectList("android.noticeList", map);
-	}
-
-	@Override
-	public int trafficInsert(TrafficVO vo) {
-		return sql.insert("android.trafficInsert");		
-	}
-
-	@Override
-	public List<TrafficVO> trafficList(Map<String, Integer> map) {
+	public List<TrafficVO> andTrafficList(Map<String, Integer> map) {
 		return sql.selectList("android.trafficList", map);
+	}
+	
+	@Override
+	public TrafficVO andTrafficView(int num) {
+		return sql.selectOne("android.trafficView", num);
+	}
+	
+	@Override
+	public int andTrafficInsert(TrafficVO vo) {
+		return sql.insert("android.trafficInsert", vo);
+	}
+	
+	@Override
+	public String andGetImage(String email) {
+		return sql.selectOne("android.getImage", email);
 	}
 }

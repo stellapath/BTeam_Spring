@@ -6,7 +6,9 @@ import java.util.Map;
 import com.project.bteam.board.BoardVO;
 
 public interface AndroidService {
-	List<BoardVO> noticeList(Map<String, Integer> map);
-	List<TrafficVO> trafficList(Map<String, Integer> map);
-	int trafficInsert(TrafficVO vo);
+	List<BoardVO> andBoardList(Map<String, Integer> map);
+	List<TrafficVO> andTrafficList(Map<String, Integer> map);
+	TrafficVO andTrafficView(int num);
+	int andTrafficInsert(TrafficVO vo);
+	String andGetImage(String email);
 }

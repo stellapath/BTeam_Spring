@@ -12,19 +12,29 @@ import com.project.bteam.board.BoardVO;
 public class AndroidServiceImpl implements AndroidService {
 
 	@Autowired AndroidDAO dao;
+
+	@Override
+	public List<BoardVO> andBoardList(Map<String, Integer> map) {
+		return dao.andBoardList(map);
+	}
 	
 	@Override
-	public List<BoardVO> noticeList(Map<String, Integer> map) {
-		return dao.noticeList(map);
+	public List<TrafficVO> andTrafficList(Map<String, Integer> map) {
+		return dao.andTrafficList(map);
 	}
-
+	
 	@Override
-	public int trafficInsert(TrafficVO vo) {
-		return dao.trafficInsert(vo);
+	public TrafficVO andTrafficView(int num) {
+		return dao.andTrafficView(num);
 	}
-
+	
 	@Override
-	public List<TrafficVO> trafficList(Map<String, Integer> map) {
-		return dao.trafficList(map);
+	public int andTrafficInsert(TrafficVO vo) {
+		return dao.andTrafficInsert(vo);
+	}
+	
+	@Override
+	public String andGetImage(String email) {
+		return dao.andGetImage(email);
 	}
 }

@@ -53,6 +53,48 @@ public class AndroidController {
 		return "app/andLogin";
 	}
 	
+	// 안드로이드 게시글 리스트
+	@RequestMapping("/andBoardList")
+	public String andBoardList(@RequestParam(defaultValue="1") int begin, 
+			 				   @RequestParam(defaultValue="10") int end,
+							   int category, Model model) {
+		Map<String, Integer> map = new HashMap<>();
+		map.put("category", category);
+		map.put("begin", begin);
+		map.put("end", end);
+		model.addAttribute("list", service.andBoardList(map));
+		return "app/andBoardList";
+	}
+	
+	// 안드로이드 교통 게시판
+	@RequestMapping("/andTraffic")
+	public String andTraffic(@RequestParam(defaultValue="1") int begin,
+							 @RequestParam(defaultValue="10") int end, 
+							 Model model) {
+		Map<String, Integer> map = new HashMap<>();
+		map.put("begin", begin);
+		map.put("end", end);
+		model.addAttribute("list", service.andTrafficList(map));
+		return "app/andTraffic";
+	}
+
+	// 안드로이드 교통 게시판 자세히
+	@RequestMapping("/andTrafficView")
+	public String andTrafficView(int num, Model model) {
+		model.addAttribute("vo", service.andTrafficView(num));
+		return "app/andTrafficView";
+	}
+	
+	// 안드로이드 교통 게시판 글쓰기
+	@ResponseBody @RequestMapping("andTrafficInsert")
+	public int andTrafficInsert(TrafficVO vo, MultipartFile file, 
+			HttpSession session) {
+		if (!file.isEmpty()) {
+			vo.setTra_content_image(common.upload("traffic", file, session));
+		}
+		return service.andTrafficInsert(vo);
+	}
+	
 	// 안드로이드 게시글 자세히
 	@RequestMapping("/andBoardView")
 	public String andBoardView(int board_num, int category, Model model) {
@@ -63,21 +105,11 @@ public class AndroidController {
 		model.addAttribute("vo", board.boardDetail(map));
 		return "app/andBoardView";
 	}
-	
-	// 공지사항 불러오기
-	@RequestMapping("/andNotice")
-	public String andNotice(@RequestParam(defaultValue="1") int begin,
-						    @RequestParam(defaultValue="10") int end, Model model) {
-		Map<String, Integer> map = new HashMap<>();
-		map.put("begin", begin);
-		map.put("end", end);
-		model.addAttribute("notice", service.noticeList(map));
-		return "app/andNotice";
-	}
 
 	// 프로필 이미지 변경 처리
 	@ResponseBody @RequestMapping("/andImageUpload")
-	public int andImageUpload(String email, MultipartFile file, HttpSession session) {
+	public int andImageUpload(String email, MultipartFile file, 
+			HttpSession session) {
 		System.out.println("::andImageUpload::");
 		UserVO vo = user.userDetail(email);
 		if (!file.isEmpty()) {
@@ -87,23 +119,10 @@ public class AndroidController {
 		return user.userImageUpload(vo);
 	}
 	
-	// 교통 게시판 리스트
-	@RequestMapping("/andTraffic")
-	public String andTraffic(@RequestParam(defaultValue="1") int begin, 
-							 @RequestParam(defaultValue="10") int end, Model model) {
-		Map<String, Integer> map = new HashMap<>();
-		map.put("begin", begin);
-		map.put("end", end);
-		model.addAttribute("list", service.trafficList(map));
-		return "app/traffic";
-	}
-	
-	// 교통 게시판 삽입
-	@ResponseBody @RequestMapping("/andTrafficInsert")
-	public int andTrafficInsert(TrafficVO vo, MultipartFile file, HttpSession session) {
-		if (!file.isEmpty()) {
-			vo.setTra_imageURL(common.upload("traffic", file, session));
-		}
-		return service.trafficInsert(vo);
+	// 프로필 이미지만 가져오기
+	@RequestMapping("andGetImage")
+	public String andGetImage(String email, Model model) {
+		model.addAttribute("image", service.andGetImage(email));
+		return "app/andGetImage";
 	}
 }
