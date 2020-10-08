@@ -101,9 +101,11 @@ label:last-child{margin-right: 0;}
 #companyLoad div ul li { text-align: left; }
 #companyLoad div ul li a{ color: #616161; }
 
+#signupForm span{ position: absolute;}
 
-
-
+/*이메일인증*/
+.unLoginEmailConfirm span{ position: absolute; margin-left: -100px; margin-top: 7px;}
+.unLoginEmailConfirm span#emailConfirmResult{ margin-left: -100px; }
 
 
 

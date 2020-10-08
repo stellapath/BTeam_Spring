@@ -36,8 +36,14 @@
 							placeholder="이름"/>&nbsp;
 					<input type="text" name="order_phone" id="order_phone" class="need input_short" title="주문하신 분의 전화번호"
 							placeholder="연락처 (ex 010-0000-0000)"/><br/>
-					<input type="text" name="order_email" id="order_email" class="need input_long" title="주문하신 분의 이메일"
-							placeholder="이메일"/><br/>
+					<div class="unLoginEmailConfirm">		
+						<input type="text" name="order_email" id="order_email" class="need input_long" title="주문하신 분의 이메일"	placeholder="이메일"/>
+						<span><a id="email_certification" >인증메일발송</a></span><br/>
+						<input type="text" name="input_certification" id="input_certification" class="need input_long" title="이메일 인증번호"
+								placeholder="메일에 적힌 인증번호를 입력하세요."/>
+						<span id="emailConfirmResult" ><i class="far fa-check-circle"></i></span><br/>
+						<span><a class="btn-fill" id="check_certification" >인증확인</a></span><br/>
+					</div>
 				</div>
 			</c:if>
 			<div>

@@ -2,6 +2,7 @@ package com.project.bteam.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -106,12 +107,16 @@ public class UserController {
 	public void sendEmailCertify(String email, HttpSession session, Model model) {
 		String key = service.userEmailCertification();
 		session.setAttribute("key", key);
-		
-//		model.addAttribute("email_key", key);
 		common.mailCheck(email, key, session);
-//		return key;
 	}
-		
+	
+	// 이메일 인증 확인
+	@ResponseBody @RequestMapping("/emailConfirm")
+	public Boolean emailConfirm(String input_key, String key, HttpSession session, Model model) {
+		key = (String) session.getAttribute("key");
+		return input_key.equals(key);
+	}
+
 	// 회원가입 처리 요청
 	@RequestMapping("/signupReq")
 	public String singupReq(UserVO vo, Model model) {
