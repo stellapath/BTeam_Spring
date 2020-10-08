@@ -18,8 +18,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public BoardVO boardDetail(HashMap<String, Integer> map) {
-		return dao.boardDetail(map);
+	public BoardVO boardDetail(int board_num) {
+		return dao.boardDetail(board_num);
 	}
 
 	@Override

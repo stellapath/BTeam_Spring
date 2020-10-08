@@ -19,8 +19,8 @@ public class BoardDAO implements BoardService {
 	}
 
 	@Override
-	public BoardVO boardDetail(HashMap<String, Integer> map) {
-		return sql.selectOne("board.view", map);
+	public BoardVO boardDetail(int board_num) {
+		return sql.selectOne("board.view", board_num);
 	}
 
 	@Override

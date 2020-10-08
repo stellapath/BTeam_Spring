@@ -55,12 +55,9 @@ public class AndroidController {
 	
 	// 안드로이드 게시글 자세히
 	@RequestMapping("/andBoardView")
-	public String andBoardView(int board_num, int category, Model model) {
+	public String andBoardView(int board_num, Model model) {
 		System.out.println("::andBoardView::");
-		HashMap<String, Integer> map = new HashMap<>();
-		map.put("board_num", board_num);
-		map.put("board_category", category);
-		model.addAttribute("vo", board.boardDetail(map));
+		model.addAttribute("vo", board.boardDetail(board_num));
 		return "app/andBoardView";
 	}
 	
