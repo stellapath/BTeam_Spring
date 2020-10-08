@@ -50,7 +50,7 @@
 </div>
 <div id="reviewList">
 <c:if test="${page.viewType eq 'list' }">
-	<table>
+	<table id="boardTable">
 	<tr><th class="w-px80">글번호</th>
 		<th>리뷰</th>
 		<th class="w-px120">작성자</th>

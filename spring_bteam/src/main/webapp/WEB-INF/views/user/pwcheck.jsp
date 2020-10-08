@@ -68,9 +68,9 @@ $(document).ready(() => {
 	
 	<div id="signup">
 		<ul>
-			<li><a href="#" onclick="location.href='login'">로그인</a></li>
+			<li><a href="login" >로그인</a></li>
 			<li><a>|</a></li>
-			<li><a href="#" onclick="location.href='signup'">회원가입</a></li>
+			<li><a href="signup" >회원가입</a></li>
 		</ul>
 	</div>
 

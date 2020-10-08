@@ -5,9 +5,15 @@
 <head>
 <meta charset="UTF-8">
 <title>사용후기작성</title>
-<c:if test="${empty order.list}">
+<c:if test="${empty login_info }">
 <script type="text/javascript">
-alert('구매후기는 구매자만 작성가능합니다.');
+alert('로그인 후 작성가능합니다.');
+location.href="login";
+</script>
+</c:if>
+<c:if test="${empty order}">
+<script type="text/javascript">
+alert('후기작성이 가능한 주문내역이 없습니다.');
 history.go(-1);
 </script>
 </c:if>
@@ -18,12 +24,13 @@ history.go(-1);
 <form action="reviewWriteReq" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="board_nickname" value="${login_info.user_nickname}" />
 	<input type="hidden" name="board_email" value="${login_info.user_email}" />
+	<input type="hidden" name="board_category" value="1" />
 	<table>
 		<tr>
 			<th>구매상품</th>
-			<td><select>
-				<c:forEach items="${order.list}" var="vo">
-					<option>${vo.order_option }(${vo.order_color }) 구매일자: ${vo.order_date }</option>
+			<td><select id="select_orderNum" name="order_num">
+				<c:forEach items="${order}" var="vo">
+					<option value="${vo.order_num }">${vo.order_option }(${vo.order_color }) 구매일자: ${vo.order_date }</option>
 				</c:forEach>	
 				</select>
 			</td>
@@ -57,11 +64,20 @@ history.go(-1);
 	</table><br/>
 </form>
 	<div id="btnSet">
+		<a id="testBtn">테스트용</a>
 		<a class="btn_fill" onclick="if(necessary()){$('form').submit()}">등록</a>
 		<a class="btn_empty" href="reviewBoard?board_category=1">취소</a>
 	</div>
 </div>	
 <script type="text/javascript">
+$(document).on('change', '#select_orderNum', function(){
+	var orderNum = $('#select_orderNum').val();
+//	alert(orderNum);	
+}).on('click', '#testBtn', function(){
+	var orderNum = $('#select_orderNum').val();
+	alert(orderNum);	
+});
+
 $('input[name=board_title], input[name=board_content]').on('keydown', function(){
 //	alert($('input:radio[name=board_recommend]').is(':checked'));
 	var need = true;

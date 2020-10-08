@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="order">
+<!--//////////////////////////////////////////////////////////////////////////////////////리뷰관련 -->
+
+	<update id="review_update">
+	update border set order_review = 'Y' 
+	where order_num = #{order_num}
+	</update>
+
+	<select id="review_history" resultType="OrderVO">
+	select b.* from
+		(select * from bOrder 
+			where order_email=#{user_email} and order_review = 'N' 
+			order by order_date desc) b
+	</select>
+
+<!--//////////////////////////////////////////////////////////////////////////////////////주문관련 -->
 
 	<select id="list" resultType="OrderVO">
 	select b.* from
 	(select rownum board_no, b.* from 
-		(select * from bOrder where order_email=#{keyword} order by order_date desc) b
+		(select * from bOrder where order_email=#{keyword} order by order_date asc) b
 	order by board_no desc) b
 	where board_no between #{beginList} and #{endList}
 	</select>

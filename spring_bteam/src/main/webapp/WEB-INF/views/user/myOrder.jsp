@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +12,8 @@
 	location.href = "login";
 </script>
 </c:if>
+<jsp:useBean id="now" class="java.util.Date" />
+<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />  
 </head>
 <body>
 <h3>${login_info.user_nickname}님의 주문내역</h3>
@@ -40,17 +43,22 @@
 </form>
 </div>
 <table>
-<tr><th class="w-px120">주문번호</th><th>제품명</th><th class="w-px80">주문수량</th><th class="w-px80">주문금액</th><th class="w-px80">진행상태</th><th class="w-px120">문의하기</th></tr>
+<tr><th class="w-px120">주문번호</th><th>제품명</th><th class="w-px80">주문수량</th><th class="w-px80">주문금액</th><th class="w-px80">진행상태</th><th class="w-px80">사용후기</th><th class="w-px120">문의하기</th></tr>
 <c:if test="${empty page.list }">
 <tr><td colspan="6">주문내역이 없습니다.</td></tr>
 </c:if>
 <c:if test="${page.list ne null }">
 <c:forEach var="vo" items="${page.list }">
-<tr><td><a onclick="go_detail(${vo.order_num })" style="float: none;">${vo.order_num }<br/>(${vo.order_date })</a></td>
+<tr><td><a onclick="go_detail(${vo.order_num })">${vo.order_num }<br/>(${vo.order_date })</a></td>
 	<td>${vo.order_option }</td>
 	<td>${vo.order_count }</td>
 	<td>${vo.order_amount }</td>
-	<td>배송준비중</td>
+	<td><c:if test="${vo.order_date < today  }">배송완료</c:if>
+		<c:if test="${vo.order_date >= today  }">배송준비중</c:if>	
+	</td>
+	<td><c:if test="${vo.order_review eq 'N' }"><a>작성</a></c:if>
+		<c:if test="${vo.order_review eq 'Y' }"><a>조회</a></c:if>
+	</td>
 	<td><a class="btn_fill" onclick="">일대일문의</a></td>
 </tr>
 </c:forEach>

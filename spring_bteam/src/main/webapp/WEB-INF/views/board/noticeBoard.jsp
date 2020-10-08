@@ -19,7 +19,7 @@ pageContext.setAttribute("bvo", bvo);
 	</c:if>
 </div>
 </form>	
-<table>
+<table id="boardTable">
 	<tr><th class="w-px100">번호</th>
 		<th>제목</th>
 		<th class="w-px100">작성일</th>

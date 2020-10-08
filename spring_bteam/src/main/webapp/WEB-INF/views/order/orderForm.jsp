@@ -222,7 +222,7 @@ function go_payment(method){
 	
 	if(method == '무통장입금'){
 		if(necessary()){
-			$('form').append('<input type="hidden" name="order_pay" value="bank"/>');
+			$('form').append('<input type="hidden" name="order_pay" value="'+ method +'"/>');
 			$('form').submit();
 		}
 	} else if(method == '카드결제' || method == '핸드폰 소액결제'){

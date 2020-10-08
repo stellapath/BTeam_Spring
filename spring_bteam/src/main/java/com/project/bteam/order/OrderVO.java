@@ -5,10 +5,16 @@ import java.sql.Date;
 public class OrderVO {
 	private int order_count, order_amount, deliv_zipcode;
 	private String order_num, order_email, order_name, order_phone, order_option, order_color, order_pay,
-					deliv_name, deliv_phone, deliv_address, deliv_detailaddress, deliv_memo;
+					deliv_name, deliv_phone, deliv_address, deliv_detailaddress, deliv_memo, order_review;
 	
 	private Date order_date;
 	
+	public String getOrder_review() {
+		return order_review;
+	}
+	public void setOrder_review(String order_review) {
+		this.order_review = order_review;
+	}
 	public String getOrder_num() {
 		return order_num;
 	}

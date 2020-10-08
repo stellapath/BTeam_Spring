@@ -33,4 +33,15 @@ public class OrderServiceImpl implements OrderService{
 		return 0;
 	}
 
+	//리뷰미작성 주문내역 조회
+	@Override
+	public List<OrderVO> orderReviewHistory(String order_email) {
+		return dao.orderReviewHistory(order_email);
+	}
+
+	@Override
+	public void orderReviewUpdate(int order_num) {
+		dao.orderReviewUpdate(order_num);
+	}
+
 }
