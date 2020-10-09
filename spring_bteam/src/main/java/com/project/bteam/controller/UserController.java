@@ -55,15 +55,20 @@ public class UserController {
 	// 주문서작성 업로드 요청
 	@RequestMapping("/orderReq")
 	public String orderUpload(OrderVO vo, Model model, HttpSession session) {
-		OrderVO result = order.orderInsert(vo);
-		model.addAttribute("vo", result);
-		common.mailOrder(result, session);
-		return "order/orderResult";
+		if( session.getAttribute("login_info") == null) {
+			return "redirect:login";
+		}else {
+			OrderVO result = order.orderInsert(vo);
+			model.addAttribute("vo", result);
+			common.mailOrder(result, session);
+			return "order/orderResult";
+		}
 	}
 	
 	// 주문서작성 화면 요청
 	@RequestMapping("/order")
-	public String order() {
+	public String order(Model model) {
+		model.addAttribute("product", order.productList());
 		return "order/orderForm";
 	}
 	

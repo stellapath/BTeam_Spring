@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.bteam.board.BoardPage;
+import com.project.bteam.order.OrderVO;
 
 @Service
 public class OrderServiceImpl implements OrderService{
@@ -42,6 +43,31 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public void orderReviewUpdate(int order_num) {
 		dao.orderReviewUpdate(order_num);
+	}
+
+	@Override
+	public List<OrderVO> productList() {
+		return dao.productList();
+	}
+	
+	@Override
+	public BoardPage orderAdminList(BoardPage page) {
+		return dao.orderAdminList(page);
+	}
+
+	@Override
+	public void productAdd(OrderVO vo) {
+		dao.productAdd(vo);
+	}
+
+	@Override
+	public int productDelete(String p_num) {
+		return dao.productDelete(p_num);
+	}
+
+	@Override
+	public int productUpdate(OrderVO vo) {
+		return dao.productUpdate(vo);
 	}
 
 }

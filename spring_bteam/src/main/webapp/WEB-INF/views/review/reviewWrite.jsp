@@ -25,7 +25,7 @@ history.go(-1);
 	<input type="hidden" name="board_nickname" value="${login_info.user_nickname}" />
 	<input type="hidden" name="board_email" value="${login_info.user_email}" />
 	<input type="hidden" name="board_category" value="1" />
-	<table>
+	<table id="boardTable">
 		<tr>
 			<th>구매상품</th>
 			<td><select id="select_orderNum" name="order_num">

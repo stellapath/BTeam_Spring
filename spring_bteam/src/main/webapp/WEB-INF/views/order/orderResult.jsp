@@ -1,9 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<c:if test="${login_info eq null}">
+<script>
+	alert("로그인이 필요한 페이지 입니다.");
+	location.href = "login";
+</script>
+</c:if>
 </head>
 <body>
 <h3>${vo.order_name }님의 주문이 완료되었습니다.</h3>
@@ -13,7 +20,7 @@
 	<td>${vo.order_num }</td>
 </tr>
 <tr><th>제품명</th>
-	<td>${vo.order_option }(${vo.order_color })</td>
+	<td>${vo.order_product }(${vo.order_color })</td>
 </tr>	
 <tr><th>구매수량</th>
 	<td>${vo.order_count}</td>

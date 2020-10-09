@@ -1,7 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="order">
-<!--//////////////////////////////////////////////////////////////////////////////////////리뷰관련 -->
+
+<!--관리자 전용 -->
+
+	<delete id="productUpdate">
+	update bProduct set p_name = #{p_name}, p_price = #{p_price} where p_num = #{p_num} 
+	</delete>
+	
+	<delete id="productDelete">
+	delete from bProduct where p_num = #{p_num} 
+	</delete>
+
+	<insert id="productAdd">
+	insert into bProduct (p_num, p_name, p_price) values (#{p_num}, #{p_name}, #{p_price})
+	</insert>
+
+	<select id="adminTotal" resultType="Integer">
+	select count(*)	from bOrder
+	</select>
+	
+	<select id="adminList" resultType="OrderVO">
+	select b.* from
+	(select rownum board_no, b.* from 
+		(select * from bOrder order by order_date asc) b
+	order by board_no desc) b
+	where board_no between #{beginList} and #{endList}
+	</select>
+	
+<!--리뷰작성 -->
 
 	<update id="review_update">
 	update border set order_review = 'Y' 
@@ -15,8 +42,12 @@
 			order by order_date desc) b
 	</select>
 
-<!--//////////////////////////////////////////////////////////////////////////////////////주문관련 -->
+<!--주문관련 -->
 
+	<select id="productList" resultType="OrderVO">
+	select * from bProduct
+	</select>
+	
 	<select id="list" resultType="OrderVO">
 	select b.* from
 	(select rownum board_no, b.* from 
@@ -38,12 +69,12 @@
 	</select>
 
 	<insert id="insert">
-	insert into bOrder ( order_num, order_email, order_name, order_phone, order_date, order_option,
+	insert into bOrder ( order_num, order_email, order_name, order_phone, order_date, order_product,
 						order_color, order_count, order_amount, order_pay, 
 						deliv_name, deliv_phone, deliv_zipcode, deliv_address, deliv_detailaddress, deliv_memo )
 	values ( (select concat(to_char(sysdate, 'yymmdd'), (select lpad((select count(*) from bOrder where to_char(order_date, 'yymmdd') = to_char(sysdate, 'yymmdd')), 3, '0') from dual)) 
 				order_num from dual),
-			#{order_email}, #{order_name}, #{order_phone}, sysdate, #{order_option},
+			#{order_email}, #{order_name}, #{order_phone}, sysdate, ( select p_name from bProduct where p_num = #{order_product} ),
 			#{order_color}, #{order_count}, #{order_amount}, #{order_pay}, 
 			#{deliv_name}, #{deliv_phone}, #{deliv_zipcode}, #{deliv_address}, #{deliv_detailaddress, jdbcType=VARCHAR}, #{deliv_memo, jdbcType=VARCHAR} )
 	</insert>

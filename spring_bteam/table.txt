@@ -86,3 +86,11 @@ create table traffic (
     references bUser(user_email)
     on delete cascade
 );
+
+-- 판매제품 테이블
+create table tmerchandise (
+	M_NUM		VARCHAR2(50)		constraint m_num_pk primary key,
+	M_NAME		VARCHAR2(50),
+	M_PRICE		NUMBER				not null,
+	M_DATE		DATE
+);

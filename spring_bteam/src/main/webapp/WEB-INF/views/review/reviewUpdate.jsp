@@ -15,7 +15,7 @@
 	<input type="hidden" name="board_num" value="${vo.board_num }" />
 	<input type="hidden" name="board_category" value="1" />
 	<input type="hidden" name="attach"/>
-	<table>
+	<table id="boardTable">
 		<tr>
 			<th>구매상품</th>
 			<td></td>

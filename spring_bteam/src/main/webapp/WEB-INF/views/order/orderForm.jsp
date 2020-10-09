@@ -84,10 +84,10 @@
 						<a href="productPage"><img src="img/pic_1.jpg"/></a>
 					</li>
 					<li class="goods_detail" style="float: right;">
-						옵션 <select class="option" name="order_option">
-							<option value="★☆분실방지-스마트우산☆★" selected="selected">★☆분실방지-스마트우산☆★</option>
-							<option value="★☆분실방지-스마트우산(우산미포함)☆★">★☆분실방지-스마트우산(우산미포함)☆★</option>
-							<option value="(이벤트) 스마트우산1+1">(이벤트) 스마트우산1+1</option>
+						옵션 <select class="option" name="order_product">
+						<c:forEach items="${product}" var="vo">
+							<option value="${vo.p_num }" value2="${vo.p_price }" >${vo.p_name }</option>
+						</c:forEach>
 						</select><br/>
 						수량 <select class="quantity" name="order_count">
 							<option value="1" selected="selected">1개</option>
@@ -177,23 +177,14 @@ $('select#delivMemo').on('change', function(){
 	}
 });
 
-$(document).on('change', '.option', function(){	
+$(document).on('change', '.option', function(){
 	calc_pay();
 }).on('change', '.quantity', function(){
 	calc_pay();
 });
 
 function calc_pay(){
-	var option = $('.option').val();
-	var price = 10000;
-	//옵션에 따른 가격설정
-	if(option == '★☆분실방지-스마트우산☆★'){
-		price = 10000;
-	}else if(option == '★☆분실방지-스마트우산(우산미포함)☆★'){
-		price = 8000;
-	}else if(option == '(이벤트) 스마트우산1+1'){
-		price = 20000;
-	}
+	var price = $('.option > option:selected').attr("value2");
 	//구매수량에 따른 가격설정
 	var total = $('.quantity').val() * price;
   	$('p.price').text(total);
@@ -219,16 +210,13 @@ function go_payment(method){
 		var input_memo = $('#input_memo').val();
 		$('select#delivMemo option:selected').val(input_memo);
 	}
-	
-	if(method == '무통장입금'){
-		if(necessary()){
-			$('form').append('<input type="hidden" name="order_pay" value="'+ method +'"/>');
-			$('form').submit();
-		}
-	} else if(method == '카드결제' || method == '핸드폰 소액결제'){
-		alert(method + ' 결제 방식은 가상으로 진행됩니다.');
+
+	if(necessary()){
+		if(method == '카드결제' || method == '핸드폰 소액결제') { alert(method + ' 결제 방식은 가상으로 진행됩니다.'); }
+		
 		$('form').append('<input type="hidden" name="order_pay" value="'+ method +'"/>');
 		$('form').submit();
+		
 	}
 }
 </script>

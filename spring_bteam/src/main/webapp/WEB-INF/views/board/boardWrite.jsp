@@ -37,7 +37,7 @@ history.back();
 	<input type="hidden" name="board_nickname" value="${login_info.user_nickname}" />
 	<input type="hidden" name="board_email" value="${login_info.user_email}" />
 	<input type="hidden" name="board_category" value="0" />
-	<table>
+	<table id="boardTable">
 		<tr>
 			<th>작성자</th>
 			<td>${login_info.user_nickname}</td>

@@ -3,11 +3,43 @@ package com.project.bteam.order;
 import java.sql.Date;
 
 public class OrderVO {
+	
+	//BORDER 테이블
 	private int order_count, order_amount, deliv_zipcode;
-	private String order_num, order_email, order_name, order_phone, order_option, order_color, order_pay,
+	private String order_num, order_email, order_name, order_phone, order_product, order_color, order_pay,
 					deliv_name, deliv_phone, deliv_address, deliv_detailaddress, deliv_memo, order_review;
 	
 	private Date order_date;
+
+	//BMERCHANDISE 테이블(판매제품 등록관리)
+	private String p_name, p_num;
+	private int p_price;
+	private Date p_date;
+	
+	public String getP_name() {
+		return p_name;
+	}
+	public void setP_name(String p_name) {
+		this.p_name = p_name;
+	}
+	public String getP_num() {
+		return p_num;
+	}
+	public void setP_num(String p_num) {
+		this.p_num = p_num;
+	}
+	public int getP_price() {
+		return p_price;
+	}
+	public void setP_price(int p_price) {
+		this.p_price = p_price;
+	}
+	public Date getP_date() {
+		return p_date;
+	}
+	public void setP_date(Date p_date) {
+		this.p_date = p_date;
+	}
 	
 	public String getOrder_review() {
 		return order_review;
@@ -57,11 +89,11 @@ public class OrderVO {
 	public void setOrder_phone(String order_phone) {
 		this.order_phone = order_phone;
 	}
-	public String getOrder_option() {
-		return order_option;
+	public String getOrder_product() {
+		return order_product;
 	}
-	public void setOrder_option(String order_option) {
-		this.order_option = order_option;
+	public void setOrder_product(String order_product) {
+		this.order_product = order_product;
 	}
 	public String getOrder_color() {
 		return order_color;

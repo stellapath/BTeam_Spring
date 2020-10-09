@@ -49,5 +49,32 @@ public class OrderDAO implements OrderService{
 		sql.update("order.review_update", order_num);
 	}
 
+	@Override
+	public BoardPage orderAdminList(BoardPage page) {
+		page.setTotalList((Integer)sql.selectOne("order.adminTotal", page));
+		page.setList(sql.selectList("order.adminList", page));
+		return page;
+	}
+
+	@Override
+	public List<OrderVO> productList() {
+		return sql.selectList("order.productList");
+	}
+
+	@Override
+	public void productAdd(OrderVO vo) {
+		sql.insert("order.productAdd", vo);
+	}
+
+	@Override
+	public int productDelete(String p_num) {
+		return sql.delete("order.productDelete", p_num);
+	}
+
+	@Override
+	public int productUpdate(OrderVO vo) {
+		return sql.update("order.productUpdate", vo);
+	}
+
 	
 }

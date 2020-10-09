@@ -13,7 +13,7 @@
 <input type="hidden" name="board_num" value="${bvo.board_num }"/>
 <input type="hidden" name="board_category" value="0" />
 <input type="hidden" name="attach"/>
-<table>
+<table id="boardTable">
 	<tr>
 		<th>제목</th>
 		<td><input type="text" name="board_title" value="${bvo.board_title }" class="need" title="제목"/></td>
