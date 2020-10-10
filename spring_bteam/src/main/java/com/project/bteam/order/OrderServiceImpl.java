@@ -1,5 +1,6 @@
 package com.project.bteam.order;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -31,7 +32,7 @@ public class OrderServiceImpl implements OrderService{
 
 	@Override
 	public int orderDelete(int order_num) {
-		return 0;
+		return dao.orderDelete(order_num);
 	}
 
 	//리뷰미작성 주문내역 조회
@@ -41,8 +42,8 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public void orderReviewUpdate(int order_num) {
-		dao.orderReviewUpdate(order_num);
+	public void orderReviewUpdate(HashMap<String, Integer> map) {
+		dao.orderReviewUpdate(map);
 	}
 
 	@Override

@@ -2,6 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="user">
 	
+	<delete id="delete">
+	delete from bUser where user_email = #{user_email}
+	</delete>
+	
 	<insert id="signup">
 	insert into bUser (user_email, user_pw, user_nickname, user_phone, 
 			user_zipcode, user_address, detail_address, user_birth, user_key)

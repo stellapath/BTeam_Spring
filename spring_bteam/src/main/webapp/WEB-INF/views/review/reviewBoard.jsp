@@ -18,11 +18,7 @@
 <input type="hidden" name="curPage" value="1"/>
 <input type="hidden" name="board_category" value="1"/>
 <div>
-<ul>
-	<c:if test="${!empty login_info}">
-	<li><a class="btn_fill right" href="reviewWrite?user_email=${login_info.user_email }">후기작성하기</a></li>
-	</c:if>
-</ul>
+<ul><li><a class="btn_fill right" onclick="reviewWrite()">후기작성</a></li></ul>
 <ul>
 	<li>
 		<select name="viewType" class="w-px80" onchange="$('form').submit()">
@@ -141,6 +137,16 @@ function go_delete(board_num){
 	var result = confirm('정말 삭제하시겠습니까?');
 	if(result) { location.href="reviewDelete?board_num="+board_num;	
 				 alert('리뷰가 삭제되었습니다.');	}
+}
+
+function reviewWrite( ){
+	if( '${login_info.user_email}' != '' ){
+		alert('후기작성은 나의 주문내역에서 가능합니다.');
+		location.href="myOrder?user_email=${login_info.user_email }";
+	}else {
+		alert('후기작성은 비회원로그인후 작성가능합니다.');
+		location.href="login";
+	}
 }
 </script>
 </body>

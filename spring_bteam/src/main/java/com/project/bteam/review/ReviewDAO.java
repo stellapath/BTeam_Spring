@@ -14,7 +14,8 @@ public class ReviewDAO implements ReviewService{
 
 	@Override
 	public int reviewInsert(BoardVO vo) {
-		return sql.insert("review.insert", vo);
+		sql.insert("review.insert", vo);
+		return sql.selectOne("review.returnBoardNum", vo);
 	}
 
 	@Override

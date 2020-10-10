@@ -15,6 +15,10 @@
 	<delete id="delete">
 	delete from bBoard where board_num=#{board_num}
 	</delete>
+	
+	<select id="returnBoardNum" resultType="Integer">
+	select Max(board_num) from bBoard where board_email = #{board_email}
+	</select>
 
 	<insert id="insert">
 	insert into bBoard(board_category, board_num, board_title, board_content, board_nickname, board_email, board_recommend, board_filename, board_filepath)

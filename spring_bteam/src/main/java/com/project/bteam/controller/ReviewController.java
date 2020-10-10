@@ -1,8 +1,10 @@
 package com.project.bteam.controller;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,24 +90,26 @@ public class ReviewController {
 	//리뷰 글쓰기 업로드 요청
 	@RequestMapping("/reviewWriteReq")
 	public String insert(int order_num, BoardVO vo, MultipartFile file, HttpSession session) {
-		order.orderReviewUpdate(order_num);
 		//첨부파일정보
 		if(! file.isEmpty()) {
 			vo.setBoard_filename(file.getOriginalFilename());
 			vo.setBoard_filepath(common.upload("board", file, session));
 		}
 		vo.setBoard_email(((UserVO)session.getAttribute("login_info")).getUser_email());
-		service.reviewInsert(vo);
+		int board_num = service.reviewInsert(vo);
+		
+		HashMap<String, Integer> map = new HashMap<>();
+		map.put("order_num", order_num);
+		map.put("board_num", board_num);
+		order.orderReviewUpdate(map);
+		
 		return "redirect:reviewBoard?board_category=1";
 	}
 	
 	//리뷰 글쓰기 화면 요청
 	@RequestMapping("/reviewWrite")
-	public String reviewWrite(String user_email, Model model) {
-//		page.setKeyword(user_email);
-//		model.addAttribute("order", order.orderList(page));
-		List<OrderVO> list = order.orderReviewHistory(user_email);
-		model.addAttribute("order", list);
+	public String reviewWrite(int order_num, Model model, HttpSession session) {
+		model.addAttribute("vo", order.orderDetail(order_num));
 		return "review/reviewWrite";
 	};
 	

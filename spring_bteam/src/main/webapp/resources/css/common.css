@@ -23,7 +23,7 @@ a#mypage.active{font-weight: bold; color: #ad53ff;}
 
 #user_email, #user_pw {width: 150px; height: 20px; font-size: 14px;}
 
-table {	width: 100%; margin: 0 auto; border-collapse: collapse;}
+table {	width: 100%; min-width:max-content; margin: 0 auto; border-collapse: collapse;}
 table th, table td {	border-top: 1px solid #5c5c5c; border-bottom:1px solid #5c5c5c;	padding: 5px 10px; vertical-align: middle;}
 table th {background-color: #e0e0e0; font-weight: bold;}
 table td {text-align: center;}
@@ -47,7 +47,7 @@ table input[name=detail_address]{width: calc(100% - 24px);}
 textarea { width: calc(100% - 6px); resize: none; height: 150px;}
 .check_msg {font-size: 13px; font-weight: bold; float: right;}
 
-.left { text-align:left; }
+.left { text-align:left;}
 a {text-decoration: none; color: black;}
 a:hover{font-weight: bold; cursor: pointer;}
 

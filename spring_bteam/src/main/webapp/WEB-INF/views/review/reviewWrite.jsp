@@ -11,12 +11,6 @@ alert('로그인 후 작성가능합니다.');
 location.href="login";
 </script>
 </c:if>
-<c:if test="${empty order}">
-<script type="text/javascript">
-alert('후기작성이 가능한 주문내역이 없습니다.');
-history.go(-1);
-</script>
-</c:if>
 </head>
 <body>
 <h3>사용후기 작성화면</h3>
@@ -25,15 +19,17 @@ history.go(-1);
 	<input type="hidden" name="board_nickname" value="${login_info.user_nickname}" />
 	<input type="hidden" name="board_email" value="${login_info.user_email}" />
 	<input type="hidden" name="board_category" value="1" />
+	<input type="hidden" name="order_num" value="${vo.order_num }" />
 	<table id="boardTable">
 		<tr>
 			<th>구매상품</th>
-			<td><select id="select_orderNum" name="order_num">
-				<c:forEach items="${order}" var="vo">
-					<option value="${vo.order_num }">${vo.order_option }(${vo.order_color }) 구매일자: ${vo.order_date }</option>
-				</c:forEach>	
-				</select>
-			</td>
+<!-- 			<td><select id="select_orderNum" name="order_num"> -->
+<%-- 				<c:forEach items="${order}" var="vo"> --%>
+<%-- 					<option value="${vo.order_num }">${vo.order_option }(${vo.order_color }) 구매일자: ${vo.order_date }</option> --%>
+<%-- 				</c:forEach>	 --%>
+<!-- 				</select> -->
+<!-- 			</td> -->
+			<td>${vo.order_product }</td>
 		</tr>
 		<tr><th>추천여부</th>
 			<td>

@@ -1,5 +1,6 @@
 package com.project.bteam.order;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -35,8 +36,7 @@ public class OrderDAO implements OrderService{
 
 	@Override
 	public int orderDelete(int order_num) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sql.delete("order.delete", order_num);
 	}
 
 	@Override
@@ -45,8 +45,8 @@ public class OrderDAO implements OrderService{
 	}
 
 	@Override
-	public void orderReviewUpdate(int order_num) {
-		sql.update("order.review_update", order_num);
+	public void orderReviewUpdate(HashMap<String, Integer> map) {
+		sql.update("order.review_update", map);
 	}
 
 	@Override

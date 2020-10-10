@@ -6,6 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>주문관리</title>
+<c:if test="${login_info.user_email ne 'admin'}">
+<script>
+alert("관리자전용 페이지입니다.");
+location.href='login';
+</script>
+</c:if>
 <jsp:useBean id="now" class="java.util.Date" />
 <fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />  
 </head>
@@ -52,8 +58,10 @@
 			<c:if test="${vo.order_date >= today  }">배송준비중</c:if>	
 		</td>
 		<td>${vo.order_review }</td>
-		<td><c:if test="${vo.order_date < today || vo.order_review == 'Y'}">취소불가</c:if>
-			<c:if test="${vo.order_date >= today && vo.order_review == 'N'}"><a class="btn_fill_s">취소</a></c:if>	
+		<td><c:if test="${vo.order_date < today || !empty vo.order_review}">취소불가</c:if>
+			<c:if test="${vo.order_date >= today && empty vo.order_review }">
+			<a class="btn_fill_s" onclick="orderCancel('${vo.order_num }')">취소</a>
+			</c:if>	
 		</td>
 	</tr>
 	</c:forEach>
@@ -67,6 +75,25 @@ function go_detail(order_num){
 	$('[name=order_num]').val(order_num);
 	$('form').attr('action', 'myOrderView');
 	$('form').submit();
+}
+
+function orderCancel(order_num){
+	var cancelReason = prompt('주문취소 사유를 적어주세요.'+'');
+	if(cancelReason != ''){
+	$.ajax({
+		url: 'orderCancel',
+		data: {	order_num : order_num,
+				reason : cancelReason
+		},
+		success: function(){
+			alert('주문이 취소되었습니다.\n주문취소 안내메일이 발송되었습니다.');
+			location.reload();
+		},
+		error: function(text, req){
+			alert(text + " : " + req.status);
+		}
+	});
+	}else return false;
 }
 </script>
 </body>

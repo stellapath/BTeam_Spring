@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,6 +31,26 @@ public class UserController {
 	@Autowired private UserServiceImpl service;
 	@Autowired private CommonService common;
 	@Autowired private BoardPage page; 
+	
+	// 회원탈퇴 처리요청
+	@RequestMapping("/goodbyeMember")
+	public boolean userDelete(String user_email) {
+		return service.userDelete(user_email);
+	}
+	
+	// 주문취소 처리요청
+	@ResponseBody @RequestMapping("/orderCancel")
+	public boolean orderCancel(String cancelReason, int order_num) {
+		//해당 주문조회
+		OrderVO vo = order.orderDetail(order_num);
+		
+		if(order.orderDelete(order_num) > 0){
+			common.mailOrderCancel(vo, cancelReason);
+			return true;
+		}else {
+			return false;			//주문취소 실패(DB)
+		}
+	}
 	
 	// 내 주문내역 상세보기
 	@RequestMapping("/myOrderView")

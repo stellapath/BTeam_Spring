@@ -1,5 +1,6 @@
 package com.project.bteam.order;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -17,7 +18,7 @@ public interface OrderService {
 	
 	//리뷰작성
 	List<OrderVO> orderReviewHistory(String order_email);	//리뷰작성 가능한 주문내역 조회
-	void orderReviewUpdate(int order_num);					//리뷰업로드시 리뷰작성여부 업데이트
+	void orderReviewUpdate(HashMap<String, Integer> map);					//리뷰업로드시 리뷰작성여부 업데이트
 	
 	//관리자모드
 	BoardPage orderAdminList(BoardPage page);				//주문내역 조회

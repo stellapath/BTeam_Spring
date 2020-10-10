@@ -17,8 +17,9 @@
 		<put-attribute name="header" value="/WEB-INF/views/include/header.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp"/>
 	</definition>
-	
+			
 	<!-- 타일즈적용 제외 -->
+	
 	<definition name="logo_footer" template="/WEB-INF/views/tiles/logo_footer.jsp">
 		<put-attribute name="content" value="" />
 		<put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp"/>
@@ -40,6 +41,7 @@
 	</definition>
 	
 	<!-- 타일즈 제외 선언 -->
+	
 	<definition name="user/signup" extends="logo_footer">
 		<put-attribute name="content" value="/WEB-INF/views/user/signup.jsp"/>
 	</definition>

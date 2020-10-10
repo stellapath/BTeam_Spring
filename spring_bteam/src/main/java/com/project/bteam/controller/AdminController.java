@@ -50,6 +50,8 @@ public class AdminController {
 		return "admin/productList";
 	}
 	
+	// 주문취소 처리요청
+	
 	// 주문관리 페이지 요청
 	@RequestMapping("/orderList")
 	public String orderList(Model model, 

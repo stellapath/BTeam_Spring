@@ -5,6 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자페이지/제품관리</title>
+<c:if test="${login_info.user_email ne 'admin'}">
+<script>
+alert("관리자전용 페이지입니다.");
+location.href='login';
+</script>
+</c:if>
 <style type="text/css">
 #productAddInfo input, #updateInfo input{ text-align: center;}
 </style>
@@ -13,14 +19,14 @@
 <div id="productAdd">
 <h4>제 품 등 록</h4>
 	<div id="productAddInfo">
-		<form action="productAdd" method="post">
+		<form action="productAdd" name="addForm" method="post">
 		<table>
 		<tr><th>제품번호</th><th>제품명</th><th>가격</th><th></th></tr>
 		<tr><td><input type="text" name="p_num" class="need" title="제품번호"/></td>
 			<td><input type="text" name="p_name" maxlength="20" class="need" title="제품명"/></td>
 			<td><input type="number" name="p_price" class="need" title="제품가격"/></td>
 			<td><div id="productAddBtn">
-					<a class="btn_fill_s" onclick="if(necessary()){$('form').submit()}">등록</a>
+					<a class="btn_fill_s" onclick="if(necessary()){$('form[name=addForm]').submit()}">등록</a>
 					<a class="btn_empty_s" id="addCancel">취소</a>
 				</div>
 			</td>
@@ -52,8 +58,8 @@
 		<tr><th>제품번호</th><th>제품명</th><th>가격</th><th></th></tr>
 		<tr id="updateInfo">
 			<td><input type="text" name="p_num" readonly style="border: none;"/></td>
-			<td><input type="text" name="p_name" maxlength="20" class="need" title="수정할 제품명"/></td>
-			<td><input type="number" name="p_price" class="need" title="수정할 제품가격"/></td>
+			<td><input type="text" name="p_name" maxlength="20" /></td>
+			<td><input type="number" name="p_price"/></td>
 			<td><div id="productUpdateBtn">
 					<a class="btn_fill_s" onclick="$('form[name=updateForm]').submit()">수정</a>
 					<a class="btn_empty_s" id="updateCancel">취소</a>
@@ -73,7 +79,7 @@ $(document).on('click', '#addCancel', function(){
 });
 
 function go_delete( num, name, price, date ){
-	alert( "제품번호: " + num + "\n제품명: " + name + "\n가격: " + price + "등록일: " + date + "\n\n제품을 삭제하시겠습니까??" );
+	alert( "제품번호: " + num + "\n제품명: " + name + "\n가격: " + price + "\n등록일: " + date + "\n\n제품을 삭제하시겠습니까??" );
 	$.ajax({
 		url: 'productDelete',
 		data: { p_num : num },

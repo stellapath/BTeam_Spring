@@ -43,23 +43,26 @@
 </form>
 </div>
 <table>
-	<tr><th class="w-px120">주문번호</th><th>제품명</th><th class="w-px80">주문수량</th><th class="w-px80">주문금액</th><th class="w-px80">진행상태</th><th class="w-px80">사용후기</th><th class="w-px120">문의하기</th></tr>
+	<tr><th class="w-px120">주문번호</th><th>제품명</th><th class="w-px80">주문수량</th><th class="w-px80">주문금액</th><th class="w-px80">진행상태</th><th class="w-px40">사용후기</th><th class="w-px40">주문취소</th><th class="w-px80">문의하기</th></tr>
 	<c:if test="${empty page.list }">
 		<tr><td colspan="6">주문내역이 없습니다.</td></tr>
 	</c:if>
 	<c:if test="${page.list ne null }">
 		<c:forEach var="vo" items="${page.list }">
 			<tr><td><a onclick="go_detail(${vo.order_num })">${vo.order_num }<br/>(${vo.order_date })</a></td>
-				<td>${vo.order_option }</td>
+				<td>${vo.order_product }</td>
 				<td>${vo.order_count }</td>
 				<td>${vo.order_amount }</td>
 				<td><c:if test="${vo.order_date < today  }">배송완료</c:if>
 					<c:if test="${vo.order_date >= today  }">배송준비중</c:if>	
 				</td>
-				<td><c:if test="${vo.order_review eq 'N' }"><a class="btn_fill" onclick="">작성</a></c:if>
-					<c:if test="${vo.order_review eq 'Y' }"><a class="btn_fill" onclick="">조회</a></c:if>
+				<td><c:if test="${empty vo.order_review }"><a class="btn_fill_s" onclick="review_write(${vo.order_num })">작성</a></c:if>
+					<c:if test="${!empty vo.order_review }"><a class="btn_fill_s" onclick="review_detail(${vo.order_num })">조회</a></c:if>
 				</td>
-				<td><a class="btn_fill" onclick="">일대일문의</a></td>
+				<td><c:if test="${vo.order_date < today  }">-</c:if>
+					<c:if test="${vo.order_date >= today  }"><a class="btn_fill_s" onclick="orderCancel(${vo.order_num })">취소</a></c:if>	
+				</td>
+				<td><a class="btn_fill_s" onclick="">일대일문의</a></td>
 			</tr>
 		</c:forEach>
 	</c:if>
@@ -72,6 +75,33 @@ function go_detail(order_num){
 	$('[name=order_num]').val(order_num);
 	$('form').attr('action', 'myOrderView');
 	$('form').submit();
+}
+
+function orderCancel(order_num){
+	if(cancelReason != ''){
+	$.ajax({
+		url: 'orderCancel',
+		data: {	order_num : order_num,
+				reason : '주문자의 취소요청'
+		},
+		success: function( result ){
+			if(result)		alert('주문이 취소되었습니다.\n주문취소 안내메일이 발송되었습니다.');
+			else			alert('주문취소에 실패했습니다. 잠시후에 다시 시도해주세요.');
+			location.reload();
+		},
+		error: function(text, req){
+			alert(text + " : " + req.status);
+		}
+	});
+	}else return false;
+}
+
+function review_write(order_num){
+	location.href="reviewWrite?order_num="+order_num;
+}
+
+function review_detail(order_num){
+	location.href="reviewDetail?order_num="+order_num;
 }
 </script>
 </body>

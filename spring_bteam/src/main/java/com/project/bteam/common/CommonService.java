@@ -93,6 +93,64 @@ public class CommonService {
 		}
 	}
 	
+	//주문취소안내 메일발송요청
+		public void mailOrderCancel(OrderVO vo, String cancelReason) {
+			//Html형식의 내용을 갖는 메일:파일첨부가능
+			send_orderCancel(vo, cancelReason);
+		}
+		//주문서 메일전송
+		private void send_orderCancel(OrderVO vo, String cancelReason) {
+			HtmlEmail mail = new HtmlEmail();
+			mail.setHostName("smtp.gmail.com");
+			mail.setCharset("utf-8");
+			mail.setDebug(true);
+			mail.setAuthentication("bteamproject0420", "bteam0420");
+			mail.setSSLOnConnect(true);
+			try {
+				mail.setFrom("bteamproject0420@gmail.com", "관리자");					//송신자 정보
+				mail.addTo(vo.getOrder_email());										//수신자 정보
+				//메일작성
+				mail.setSubject(vo.getOrder_name() + "님의 주문이 취소되었습니다.");
+				StringBuffer msg = new StringBuffer();
+				msg.append("<html>");
+				msg.append("<body>");
+				msg.append("<div style='width:700px; text-align: center;'>");
+				msg.append("<img src='http://192.168.0.72:8282/bteam/img/pre_logo.png' style='width: 150px; height: 150px; margin: 0 auto;'/>");
+				msg.append("<h3>"+vo.getOrder_name()+"님의 주문이 취소되었습니다.</h3>"
+							+ "<h4>주문취소사유는 다음과 같습니다.</h4>");
+				msg.append("<div style='border: 1px solid #666; width: 50%; margin: 0 auto; margin-bottom: 50px;'>"
+							+ "<p>주문취소사유 : "+cancelReason+"</p>"
+							+ "<p>환불에는 영업일기준 약 3~5일이 소요됩니다.</p>"
+							+ "</div>");
+				msg.append("<h4>나의 주문내역</h4>"
+							+ "<table style='border: 1px solid #666; width: 100%; margin: 0 auto;'>"
+							+ "<tr><td colspan='2' style='padding: 20px; text-align: center; font-size: 15px; background-color: #ededed;'>주문정보</td></tr>" 
+							+ "<tr><th style='width: 100px;'>주문번호</th><td>"+ vo.getOrder_num() +"</td></tr>"
+							+ "<tr><th>제품명</th><td>"+vo.getOrder_product()+"</td></tr>"
+							+ "<tr><th>구매수량</th><td>"+ vo.getOrder_count() +"</td></tr>"
+							+ "<tr><th>구매금액</th><td>"+ vo.getOrder_amount() +"</td></tr>"
+							+ "<tr><th>결제방법</th><td>"+ vo.getOrder_pay() +"</td></tr>"
+							+ "<tr><td colspan='2' style='padding: 20px; text-align: center; font-size: 15px; background-color: #ededed;'>주문자정보</th></tr>"
+							+ "<tr><th>이름</th><td>"+ vo.getOrder_name() +"</td></tr>"
+							+ "<tr><th>전화번호</th><td>"+ vo.getOrder_phone() +"</td></tr>" 
+							+ "<tr><th>이메일</th><td>"+ vo.getOrder_email() +"</td></tr>" 
+							+ "<tr><td colspan='2' style='padding: 20px; text-align: center; font-size: 15px; background-color: #ededed;'>배송정보</th></tr>"
+							+ "<tr><th>이름</th><td>"+ vo.getDeliv_name() +"</td></tr>"
+							+ "<tr><th>전화번호</th><td>"+ vo.getDeliv_phone() +"</td></tr>"
+							+ "<tr><th>주소</th><td>( "+ vo.getDeliv_zipcode() +" ) "+ vo.getDeliv_address() +" "+ vo.getDeliv_detailaddress() +"</td></tr>"
+							+ "<tr><th>배송메모</th><td>"+ vo.getDeliv_memo() +"</td></tr>"
+							+ "</table>"				
+						);
+				msg.append("</div>");
+				msg.append("</body>");
+				msg.append("</html>");
+				mail.setHtmlMsg(msg.toString());
+				
+				mail.send();
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
 	
 	//주문서 발송요청
 	public void mailOrder(OrderVO vo, HttpSession session) {
@@ -121,7 +179,7 @@ public class CommonService {
 			msg.append("<table style='border: 1px solid #666; width: 100%; margin: 0 auto;'>"
 						+ "<tr><td colspan='2' style='padding: 20px; text-align: center; font-size: 15px; background-color: #ededed;'>주문정보</td></tr>" 
 						+ "<tr><th style='width: 100px;'>주문번호</th><td>"+ vo.getOrder_num() +"</td></tr>"
-						+ "<tr><th>제품명</th><td>★☆분실방지-스마트우산☆★</td></tr>"
+						+ "<tr><th>제품명</th><td>"+vo.getOrder_product()+"</td></tr>"
 						+ "<tr><th>구매수량</th><td>"+ vo.getOrder_count() +"</td></tr>"
 						+ "<tr><th>구매금액</th><td>"+ vo.getOrder_amount() +"</td></tr>"
 						+ "<tr><th>결제방법</th><td>"+ vo.getOrder_pay() +"</td></tr>"

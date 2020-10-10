@@ -31,7 +31,7 @@
 <!--리뷰작성 -->
 
 	<update id="review_update">
-	update border set order_review = 'Y' 
+	update border set order_review = #{board_num} 
 	where order_num = #{order_num}
 	</update>
 
@@ -43,6 +43,10 @@
 	</select>
 
 <!--주문관련 -->
+
+	<delete id="delete">
+	delete from bOrder where order_num = #{order_num}
+	</delete>
 
 	<select id="productList" resultType="OrderVO">
 	select * from bProduct
