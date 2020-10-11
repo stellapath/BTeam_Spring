@@ -53,19 +53,6 @@ public class AndroidController {
 		return "app/andLogin";
 	}
 	
-	// 안드로이드 게시글 리스트
-	@RequestMapping("/andBoardList")
-	public String andBoardList(@RequestParam(defaultValue="1") int begin, 
-			 				   @RequestParam(defaultValue="10") int end,
-							   int category, Model model) {
-		Map<String, Integer> map = new HashMap<>();
-		map.put("category", category);
-		map.put("begin", begin);
-		map.put("end", end);
-		model.addAttribute("list", service.andBoardList(map));
-		return "app/andBoardList";
-	}
-	
 	// 안드로이드 교통 게시판
 	@RequestMapping("/andTraffic")
 	public String andTraffic(@RequestParam(defaultValue="1") int begin,
@@ -81,6 +68,7 @@ public class AndroidController {
 	// 안드로이드 교통 게시판 자세히
 	@RequestMapping("/andTrafficView")
 	public String andTrafficView(int num, Model model) {
+		service.andReadCount(num);
 		model.addAttribute("vo", service.andTrafficView(num));
 		return "app/andTrafficView";
 	}
@@ -89,18 +77,11 @@ public class AndroidController {
 	@ResponseBody @RequestMapping("andTrafficInsert")
 	public int andTrafficInsert(TrafficVO vo, MultipartFile file, 
 			HttpSession session) {
-		if (!file.isEmpty()) {
+		System.out.println("::andTrafficInsert::");
+		if (file != null && !file.isEmpty()) {
 			vo.setTra_content_image(common.upload("traffic", file, session));
 		}
 		return service.andTrafficInsert(vo);
-	}
-	
-	// 안드로이드 게시글 자세히
-	@RequestMapping("/andBoardView")
-	public String andBoardView(int board_num, Model model) {
-		System.out.println("::andBoardView::");
-		model.addAttribute("vo", board.boardDetail(board_num));
-		return "app/andBoardView";
 	}
 
 	// 프로필 이미지 변경 처리
@@ -117,9 +98,29 @@ public class AndroidController {
 	}
 	
 	// 프로필 이미지만 가져오기
-	@RequestMapping("andGetImage")
+	@RequestMapping("/andGetImage")
 	public String andGetImage(String email, Model model) {
 		model.addAttribute("image", service.andGetImage(email));
 		return "app/andGetImage";
+	}
+	
+	// 내가 쓴 글 가져오기
+	@RequestMapping("/andMyPost")
+	public String andMyPost(@RequestParam(defaultValue="1") int begin,
+			  				@RequestParam(defaultValue="10") int end, 
+			  				String email, Model model) {
+		Map<String, String> map = new HashMap<>();
+		map.put("begin", begin + "");
+		map.put("end", end + "");
+		map.put("email", email);
+		model.addAttribute("list", service.andMyPost(map));
+		return "app/andMyPost";
+	}
+	
+	// 인기글 가져오기
+	@RequestMapping("/andPopular")
+	public String andPopular(Model model) {
+		model.addAttribute("list", service.andPopular());
+		return "app/andPopular";
 	}
 }

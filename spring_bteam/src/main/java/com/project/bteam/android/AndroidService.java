@@ -11,4 +11,7 @@ public interface AndroidService {
 	TrafficVO andTrafficView(int num);
 	int andTrafficInsert(TrafficVO vo);
 	String andGetImage(String email);
+	List<TrafficVO> andMyPost(Map<String, String> map);
+	List<TrafficVO> andPopular();
+	void andReadCount(int num);
 }

@@ -38,4 +38,19 @@ public class AndroidDAO implements AndroidService {
 	public String andGetImage(String email) {
 		return sql.selectOne("android.getImage", email);
 	}
+	
+	@Override
+	public List<TrafficVO> andMyPost(Map<String, String> map) {
+		return sql.selectList("myPost", map);
+	}
+	
+	@Override
+	public List<TrafficVO> andPopular() {
+		return sql.selectList("popular");
+	}
+	
+	@Override
+	public void andReadCount(int num) {
+		sql.update("readCount", num);
+	}
 }

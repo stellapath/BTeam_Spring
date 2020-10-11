@@ -37,4 +37,19 @@ public class AndroidServiceImpl implements AndroidService {
 	public String andGetImage(String email) {
 		return dao.andGetImage(email);
 	}
+	
+	@Override
+	public List<TrafficVO> andMyPost(Map<String, String> map) {
+		return dao.andMyPost(map);
+	}
+	
+	@Override
+	public List<TrafficVO> andPopular() {
+		return dao.andPopular();
+	}
+	
+	@Override
+	public void andReadCount(int num) {
+		dao.andReadCount(num);
+	}
 }
