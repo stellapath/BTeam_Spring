@@ -9,9 +9,9 @@ public class PageVO {
 	private int totalPage;			//총 페이지수
 	private int totalBlock;			//총 블럭의 수
 	
-	private int curPage;			//현재페이지
-	private int beginList, endList;  //현재 페이지에 보여질 목록의 시작과 끝
-	private int curBlock, beginPage, endPage;  //현재 블럭에 보여질 페이지의 시작과 끝
+	private int curPage;						//현재페이지
+	private int beginList, endList;  			//현재 페이지에 보여질 목록의 시작과 끝
+	private int curBlock, beginPage, endPage;  	//현재 블럭에 보여질 페이지의 시작과 끝
 	
 	private int board_category;
 	
@@ -19,8 +19,18 @@ public class PageVO {
 	private String search, keyword;
 	
 	private String viewType="list";		//리뷰글 형식
-	private String recommend="all";//추천여부
+	private String recommend="all";		//추천여부
+	
+	//관리자페이지 - 주문목록조회
+	private String orderStatus = "all";		//주문진행상태별 조회
+
 			
+	public String getOrderStatus() {
+		return orderStatus;
+	}
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
+	}
 	public String getSearch() {
 		return search;
 	}

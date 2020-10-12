@@ -55,8 +55,12 @@ public class AdminController {
 	// 주문관리 페이지 요청
 	@RequestMapping("/orderList")
 	public String orderList(Model model, 
+							@RequestParam(defaultValue="all") String orderStatus,
+							String keyword,
 							@RequestParam(defaultValue="10") int pageList,
 							@RequestParam(defaultValue="1") int curPage) {
+		page.setOrderStatus(orderStatus);
+		page.setKeyword(keyword);
 		page.setCurPage(curPage);
 		page.setPageList(pageList);
 		model.addAttribute("page", order.orderAdminList(page));

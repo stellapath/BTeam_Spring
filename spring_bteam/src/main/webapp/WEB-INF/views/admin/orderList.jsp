@@ -6,6 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>주문관리</title>
+<style type="text/css">
+tabs ul {width: max-content; height: max-content; }
+#searchTab input{ height: 15px; }
+</style>
 <c:if test="${login_info.user_email ne 'admin'}">
 <script>
 alert("관리자전용 페이지입니다.");
@@ -20,16 +24,19 @@ location.href='login';
 <form action="orderList" method="post">
 <input type="hidden" name="curPage" value="1"/>
 <input type="hidden" name="order_num"/>
-<div>
-<ul>
-	<li>
-		<select>
-		<option>진행상태</option>
-		</select>
+<div id="tabs">
+<ul id="searchTab">
+	<li>제품명
+		<input type="text" name="keyword" class="w-px200" value="${page.keyword }"/>
+		<a class="btn_fill" onclick="$('form').submit()">검색</a>
 	</li>
+</ul>
+<ul id="viewTab">	
 	<li>
-		<select>
-		<option>상품명</option>
+		<select name="orderStatus" class="w-px80" onchange="$('[name=curPage]').val(1); $('form').submit()">
+		<option value="all" ${page.orderStatus eq 'all' ? 'selected' : '' }>진행상태</option>
+		<option value="ing" ${page.orderStatus eq 'ing' ? 'selected' : '' }>주문확인</option>
+		<option value="done" ${page.orderStatus eq 'done' ? 'selected' : '' }>배송완료</option>
 		</select>
 	</li>
 	<li>
@@ -44,7 +51,7 @@ location.href='login';
 </form>
 </div>
 <table>
-	<tr><th class="w-px120">주문번호</th><th>제품명</th><th class="w-px80">주문수량</th><th class="w-px80">주문금액</th><th class="w-px80">진행상태</th><th class="w-px80">사용후기</th><th class="w-px80">주문취소</th></tr>
+	<tr><th class="w-px120">주문번호</th><th>제품명</th><th class="w-px80">주문수량</th><th class="w-px80">주문금액</th><th class="w-px80">진행상태</th><th class="w-px80">주문취소</th></tr>
 	<c:if test="${page.list eq null }">
 	<tr><td colspan="7">주문내역이 없습니다.</td></tr>
 	</c:if>
@@ -57,7 +64,6 @@ location.href='login';
 		<td><c:if test="${vo.order_date < today  }">배송완료</c:if>
 			<c:if test="${vo.order_date >= today  }">배송준비중</c:if>	
 		</td>
-		<td>${vo.order_review }</td>
 		<td><c:if test="${vo.order_date < today || !empty vo.order_review}">취소불가</c:if>
 			<c:if test="${vo.order_date >= today && empty vo.order_review }">
 			<a class="btn_fill_s" onclick="orderCancel('${vo.order_num }')">취소</a>

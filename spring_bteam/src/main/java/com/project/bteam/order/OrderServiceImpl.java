@@ -71,4 +71,9 @@ public class OrderServiceImpl implements OrderService{
 		return dao.productUpdate(vo);
 	}
 
+	@Override
+	public String orderReviewProduct(int board_num) {
+		return dao.orderReviewProduct(board_num);
+	}
+
 }

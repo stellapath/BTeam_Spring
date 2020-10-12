@@ -30,7 +30,15 @@ public class ReviewController {
 	@Autowired private CommonService common;
 	@Autowired private OrderServiceImpl order;
 	
-	//리뷰 수정업로드 처리 요청
+	// 리뷰 상세보기 화면 요청
+	@RequestMapping("/reviewDetail")
+	public String detail(int board_num, Model model) {
+		model.addAttribute("order_product", order.orderReviewProduct(board_num));
+		model.addAttribute("vo", service.reviewDetail(board_num));
+		return "review/reviewDetail";
+	}
+	
+	// 리뷰 수정업로드 처리 요청
 	@RequestMapping("/reviewUpdateReq")
 	public String update(BoardVO vo, String attach, Model model,
 							MultipartFile file, HttpSession session) {

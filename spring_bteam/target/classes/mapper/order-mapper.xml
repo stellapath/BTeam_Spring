@@ -2,85 +2,119 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="order">
 
-<!--관리자 전용 -->
+	<!--관리자 전용 -->
 
 	<delete id="productUpdate">
-	update bProduct set p_name = #{p_name}, p_price = #{p_price} where p_num = #{p_num} 
+		update bProduct set p_name = #{p_name}, p_price = #{p_price} where p_num =
+		#{p_num}
 	</delete>
-	
+
 	<delete id="productDelete">
-	delete from bProduct where p_num = #{p_num} 
+		delete from bProduct where p_num = #{p_num}
 	</delete>
 
 	<insert id="productAdd">
-	insert into bProduct (p_num, p_name, p_price) values (#{p_num}, #{p_name}, #{p_price})
+		insert into bProduct (p_num, p_name, p_price) values (#{p_num}, #{p_name},
+		#{p_price})
 	</insert>
 
 	<select id="adminTotal" resultType="Integer">
-	select count(*)	from bOrder
+		select count(*) from bOrder
 	</select>
-	
+
+	<sql id="productList_where">
+		<if test="keyword != null">
+		where order_product like '%' || #{keyword} || '%'
+		</if>
+	</sql>
+	<sql id="orderStatus_where">
+		<if test="orderStatus == 'all'">
+		</if>
+		<if test="orderStatus == 'ing'">
+			and order_date = sysdate
+		</if>
+		<if test="orderStatus == 'done'">
+			and order_date != sysdate
+		</if>
+	</sql>
+
+
 	<select id="adminList" resultType="OrderVO">
-	select b.* from
-	(select rownum board_no, b.* from 
-		(select * from bOrder order by order_date asc) b
-	order by board_no desc) b
-	where board_no between #{beginList} and #{endList}
+		select b.* from
+		(select rownum board_no, b.* from
+		(select * from bOrder 
+		<include refid="productList_where"/> 
+		<include refid="orderStatus_where"/> 
+		order by order_date asc) b
+		order by board_no desc) b
+		where board_no between #{beginList} and #{endList}
 	</select>
-	
-<!--리뷰작성 -->
+
+	<!--리뷰작성 -->
 
 	<update id="review_update">
-	update border set order_review = #{board_num} 
-	where order_num = #{order_num}
+		update border set order_review = #{board_num}
+		where order_num = #{order_num}
 	</update>
 
 	<select id="review_history" resultType="OrderVO">
-	select b.* from
-		(select * from bOrder 
-			where order_email=#{user_email} and order_review = 'N' 
-			order by order_date desc) b
+		select b.* from
+		(select * from bOrder
+		where order_email=#{user_email} and order_review = 'N'
+		order by order_date desc) b
 	</select>
 
-<!--주문관련 -->
+	<select id="reviewProduct" resultType="String">
+		select order_product from bOrder where order_review = #{board_num}
+	</select>
+
+	<!--주문관련 -->
 
 	<delete id="delete">
-	delete from bOrder where order_num = #{order_num}
+		delete from bOrder where order_num = #{order_num}
 	</delete>
 
 	<select id="productList" resultType="OrderVO">
-	select * from bProduct
+		select * from bProduct
 	</select>
-	
+
 	<select id="list" resultType="OrderVO">
-	select b.* from
-	(select rownum board_no, b.* from 
+		select b.* from
+		(select rownum board_no, b.* from
 		(select * from bOrder where order_email=#{keyword} order by order_date asc) b
-	order by board_no desc) b
-	where board_no between #{beginList} and #{endList}
+		order by board_no desc) b
+		where board_no between #{beginList} and #{endList}
 	</select>
 
 	<select id="total" resultType="Integer">
-	select count(*)	from bOrder where order_email=#{keyword}
+		select count(*) from bOrder where order_email=#{keyword}
 	</select>
 
 	<select id="detail" resultType="OrderVO">
-	select * from bOrder where order_num = #{order_num}
+		select * from bOrder where order_num = #{order_num}
 	</select>
 
 	<select id="returnOrderNum" resultType="Integer">
-	select Max(order_num) from bOrder where order_email = #{order_email} and order_count = #{order_count}
+		select Max(order_num) from bOrder where order_email = #{order_email} and
+		order_count = #{order_count}
 	</select>
 
 	<insert id="insert">
-	insert into bOrder ( order_num, order_email, order_name, order_phone, order_date, order_product,
-						order_color, order_count, order_amount, order_pay, 
-						deliv_name, deliv_phone, deliv_zipcode, deliv_address, deliv_detailaddress, deliv_memo )
-	values ( (select concat(to_char(sysdate, 'yymmdd'), (select lpad((select count(*) from bOrder where to_char(order_date, 'yymmdd') = to_char(sysdate, 'yymmdd')), 3, '0') from dual)) 
-				order_num from dual),
-			#{order_email}, #{order_name}, #{order_phone}, sysdate, ( select p_name from bProduct where p_num = #{order_product} ),
-			#{order_color}, #{order_count}, #{order_amount}, #{order_pay}, 
-			#{deliv_name}, #{deliv_phone}, #{deliv_zipcode}, #{deliv_address}, #{deliv_detailaddress, jdbcType=VARCHAR}, #{deliv_memo, jdbcType=VARCHAR} )
+		insert into bOrder ( order_num, order_email, order_name, order_phone,
+		order_date, order_product,
+		order_color, order_count, order_amount, order_pay,
+		deliv_name, deliv_phone, deliv_zipcode, deliv_address, deliv_detailaddress,
+		deliv_memo )
+		values ( (select concat(to_char(sysdate, 'yymmdd'), (select lpad((select
+		count(*) from bOrder where to_char(order_date, 'yymmdd') =
+		to_char(sysdate, 'yymmdd')), 3, '0') from dual))
+		order_num from dual),
+		#{order_email}, #{order_name}, #{order_phone}, sysdate, ( select p_name from bProduct
+		where p_num = #{order_product} ),
+		#{order_color}, #{order_count}, #{order_amount}, #{order_pay},
+		#{deliv_name}, #{deliv_phone}, #{deliv_zipcode}, #{deliv_address},
+		#{deliv_detailaddress, jdbcType=VARCHAR}, #{deliv_memo,
+		jdbcType=VARCHAR} )
 	</insert>
 
 </mapper>

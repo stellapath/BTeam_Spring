@@ -57,7 +57,7 @@
 					<c:if test="${vo.order_date >= today  }">배송준비중</c:if>	
 				</td>
 				<td><c:if test="${empty vo.order_review }"><a class="btn_fill_s" onclick="review_write(${vo.order_num })">작성</a></c:if>
-					<c:if test="${!empty vo.order_review }"><a class="btn_fill_s" onclick="review_detail(${vo.order_num })">조회</a></c:if>
+					<c:if test="${!empty vo.order_review }"><a class="btn_fill_s" onclick="review_detail(${vo.order_review })">조회</a></c:if>
 				</td>
 				<td><c:if test="${vo.order_date < today  }">-</c:if>
 					<c:if test="${vo.order_date >= today  }"><a class="btn_fill_s" onclick="orderCancel(${vo.order_num })">취소</a></c:if>	
@@ -100,8 +100,8 @@ function review_write(order_num){
 	location.href="reviewWrite?order_num="+order_num;
 }
 
-function review_detail(order_num){
-	location.href="reviewDetail?order_num="+order_num;
+function review_detail(board_num){
+	location.href="reviewDetail?board_num="+board_num;	
 }
 </script>
 </body>

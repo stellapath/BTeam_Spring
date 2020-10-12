@@ -18,7 +18,8 @@ public interface OrderService {
 	
 	//리뷰작성
 	List<OrderVO> orderReviewHistory(String order_email);	//리뷰작성 가능한 주문내역 조회
-	void orderReviewUpdate(HashMap<String, Integer> map);					//리뷰업로드시 리뷰작성여부 업데이트
+	void orderReviewUpdate(HashMap<String, Integer> map);	//리뷰업로드시 리뷰작성여부 업데이트
+	String orderReviewProduct(int board_num);				//리뷰작성시 제품명 조회
 	
 	//관리자모드
 	BoardPage orderAdminList(BoardPage page);				//주문내역 조회

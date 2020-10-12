@@ -76,5 +76,10 @@ public class OrderDAO implements OrderService{
 		return sql.update("order.productUpdate", vo);
 	}
 
+	@Override
+	public String orderReviewProduct(int board_num) {
+		return sql.selectOne("order.reviewProduct", board_num);
+	}
+
 	
 }
