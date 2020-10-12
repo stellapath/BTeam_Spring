@@ -37,4 +37,30 @@
 		from bUser
 		where user_email = #{email}
 	</select>
+	
+	<select id="myPost" resultType="com.project.bteam.android.TrafficVO">
+		select rownum, n.*
+		from (
+			select * from traffic
+			where tra_user_email = #{email}
+			order by tra_num desc
+		) n
+		where rownum between #{begin} and #{end}
+	</select>
+	
+	<select id="popular" resultType="com.project.bteam.android.TrafficVO">
+		select rownum, n.*
+		from (
+			select * from traffic
+			order by tra_readcount desc
+		) n
+		where rownum between 1 and 3
+		
+	</select>
+	
+	<update id="readCount">
+		update traffic
+		set tra_readcount = tra_readcount + 1
+		where tra_num = #{num}
+	</update>
 </mapper>
