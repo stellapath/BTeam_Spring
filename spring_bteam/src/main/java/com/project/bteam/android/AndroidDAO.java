@@ -13,11 +13,6 @@ import com.project.bteam.board.BoardVO;
 public class AndroidDAO implements AndroidService {
 
 	@Autowired SqlSession sql;
-
-	@Override
-	public List<BoardVO> andBoardList(Map<String, Integer> map) {
-		return sql.selectList("android.boardList", map);
-	}
 	
 	@Override
 	public List<TrafficVO> andTrafficList(Map<String, Integer> map) {
@@ -41,16 +36,26 @@ public class AndroidDAO implements AndroidService {
 	
 	@Override
 	public List<TrafficVO> andMyPost(Map<String, String> map) {
-		return sql.selectList("myPost", map);
+		return sql.selectList("android.myPost", map);
 	}
 	
 	@Override
 	public List<TrafficVO> andPopular() {
-		return sql.selectList("popular");
+		return sql.selectList("android.popular");
 	}
 	
 	@Override
 	public void andReadCount(int num) {
-		sql.update("readCount", num);
+		sql.update("android.readCount", num);
+	}
+	
+	@Override
+	public int andTrafficModify(TrafficVO vo) {
+		return sql.update("android.trafficModify", vo);
+	}
+	
+	@Override
+	public int andTrafficDelete(int num) {
+		return sql.delete("android.trafficDelete", num);
 	}
 }

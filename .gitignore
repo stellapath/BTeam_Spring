@@ -69,7 +69,7 @@ local.properties
 .sts4-cache/
 
 # Tomcat Server Folder
-/Servers/
-/spring_bteam/target/
+Servers/
+spring_bteam/target/
 
 # End of https://www.toptal.com/developers/gitignore/api/eclipse
