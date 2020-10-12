@@ -32,7 +32,7 @@
 		<tr>
 			<th>내용</th>
 			<td colspan="3" width="500" name="board_content">
-				${fn:replace(bvo.board_content, enter, "<br/>") }
+				${fn:replace(bvo.board_content, crlf, '<br/>')}
 			</td>
 		</tr>
 		<tr>

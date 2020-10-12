@@ -2,7 +2,7 @@ html, body{margin: 0; padding:0; height: 100%; }
 body{position: relative; min-height: 100%; display: flex; flex-direction: column;}
 #content, header {width: 80%; margin: 0 auto;}
 
-#content {margin: 0 auto; margin-top: 20px; padding-bottom: 100px; padding:0px; text-align: center;}
+#content {margin: 0 auto; margin-top: 20px; padding-bottom: 100px; text-align: center;}
 
 #logo_here{width: 500px; margin: 0 auto; text-align: center;}
 img.logo{width: 100px; height: 100px;	}
@@ -17,6 +17,7 @@ a#mypage.active{font-weight: bold; color: #ad53ff;}
 .myMenuBar ul li{	margin: 0;	padding: 0;	display: inline; float: left; margin-right: 20px;}
 
 .header_user{ right: 0; top: 25px; float: right; font-size: 15px;}
+.header_user li:first-child{ margin-top: -28px;}
 .header_user li:not(:first-child){	padding-left: 10px;}
 .header_user input {display: block; float: left; margin-left: 5px;	border : none;	border-bottom: 1px solid gray;	padding : 5px;	font-size: 15px; height: 30px;}
 .header_user input:focus {	outline : none;}
@@ -27,12 +28,13 @@ table {	width: 100%; min-width:max-content; margin: 0 auto; border-collapse: col
 table th, table td {	border-top: 1px solid #5c5c5c; border-bottom:1px solid #5c5c5c;	padding: 5px 10px; vertical-align: middle;}
 table th {background-color: #e0e0e0; font-weight: bold;}
 table td {text-align: center;}
-table td[name=board_title], table td[name=board_filename] {text-align: left; }
-table td[name=board_content] {text-align: left; height: 200px;}
-
+table td[name=board_title], table td[name=board_filename] {text-align: left;}
+table td[name=board_content] {text-align: left; height: 300px;}
 table#boardTable a {float: left; margin-left: 5px;}
 
-table#order_info tr td{ text-align: left;}
+#orderResult { background-color: #f1e0ff;    width: 70%;    margin: 0 auto;    padding: 50px;    border-radius: 20px; }
+#order_info th, #order_info td{ border: none; text-align: left; background-color: #f1e0ff;}
+#order_info tr th{ border-right: 1px solid #5c5c5c;}
 
 input {	height: 22px;	padding: 5px 10px;	font-size: 15px; }
 input[name=board_title] {width: calc(100% - 24px); }
@@ -51,7 +53,7 @@ textarea { width: calc(100% - 6px); resize: none; height: 150px;}
 a {text-decoration: none; color: black;}
 a:hover{font-weight: bold; cursor: pointer;}
 
-.buttons {margin: 0 auto; text-align: center;}
+.buttons {margin: 0 auto; text-align: center; margin-top: 10px;}
 a.btn_fill, a.btn_empty { text-align: center;	padding: 3px 10px;	border: 1px solid #5c5c5c;	border-radius: 3px;	box-shadow: 2px 2px 3px #e0e0e0;}
 a.btn_fill_s, a.btn_empty_s { font-size:13px; text-align: center;	padding: 1px 5px;	border: 1px solid #5c5c5c;	border-radius: 3px;	box-shadow: 2px 2px 3px #e0e0e0;}
 a.btn_fill, a.btn_fill_s {	background-color: #ad53ff; color: #ffffff; }
@@ -91,10 +93,10 @@ label:last-child{margin-right: 0;}
 .bgInner {width: 100%;}
 .innerTitle{ text-align: center;}
 .innerTitle p{ text-align: center;}
-.innerContent{ background-color: #ededed; width: 1100px; margin: 0 auto;}
-.innerContent div { padding: 50px 25px; overflow: hidden; }
-.innerContent div div{ width:500px; float: left; overflow: hidden; line-height: 25px; color: #616161; text-align: justify; padding: 0;} 
-.content_left{ margin-right: 50px; }
+.innerContent{ background-color: #ededed; width: 100%; margin: 0 auto; min-width: 1000px;}
+.innerContent div { padding: 50px 25px; overflow: hidden; width: inherit;}
+.innerContent div div{ width:45%; float: left; overflow: hidden; line-height: 25px; color: #616161; text-align: justify; padding: 0;} 
+.content_left{ margin-right: 5%; }
 
 #companyLoad{ margin: 50px 0; overflow: hidden;}
 /* #companyLoad div#kt, #companyLoad div#tel { background-color: #ededed; line-height: 25px; color: #616161; width: 700px; float: left;} */

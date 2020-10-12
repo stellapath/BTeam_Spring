@@ -3,56 +3,68 @@
 <mapper namespace="review">
 
 	<update id="update">
-	update bBoard set board_title=#{board_title}, board_content=#{board_content}, board_recommend=#{board_recommend}, 
-						board_filename=#{board_filename, jdbcType=VARCHAR}, board_filepath=#{board_filepath, jdbcType=VARCHAR}
-	where board_num=#{board_num}
+		update bBoard set board_title=#{board_title},
+		board_content=#{board_content}, board_recommend=#{board_recommend},
+		board_filename=#{board_filename, jdbcType=VARCHAR},
+		board_filepath=#{board_filepath, jdbcType=VARCHAR}
+		where board_num=#{board_num}
 	</update>
 
 	<select id="detail" resultType="BoardVO">
-	select * from bBoard where board_num=#{board_num} 
+		select * from bBoard where board_num=#{board_num}
 	</select>
 
 	<delete id="delete">
-	delete from bBoard where board_num=#{board_num}
+		delete from bBoard where board_num=#{board_num}
 	</delete>
-	
+
 	<select id="returnBoardNum" resultType="Integer">
-	select Max(board_num) from bBoard where board_email = #{board_email}
+		select Max(board_num) from bBoard where board_email = #{board_email}
 	</select>
 
 	<insert id="insert">
-	insert into bBoard(board_category, board_num, board_title, board_content, board_nickname, board_email, board_recommend, board_filename, board_filepath)
-	values (#{board_category}, (select NVL(MAX(board_num), 0) + 1 from bBoard), #{board_title}, #{board_content}, #{board_nickname}, #{board_email}, #{board_recommend}, #{board_filename, jdbcType=VARCHAR}, #{board_filepath, jdbcType=VARCHAR})
+		insert into bBoard(board_category, board_num, board_title, board_content,
+		board_nickname, board_email, board_recommend, board_filename,
+		board_filepath)
+		values (#{board_category}, (select NVL(MAX(board_num), 0) + 1 from bBoard),
+		#{board_title}, #{board_content}, #{board_nickname}, #{board_email},
+		#{board_recommend}, #{board_filename, jdbcType=VARCHAR},
+		#{board_filepath, jdbcType=VARCHAR})
 	</insert>
 
-<sql id="photo_where">
-<if test="viewType=='photo'">
-	and board_filename is not null
-</if>
-</sql>
+	<sql id="photo_where">
+		<if test="viewType=='photo'">
+			and board_filename is not null
+		</if>
+	</sql>
 
-<sql id="recommend_where">
-<if test="recommend=='recommend'">
-	and board_recommend = 'RECOMMEND'
-</if>
-<if test="recommend=='derecommend'">
-	and board_recommend = 'DERECOMMEND'
-</if>
-</sql>
+	<sql id="recommend_where">
+		<if test="recommend=='recommend'">
+			and board_recommend = 'RECOMMEND'
+		</if>
+		<if test="recommend=='derecommend'">
+			and board_recommend = 'DERECOMMEND'
+		</if>
+	</sql>
 
 	<select id="total" resultType="Integer">
-	select count(*)
-	from bBoard
-	where board_category = 1 
-	<include refid="recommend_where"/>
-	<include refid="photo_where"/>
+		select count(*)
+		from bBoard
+		where board_category = 1
+		<include refid="recommend_where" />
+		<include refid="photo_where" />
 	</select>
-	
+
 	<select id="list" resultType="BoardVO">
-	select b.* from
-	(select rownum board_no, b.* from (select * from bBoard where board_category=#{board_category} <include refid="recommend_where"/> <include refid="photo_where"/> order by board_num) b
-	order by board_no desc) b
-	where board_no between #{beginList} and #{endList}
+		select b.* from
+		(select rownum board_no, b.*, 
+					(select order_product from bOrder where order_review = b.board_num ) order_product from
+		(select * from bBoard where board_category=#{board_category}
+		<include refid="recommend_where" />
+		<include refid="photo_where" />
+		order by board_num) b
+		order by board_no desc) b
+		where board_no between #{beginList} and #{endList}
 	</select>
-	
+
 </mapper>

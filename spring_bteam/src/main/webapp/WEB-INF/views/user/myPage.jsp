@@ -5,20 +5,16 @@
 <head>
 <meta charset="UTF-8">
 <title>MyPage</title>
+<style type="text/css">
+.change_pw input {width: 300px;}
+.change_pw span {float: left; margin-left: 5px; margin-top: 10px;}
+</style>
 <c:if test="${login_info eq null}">
 <script>
 	alert("로그인이 필요한 페이지 입니다.");
 	location.href = "login";
 </script>
 </c:if>
-
-<script>
-function imageUpload() {
-	window.open("profileImgUp", "프로필 이미지 변경", 
-		"width=400, height=300, scrollbars=0, status=0, toolbar=0"
-	);
-}
-</script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!-- 주소입력 -->
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
@@ -35,31 +31,26 @@ function imageUpload() {
 </div>
 <form action="update" method="post">
 <input type="hidden" name="user_email" value="${vo.user_email}"/>
-<table>	
+<table id="boardTable">	
 	<tr>
 		<th class="w-px120">프로필 사진</th>
-		<td>
-			<img src="profileImgDn?user_email=${vo.user_email}" style="width:40px;" /><br />
+		<td><img src="profileImgDn?user_email=${vo.user_email}" style="width:100px;" />
 			<button type="button" onclick="imageUpload()" >이미지 변경</button>
 		</td>
 	</tr>
-	<tr>
-		<th>이메일</th>
+	<tr><th>이메일</th>
 		<td>${vo.user_email}</td>
 	</tr>
-	<tr>
-		<th>현재비밀번호</th>
-		<td><div>
-			<input type="password" name="input_pw" />
+	<tr><th>비밀번호</th>
+		<td><input type="password" name="input_pw" placeholder="현재 비밀번호를 입력하세요."/>
 			<a class="btn_fill" onclick="change_pw('${vo.user_pw}')">변경</a>
-			</div>
-			<div class="change_pw" style="display: none;">
-				<p>새 비밀번호</p>
-				<input type="password" name="user_pw" value="${vo.user_pw}"/>
-				<p>비밀번호확인</p>
-				<input type="password" id="check_pw"/><br/>
-				<span class="check_msg"></span>
-			</div>
+		</td>
+	</tr>		
+	<tr class="change_pw" style="display: none;">
+		<th>비밀번호변경</th>
+		<td>
+			<div style="display: flex;"><input type="password" name="user_pw" value="${vo.user_pw}" placeholder="새로운 비밀번호를 입력하세요." /></div>
+			<div><input type="password" id="check_pw" placeholder="새로운 비밀번호를 다시 입력하세요." /><span class="check_msg"></span></div>
 		</td>
 	</tr>
 	<tr>
@@ -77,10 +68,8 @@ function imageUpload() {
 		<td><input type="text" name="user_zipcode" class="postcodify_postcode5" 
 						value="${vo.user_zipcode}" />
 			<a class="btn_fill" id="postcodify_search_button">우편번호 검색</a><br/>
-			<input type="text" name="user_address" class="postcodify_address" 
-						value="${vo.user_address}" /><br/>
-			<input type="text" name="detail_address" class="postcodify_details" 
-						value="${vo.detail_address}" />
+			<input type="text" name="user_address" class="postcodify_address" value="${vo.user_address}" /><br/>
+			<input type="text" name="detail_address" class="postcodify_details" value="${vo.detail_address}" />
 		</td>
 	</tr>
 	<tr>
@@ -94,12 +83,17 @@ function imageUpload() {
 <div class="buttons">
 	<a class="btn_fill" onclick="$('form').submit()">저장</a>
 	<a class="btn_empty" href="home">취소</a>
-	<a style="float: right; color: red; font-weight: bold;" onclick="goodbye_member()">회원탈퇴</a>
+	<a style="float: right; color: red; font-weight: bold;" onclick="goodbyeMember('${vo.user_email}')">회원탈퇴</a>
 </div>
 
 <!-- jQuery DatePicker -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
+function imageUpload() {
+	window.open("profileImgUp", "프로필 이미지 변경", 
+		"width=400, height=300, scrollbars=0, status=0, toolbar=0"
+	);
+}
 //생년월일 입력시 삭제아이콘 활성화
 $('[name=user_birth]').change(function(){
 	$('#delete').css('display', 'inline-block');
@@ -123,13 +117,12 @@ $('[name=user_birth]').datepicker({
 	changeYear: true,
 	maxDate: endDay
 });
-</script>
-<script type="text/javascript">
+
 $("[name=user_birth]").change(function(){
 	$("#user_birth").text($('[name=user_birth]').val());
 });
 
-$(".check_pw").keyup(function(){
+$("#check_pw").keyup(function(){
 	var check_pw = $(".check_pw").val();
 	var user_pw = $("[name=user_pw]").val();
 		
@@ -152,7 +145,7 @@ function change_pw(pw){
 	}
 
  	if($('[name=input_pw]').val() == pw){
- 		$('.change_pw').css('display', 'inline-block');
+ 		$('.change_pw').show();
  	}else if($('[name=input_pw]').val() != pw){
 		alert('현재 비밀번호와 일치하지 않습니다.\n비밀번호를 다시 입력하세요.');
  		$('[name=input_pw]').val('');
@@ -160,36 +153,24 @@ function change_pw(pw){
  		return false;
  	}
 }
-</script>
-<script type="text/javascript">
-function goodbye_member(){
-//	alert(user_email);
-	var email = '${login_info.user_email}';
-	var pw = '${login_info.user_pw}';
-	var nickname = '${login_info.user_nickname}';
 
-	//비밀번호 다시 확인
-	var goodbye_pw = prompt("회원탈퇴를 위해 비밀번호를 확인합니다.\n회원님의 비밀번호를 입력하세요.");
-	if(goodbye_pw == pw){
-		alert('탈퇴를 진행합니다.');
-// 		$.ajax({
-// 			url: 'goodbye',
-// 			data: { user_email:$("#user_email").val(), user_pw:$("#user_pw").val() },
-// 			success: function(data){
-// 				if(data == "1"){	
-// //	 				alert("로그인 성공!!!");
-// 					location.reload();
-// 				}else{
-// 					alert("아이디 또는 비밀번호가 일치하지 않습니다!!!");
-// 				}
-// 			},
-// 			error: function(req, text){
-// 				alert(text+':'+req.status);
-// 			}		
-// 		});	
+function goodbyeMember( user_email ){
+	if( confirm('탈퇴하시겠습니까??') ){
+		$.ajax({
+			url: 'goodbyeMember',
+			data : {user_email: user_email},
+			success : function( result ){
+				if(result) alert('회원탈퇴가 완료되었습니다.');
+				else alert('회원탈퇴에 실패했습니다. 잠시후 다시 시도해주세요.');
+				location.reload();
+			},
+			error : function(req, text){
+				alert(text + " : " + req.status);
+				location.reload();
+			}
+		});
 	}else{
-		alert('비밀번호가 일치하지 않아 탈퇴가 취소되었습니다.');
-		return;
+		alert('회원탈퇴가 취소되었습니다.');
 	}
 }
 </script>

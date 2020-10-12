@@ -4,10 +4,16 @@ import java.sql.Date;
 
 public class BoardVO {
 
-	private String board_email, board_nickname, board_title, board_content, board_recommend, board_filename, board_filepath;
+	private String board_email, board_nickname, board_title, board_content, board_recommend, board_filename, board_filepath, order_product;
 	private Date board_date;
 	private int board_num, board_category, board_readcnt, board_no;
 	
+	public String getOrder_product() {
+		return order_product;
+	}
+	public void setOrder_product(String order_product) {
+		this.order_product = order_product;
+	}
 	public String getBoard_filename() {
 		return board_filename;
 	}

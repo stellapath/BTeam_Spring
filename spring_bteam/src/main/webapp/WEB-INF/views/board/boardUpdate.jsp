@@ -28,13 +28,7 @@
 	</tr>
 	<tr>
 		<th>첨부파일</th>
-		<td style="text-align: left;">
-<%-- 			<c:if test="${empty bvo.board_filename }"> --%>
-<!-- 				<input type="file" name="board_filename" value=""/> -->
-<%-- 			</c:if> --%>
-<%-- 			<c:if test="${not empty bvo.board_filename }"> --%>
-<%-- 				${bvo.board_filename }<input type="file" name="board_filename" value=""/> --%>
-<%-- 			</c:if> --%>
+		<td style="text-align: left;" colspan="3">
 			<label>
 				<img alt="파일선택" src="img/attach.png" class="file_icon">
 				<input type="file" name="file" id="attach-file" accept="image/*"/>

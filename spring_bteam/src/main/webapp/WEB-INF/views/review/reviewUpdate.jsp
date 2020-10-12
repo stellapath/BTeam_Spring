@@ -18,7 +18,7 @@
 	<table id="boardTable">
 		<tr>
 			<th>구매상품</th>
-			<td></td>
+			<td>${order_product }</td>
 		</tr>
 		<tr><th>추천여부</th>
 			<td><c:if test="${vo.board_recommend == 'RECOMMEND' }">

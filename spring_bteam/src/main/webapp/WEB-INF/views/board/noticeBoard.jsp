@@ -10,10 +10,13 @@ pageContext.setAttribute("bvo", bvo);
 <head>
 <meta charset="UTF-8">
 <title>공지사항</title>
+<style type="text/css">
+#btnWrite{ float: right; margin-right: 20px; margin-bottom: 20px;}
+</style>
 </head>
 <body>
 <form action="noticeBoard?board_category=0" method="post">
-<div class="btnSet">
+<div id="btnWrite">
 	<c:if test="${login_info.user_email eq 'admin'}">
 	<a class="btn_fill" href="boardWrite?board_category=0">글작성</a>
 	</c:if>

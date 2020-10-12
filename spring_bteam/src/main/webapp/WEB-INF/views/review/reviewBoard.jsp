@@ -10,6 +10,7 @@
 #content{display: table;}
 #popup{ position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); height: 500px; width:500px; border: 2px solid #666; display: none;}
 #popup img{width: 500px; height: 500px;}
+.orderInfo p{ margin: 0;}
 </style>
 </head>
 <body>
@@ -76,7 +77,15 @@
 					<a onclick="popupPhoto('${vo.board_filepath}')"><img src="<c:url value='/' />${vo.board_filepath}" class="file-img"/></a>
 				</div>
 				</c:if>
-				<div class="detail_c" style="text-align: left;">${fn:replace(vo.board_content, crlf, '<br/>')}</div>
+				<div class="detail_c" style="text-align: left;">
+					<div class="orderInfo">
+					<p>구매옵션: ${vo.order_product }</p>
+					<hr>
+					</div>
+					<div>
+					${fn:replace(vo.board_content, crlf, '<br/>')}
+					</div>
+				</div>
 				<c:if test="${login_info.user_email eq vo.board_email }">
 				<div class="buttons" style="float: right;">
 					<a class="btn_empty_s" href="reviewUpdate?board_num=${vo.board_num}">수정</a>
@@ -96,6 +105,10 @@
 	<c:forEach items="${page.list }" var="vo">
 		<li><div><a onclick="popupPhoto('${vo.board_filepath}')"><img src="<c:url value='/' />${vo.board_filepath}" class="file-img"/></a></div>
 			<div class="reviewContent">
+				<div class="orderInfo">
+					<p>구매옵션: ${vo.order_product }</p>
+					<hr>
+					</div>
 				<div><c:if test="${vo.board_recommend eq 'RECOMMEND' }">
 					<i class="far fa-thumbs-up" style="color: green"></i>${vo.board_title }
 					</c:if>
@@ -144,7 +157,7 @@ function reviewWrite( ){
 		alert('후기작성은 나의 주문내역에서 가능합니다.');
 		location.href="myOrder?user_email=${login_info.user_email }";
 	}else {
-		alert('후기작성은 비회원로그인후 작성가능합니다.');
+		alert('후기작성은 로그인후 작성가능합니다.');
 		location.href="login";
 	}
 }

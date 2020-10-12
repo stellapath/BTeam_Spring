@@ -3,7 +3,7 @@
 <mapper namespace="board">
 	
 	<update id="update">
-	update bBoard set board_title=#{board_title}, board_content=#{board_content}, board_date=to_date(sysdate, 'yy/mm/dd'), board_file=#{board_file}
+	update bBoard set board_title=#{board_title}, board_content=#{board_content}, board_filename=#{board_filename, jdbcType=VARCHAR}, board_filepath= #{board_filepath, jdbcType=VARCHAR}
 	where board_num=#{board_num}
 	</update>
 	

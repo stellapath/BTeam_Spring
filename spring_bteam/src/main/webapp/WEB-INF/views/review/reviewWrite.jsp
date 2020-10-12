@@ -23,12 +23,6 @@ location.href="login";
 	<table id="boardTable">
 		<tr>
 			<th>구매상품</th>
-<!-- 			<td><select id="select_orderNum" name="order_num"> -->
-<%-- 				<c:forEach items="${order}" var="vo"> --%>
-<%-- 					<option value="${vo.order_num }">${vo.order_option }(${vo.order_color }) 구매일자: ${vo.order_date }</option> --%>
-<%-- 				</c:forEach>	 --%>
-<!-- 				</select> -->
-<!-- 			</td> -->
 			<td>${vo.order_product }</td>
 		</tr>
 		<tr><th>추천여부</th>
@@ -60,7 +54,6 @@ location.href="login";
 	</table><br/>
 </form>
 	<div id="btnSet">
-		<a id="testBtn">테스트용</a>
 		<a class="btn_fill" onclick="if(necessary()){$('form').submit()}">등록</a>
 		<a class="btn_empty" href="reviewBoard?board_category=1">취소</a>
 	</div>

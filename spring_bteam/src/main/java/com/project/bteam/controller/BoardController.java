@@ -103,8 +103,7 @@ public class BoardController {
 	
 	// 글 수정 업로드 요청
 	@RequestMapping("/boardUpdateReq")
-	public String boardUpdate(BoardVO bvo, String attach, Model model,
-								MultipartFile file, HttpSession session) {
+	public String boardUpdate(BoardVO bvo, String attach, Model model, MultipartFile file, HttpSession session) {
 		BoardVO board = service.boardDetail(bvo.getBoard_num());
 		String uuid = session.getServletContext().getRealPath("resources") + board.getBoard_filepath();
 		if(!file.isEmpty()) {
@@ -139,7 +138,7 @@ public class BoardController {
 		}
 
 		service.boardUpdate(bvo);
-		return "redirect:reviewBoard?board_category=1";
+		return "redirect:noticeBoard?board_category=0";
 	}
 	
 	// 글 삭제 처리 요청

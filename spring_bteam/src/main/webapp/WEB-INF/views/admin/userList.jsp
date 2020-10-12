@@ -24,7 +24,7 @@ location.href='login';
 <c:forEach items="${list}" var="vo">	
 <tr><td>${vo.user_num }</td>
 	<td>${vo.user_nickname }</td>
-	<td style="text-align: left;"><a class="left" onclick="sendMail('${vo.user_email }')">${vo.user_email }</a></td>
+	<td style="text-align: left;"><a class="left">${vo.user_email }</a></td>
 	<td><fmt:formatDate value="${vo.user_birth }" pattern="yyyy-MM-dd"/></td>
 	<td><a class="btn_fill_s" onclick="goodbyeMember('${vo.user_email }')">삭제</a></td>
 </tr>
@@ -32,10 +32,6 @@ location.href='login';
 </table>
 
 <script type="text/javascript">
-function sendMail( user_email ){
-	//alert(user_email);
-	
-}
 function goodbyeMember( user_email ){
 	//alert(user_key);
 //	var result = confirm('회원님을 탈퇴시키겠습니까??');
