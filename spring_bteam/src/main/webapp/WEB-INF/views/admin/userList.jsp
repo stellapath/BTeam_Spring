@@ -50,6 +50,7 @@ function goodbyeMember( user_email ){
 			},
 			error : function(req, text){
 				alert(text + " : " + req.status);
+				location.reload();
 			}
 		});
 	}else{

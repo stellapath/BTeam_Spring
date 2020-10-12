@@ -58,8 +58,8 @@ public class UserDAO implements UserService {
 	}
 
 	@Override
-	public boolean userDelete(String user_email) {
-		return sql.delete("user.delete", user_email) > 0 ? true : false;
+	public int userDelete(String user_email) {
+		return sql.delete("user.delete", user_email);
 	}
 	
 	// 난수 생성

@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
 	public boolean userUpdate(UserVO vo) { return dao.userUpdate(vo); }
 
 	@Override
-	public boolean userDelete(String user_email) { return dao.userDelete(user_email); }
+	public int userDelete(String user_email) { return dao.userDelete(user_email); }
 
 	@Override
 	public List<UserVO> userList() { return dao.userList();	}

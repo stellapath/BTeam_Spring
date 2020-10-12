@@ -11,7 +11,7 @@ public interface UserService {
 	UserVO userDetail(String user_email);		// 회원정보 상세보기
 	int userImageUpload(UserVO vo);
 	boolean userUpdate(UserVO vo);				// 회원정보수정
-	boolean userDelete(String user_email); 		// 회원탈퇴
+	int userDelete(String user_email); 			// 회원탈퇴
 	List<UserVO> userList();
 	
 }

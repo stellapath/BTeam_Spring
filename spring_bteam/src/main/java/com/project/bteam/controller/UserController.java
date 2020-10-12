@@ -33,9 +33,10 @@ public class UserController {
 	@Autowired private BoardPage page; 
 	
 	// 회원탈퇴 처리요청
-	@RequestMapping("/goodbyeMember")
+	@ResponseBody @RequestMapping("/goodbyeMember")
 	public boolean userDelete(String user_email) {
-		return service.userDelete(user_email);
+		
+		return service.userDelete(user_email)>0 ? true : false;
 	}
 	
 	// 주문취소 처리요청
