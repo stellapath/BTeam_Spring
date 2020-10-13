@@ -38,5 +38,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public String userEmailCertification() { return dao.userEmailCertification(); }
-		
+
+	@Override
+	public UserVO userPwCheck(UserVO vo) { return dao.userPwCheck(vo); }
+	
 }

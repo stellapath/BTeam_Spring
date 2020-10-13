@@ -3,11 +3,23 @@ package com.project.bteam.qna;
 import java.sql.Date;
 
 public class QnaVO {
-	
-	private String qna_category, qna_question, qna_content, qna_nickname, qna_email, qna_filename, qna_filepath ;
-	private Date qna_writedate;
+	private String qna_category, qna_question, qna_content, qna_nickname, qna_email, 
+					qna_filename, qna_filepath, qna_answer ;
+	private Date qna_writedate, qna_answerdate;
 	private int qna_num, qna_readcnt, qna_no;
 	
+	public String getQna_answer() {
+		return qna_answer;
+	}
+	public void setQna_answer(String qna_answer) {
+		this.qna_answer = qna_answer;
+	}
+	public Date getQna_answerdate() {
+		return qna_answerdate;
+	}
+	public void setQna_answerdate(Date qna_answerdate) {
+		this.qna_answerdate = qna_answerdate;
+	}
 	public String getQna_content() {
 		return qna_content;
 	}

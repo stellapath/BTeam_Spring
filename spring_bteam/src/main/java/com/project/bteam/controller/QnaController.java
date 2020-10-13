@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.bteam.common.CommonService;
@@ -24,6 +23,22 @@ public class QnaController {
 	@Autowired private QnaServiceImpl service;
 	@Autowired private CommonService common;
 	@Autowired private QnaPage page;
+	
+	// 내 문의내역조회
+	@RequestMapping("/myQna")
+	public String myQna(String user_email, Model model, HttpSession session,
+			@RequestParam(defaultValue="10") int pageList,
+			@RequestParam(defaultValue="1") int curPage) {
+		session.setAttribute("mypage", "qna");
+		page.setCurPage(curPage);
+		page.setPageList(pageList);
+		page.setKeyword(user_email);
+		
+		model.addAttribute("crlf", "\r\n" );
+		model.addAttribute("lf", "\n" );
+		model.addAttribute("page", service.myqnaList(page));
+		return "user/myQna";
+	}
 	
 	// 신규문의글 저장처리 요청
 	@RequestMapping(value="/qnaWriteReq", produces="text/html; charset=utf-8")
@@ -42,16 +57,9 @@ public class QnaController {
 		return "redirect:/qnaBoard";
 	}
 	
-	// 나의 문의내역 화면 요청
-	@RequestMapping("/myQna")
-	public String myQna() {
-		return "qna/myQna";
-	}
-	
 	// 일대일 문의글 화면 요청
 	@RequestMapping("/qnaWrite")
-	public String qnaWrite(HttpSession session) {
-		session.setAttribute("menu", "qna");
+	public String qnaWrite() {
 		return "qna/qnaWrite";
 	}
 			
@@ -101,13 +109,14 @@ public class QnaController {
 		return "qna/emailReply";
 	}
 	
-	// 인증번호 이메일 발송
-	@ResponseBody @RequestMapping("/mailAnswer")
-	public void sendEmailCertify(String email, HttpSession session, Model model, QnaVO vo) {
-		String key = service.userEmailReply();
-		session.setAttribute("key", key);
+	// 이메일 답변 전송
+	@RequestMapping("/mailAnswer")
+	public String sendEmailCertify(QnaVO qvo, HttpSession session, Model model) {
+		service.qnaUpdate(qvo);
+		QnaVO info = service.qnaDetail(qvo.getQna_num());
 		
-		common.mailAnswer(email, key, session, vo);
+		common.mailAnswer(info, session);
+		return "redirect:qnaList";
 	}
 	
 }

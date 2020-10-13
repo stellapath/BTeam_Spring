@@ -40,8 +40,7 @@ public class QnaServiceImpl implements QnaService {
 
 	@Override
 	public boolean qnaUpdate(QnaVO qvo) {
-		// TODO Auto-generated method stub
-		return false;
+		return dao.qnaUpdate(qvo);
 	}
 
 	@Override
@@ -51,8 +50,8 @@ public class QnaServiceImpl implements QnaService {
 	}
 
 	@Override
-	public String userEmailReply() {
-		return dao.userEmailReply();
+	public QnaPage myqnaList(QnaPage page) {
+		return dao.myqnaList(page);
 	}
 	
 }

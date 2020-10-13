@@ -63,4 +63,16 @@
 		set tra_readcount = tra_readcount + 1
 		where tra_num = #{num}
 	</update>
+	
+	<update id="trafficModify">
+		update traffic
+		set tra_content = #{tra_content},
+		tra_content_image = #{tra_content_image, jdbcType=VARCHAR}
+		where tra_num = #{tra_num}
+	</update>
+	
+	<delete id="trafficDelete">
+		delete from traffic
+		where tra_num = #{num}
+	</delete>
 </mapper>

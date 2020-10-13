@@ -7,5 +7,5 @@ public interface QnaService {
 	boolean qnaWrite(QnaVO qvo);	//문의 글쓰기 저장
 	boolean qnaUpdate(QnaVO qvo);	//문의 글 변경저장
 	void qnaDelete(int qna_num);	//문의 글 삭제처리
-	String userEmailReply();		//이메일 인증
+	QnaPage myqnaList(QnaPage page);//내 문의 목록 조회
 }

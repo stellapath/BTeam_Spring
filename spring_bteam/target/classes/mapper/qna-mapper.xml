@@ -3,18 +3,23 @@
 
 <mapper namespace="qna.mapper">
 
+	<update id="update">
+	update bQna set qna_answer=#{qna_answer}
+	where qna_num=#{qna_num}
+	</update>
+
 	<select id="view" resultType="QnaVO">
 	select * from bQna
 	where qna_num=#{qna_num}
 	</select>
 
 	<insert id="write">
-		insert into bQna (qna_num, qna_category, qna_question, qna_content, 
-							qna_nickname, qna_email, qna_filename, qna_filepath)
-		values ((select NVL(MAX(qna_num), 0) + 1 from bQna), #{qna_category}, #{qna_question}, #{qna_content},
-					#{qna_nickname}, #{qna_email},#{qna_filename, jdbcType=VARCHAR}, #{qna_filepath, jdbcType=VARCHAR})
+	insert into bQna (qna_num, qna_category, qna_question, qna_content, 
+						qna_nickname, qna_email, qna_filename, qna_filepath)
+	values ((select NVL(MAX(qna_num), 0) + 1 from bQna), #{qna_category}, #{qna_question}, #{qna_content},
+			#{qna_nickname}, #{qna_email},#{qna_filename, jdbcType=VARCHAR}, #{qna_filepath, jdbcType=VARCHAR})
 	</insert>
-
+	
 	<select id="total" resultType="Integer">
 	select count(*)from bQna 
 	</select>
@@ -26,5 +31,17 @@
 		order by qna_no desc) q
 	where qna_no between #{beginList} and #{endList}
 	</select>
+	
+	<select id="mytotal" resultType="Integer">
+	select count(*)from bQna where qna_email=#{keyword}
+	</select>
 
+	<select id="mylist" resultType="QnaVO">
+	select q.* from
+		(select rownum qna_no, q.* from 
+			(select * from bQna where qna_email=#{keyword} order by qna_num) q
+		order by qna_no desc) q
+	where qna_no between #{beginList} and #{endList}
+	</select>
+	
 </mapper>

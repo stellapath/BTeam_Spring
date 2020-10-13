@@ -63,35 +63,53 @@ public class CommonService {
 	}	
 	
 	//문의글 답변 발송요청
-	@RequestMapping("/mailAnswer")
-	public String mailAnswer(String email, String key, HttpSession session, QnaVO vo) {
-		common.send_qnaAnswer(vo, session);
-		return "";
-	}
-		
-	//문의글 메일전송
-	private void send_qnaAnswer(QnaVO vo, HttpSession session) {
-		HtmlEmail mail = new HtmlEmail();
-		mail.setHostName("smtp.gmail.com");
-		mail.setCharset("utf-8");
-		mail.setDebug(true);
-		mail.setAuthentication("bteamproject0420", "bteam0420");
-		mail.setSSLOnConnect(true);
-		try {
-			mail.setFrom("bteamproject0420@gmail.com", "관리자");
-			mail.addTo(vo.getQna_email());
-			//메일작성
-			mail.setSubject(vo.getQna_nickname() + "님 문의글 답변안내 이메일입니다.");
-			StringBuffer msg = new StringBuffer();
-			
-			/*
-			 *		메일내용을 작성하세요
-			 */
-			
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			public void mailAnswer(QnaVO qvo, HttpSession session) {
+			send_qnaAnswer(qvo, session);
 		}
-	}
+			
+		//문의글 메일전송
+		private void send_qnaAnswer(QnaVO qvo, HttpSession session) {
+			HtmlEmail mail = new HtmlEmail();
+			mail.setHostName("smtp.gmail.com");
+			mail.setCharset("utf-8");
+			mail.setDebug(true);
+			mail.setAuthentication("bteamproject0420", "bteam0420");
+			mail.setSSLOnConnect(true);
+			try {
+				mail.setFrom("bteamproject0420@gmail.com", "관리자");		//송신자 정보
+				mail.addTo(qvo.getQna_email());							//수신자 정보
+				//메일작성
+				mail.setSubject(qvo.getQna_nickname() + "님 문의글 답변안내 이메일입니다.");
+				StringBuffer msg = new StringBuffer();
+				msg.append("<html>");
+				msg.append("<body>");
+				msg.append("<div style='width:700px; text-align: center;'>");
+				msg.append("<img src='http://192.168.0.60:80/bteam/img/pre_logo.png' style='width: 150px; height: 150px; margin: 0 auto;'/>");
+				msg.append("<h3>문의해주셔서 감사합니다.</h3>");
+				msg.append("<table style='border: 1px solid #666; width: 100%; margin: 0 auto;'>"
+							+ "<tr><td colspan='2' style='padding: 20px; text-align: center; font-size: 15px; background-color: #ededed;'>문의정보</td></tr>" 
+							+ "<tr><th style='width: 100px;'>등록일</th><td>"+ qvo.getQna_writedate() +"</td></tr>"
+							+ "<tr><th>구분</th><td>"+ qvo.getQna_category() +"</td></tr>"
+							+ "<tr><th>질문</th><td>"+ qvo.getQna_question() +"</td></tr>"
+							+ "<tr><th>문의내용</th><td>"+ qvo.getQna_content() +"</td></tr>"
+							+ "<tr><td colspan='2' style='padding: 20px; text-align: center; font-size: 15px; background-color: #ededed;'>작성자정보</th></tr>"
+							+ "<tr><th>작성자</th><td>"+ qvo.getQna_nickname() +"</td></tr>"
+							+ "<tr><th>이메일</th><td>"+ qvo.getQna_email() +"</td></tr>"
+							+ "<tr><td colspan='2' style='padding: 20px; text-align: center; font-size: 15px; background-color: #ededed;'>답변정보</th></tr>"
+							+ "<tr><th>답변일</th><td>"+ qvo.getQna_answerdate() +"</td></tr>"
+							+ "<tr><th>답변내용</th><td>"+ qvo.getQna_answer() +"</td></tr>" 
+							+ "</table>"
+						);
+				msg.append("</div>");
+				msg.append("</body>");
+				msg.append("</html>");
+				mail.setHtmlMsg(msg.toString());
+				
+				mail.send();
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
 	
 	//주문취소안내 메일발송요청
 		public void mailOrderCancel(OrderVO vo, String cancelReason) {
