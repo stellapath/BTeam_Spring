@@ -98,5 +98,12 @@ public class UserDAO implements UserService {
 		return key;
 	}
 
+	// 비밀번호 찾기
+	@Override
+	public UserVO userPwCheck(UserVO vo) {
+		UserVO result = sql.selectOne("user.pwcheck", vo);
+		return result;
+	}
+
 	
 }

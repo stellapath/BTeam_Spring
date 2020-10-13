@@ -99,6 +99,14 @@ public class UserController {
 	public String pwcheck() {
 		return "user/pwcheck";
 	}
+
+	// 비밀번호 찾기 처리 요청
+	@ResponseBody @RequestMapping("/pwcheckReq")
+	public String pwcheckReq(UserVO vo, HttpSession session, Model model) {
+		UserVO result = service.userPwCheck(vo);
+		if (result != null) session.setAttribute("pwcheck_info", result);
+		return result.getUser_pw();
+	}
 	
 	// 회원정보수정
 	@RequestMapping("/update")

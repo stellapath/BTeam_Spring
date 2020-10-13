@@ -22,6 +22,11 @@
 	where user_email = #{user_email} and user_pw = #{user_pw}
 	</select>
 
+	<select id="pwcheck" resultType="UserVO">
+	select * from bUser
+	where user_email = #{user_email} and user_nickname = #{user_nickname}
+	</select>
+
 	<select id="detail" resultType="UserVO">
 	select * from bUser
 	where user_email = #{user_email}

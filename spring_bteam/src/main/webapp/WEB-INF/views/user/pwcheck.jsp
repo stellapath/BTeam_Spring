@@ -29,13 +29,16 @@ $(document).ready(() => {
 			type: "POST",
 			url: "pwcheckReq",
 			data: { user_email:user_email.value, user_nickname:user_nickname.value },
-			error: () => { alert("Error!"); }
-		}).done((data) => {
-			if (data == 1) {
-				alert("비밀번호는 ~ 입니다.");
-			} else {
-				alert("가입되지 않은 이메일이거나, \n닉네임을 잘못 입력하셨습니다.");
+			success: function( data ){
+				if (data != null) {
+					alert("비밀번호는 " + data + "입니다.");
+					location.href = "login";
+				} else {
+					alert("가입되지 않은 이메일이거나, \n닉네임을 잘못 입력하셨습니다.");
+					user_email.focus();
+				}
 			}
+			,error: () => { alert("Error!"); }
 		});
 	}
 
@@ -68,9 +71,9 @@ $(document).ready(() => {
 	
 	<div id="signup">
 		<ul>
-			<li><a href="login" >로그인</a></li>
+			<li><a href="#" onclick="location.href='login'">로그인</a></li>
 			<li><a>|</a></li>
-			<li><a href="signup" >회원가입</a></li>
+			<li><a href="#" onclick="location.href='signup'">회원가입</a></li>
 		</ul>
 	</div>
 
