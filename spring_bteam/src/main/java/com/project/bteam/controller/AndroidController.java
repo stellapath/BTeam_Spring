@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.gson.Gson;
 import com.project.bteam.android.AndroidServiceImpl;
 import com.project.bteam.android.TrafficVO;
 import com.project.bteam.board.BoardServiceImpl;
@@ -30,17 +31,9 @@ public class AndroidController {
 	
 	// 안드로이드 회원가입
 	@ResponseBody @RequestMapping("/andSignup")
-	public int andSignup(UserVO vo) {
-		System.out.println("::andSignUp::");
-		System.out.println(vo.getUser_birth());
-		int result = user.userSignup(vo); 
-		return result;
-	}
-	
-	// 회원가입 주소 검색창 요청
-	@RequestMapping("/andAddress")
-	public String andAddress() {
-		return "app/andAddress";
+	public boolean andSignup(UserVO vo) {
+		System.out.println("::andSignup::");
+		return service.andSignup(vo) > 0;
 	}
 	
 	// 안드로이드 로그인
@@ -145,5 +138,33 @@ public class AndroidController {
 	@ResponseBody @RequestMapping("/andEmailCheck") 
 	public boolean andEmailCheck(String email) {
 		return service.andEmailCheck(email) > 0 ? false : true; 
+	}
+	
+	// 이메일 인증 메일 보내기
+	@ResponseBody @RequestMapping("/andSendKey") 
+	public void andSendKey(String email, String key, HttpSession session) {
+		System.out.println("::andSendKey::");
+		common.mailCheck(email, key, session);
+	}
+	
+	// 이메일 인증
+	@ResponseBody @RequestMapping("/andVerifyEmail")
+	public boolean andVerifyEmail(String email) {
+		System.out.println("::andVerifyEmail::");
+		return service.andVerifyEmail(email) > 0;
+	}
+	
+	@ResponseBody @RequestMapping("/andResetPassword")
+	public int andResetPassword(String email, HttpSession session) {
+		System.out.println("::andResetPassword::");
+		if (service.andEmailCheck(email) <= 0) {
+			return -1;
+		}
+		String pw = common.getKey(false, 6);
+		Map<String, String> map = new HashMap<>();
+		map.put("email", email);
+		map.put("pw", pw);
+		common.mailResetPw(email, pw, session);
+		return service.andUpdatePassword(map);
 	}
 }

@@ -5,14 +5,21 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.support.DaoSupport;
 import org.springframework.stereotype.Repository;
 
 import com.project.bteam.board.BoardVO;
+import com.project.bteam.user.UserVO;
 
 @Repository
 public class AndroidDAO implements AndroidService {
 
 	@Autowired SqlSession sql;
+	
+	@Override
+	public int andSignup(UserVO vo) {
+		return sql.insert("android.signup", vo);
+	}
 	
 	@Override
 	public List<TrafficVO> andTrafficList(Map<String, Integer> map) {
@@ -62,5 +69,15 @@ public class AndroidDAO implements AndroidService {
 	@Override
 	public int andEmailCheck(String email) {
 		return sql.selectOne("android.emailCheck", email);
+	}
+	
+	@Override
+	public int andVerifyEmail(String email) {
+		return sql.update("android.verifyEmail", email);
+	}
+	
+	@Override
+	public int andUpdatePassword(Map<String, String> map) {
+		return sql.update("android.updatePassword", map);
 	}
 }

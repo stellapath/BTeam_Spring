@@ -7,11 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.bteam.board.BoardVO;
+import com.project.bteam.user.UserVO;
 
 @Service
 public class AndroidServiceImpl implements AndroidService {
 
 	@Autowired AndroidDAO dao;
+	
+	@Override
+	public int andSignup(UserVO vo) {
+		return dao.andSignup(vo);
+	}
 
 	@Override
 	public List<TrafficVO> andTrafficList(Map<String, Integer> map) {
@@ -61,5 +67,15 @@ public class AndroidServiceImpl implements AndroidService {
 	@Override
 	public int andEmailCheck(String email) {
 		return dao.andEmailCheck(email);
+	}
+	
+	@Override
+	public int andVerifyEmail(String email) {
+		return dao.andVerifyEmail(email);
+	}
+	
+	@Override
+	public int andUpdatePassword(Map<String, String> map) {
+		return dao.andUpdatePassword(map);
 	}
 }

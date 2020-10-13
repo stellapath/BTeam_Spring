@@ -6,6 +6,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 import java.util.UUID;
 
 import javax.servlet.ServletOutputStream;
@@ -263,5 +264,77 @@ public class CommonService {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+	}
+	
+	/**
+	 * 비밀번호 재설정 이메일 발송 메소드
+	 * @param email 이메일
+	 * @param pw   "재설정된" 비밀번호
+	 */
+	public void mailResetPw(String email, String pw, HttpSession session) {
+		//Html형식의 내용을 갖는 메일:파일첨부가능
+		send_resetPw(email, pw, session);
+	}	
+	//비밀번호 재설정 뒤 이메일 발송
+	private void send_resetPw(String email, String pw, HttpSession session) {
+		HtmlEmail mail = new HtmlEmail();
+		//메일을 작성할 서버를 지정
+		mail.setHostName("smtp.gmail.com");
+		mail.setCharset("utf-8");
+		mail.setDebug(true);				//콘솔확인
+		//로그인하기 위한 아이디/비번
+		mail.setAuthentication("bteamproject0420", "bteam0420");
+		//메일 연결
+		mail.setSSLOnConnect(true);
+		try {
+			mail.setFrom("bteamproject0420@gmail.com", "관리자");		//송신자 정보
+			mail.addTo(email);										//수신자 정보
+			//메일작성
+			mail.setSubject("비밀번호 재설정 이메일입니다.");
+			StringBuffer msg = new StringBuffer();
+			msg.append("<html>");
+			msg.append("<body>");
+			msg.append("<img src='img/pre_logo.png' style='width: 300px; height: 300px; margin: 0 auto;'/>");
+			msg.append("<hr>");
+			msg.append("임시 비밀번호 : " + pw);
+			msg.append("<h3>위의 비밀번호로 로그인 하신 뒤 비밀번호를 변경해주세요.</h3>");
+			msg.append("</body>");
+			msg.append("</html>");
+			mail.setHtmlMsg(msg.toString());
+			mail.send();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+		
+	/**
+	 * 난수 생성 메소드
+	 * 사용법 getKey(lowerCheck, size)
+	 * @param lowerCheck 소문자로만 난수 출력할 것인지 (boolean)
+	 * @param size 난수의 길이 (int)
+	 */
+	private boolean lowerCheck;
+	private int size;
+	private String randomKey() {
+		Random random = new Random();
+		StringBuffer sb = new StringBuffer();
+		int num = 0;
+		do {
+			num = random.nextInt(75) + 48;
+			if ((num >= 48 && num <= 57) || (num >= 65 && num <= 90) || (num >= 97 && num <= 122)) {
+				sb.append((char) num);
+			} else {
+				continue;
+			}
+		} while (sb.length() < size);
+		if (lowerCheck) {
+			return sb.toString().toLowerCase();
+		}
+		return sb.toString();
+	}
+	public String getKey(boolean lowerCheck, int size) {
+		this.lowerCheck = lowerCheck;
+		this.size = size;
+		return randomKey();
 	}
 }

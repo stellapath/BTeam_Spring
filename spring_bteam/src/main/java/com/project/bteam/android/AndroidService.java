@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Map;
 
 import com.project.bteam.board.BoardVO;
+import com.project.bteam.user.UserVO;
 
 public interface AndroidService {
+	int andSignup(UserVO vo);
 	List<TrafficVO> andTrafficList(Map<String, Integer> map);
 	TrafficVO andTrafficView(int num);
 	int andTrafficInsert(TrafficVO vo);
@@ -16,4 +18,6 @@ public interface AndroidService {
 	int andTrafficModify(TrafficVO vo);
 	int andTrafficDelete(int num);
 	int andEmailCheck(String email);
+	int andVerifyEmail(String email);
+	int andUpdatePassword(Map<String, String> map);
 }
