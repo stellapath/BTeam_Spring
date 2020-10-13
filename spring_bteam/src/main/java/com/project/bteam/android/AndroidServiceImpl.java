@@ -14,11 +14,6 @@ public class AndroidServiceImpl implements AndroidService {
 	@Autowired AndroidDAO dao;
 
 	@Override
-	public List<BoardVO> andBoardList(Map<String, Integer> map) {
-		return dao.andBoardList(map);
-	}
-	
-	@Override
 	public List<TrafficVO> andTrafficList(Map<String, Integer> map) {
 		return dao.andTrafficList(map);
 	}
@@ -51,5 +46,15 @@ public class AndroidServiceImpl implements AndroidService {
 	@Override
 	public void andReadCount(int num) {
 		dao.andReadCount(num);
+	}
+	
+	@Override
+	public int andTrafficModify(TrafficVO vo) {
+		return dao.andTrafficModify(vo);
+	}
+	
+	@Override
+	public int andTrafficDelete(int num) {
+		return dao.andTrafficDelete(num);
 	}
 }

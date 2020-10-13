@@ -123,4 +123,20 @@ public class AndroidController {
 		model.addAttribute("list", service.andPopular());
 		return "app/andPopular";
 	}
+	
+	// 게시글 수정 처리
+	@ResponseBody @RequestMapping("/andTrafficModify")
+	public int andTrafficModify(TrafficVO vo, MultipartFile file,
+			HttpSession session) {
+		if (file != null && !file.isEmpty()) {
+			vo.setTra_content_image(common.upload("traffic", file, session));
+		}
+		return service.andTrafficModify(vo);
+	}
+	
+	// 게시글 삭제 처리
+	@ResponseBody @RequestMapping("/andTrafficDelete")
+	public int andTrafficDelete(int num) {
+		return service.andTrafficDelete(num);
+	}
 }
