@@ -17,7 +17,7 @@ a#mypage.active{font-weight: bold; color: #ad53ff;}
 .myMenuBar ul li{	margin: 0;	padding: 0;	display: inline; float: left; margin-right: 20px;}
 
 .header_user{ right: 0; top: 25px; float: right; font-size: 15px;}
-.header_user li:first-child{ margin-top: -28px;}
+/* .header_user li:first-child{ margin-top: -28px;} */
 .header_user li:not(:first-child){	padding-left: 10px;}
 .header_user input {display: block; float: left; margin-left: 5px;	border : none;	border-bottom: 1px solid gray;	padding : 5px;	font-size: 15px; height: 30px;}
 .header_user input:focus {	outline : none;}
@@ -108,7 +108,8 @@ label:last-child{margin-right: 0;}
 
 /*이메일인증*/
 .unLoginEmailConfirm span{ position: absolute; margin-left: -100px; margin-top: 7px;}
-.unLoginEmailConfirm span#emailConfirmResult{ margin-left: -100px; }
+#emailConfirmResult{ margin-left: -100px; }
+
 
 .contentBox{min-height: 500px;}
 

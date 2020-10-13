@@ -5,9 +5,8 @@ import java.sql.Date;
 public class UserVO {
 
 	private String user_email, user_pw, user_nickname, user_phone, user_zipcode,
-				    user_address, detail_address, user_key, user_image, user_imagepath;
+				    user_address, detail_address, user_key, user_image, user_imagepath, user_birth;
 	private int user_num;
-	private Date user_birth;
 
 	public int getUser_num() {
 		return user_num;
@@ -73,11 +72,11 @@ public class UserVO {
 		this.detail_address = detail_address;
 	}
 
-	public Date getUser_birth() {
+	public String getUser_birth() {
 		return user_birth;
 	}
 
-	public void setUser_birth(Date user_birth) {
+	public void setUser_birth(String user_birth) {
 		this.user_birth = user_birth;
 	}
 

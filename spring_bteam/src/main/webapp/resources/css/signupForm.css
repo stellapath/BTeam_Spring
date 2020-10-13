@@ -1,81 +1,21 @@
 @charset "UTF-8";
 
-#signupForm {
-	margin: 50px auto;
-	padding: 50px;
-	width: 500px; 
-	border: 1px solid #ccc;
-}
+#signupForm {	margin: 50px auto;	width: 500px; 	border: 1px solid #ccc;}
 
-h2 {
-	text-align: center;
-	margin-bottom: 50px;
-}
+h2 {	text-align: center;	margin-bottom: 50px;}
 
-table {
-	margin: 0 auto;
-}
+table {	margin: 0 auto;}
+table tr th img {	width: 30px;	height: 30px;}
+table tr {	margin: 5px 0px;}
+table tr td input {	border: none;	box-shadow: 1px 1px 1px 2px #ccc;	height: 35px;	width: 300px;	padding-left: 5px;}
+table tr:nth-child(5) td input:first-child {	width: 100px;}
+table tr:nth-child(5) td input:first-child a {	margin-bottom: 1px;}
+table tr th {	vertical-align: top;	padding: 5px;}
+table a.msg {	height: 25px;	padding: 5px;	border-radius: 3px;	font-size: 12px;	float: right;	font-weight: bolder;}
 
-table tr th img {
-	width: 30px;
-	height: 30px;
-}
+#signupForm a:hover, #buttons input:hover {	cursor: pointer;}
 
-table tr {
-	margin: 5px 0px;
-}
-
-table tr td input {
-	border: none;
-	box-shadow: 1px 1px 1px 2px #ccc;
-	height: 35px;
-	width: 300px;
-	padding-left: 5px;
-}
-
-table tr:nth-child(5) td input:first-child {
-	width: 100px;
-}
-
-table tr:nth-child(5) td input:first-child a {
-	margin-bottom: 1px;
-}
-
-table tr th {
-	vertical-align: top;
-	padding: 5px;
-}
-
-table a {
-	height: 25px;
-	padding: 5px;
-	border-radius: 3px;
-	font-size: 12px;
-	float: right;
-	font-weight: bolder;
-}
-
-#signupForm a:hover, #buttons input:hover {
-	cursor: pointer;
-}
-
-#buttons {
-	margin: 0 auto;
-	margin-top: 50px;
-	width: 350px;
-}
-
-#buttons input {
-	margin: 0 auto;
-	height: 40px;
-	width: 350px;
-	border: none;
-	border-radius: 5px;
-	background-color: #8a8a8a;
-	color: white;
-}
-
-#buttons input:first-child {
-	margin-bottom: 10px;
-	background-color: #000000;
-}
+#buttons {	margin: 0 auto;	margin-top: 50px;	width: 350px;}
+#buttons a { display: block; text-align: center; line-height: 40px;	margin: 0 auto;	height: 40px; width: 350px;
+			 border: none;	border-radius: 5px;	background-color: #8a8a8a;	color: white;}
+#buttons a:first-child {	margin-bottom: 10px;	background-color: #000000;}
