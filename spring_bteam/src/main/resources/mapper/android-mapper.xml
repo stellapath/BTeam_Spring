@@ -75,4 +75,9 @@
 		delete from traffic
 		where tra_num = #{num}
 	</delete>
+	
+	<select id="emailCheck" resultType="Integer">
+		select count(rownum) from bUser
+		where user_email = #{email}
+	</select>
 </mapper>

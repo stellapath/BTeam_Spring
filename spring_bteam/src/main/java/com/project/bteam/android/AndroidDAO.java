@@ -58,4 +58,9 @@ public class AndroidDAO implements AndroidService {
 	public int andTrafficDelete(int num) {
 		return sql.delete("android.trafficDelete", num);
 	}
+	
+	@Override
+	public int andEmailCheck(String email) {
+		return sql.selectOne("android.emailCheck", email);
+	}
 }

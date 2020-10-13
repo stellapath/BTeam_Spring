@@ -15,4 +15,5 @@ public interface AndroidService {
 	void andReadCount(int num);
 	int andTrafficModify(TrafficVO vo);
 	int andTrafficDelete(int num);
+	int andEmailCheck(String email);
 }

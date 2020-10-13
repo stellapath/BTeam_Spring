@@ -32,6 +32,7 @@ public class AndroidController {
 	@ResponseBody @RequestMapping("/andSignup")
 	public int andSignup(UserVO vo) {
 		System.out.println("::andSignUp::");
+		System.out.println(vo.getUser_birth());
 		int result = user.userSignup(vo); 
 		return result;
 	}
@@ -138,5 +139,11 @@ public class AndroidController {
 	@ResponseBody @RequestMapping("/andTrafficDelete")
 	public int andTrafficDelete(int num) {
 		return service.andTrafficDelete(num);
+	}
+	
+	// 중복확인
+	@ResponseBody @RequestMapping("/andEmailCheck") 
+	public boolean andEmailCheck(String email) {
+		return service.andEmailCheck(email) > 0 ? false : true; 
 	}
 }

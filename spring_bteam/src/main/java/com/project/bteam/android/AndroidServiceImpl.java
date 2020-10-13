@@ -57,4 +57,9 @@ public class AndroidServiceImpl implements AndroidService {
 	public int andTrafficDelete(int num) {
 		return dao.andTrafficDelete(num);
 	}
+	
+	@Override
+	public int andEmailCheck(String email) {
+		return dao.andEmailCheck(email);
+	}
 }
