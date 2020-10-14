@@ -34,8 +34,9 @@ h5 {
 	color: gray;
 }
 
-p {
+#wrap p {
 	margin: 10px 0px;
 }
 
+.pageName p.titleName{margin-top: 54px;}
 

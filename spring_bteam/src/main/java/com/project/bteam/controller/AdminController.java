@@ -45,7 +45,8 @@ public class AdminController {
 	
 	// 판매제품관리 페이지 요청
 	@RequestMapping("/productList")
-	public String productList(Model model) {
+	public String productList(Model model, HttpSession session) {
+		session.setAttribute("mypage", "productList");
 		model.addAttribute("product", order.productList());
 		return "admin/productList";
 	}
@@ -54,11 +55,12 @@ public class AdminController {
 	
 	// 주문관리 페이지 요청
 	@RequestMapping("/orderList")
-	public String orderList(Model model, 
+	public String orderList(Model model, HttpSession session,
 							@RequestParam(defaultValue="all") String orderStatus,
 							String keyword,
 							@RequestParam(defaultValue="10") int pageList,
 							@RequestParam(defaultValue="1") int curPage) {
+		session.setAttribute("menu", "orderList");
 		page.setOrderStatus(orderStatus);
 		page.setKeyword(keyword);
 		page.setCurPage(curPage);
@@ -70,6 +72,7 @@ public class AdminController {
 	// 회원관리 페이지 요청
 	@RequestMapping("/userList")
 	public String userList(Model model, HttpSession session) {
+		session.setAttribute("mypage", "userList");
 		List<UserVO> list = user.userList();
 		model.addAttribute("list", list);
 		return "admin/userList";

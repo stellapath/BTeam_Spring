@@ -120,6 +120,7 @@ public class UserController {
 	@RequestMapping("/myPage")
 	public String myPage(Model model, String user_email, HttpSession session) {
 		session.setAttribute("menu", "mypage");
+		session.setAttribute("mypage", "info");
 		model.addAttribute("vo", service.userDetail(user_email));
 		return "user/myPage";
 	}

@@ -10,11 +10,45 @@
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
-<div id="btnOrder">
-	<a class="btn_fill" onclick="go_order()">제품구매하러가기</a>
+<!-- <div id="btnOrder"> -->
+<!-- 	<a class="btn_fill" onclick="go_order()">제품구매하러가기</a> -->
+<!-- </div> -->
+<!-- <div id="product"> -->
+<!-- <img alt="제품소개" src="img/product01.jpg"> -->
+<!-- </div> -->
+<div class="pageName">
+	<p class="titleName">제품안내</p>
+	<div class="titleLine"></div>
 </div>
-<div id="product">
-<img alt="제품소개" src="img/product01.jpg">
+<div id="boxZone">
+	<div id="overBox">
+		<div class="boxSet overBox leftBox">
+			<img src=""/>
+			<div class="textBox">
+			<h3><i class="fas fa-mobile-alt"></i> 어플리케이션</h3>
+			<hr>
+			당신의 완벽한 하루의 시작을 돕는 알람어플리케이션입니다.
+			</div>
+		</div>
+		<div class="boxSet overBox rightBox" style="background-color: #ededed;">
+			<img src=""/>
+			<a class="lineBox" onclick="alert('어플리케이션 설치페이지 준비중');"><i class="fas fa-angle-double-right"></i> 어플리케이션 설치 바로가기</a>
+		</div>	
+	</div>
+	<div id="underBox">
+		<div class="boxSet underBox leftBox" style="background-color: #ededed;">
+			<img src=""/>
+			<a class="lineBox" onclick="go_order()"><i class="fas fa-angle-double-right"></i> 스마트우산 구매 바로가기</a>
+		</div>
+		<div class="boxSet underBox rightBox">
+			<img src=""/>
+			<div class="textBox">
+			<h3><i class="fas fa-umbrella"></i> 스마트우산</h3>
+			<hr>
+			우산을 자주 잃어버리는 당신을 위한 스마트 우산
+			</div>
+		</div>
+	</div>
 </div>
 <script type="text/javascript">
 

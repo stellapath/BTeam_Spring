@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-#signupForm {	margin: 50px auto;	width: 500px; 	border: 1px solid #ccc;}
+#wrap {	margin: 50px auto;	border: 1px solid #ccc; padding: 50px 0px;}
 
 h2 {	text-align: center;	margin-bottom: 50px;}
 
@@ -13,9 +13,15 @@ table tr:nth-child(5) td input:first-child a {	margin-bottom: 1px;}
 table tr th {	vertical-align: top;	padding: 5px;}
 table a.msg {	height: 25px;	padding: 5px;	border-radius: 3px;	font-size: 12px;	float: right;	font-weight: bolder;}
 
-#signupForm a:hover, #buttons input:hover {	cursor: pointer;}
+#wrap a:hover, #buttons input:hover {	cursor: pointer;}
 
-#buttons {	margin: 0 auto;	margin-top: 50px;	width: 350px;}
-#buttons a { display: block; text-align: center; line-height: 40px;	margin: 0 auto;	height: 40px; width: 350px;
-			 border: none;	border-radius: 5px;	background-color: #8a8a8a;	color: white;}
-#buttons a:first-child {	margin-bottom: 10px;	background-color: #000000;}
+/* #buttons {	margin: 0 auto;	margin-top: 50px;	width: 350px;} */
+/* #buttons a { display: block; text-align: center; line-height: 40px;	margin: 0 auto;	height: 40px; width: 350px; */
+/* 			 border: none;	border-radius: 5px;		color: white;} */
+/* #buttons a:first-child {	margin-bottom: 10px;	background-color: #F8AA34;} */
+
+#buttons{   width: 500px;   margin: 60px auto 45px;}
+#buttons a{ width: 400px;    height: 45px;    font-size: 15px;    border: none;    border-radius: 5px;    margin: 0 auto;
+    		color: white;    display: block;   text-align: center;    line-height: 45px;}
+.button{	background-color: #F8AA34; }
+.reset {	background-color: #8a8a8a;}

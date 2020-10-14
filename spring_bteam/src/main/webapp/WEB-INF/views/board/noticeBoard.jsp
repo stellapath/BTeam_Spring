@@ -1,6 +1,8 @@
 <%@ page import="com.project.bteam.board.BoardVO" %>
+<%@ page import="java.util.Date" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 BoardVO bvo = (BoardVO) session.getAttribute("boardList");
 pageContext.setAttribute("bvo", bvo);
@@ -15,6 +17,12 @@ pageContext.setAttribute("bvo", bvo);
 </style>
 </head>
 <body>
+<jsp:useBean id="now" class="java.util.Date" />
+<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" /> 
+<div class="pageName">
+	<p class="titleName">공지사항</p>
+	<div class="titleLine"></div>
+</div>
 <form action="noticeBoard?board_category=0" method="post">
 <div id="btnWrite">
 	<c:if test="${login_info.user_email eq 'admin'}">
@@ -32,6 +40,11 @@ pageContext.setAttribute("bvo", bvo);
 	<c:forEach items="${page.list}" var="bvo">
 	<tr><td>${bvo.board_no }</td>
 		<td name="board_title">
+<fmt:parseNumber value="${now.time / (1000*60*60*24)}" integerOnly="true" var="todays" scope="request"/> 
+<fmt:parseNumber value="${bvo.board_date.time / (1000*60*60*24)}" integerOnly="true" var="dates" scope="request"/>
+			<c:if test="${todays - dates <= 8}">
+			<img alt="새글안내" src="img/new_icon.gif" width="20px;">
+			</c:if>
 			<a href="boardView?board_num=${bvo.board_num }&board_category=0">${bvo.board_title}</a>
 			<c:if test="${!empty bvo.board_filename}">
 				<img alt="첨부파일" src="img/attach.png" class="file_icon">

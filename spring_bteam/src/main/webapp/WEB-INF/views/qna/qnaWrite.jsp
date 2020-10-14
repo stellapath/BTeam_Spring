@@ -25,6 +25,11 @@ input:focus:-ms-input-placeholder, textarea:focus:-ms-input-placeholder
 <script src="js/qna.js"></script>
 </head>
 <body>
+<div class="pageName">
+	<p class="subTitleName">1:1문의하기 작성</p>
+	<div class="titleLine"></div>
+</div>
+<div>
 	<!-- 
 파일전송시
 1. form의 전송방식은 반드시 post로 지정한다.
@@ -91,6 +96,7 @@ input:focus:-ms-input-placeholder, textarea:focus:-ms-input-placeholder
 		<a type="submit" id="button" class="btn_fill">등록</a>
 		<a type="reset"	class="btn_fill" onclick="location.href='/bteam/qnaBoard'">취소</a>
 	</div>
+</div>	
 	<script type="text/javascript" src='js/file_attach.js'></script>
 </body>
 </html>

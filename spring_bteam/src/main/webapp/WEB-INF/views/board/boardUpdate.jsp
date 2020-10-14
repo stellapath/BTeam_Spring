@@ -8,6 +8,10 @@
 <title>게시글 수정</title>
 </head>
 <body>
+<div class="pageName">
+	<p class="subTitleName">공지사항 수정</p>
+	<div class="titleLine"></div>
+</div>
 <div class="container">
 <form action="boardUpdateReq" method="post" enctype="multipart/form-data">
 <input type="hidden" name="board_num" value="${bvo.board_num }"/>
@@ -31,7 +35,7 @@
 		<td style="text-align: left;" colspan="3">
 			<label>
 				<img alt="파일선택" src="img/attach.png" class="file_icon">
-				<input type="file" name="file" id="attach-file" accept="image/*"/>
+				<input type="file" name="file" id="attach-file" />
 			</label>
 			<span id="board-filename">${bvo.board_filename }</span>
 			<span id="preview"></span>
@@ -48,5 +52,16 @@
 <script type="text/javascript" src="js/image_preview.js"></script>
 <script type="text/javascript" src="js/need_check.js"></script>
 <script type="text/javascript" src="js/file_attach.js"></script>
+<script type="text/javascript">
+if(${!empty bvo.board_filename}){
+	$('#delete-file').css('display', 'inline');
+	if(isImage('${bvo.board_filename}')){
+		//filepath: /upload/board/2020/09/25/abde\.png
+		var filepath = '${bvo.board_filepath}'.substring(1);
+		var img = "<img src='"+ filepath +"' class='file-img' id='preview-img'/>";
+		$('#preview').html(img);
+	}
+}
+</script>
 </body>
 </html>

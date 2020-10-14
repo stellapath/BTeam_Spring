@@ -16,8 +16,22 @@ location.href='login';
 </style>
 </head>
 <body>
+<div class="myMenuBar">
+<ul>
+	<li><a href="userList" ${mypage eq 'userList' ? 'class="active"' : '' }>고객관리</a></li>
+	<li>｜</li>
+	<li><a href="orderList" ${mypage eq 'orderList' ? 'class="active"' : '' }>주문관리</a></li>
+	<li>｜</li>
+	<li><a href="productList" ${mypage eq 'productList' ? 'class="active"' : '' }>등록제품관리</a></li>
+	<li>｜</li>
+	<li><a href="qnaList" ${mypage eq 'qnaList' ? 'class="active"' : '' }>문의관리</a></li>
+</ul>
+</div>
+<div class="pageName">
+	<p class="subTitleName">등록제품관리</p>
+	<div class="titleLine"></div>
+</div>
 <div id="productAdd">
-<h4>제 품 등 록</h4>
 	<div id="productAddInfo">
 		<form action="productAdd" name="addForm" method="post">
 		<table>

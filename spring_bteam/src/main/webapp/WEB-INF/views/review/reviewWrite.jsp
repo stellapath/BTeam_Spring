@@ -13,7 +13,10 @@ location.href="login";
 </c:if>
 </head>
 <body>
-<h3>사용후기 작성화면</h3>
+<div class="pageName">
+	<p class="subTitleName">사용후기 작성</p>
+	<div class="titleLine"></div>
+</div>
 <div class="container">
 <form action="reviewWriteReq" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="board_nickname" value="${login_info.user_nickname}" />

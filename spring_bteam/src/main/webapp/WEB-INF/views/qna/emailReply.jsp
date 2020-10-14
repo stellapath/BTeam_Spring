@@ -46,8 +46,11 @@ $(document).on('click', '#mailAnswer', function(){
 </script>
 </head>
 <body>
+<div class="pageName">
+	<p class="subTitleName">1:1문의답변 작성</p>
+	<div class="titleLine"></div>
+</div>
 <div id="wrap">
-	<h3>문의답변 작성하기</h3>
 	<div align="center">
 	<form action="mailAnswer" method="post">
 	<input type="hidden" name="qna_email" value="${qvo.qna_email }"/>

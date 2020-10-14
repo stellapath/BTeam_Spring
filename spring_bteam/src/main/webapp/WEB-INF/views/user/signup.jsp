@@ -15,7 +15,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <body>
-<div id="signupForm">
+<div id="wrap">
 	<h2>회원가입</h2>
 	<form action="signupReq" method="post" id="form">
 	<input type="hidden" id="email_confirm" value="0"/> 
@@ -71,14 +71,11 @@
 		</table>
 	<div id="buttons">
 <!-- 		<input type="submit" id="btn_submit" value="회원가입" /><br/> -->
-		<a id="btnSubmit">회원가입</a>
-		<a id="btnCancel" onclick="$('form')[0].reset(); location.href='/bteam/home'">가입취소</a><br/>
+		<a id="btnSubmit" class="button" style="margin-bottom: 15px;">회원가입</a>
+		<a id="btnCancel" class="reset" onclick="$('form')[0].reset(); location.href='/bteam/home'">가입취소</a><br/>
 	</div>
 	</form>
 </div>
-<script type="text/javascript">
-$(document);
-</script>
 <!-- 주소입력 -->
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 <script> $(function() { $("#postcodify_search_button").postcodifyPopUp(); }); </script>

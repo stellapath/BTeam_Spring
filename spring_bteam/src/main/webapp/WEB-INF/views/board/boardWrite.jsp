@@ -32,6 +32,10 @@ history.back();
 
 </head>
 <body>
+<div class="pageName">
+	<p class="subTitleName">공지사항 작성</p>
+	<div class="titleLine"></div>
+</div>
 <div class="container">
 <form action="boardWriteReq" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="board_nickname" value="${login_info.user_nickname}" />

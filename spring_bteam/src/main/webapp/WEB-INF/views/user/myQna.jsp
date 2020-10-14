@@ -34,13 +34,18 @@ h5 {
 </c:if>
 </head>
 <body>
-<h3>${login_info.user_nickname}님의 문의내역</h3>
 <div class="myMenuBar">
 <ul class="menubar">
 	<li><a href="myPage?user_email=${login_info.user_email }" ${mypage eq 'info' ? 'class="active"' : '' }>개인정보수정</a></li>
+	<li>｜</li>
 	<li><a href="myOrder?user_email=${login_info.user_email }" ${mypage eq 'order' ? 'class="active"' : '' }>나의 주문내역</a></li>
+	<li>｜</li>
 	<li><a href="myQna?user_email=${login_info.user_email }" ${mypage eq 'qna' ? 'class="active"' : '' }>나의 문의내역</a></li>
 </ul>
+</div>
+<div class="pageName">
+	<p class="subTitleName">${login_info.user_nickname}님의 문의내역</p>
+	<div class="titleLine"></div>
 </div>
 <div id="list-top">
 <form action="myQna" method="post">
@@ -89,6 +94,7 @@ h5 {
 							<a name="qna_filename" href="download.qo?qna_num=${qvo.qna_num }">${qvo.qna_filename }</a>
 						</label>
 					</c:if>
+					<c:if test="${ empty qvo.qna_filename }">-</c:if>
 				</td>
 			</tr>
 

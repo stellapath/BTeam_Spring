@@ -14,6 +14,21 @@ location.href='login';
 </c:if>
 </head>
 <body>
+<div class="myMenuBar">
+<ul>
+	<li><a href="userList" ${mypage eq 'userList' ? 'class="active"' : '' }>고객관리</a></li>
+	<li>｜</li>
+	<li><a href="orderList" ${mypage eq 'orderList' ? 'class="active"' : '' }>주문관리</a></li>
+	<li>｜</li>
+	<li><a href="productList" ${mypage eq 'productList' ? 'class="active"' : '' }>등록제품관리</a></li>
+	<li>｜</li>
+	<li><a href="qnaList" ${mypage eq 'qnaList' ? 'class="active"' : '' }>문의관리</a></li>
+</ul>
+</div>
+<div class="pageName">
+	<p class="subTitleName">고객관리</p>
+	<div class="titleLine"></div>
+</div>
 <table>
 <tr><th>회원번호</th>
 	<th>닉네임</th>
@@ -25,7 +40,9 @@ location.href='login';
 <tr><td>${vo.user_num }</td>
 	<td>${vo.user_nickname }</td>
 	<td style="text-align: left;"><a class="left">${vo.user_email }</a></td>
-	<td><fmt:formatDate value="${vo.user_birth }" pattern="yyyy-MM-dd"/></td>
+	<td><fmt:parseDate value="${vo.user_birth }" pattern="yyyy-MM-dd" var="user_birth"/>
+		<fmt:formatDate value="${ user_birth}" pattern="yyyy-MM-dd"/>
+	</td>
 	<td><a class="btn_fill_s" onclick="goodbyeMember('${vo.user_email }')">삭제</a></td>
 </tr>
 </c:forEach>

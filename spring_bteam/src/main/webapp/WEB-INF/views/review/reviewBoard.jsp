@@ -14,6 +14,10 @@
 </style>
 </head>
 <body>
+<div class="pageName">
+	<p class="titleName">사용후기</p>
+	<div class="titleLine"></div>
+</div>
 <div id="list-top">
 <form action="reviewBoard" method="post">
 <input type="hidden" name="curPage" value="1"/>
@@ -88,17 +92,14 @@
 				</div>
 				<c:if test="${login_info.user_email eq vo.board_email }">
 				<div class="buttons" style="float: right;">
-					<a class="btn_empty_s" href="reviewUpdate?board_num=${vo.board_num}">수정</a>
-					<a class="btn_fill_s" onclick="go_delete(${vo.board_num})">삭제</a>
+					<a class="btn_fill_s" href="reviewUpdate?board_num=${vo.board_num}">수정</a>
+					<a class="btn_empty_s" onclick="go_delete(${vo.board_num})">삭제</a>
 				</div>
 				</c:if>
 			</td>
 		</tr>
 	</c:forEach>
 	</table>
-	<div class="buttons" style="margin: 10px 0;">
-	<jsp:include page="/WEB-INF/views/include/page.jsp"/>
-	</div>
 </c:if>
 <c:if test="${page.viewType eq 'photo' }">
 	<ul class="photoView" style="padding: 0">
@@ -120,8 +121,8 @@
 				<div>${vo.board_date }</div>
 				<c:if test="${login_info.user_email eq vo.board_email }">
 				<div class="buttons" style="float: right;">
-					<a class="btn_empty_s" href="reviewUpdate?board_num=${vo.board_num}">수정</a>
-					<a class="btn_fill_s" onclick="go_delete(${vo.board_num})">삭제</a>
+					<a class="btn_fill_s" href="reviewUpdate?board_num=${vo.board_num}">수정</a>
+					<a class="btn_empty_s" onclick="go_delete(${vo.board_num})">삭제</a>
 				</div>
 				</c:if>
 			</div>
@@ -129,6 +130,9 @@
 	</c:forEach>
 	</ul>
 </c:if>
+<div class="buttons" style="margin: 10px 0;">
+	<jsp:include page="/WEB-INF/views/include/page.jsp"/>
+</div>
 <div id="popup-background" 
 		onclick="$('#popup, #popup-background').css('display', 'none');"></div>
 <div id="popup">
@@ -137,14 +141,16 @@
 </div>
 <script type="text/javascript">
 $('.board_title').click(function(){
-	$(this).parents('tr').next().toggle();
+	$(this).parents('tr').next().show();
+	$('tr.review_detail').not($(this).parents('tr').next()).hide();
 });
 
+//이미지클릭시 팝업
 function popupPhoto(data){
 	var imgpath = '<img src = "/bteam//' + data.substring(1) + '" class="file-img"/>';
 	$('#popup, #popup-background').css('display', 'block');
 	$('#popup').html(imgpath);
-}
+} 
 
 function go_delete(board_num){
 	var result = confirm('정말 삭제하시겠습니까?');

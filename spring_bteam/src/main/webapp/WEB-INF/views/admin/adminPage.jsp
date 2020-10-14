@@ -13,11 +13,27 @@ location.href='login';
 </c:if>
 </head>
 <body>
-<div class="bigBtn">
-	<a href="userList">고객관리</a><br/>
-	<a href="productList">제품등록 및 관리</a><br/>
-	<a href="orderList">주문관리</a><br/>
-	<a href="qnaList">문의관리</a>
+<div class="pageName">
+	<p class="titleName">관리자 페이지</p>
+	<div class="titleLine"></div>
+</div>
+<div id="boxZone">
+	<div id="overBox">
+		<div class="boxSet overBox leftBox">		
+		<a class="lineBox" href="userList"><i class="fas fa-angle-double-right"></i> 고객관리</a><br/>
+		</div>
+		<div class="boxSet overBox rightBox" style="background-color: #ededed;">
+		<a class="lineBox" href="productList"><i class="fas fa-angle-double-right"></i> 제품등록 및 관리</a><br/>
+		</div>	
+	</div>
+	<div id="underBox">
+		<div class="boxSet underBox leftBox" style="background-color: #ededed;">
+		<a class="lineBox" href="orderList"><i class="fas fa-angle-double-right"></i> 주문관리</a><br/>
+		</div>
+		<div class="boxSet underBox rightBox">
+		<a class="lineBox" href="qnaList"><i class="fas fa-angle-double-right"></i> 문의관리</a>
+		</div>
+	</div>
 </div>
 </body>
 </html>

@@ -15,6 +15,10 @@
 <title>공지사항</title>
 </head>
 <body>
+<div class="pageName">
+	<p class="subTitleName">공지사항 상세화면</p>
+	<div class="titleLine"></div>
+</div>
 <div class="container" align="center">
 	<table>
 		<tr>

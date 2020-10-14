@@ -8,7 +8,11 @@
 <title>사용후기 작성</title>
 </head>
 <body>
-<h3>사용후기 작성화면</h3>
+<div class="pageName">
+	<p class="subTitleName">사용후기 수정</p>
+	<div class="titleLine"></div>
+</div>
+<div>
 <form action="reviewUpdateReq" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="board_nickname" value="${login_info.user_nickname}" />
 	<input type="hidden" name="board_email" value="${login_info.user_email}" />
@@ -57,6 +61,7 @@
 		<a class="btn_fill" onclick="if(necessary()){ $('[name=attach]').val($('#board-filename').text()); $('form').submit()}">수정</a>
 		<a class="btn_empty" href="javascript:history.go(-1)">취소</a>
 	</div>
+</div>	
 <script type="text/javascript">
 var imageFile = $('#attach-file').val();
 var imgType = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf)$/;
@@ -78,5 +83,16 @@ if(imageFile != "" && imageFile != null) {
 <script type="text/javascript" src="js/image_preview.js"></script>
 <script type="text/javascript" src="js/need_check.js"></script>
 <script type="text/javascript" src="js/file_attach.js"></script>
+<script type="text/javascript">
+if(${!empty bvo.board_filename}){
+	$('#delete-file').css('display', 'inline');
+	if(isImage('${bvo.board_filename}')){
+		//filepath: /upload/board/2020/09/25/abde\.png
+		var filepath = '${bvo.board_filepath}'.substring(1);
+		var img = "<img src='"+ filepath +"' class='file-img' id='preview-img'/>";
+		$('#preview').html(img);
+	}
+}
+</script>
 </body>
 </html>

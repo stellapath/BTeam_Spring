@@ -9,7 +9,7 @@ pageContext.setAttribute("vo", vo);
 	<div class="menuBar">
 		<ul>
 			<li><a href="companyPage" ${menu eq 'company' ? 'class="active"' : '' }>회사소개</a></li>
-			<li><a href="productPage" ${menu eq 'product' ? 'class="active"' : '' }>제품소개</a></li>
+			<li><a href="productPage" ${menu eq 'product' ? 'class="active"' : '' }>제품안내</a></li>
 			<li><a href="noticeBoard?board_category=0" ${menu eq 'notice' ? 'class="active"' : '' }>공지사항</a></li>
 			<li><a href="reviewBoard?board_category=1" ${menu eq 'review' ? 'class="active"' : '' }>사용후기</a></li>
 			<li><a href="qnaBoard" ${menu eq 'qna' ? 'class="active"' : '' }>문의하기</a></li>
@@ -18,13 +18,14 @@ pageContext.setAttribute("vo", vo);
 	<div class="header_user">
 	<c:if test="${!empty login_info }">
 		<ul>
-			<li><img src="profileImgDn?user_email=${login_info.user_email}" style="width:40px; border-radius:40px; border:1px solid black;" />
+			<li style="margin-top:-24px;">
+				<img src="profileImgDn?user_email=${login_info.user_email}" style="width:40px; border-radius:40px; " />
 				${login_info.user_nickname }님 </li>
 			<c:if test="${login_info.user_email eq 'admin'}">
-			<li><a href="adminPage">관리페이지</a></li>
+				<li><a href="adminPage" ${menu eq 'admin' ? 'class="active"' : '' }>관리페이지</a></li>
 			</c:if>
 			<c:if test="${login_info.user_email ne 'admin'}">
-			<li><a id="mypage" href="myPage?user_email=${login_info.user_email }" ${menu eq 'mypage' ? 'class="active"' : '' }>마이페이지</a></li>
+				<li><a id="mypage" href="myPage?user_email=${login_info.user_email }" ${menu eq 'mypage' ? 'class="active"' : '' }>마이페이지</a></li>
 			</c:if>	
 			<li><a class="btn_fill" onclick="go_logout()">로그아웃</a></li>
 		</ul>

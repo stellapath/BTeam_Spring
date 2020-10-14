@@ -21,69 +21,77 @@
 <script> $(function() { $("#postcodify_search_button").postcodifyPopUp(); }); </script>
 </head>
 <body>
-<h3>${vo.user_nickname}님의 마이페이지</h3>
 <div class="myMenuBar">
 <ul>
 	<li><a href="myPage?user_email=${login_info.user_email }" ${mypage eq 'info' ? 'class="active"' : '' }>개인정보수정</a></li>
+	<li>｜</li>
 	<li><a href="myOrder?user_email=${login_info.user_email }" ${mypage eq 'order' ? 'class="active"' : '' }>나의 주문내역</a></li>
+	<li>｜</li>
 	<li><a href="myQna?user_email=${login_info.user_email }" ${mypage eq 'qna' ? 'class="active"' : '' }>나의 문의내역</a></li>
 </ul>
 </div>
-<form action="update" method="post">
-<input type="hidden" name="user_email" value="${vo.user_email}"/>
-<table id="boardTable">	
-	<tr>
-		<th class="w-px120">프로필 사진</th>
-		<td><img src="profileImgDn?user_email=${vo.user_email}" style="width:100px;" />
-			<button type="button" onclick="imageUpload()" >이미지 변경</button>
-		</td>
-	</tr>
-	<tr><th>이메일</th>
-		<td>${vo.user_email}</td>
-	</tr>
-	<tr><th>비밀번호</th>
-		<td><input type="password" name="input_pw" placeholder="현재 비밀번호를 입력하세요."/>
-			<a class="btn_fill" onclick="change_pw('${vo.user_pw}')">변경</a>
-		</td>
-	</tr>		
-	<tr class="change_pw" style="display: none;">
-		<th>비밀번호변경</th>
-		<td>
-			<div style="display: flex;"><input type="password" name="user_pw" value="${vo.user_pw}" placeholder="새로운 비밀번호를 입력하세요." /></div>
-			<div><input type="password" id="check_pw" placeholder="새로운 비밀번호를 다시 입력하세요." /><span class="check_msg"></span></div>
-		</td>
-	</tr>
-	<tr>
-		<th>닉네임</th>
-		<td><input type="text" name="user_nickname" id="user_nickname" required 
-					value="${vo.user_nickname}"/></td>
-	</tr>
-	<tr>
-		<th>전화번호</th>
-		<td><input type="text" name="user_phone" id="user_phone" required 
-					value="${vo.user_phone}"/></td>
-	</tr>
-	<tr>
-		<th>주소</th>
-		<td><input type="text" name="user_zipcode" class="postcodify_postcode5" 
-						value="${vo.user_zipcode}" />
-			<a class="btn_fill" id="postcodify_search_button">우편번호 검색</a><br/>
-			<input type="text" name="user_address" class="postcodify_address" value="${vo.user_address}" /><br/>
-			<input type="text" name="detail_address" class="postcodify_details" value="${vo.detail_address}" />
-		</td>
-	</tr>
-	<tr>
-		<th>생일</th>
-		<td><input type="text" name="user_birth" value="${vo.user_birth}" readonly />
-			<span id="delete" style="color : red; position: relative; right: 30px; display: none; float: left;"><i class="fas fa-eraser font-img"></i></span>
-		</td>
-	</tr>
-</table>
-</form>
-<div class="buttons">
-	<a class="btn_fill" onclick="$('form').submit()">저장</a>
-	<a class="btn_empty" href="home">취소</a>
-	<a style="float: right; color: red; font-weight: bold;" onclick="goodbyeMember('${vo.user_email}')">회원탈퇴</a>
+<div class="pageName">
+	<p class="subTitleName">${vo.user_nickname}님의 마이페이지</p>
+	<div class="titleLine"></div>
+</div>
+<div>
+	<form action="update" method="post">
+	<input type="hidden" name="user_email" value="${vo.user_email}"/>
+	<table id="boardTable">	
+		<tr>
+			<th class="w-px120">프로필 사진</th>
+			<td style="text-align: left;">
+				<img src="profileImgDn?user_email=${vo.user_email}" style="width:100px;" />
+				<button type="button" onclick="imageUpload()" >이미지 변경</button>
+			</td>
+		</tr>
+		<tr><th>이메일</th>
+			<td style="text-align: left;">${vo.user_email}</td>
+		</tr>
+		<tr><th>비밀번호</th>
+			<td><input type="password" name="input_pw" placeholder="현재 비밀번호를 입력하세요."/>
+				<a class="btn_fill" onclick="change_pw('${vo.user_pw}')">변경</a>
+			</td>
+		</tr>		
+		<tr class="change_pw" style="display: none;">
+			<th>비밀번호변경</th>
+			<td>
+				<div style="display: flex;"><input type="password" name="user_pw" value="${vo.user_pw}" placeholder="새로운 비밀번호를 입력하세요." /></div>
+				<div><input type="password" id="check_pw" placeholder="새로운 비밀번호를 다시 입력하세요." /><span class="check_msg"></span></div>
+			</td>
+		</tr>
+		<tr>
+			<th>닉네임</th>
+			<td><input type="text" name="user_nickname" id="user_nickname" required 
+						value="${vo.user_nickname}"/></td>
+		</tr>
+		<tr>
+			<th>전화번호</th>
+			<td><input type="text" name="user_phone" id="user_phone" required 
+						value="${vo.user_phone}"/></td>
+		</tr>
+		<tr>
+			<th>주소</th>
+			<td><input type="text" name="user_zipcode" class="postcodify_postcode5" 
+							value="${vo.user_zipcode}" />
+				<a class="btn_fill" id="postcodify_search_button">우편번호 검색</a><br/>
+				<input type="text" name="user_address" class="postcodify_address" value="${vo.user_address}" /><br/>
+				<input type="text" name="detail_address" class="postcodify_details" value="${vo.detail_address}" />
+			</td>
+		</tr>
+		<tr>
+			<th>생일</th>
+			<td><input type="text" name="user_birth" value="${vo.user_birth}" readonly />
+				<span id="delete" style="color : red; position: relative; right: 30px; display: none; float: left;"><i class="fas fa-eraser font-img"></i></span>
+			</td>
+		</tr>
+	</table>
+	</form>
+	<div class="buttons">
+		<a class="btn_fill" onclick="$('form').submit()">저장</a>
+		<a class="btn_empty" href="home">취소</a>
+		<a style="float: right; color: red; font-weight: bold;" onclick="goodbyeMember('${vo.user_email}')">회원탈퇴</a>
+	</div>
 </div>
 
 <!-- jQuery DatePicker -->

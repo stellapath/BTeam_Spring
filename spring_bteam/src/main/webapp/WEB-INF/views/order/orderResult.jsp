@@ -16,8 +16,11 @@
 </c:if>
 </head>
 <body>
+<div class="pageName">
+	<p class="subTitleName">${vo.user_nickname}님의 주문내역</p>
+	<div class="titleLine"></div>
+</div>
 <div id=orderResult>
-<h3>${vo.order_name }님의 주문내역입니다.</h3>
 <table id="order_info">
 <tr><td colspan="2" class="left" style="">◈주문정보◈</td></tr>
 <tr><th class="w-px100">주문번호</th>

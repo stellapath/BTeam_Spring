@@ -8,6 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div class="pageName">
+	<p class="subTitleName">사용후기 상세보기</p>
+	<div class="titleLine"></div>
+</div>
 <div>
 	<table id="boardTable">
 		<tr>

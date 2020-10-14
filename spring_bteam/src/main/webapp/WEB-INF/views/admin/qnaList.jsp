@@ -15,6 +15,21 @@ history.back();
 <link rel="stylesheet" href="css/adminQna.css">
 </head>
 <body>
+<div class="myMenuBar">
+<ul>
+	<li><a href="userList" ${mypage eq 'userList' ? 'class="active"' : '' }>고객관리</a></li>
+	<li>｜</li>
+	<li><a href="orderList" ${mypage eq 'orderList' ? 'class="active"' : '' }>주문관리</a></li>
+	<li>｜</li>
+	<li><a href="productList" ${mypage eq 'productList' ? 'class="active"' : '' }>등록제품관리</a></li>
+	<li>｜</li>
+	<li><a href="qnaList" ${mypage eq 'qnaList' ? 'class="active"' : '' }>문의관리</a></li>
+</ul>
+</div>
+<div class="pageName">
+	<p class="subTitleName">문의관리</p>
+	<div class="titleLine"></div>
+</div>
 <div id="wrap">
 	<form action="qnaList" method="post">
 	<input type="hidden" name="curPage" value='1'/>
@@ -48,6 +63,7 @@ history.back();
 						<a name="qna_filename" href="download.qo?qna_num=${qvo.qna_num }">${qvo.qna_filename }</a>
 					</label>
 				</c:if>
+				<c:if test="${ empty qvo.qna_filename }">-</c:if>
 			</td>
 		</tr>
 		<tr class="contents" style="display: none;">
