@@ -94,4 +94,11 @@
 		set user_key = 'OK'
 		where user_email = #{email}
 	</update>
+	
+	<update id="updateUser">
+		update bUser
+		set user_nickname = #{user_nickname}, user_phone = #{user_phone},
+		user_address = #{user_address}, user_birth = #{user_birth}
+		where user_email = #{user_email}
+	</update>
 </mapper>

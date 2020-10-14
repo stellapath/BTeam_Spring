@@ -80,4 +80,9 @@ public class AndroidDAO implements AndroidService {
 	public int andUpdatePassword(Map<String, String> map) {
 		return sql.update("android.updatePassword", map);
 	}
+	
+	@Override
+	public int andUserUpdate(UserVO vo) {
+		return sql.update("android.updateUser", vo);
+	}
 }

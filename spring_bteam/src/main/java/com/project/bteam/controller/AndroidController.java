@@ -154,6 +154,7 @@ public class AndroidController {
 		return service.andVerifyEmail(email) > 0;
 	}
 	
+	// 비밀번호 재설정
 	@ResponseBody @RequestMapping("/andResetPassword")
 	public int andResetPassword(String email, HttpSession session) {
 		System.out.println("::andResetPassword::");
@@ -166,5 +167,12 @@ public class AndroidController {
 		map.put("pw", pw);
 		common.mailResetPw(email, pw, session);
 		return service.andUpdatePassword(map);
+	}
+	
+	// 정보 변경
+	@ResponseBody @RequestMapping("/andUserUpdate")
+	public boolean andUserUpdate(UserVO vo) {
+		System.out.println("::andUserUpdate::");
+		return service.andUserUpdate(vo) > 0;
 	}
 }

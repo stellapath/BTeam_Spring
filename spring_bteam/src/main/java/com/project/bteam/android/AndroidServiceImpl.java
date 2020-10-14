@@ -78,4 +78,9 @@ public class AndroidServiceImpl implements AndroidService {
 	public int andUpdatePassword(Map<String, String> map) {
 		return dao.andUpdatePassword(map);
 	}
+	
+	@Override
+	public int andUserUpdate(UserVO vo) {
+		return dao.andUserUpdate(vo);
+	}
 }

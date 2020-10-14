@@ -20,4 +20,5 @@ public interface AndroidService {
 	int andEmailCheck(String email);
 	int andVerifyEmail(String email);
 	int andUpdatePassword(Map<String, String> map);
+	int andUserUpdate(UserVO vo);
 }
