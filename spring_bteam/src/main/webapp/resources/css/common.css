@@ -4,30 +4,72 @@ body{position: relative; min-height: 100%; display: flex; flex-direction: column
 
 #content {margin: 0 auto; margin-top: 20px; padding-bottom: 100px; text-align: center;}
 
-#logo_here{width: 500px; margin: 0 auto; text-align: center;}
-img.logo{width: 100px; height: 100px;	}
 
+a {text-decoration: none; color: black;}
+a:hover{ margin-top:-1px; cursor: pointer;}
+
+/* 페이지 상단*/
 header ul, header ul li {	margin: 0;	padding: 0;	display: inline; float: left;}
+header { margin: 30px auto;}
+
+#logoNheader{background-color: #344955; width: 100%; padding-bottom: 30px;}
+#logo_here{width: 500px; margin: 0 auto; text-align: center;}
+img.logo{width: 200px;	}
 
 .menuBar ul li {margin-right: 20px;}
-.menuBar ul li a{font-size: 20px;}
-.menuBar ul li a:hover, .menuBar ul li a.active{font-weight: bold; color: #ad53ff;}
-a#mypage.active{font-weight: bold; color: #ad53ff;}
+.menuBar ul li a{font-size: 25px; color: white; font-family: 'Noto Sans KR',sans-serif;}
+.menuBar ul li a:hover, .menuBar ul li a.active{ color: #F8AA34;}
 
-.myMenuBar ul li{	margin: 0;	padding: 0;	display: inline; float: left; margin-right: 20px;}
+a#mypage.active{font-weight: bold; color: #F8AA34;}
 
+#serviceNotice { display: inline-block;}
+#serviceNotice ul li { list-style: none;  float: left; margin-right: 20px;}
+
+
+/*마이페이지 - 카테고리*/
+.myMenuBar {display: inline-block; width: 100%; margin: 0 auto;}
+.myMenuBar ul{display: inline-block; width: max-content; margin:0 auto; text-align: center;}
+.myMenuBar ul li {	margin: 0;	display: inline; float: left; padding: 0px; margin-right:20px;  width: max-content;}
+.myMenuBar ul li:last-child {margin-right: 0;}
+.myMenuBar ul li a:hover, .myMenuBar ul li a.active { color: #F8AA34; font-weight: bold; }
+
+/*헤더 - 로그인*/
 .header_user{ right: 0; top: 25px; float: right; font-size: 15px;}
-/* .header_user li:first-child{ margin-top: -28px;} */
 .header_user li:not(:first-child){	padding-left: 10px;}
-.header_user input {display: block; float: left; margin-left: 5px;	border : none;	border-bottom: 1px solid gray;	padding : 5px;	font-size: 15px; height: 30px;}
+.header_user input {display: block; float: left; margin-left: 5px;	border : none;	border-bottom: 1px solid #fff;	padding : 5px;	font-size: 15px; height: 30px; color: white;}
+.header_user input::placeholder{color: white;}
 .header_user input:focus {	outline : none;}
+.header_user ul { margin-top: 9px; }
+.header_user li:not(last-child), .header_user li:not(last-child) a{ color: white;}
+.header_user li a.btn_fill {color:#232F34;}
+.header_user ul li a.active{color: #F8AA34;}
 
-#user_email, #user_pw {width: 150px; height: 20px; font-size: 14px;}
+#user_email, #user_pw {width: 150px; height: 20px; font-size: 14px; background: transparent;}
 
+/*페이지내부 타이틀*/
+p.titleName{    color: #2c2c2c;    font-size: 54px;    font-weight: 400;    font-family: 'Noto Sans KR',sans-serif;    text-align: center;    padding-bottom: 20px;		margin-bottom: 0;}
+p.subTitleName{    color: #2c2c2c;    font-size: 30px;    font-weight: 500;    font-family: 'Noto Sans KR',sans-serif;    text-align: center;    padding-bottom: 20px;		margin-bottom: 0;}
+.titleLine{display: block;    width: 40px;    height: 2px;    margin: 0 auto;    background: #8c8c8c; margin-bottom: 20px;}
+
+/*상품소개페이지*/
+#boxZone {width: 100%; margin-top: 50px;}
+#overBox, #underBox {width: 100%; margin: 0 auto; }
+.boxSet { width: 50%; box-sizing: border-box; height: 300px;}
+.overBox, .underBox{ float: left;}
+a.lineBox { border: 2px solid #F8AA34;    padding: 10px;    font-weight: bold;    vertical-align: middle;    color: #F8AA34;    margin-top: 130px;    display: inline-block;}
+a.lineBox:hover { background-color: #F8AA34; 	color : white;}
+.textBox{padding: 10px; text-align: justify;}
+.boxSet img{ opacity: 0.6;}
+
+/* 안내페이지 */
+.pageContext {text-align: justify; border: 1px solid #8c8c8c; padding: 20px 10px; box-sizing: border-box; margin-top: 20px; font-size: 15px;}
+.pageContext div.subtitle { font-size: 18px; font-weight: bold; border-bottom: 1px solid #8c8c8c; margin: 20px 0px;}
+
+/* 테이블설정 */
 table {	width: 100%; min-width:max-content; margin: 0 auto; border-collapse: collapse;}
 table th, table td {	border-top: 1px solid #5c5c5c; border-bottom:1px solid #5c5c5c;	padding: 5px 10px; vertical-align: middle;}
-table th {background-color: #e0e0e0; font-weight: bold;}
-table td {text-align: center;}
+table th {background-color: #e0e0e0; font-weight: bold; height: 25px;}
+table td {text-align: center; height: 45px;}
 table td[name=board_title], table td[name=board_filename] {text-align: left;}
 table td[name=board_content] {text-align: left; height: 300px;}
 table#boardTable a {float: left; margin-left: 5px;}
@@ -50,14 +92,13 @@ textarea { width: calc(100% - 6px); resize: none; height: 150px;}
 .check_msg {font-size: 13px; font-weight: bold; float: right;}
 
 .left { text-align:left;}
-a {text-decoration: none; color: black;}
-a:hover{font-weight: bold; cursor: pointer;}
 
-.buttons {margin: 0 auto; text-align: center; margin-top: 10px;}
-a.btn_fill, a.btn_empty { text-align: center;	padding: 3px 10px;	border: 1px solid #5c5c5c;	border-radius: 3px;	box-shadow: 2px 2px 3px #e0e0e0;}
-a.btn_fill_s, a.btn_empty_s { font-size:13px; text-align: center;	padding: 1px 5px;	border: 1px solid #5c5c5c;	border-radius: 3px;	box-shadow: 2px 2px 3px #e0e0e0;}
-a.btn_fill, a.btn_fill_s {	background-color: #ad53ff; color: #ffffff; }
-a.btn_empty, a.btn_empty_s {	background-color: #edbdff; color: #5c5c5c; }
+/* 기본버튼 */
+.buttons {margin: 0 auto; text-align: center; margin-top: 10px; }
+a.btn_fill, a.btn_empty { font-weight: bold; text-align: center;	padding: 3px 10px;	border-radius: 3px;	box-shadow: 2px 2px 3px #8c8c8c;}
+a.btn_fill_s, a.btn_empty_s { font-weight: bold; font-size:13px; text-align: center;	padding: 1px 5px;	border-radius: 3px;	box-shadow: 2px 2px 3px #8c8c8c;}
+a.btn_fill, a.btn_fill_s {	background-color: #F8AA34; color: #232F34; }
+a.btn_empty, a.btn_empty_s {background-color: #8a8a8a; color: #ffffff; }
 
 #attach-file, #delete-file {display: none;}
 .file_icon {width: 15px;}
@@ -84,6 +125,7 @@ label:last-child{margin-right: 0;}
 .preview-img {width: 30px; height: 30px;}
 .file-img {width: 200px; height: 200px;}
 #attach-file, #delete-file {display: none;}
+.file_icon {width: 15px; height: 15px;}
 
 #btnOrder{ position: absolute; top: 50%; right: 10%;}
 
@@ -93,7 +135,7 @@ label:last-child{margin-right: 0;}
 .bgInner {width: 100%;}
 .innerTitle{ text-align: center;}
 .innerTitle p{ text-align: center;}
-.innerContent{ background-color: #ededed; width: 100%; margin: 0 auto; min-width: 1000px;}
+.innerContent{ background-color: #ededed; width: 100%; margin: 0 auto; }
 .innerContent div { padding: 50px 25px; overflow: hidden; width: inherit;}
 .innerContent div div{ width:45%; float: left; overflow: hidden; line-height: 25px; color: #616161; text-align: justify; padding: 0;} 
 .content_left{ margin-right: 5%; }
@@ -107,8 +149,9 @@ label:last-child{margin-right: 0;}
 #signupForm span{ position: absolute;}
 
 /*이메일인증*/
-.unLoginEmailConfirm span{ position: absolute; margin-left: -100px; margin-top: 7px;}
+.unLoginEmailConfirm span{ position: absolute; margin-left: -100px; margin-top: 7px; min-width: max-content;}
 #emailConfirmResult{ margin-left: -100px; }
+
 
 
 .contentBox{min-height: 500px;}
@@ -157,9 +200,14 @@ ul.photoView {width: 100%; margin: 0; float: left;}
 	color: white;
 }
 
-footer{ padding:30px; background-color: #000; opacity: 0.6; width:auto; height: 100px; margin:0; bottom: 0; margin-top: auto; z-index: 9999;} 
-footer *{ color: white; text-align: center; font-weight: normal; font-size: 15px;}
-footer p{ margin: 0; }
+footer { padding:10px 0px; background-color: #dddedf; width:auto; height: max-content; margin:0; bottom: 0; margin-top: auto; z-index: 9999; } 
+#footerZone { width: 80%; margin: 0 auto;    height: 100%;    padding-top: 20px; box-sizing: border-box; min-width: max-content;}
+#footerLeft { float: left;}
+#footerRight { float: right; margin-right: 50px;}
+#footerZone p{ margin: 0; font-size: 15px; font-size: 15px; }
+#footerZone h4{ margin: 5px 0px;}
+#snsIcon svg {margin-right: 10px;}
+#snsIcon svg:last-child {margin-right: 0px;}
 
 
 

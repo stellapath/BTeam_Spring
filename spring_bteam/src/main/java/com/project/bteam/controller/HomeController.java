@@ -28,5 +28,24 @@ public class HomeController {
 		session.setAttribute("menu", "product");
 		return "page/product";
 	}
+	
+	// 서비스안내
+	@RequestMapping("/serviceNotice")
+	public String serviceNotice(HttpSession session) {
+		session.setAttribute("menu", "");
+		return "page/serviceNotice";	
+	}
+	// 개인정보처리방침
+	@RequestMapping("/termsOfUse")
+	public String termsOfUse(HttpSession session) {	
+		session.setAttribute("menu", "");
+		return "page/termsOfUse";	
+	}
+	// 이용약관
+	@RequestMapping("/privacyPolicy")
+	public String privacyPolicy(HttpSession session) {
+		session.setAttribute("menu", "");
+		return "page/privacyPolicy";	
+	}
 				
 }
