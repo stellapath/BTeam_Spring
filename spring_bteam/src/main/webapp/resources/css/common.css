@@ -8,6 +8,7 @@ body{position: relative; min-height: 100%; display: flex; flex-direction: column
 a {text-decoration: none; color: black;}
 a:hover{ margin-top:-1px; cursor: pointer;}
 
+ul{list-style: none; padding: 0;}
 /* 페이지 상단*/
 header ul, header ul li {	margin: 0;	padding: 0;	display: inline; float: left;}
 header { margin: 30px auto;}
@@ -74,10 +75,6 @@ table td[name=board_title], table td[name=board_filename] {text-align: left;}
 table td[name=board_content] {text-align: left; height: 300px;}
 table#boardTable a {float: left; margin-left: 5px;}
 
-#orderResult { background-color: #f1e0ff;    width: 70%;    margin: 0 auto;    padding: 50px;    border-radius: 20px; }
-#order_info th, #order_info td{ border: none; text-align: left; background-color: #f1e0ff;}
-#order_info tr th{ border-right: 1px solid #5c5c5c;}
-
 input {	height: 22px;	padding: 5px 10px;	font-size: 15px; }
 input[name=board_title] {width: calc(100% - 24px); }
 input[name=board_filename] {float: left; }
@@ -104,13 +101,13 @@ a.btn_empty, a.btn_empty_s {background-color: #8a8a8a; color: #ffffff; }
 .file_icon {width: 15px;}
 
 #searchTap {width: 100%; margin: 0 auto; padding: 0; margin-bottom: 10px; height: 30px; line-height: 30px; display: grid; }
-#searchTap ul{display: flex; padding:5px; background-color: #e7e7e7; }
+#searchTap ul{ padding:5px; width: 500px; margin: 0 auto; }
 #searchTap ul:last-child{float:right;}
 #searchTap ul:first-child{float:left;}
-#searchTap ul li {margin: 0 auto;}
+#searchTap ul li {margin: 0 auto; float: left;}
+#searchTap ul li:not(:last-child) {margin-right: 10px;}
 #searchTap ul li * {vertical-align: middle;}
 
-ul{list-style: none; padding: 0;}
 #list-top {width: 100%; margin: 0 auto; padding: 0}
 #list-top div{width: 100%; height: 32px;}
 #list-top div ul{display: flex; margin: 0; }
@@ -200,8 +197,8 @@ ul.photoView {width: 100%; margin: 0; float: left;}
 	color: white;
 }
 
-footer { padding:10px 0px; background-color: #dddedf; width:auto; height: max-content; margin:0; bottom: 0; margin-top: auto; z-index: 9999; } 
-#footerZone { width: 80%; margin: 0 auto;    height: 100%;    padding-top: 20px; box-sizing: border-box; min-width: max-content;}
+footer { padding:20px 0px; background-color: #dddedf; width:auto; height: max-content; margin:0; bottom: 0; margin-top: auto; z-index: 9999; } 
+#footerZone { width: 80%; margin: 0 auto;   height: 100%;    box-sizing: border-box; min-width: max-content;}
 #footerLeft { float: left;}
 #footerRight { float: right; margin-right: 50px;}
 #footerZone p{ margin: 0; font-size: 15px; font-size: 15px; }

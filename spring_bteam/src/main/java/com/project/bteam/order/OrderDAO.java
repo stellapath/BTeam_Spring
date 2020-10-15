@@ -1,7 +1,10 @@
 package com.project.bteam.order;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,11 +17,19 @@ import com.project.bteam.board.BoardPage;
 @Repository
 public class OrderDAO implements OrderService{
 	@Autowired private SqlSession sql;
-
+	
 	@Override
 	public OrderVO orderInsert(OrderVO vo) {
+		Date now = new Date();
+		SimpleDateFormat today = new SimpleDateFormat("yyMMdd");
+		
+		String order_num;
+		int count = (Integer)sql.selectOne("order.todayOrder");
+		if( count == 0) {		order_num = today.format(now) + String.format("%03d", count+1);		}
+		else {		 order_num = Integer.toString((Integer)sql.selectOne("order.todayLostOrder") + 1);}
+		vo.setOrder_num(order_num);
+		
 		sql.insert("order.insert", vo);
-		int order_num = sql.selectOne("order.returnOrderNum", vo);
 		return sql.selectOne("order.detail", order_num);
 	}
 	

@@ -81,7 +81,7 @@
 	<select id="list" resultType="OrderVO">
 		select b.* from
 		(select rownum board_no, b.* from
-		(select * from bOrder where order_email=#{keyword} order by order_date asc) b
+		(select * from bOrder where order_email=#{keyword} order by order_num asc) b
 		order by board_no desc) b
 		where board_no between #{beginList} and #{endList}
 	</select>
@@ -100,21 +100,37 @@
 	</select>
 
 	<insert id="insert">
-		insert into bOrder ( order_num, order_email, order_name, order_phone,
-		order_date, order_product,
-		order_color, order_count, order_amount, order_pay,
-		deliv_name, deliv_phone, deliv_zipcode, deliv_address, deliv_detailaddress,
-		deliv_memo )
-		values ( (select concat(to_char(sysdate, 'yymmdd'), (select lpad((select
-		count(*) from bOrder where to_char(order_date, 'yymmdd') =
-		to_char(sysdate, 'yymmdd')), 3, '0') from dual))
-		order_num from dual),
-		#{order_email}, #{order_name}, #{order_phone}, sysdate, ( select p_name from bProduct
-		where p_num = #{order_product} ),
-		#{order_color}, #{order_count}, #{order_amount}, #{order_pay},
+		insert into bOrder ( order_num, order_email, order_name, order_phone, order_date, 
+		order_product, order_color, order_count, order_amount, order_pay, 
+		deliv_name, deliv_phone, deliv_zipcode, deliv_address, deliv_detailaddress,	deliv_memo )
+		values ( #{order_num}, #{order_email}, #{order_name}, #{order_phone}, sysdate, 
+					( select p_name from bProduct where p_num = #{order_product} ),
+				 #{order_color}, #{order_count}, #{order_amount}, #{order_pay},
 		#{deliv_name}, #{deliv_phone}, #{deliv_zipcode}, #{deliv_address},
 		#{deliv_detailaddress, jdbcType=VARCHAR}, #{deliv_memo,
 		jdbcType=VARCHAR} )
 	</insert>
+<!-- 	<insert id="insert"> -->
+<!-- 		insert into bOrder ( order_num, order_email, order_name, order_phone, order_date,  -->
+<!-- 		order_product, order_color, order_count, order_amount, order_pay,  -->
+<!-- 		deliv_name, deliv_phone, deliv_zipcode, deliv_address, deliv_detailaddress,	deliv_memo ) -->
+<!-- 		values ( (select concat(to_char(sysdate, 'yymmdd'),  -->
+<!-- 				 (select lpad((select NVL(MAX(order_num), 0)+1 from bOrder where to_char(order_date, 'yymmdd') = to_char(sysdate, 'yymmdd')), 3, '0') from dual)) -->
+<!-- 					order_num from dual), -->
+<!-- 		#{order_email}, #{order_name}, #{order_phone}, sysdate, ( select p_name from bProduct -->
+<!-- 		where p_num = #{order_product} ), -->
+<!-- 		#{order_color}, #{order_count}, #{order_amount}, #{order_pay}, -->
+<!-- 		#{deliv_name}, #{deliv_phone}, #{deliv_zipcode}, #{deliv_address}, -->
+<!-- 		#{deliv_detailaddress, jdbcType=VARCHAR}, #{deliv_memo, -->
+<!-- 		jdbcType=VARCHAR} ) -->
+<!-- 	</insert> -->
+
+	<select id="todayLostOrder" resultType="Integer">
+		select NVL(MAX(order_num), 0) from bOrder
+	</select>
+	
+	<select id="todayOrder" resultType="Integer">
+		select count(*) from bOrder where to_char(order_date, 'yymmdd') = to_char(sysdate, 'yymmdd')
+	</select>
 
 </mapper>

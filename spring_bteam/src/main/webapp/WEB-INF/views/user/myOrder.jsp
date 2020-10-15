@@ -83,7 +83,7 @@ function go_detail(order_num){
 }
 
 function orderCancel(order_num){
-	if(cancelReason != ''){
+
 	$.ajax({
 		url: 'orderCancel',
 		data: {	order_num : order_num,
@@ -98,7 +98,7 @@ function orderCancel(order_num){
 			alert(text + " : " + req.status);
 		}
 	});
-	}else return false;
+
 }
 
 function review_write(order_num){
