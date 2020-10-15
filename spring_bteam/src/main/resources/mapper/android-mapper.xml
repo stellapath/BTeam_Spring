@@ -60,6 +60,7 @@
 		select rownum, n.*
 		from (
 			select * from traffic
+			where tra_solve = 0
 			order by tra_readcount desc
 		) n
 		where rownum between 1 and 3
@@ -101,4 +102,31 @@
 		user_address = #{user_address}, user_birth = #{user_birth}
 		where user_email = #{user_email}
 	</update>
+	
+	<update id="trafficSolve">
+		update traffic
+		set tra_solve = 1
+		where tra_num = #{num}
+	</update>
+	
+	<select id="trafficLikeSu" resultType="Integer">
+		select count(like_id) from traffic_like
+		where like_board = #{num}
+	</select>
+	
+	<select id="trafficLikeSelect" resultType="Integer">
+		select count(like_id) from traffic_like
+		where like_email = #{email}
+		and like_board = #{num}
+	</select>
+	
+	<insert id="trafficLikeInsert">
+		insert into traffic_like (like_email, like_board)
+		values (#{email}, #{num})
+	</insert>
+	
+	<delete id="trafficLikeDelete">
+		delete from traffic_like
+		where like_email = #{email} and like_board = #{num}
+	</delete>
 </mapper>

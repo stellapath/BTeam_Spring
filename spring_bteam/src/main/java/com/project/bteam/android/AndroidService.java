@@ -21,4 +21,9 @@ public interface AndroidService {
 	int andVerifyEmail(String email);
 	int andUpdatePassword(Map<String, String> map);
 	int andUserUpdate(UserVO vo);
+	int andTrafficSolve(int num);
+	int andTrafficLikeInsert(Map<String, Object> map);
+	int andTrafficLikeDelete(Map<String, Object> map);
+	boolean andTrafficLikeSelect(Map<String, Object> map);
+	int andTrafficLikeSu(int num);
 }

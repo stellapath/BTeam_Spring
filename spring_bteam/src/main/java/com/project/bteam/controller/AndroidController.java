@@ -175,4 +175,33 @@ public class AndroidController {
 		System.out.println("::andUserUpdate::");
 		return service.andUserUpdate(vo) > 0;
 	}
+	
+	// 해결
+	@ResponseBody @RequestMapping("/andTrafficSolve")
+	public boolean andTrafficSolve(int num) {
+		return service.andTrafficSolve(num) > 0;
+	}
+	
+	// 좋아요 수 반환
+	@ResponseBody @RequestMapping("/andTrafficLikeSu")
+	public int andTrafficLikeSu(int num) {
+		return service.andTrafficLikeSu(num);
+	}
+	
+	// 좋아요 처리
+	@ResponseBody @RequestMapping("/andTrafficLike")
+	public int andTrafficLike(String email, int num) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("email", email);
+		map.put("num", num);
+		
+		// 좋아요 유무 체크
+		if (service.andTrafficLikeSelect(map)) {
+			// 이미 있으면 없애는 처리
+			return service.andTrafficLikeDelete(map);
+		} else {
+			// 없으면 추가하는 처리
+			return service.andTrafficLikeInsert(map);
+		}	
+	}
 }

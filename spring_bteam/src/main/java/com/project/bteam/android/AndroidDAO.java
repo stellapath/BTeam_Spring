@@ -85,4 +85,29 @@ public class AndroidDAO implements AndroidService {
 	public int andUserUpdate(UserVO vo) {
 		return sql.update("android.updateUser", vo);
 	}
+	
+	@Override
+	public int andTrafficSolve(int num) {
+		return sql.update("android.trafficSolve", num);
+	}
+	
+	@Override
+	public int andTrafficLikeInsert(Map<String, Object> map) {
+		return sql.insert("android.trafficLikeInsert", map);
+	}
+	
+	@Override
+	public boolean andTrafficLikeSelect(Map<String, Object> map) {
+		return (Integer) sql.selectOne("android.trafficLikeSelect", map) > 0;
+	}
+	
+	@Override
+	public int andTrafficLikeSu(int num) {
+		return sql.selectOne("android.trafficLikeSu", num);
+	}
+	
+	@Override
+	public int andTrafficLikeDelete(Map<String, Object> map) {
+		return sql.delete("android.trafficLikeDelete", map);
+	}
 }

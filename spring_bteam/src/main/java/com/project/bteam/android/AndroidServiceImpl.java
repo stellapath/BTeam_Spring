@@ -83,4 +83,29 @@ public class AndroidServiceImpl implements AndroidService {
 	public int andUserUpdate(UserVO vo) {
 		return dao.andUserUpdate(vo);
 	}
+	
+	@Override
+	public int andTrafficSolve(int num) {
+		return dao.andTrafficSolve(num);
+	}
+	
+	@Override
+	public int andTrafficLikeInsert(Map<String, Object> map) {
+		return dao.andTrafficLikeInsert(map);
+	}
+	
+	@Override
+	public boolean andTrafficLikeSelect(Map<String, Object> map) {
+		return dao.andTrafficLikeSelect(map);
+	}
+	
+	@Override
+	public int andTrafficLikeSu(int num) {
+		return dao.andTrafficLikeSu(num);
+	}
+	
+	@Override
+	public int andTrafficLikeDelete(Map<String, Object> map) {
+		return dao.andTrafficLikeDelete(map);
+	}
 }
