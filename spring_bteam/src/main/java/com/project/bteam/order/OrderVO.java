@@ -6,10 +6,9 @@ public class OrderVO {
 	
 	//BORDER 테이블
 	private int order_count, order_amount, deliv_zipcode;
-	private String order_num, order_email, order_name, order_phone, order_product, order_color, order_pay,
+	private String order_num, order_email, order_name, order_phone, order_product, order_color, order_pay, order_date,
 					deliv_name, deliv_phone, deliv_address, deliv_detailaddress, deliv_memo, order_review;
 	
-	private Date order_date;
 
 	//BMERCHANDISE 테이블(판매제품 등록관리)
 	private String p_name, p_num;
@@ -137,10 +136,10 @@ public class OrderVO {
 	public void setDeliv_memo(String deliv_memo) {
 		this.deliv_memo = deliv_memo;
 	}
-	public Date getOrder_date() {
+	public String getOrder_date() {
 		return order_date;
 	}
-	public void setOrder_date(Date order_date) {
+	public void setOrder_date(String order_date) {
 		this.order_date = order_date;
 	}
 	

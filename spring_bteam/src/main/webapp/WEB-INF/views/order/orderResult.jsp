@@ -57,7 +57,7 @@
 			<table>
 				<tr><th>결제방식</th><th>결제일시</th><th>결제금액</th></tr>
 				<tr><td>${vo.order_pay }</td>
-					<td><c:if test="${vo.order_date < today  }">${ vo.order_date}</c:if>
+					<td><c:if test="${vo.order_date < today  }">${vo.order_date}</c:if>
 						<c:if test="${vo.order_date >= today  }">
 							<c:if test="${vo.order_pay eq '무통장입금' }">입금대기중</c:if>
 							<c:if test="${vo.order_pay ne '무통장입금' }">${ vo.order_date}</c:if>
