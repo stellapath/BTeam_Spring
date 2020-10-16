@@ -76,7 +76,7 @@
 
 <div class="myContent">
 <c:if test="${login_info.user_email eq 'admin'}">
-<a class="btn_fill" href="qnaWrite">답변작성</a>
+<a class="btn_fill" href="qnaList">답변작성</a>
 </c:if>
 <c:if test="${login_info.user_email ne 'admin'}">
 <a class="btn_fill" href="qnaWrite">일대일 문의하기</a>

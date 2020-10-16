@@ -50,6 +50,9 @@ history.back();
 			<td>${qvo.qna_category}</td>
 			<td class="left">
 				<a class="question">${qvo.qna_question}</a>
+				<c:if test="${qvo.qna_answer ne null }">
+				<i class="far fa-comment-dots"></i>
+				</c:if>	
 			</td>
 			<td>${qvo.qna_nickname}</td>
 			<td>${qvo.qna_writedate}</td>
@@ -70,6 +73,14 @@ history.back();
 			<td colspan="7">
 				<div class="answers">
 					<p>${fn:replace(qvo.qna_content, crlf, '<br/>')}</p>
+					<hr>
+					<c:if test="${qvo.qna_answer ne null }">
+					<div>[답변]<br/><br/>${fn:replace(qvo.qna_answer, crlf, '<br/>')}
+					</div>
+					</c:if>
+					<c:if test="${qvo.qna_answer eq null }">
+					<div>[답변]<br/><br/>문의글 확인중입니다. 빠른시일내 답변해드리겠습니다.</div>
+					</c:if>
 					<a class="btn_fill" id="reply" href="emailReply?qna_num=${qvo.qna_num }">이메일 답변 작성</a>
 				</div>
 			</td>
@@ -86,6 +97,7 @@ history.back();
 <script type="text/javascript">
 $('.question').click(function(){
 	$(this).parents('tr').next('.contents').toggle();
+	$('tr.contents').not($(this).parents('tr').next()).hide();
 });
 
 </script>
