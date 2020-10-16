@@ -60,7 +60,7 @@ public class AdminController {
 							String keyword,
 							@RequestParam(defaultValue="10") int pageList,
 							@RequestParam(defaultValue="1") int curPage) {
-		session.setAttribute("menu", "orderList");
+		session.setAttribute("mypage", "orderList");
 		page.setOrderStatus(orderStatus);
 		page.setKeyword(keyword);
 		page.setCurPage(curPage);

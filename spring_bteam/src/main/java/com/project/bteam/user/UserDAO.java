@@ -94,7 +94,6 @@ public class UserDAO implements UserService {
 	@Override
 	public String userEmailCertification() {
 		String key = getKey(false, 6);
-
 		return key;
 	}
 

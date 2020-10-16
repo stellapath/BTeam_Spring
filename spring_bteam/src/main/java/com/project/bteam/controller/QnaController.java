@@ -81,7 +81,7 @@ public class QnaController {
 	@RequestMapping("/qnaList")
 	public String qnaList1(Model model, HttpSession session,
 						@RequestParam(defaultValue = "1") int curPage) {
-	session.setAttribute("menu", "qnaList");
+	session.setAttribute("mypage", "qnaList");
 	page.setCurPage(curPage);
 	
 	model.addAttribute("crlf", "\r\n" );

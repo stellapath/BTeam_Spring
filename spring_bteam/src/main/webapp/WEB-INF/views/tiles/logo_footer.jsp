@@ -23,8 +23,8 @@ ul li{float: left;}
 .button {background-color: #F8AA34;}
 
 /*푸터*/
-footer { padding:20px 0px; background-color: #dddedf; width:auto; height: 200px; margin:0; bottom: 0; margin-top: auto; z-index: 9999;} 
-#footerZone { width: 80%; margin: 0 auto;    height: 100%;    padding-top: 20px; box-sizing: border-box; min-width: max-content;}
+footer { padding:25px 0px; background-color: #dddedf; width:auto; height: 200px; margin:0; bottom: 0; margin-top: auto; z-index: 9999;} 
+#footerZone { width: 80%; margin: 0 auto;    height: max-content;  box-sizing: border-box; min-width: max-content;}
 #footerLeft { float: left;}
 #footerRight { float: right; margin-right: 50px;}
 #footerZone p{ margin: 0; font-size: 15px; font-size: 15px; text-align: left;}

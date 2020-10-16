@@ -59,10 +59,10 @@ history.back();
 			<td style="text-align: left;">
 			<label>
 				<img alt="파일선택" src="img/attach.png" class="file_icon">
-				<input type="file" name="file" id="attach_file"/>
+				<input type="file" name="file" id="attach-file"/>
 			</label>
-			<span id="board_filename" ></span>
-			<span id="delete_file" style="color : red;">
+			<span id="board-filename" ></span>
+			<span id="delete-file" style="color : red;">
 				<i class="fas fa-times file_icon"></i>
 			</span>
 			</td>
@@ -75,16 +75,17 @@ history.back();
 	</div>
 </div>	
 <script type="text/javascript">
-$('#attach_file').on('change', function(){
+$('#attach-file').on('change', function(){
 	if( this.files[0] ) $('#board_filename').text( this.files[0].name );
-	$('#delete_file').css('display', 'inline');
+	$('#delete-file').css('display', 'inline');
 });
 
-$('#delete_file').on('click', function(){
+$('#delete-file').on('click', function(){
 	$('#board_filename').text('');
-	$('#attach_file').val('');
-	$('#delete_file').css('display', 'none');
+	$('#attach-file').val('');
+	$('#delete-file').css('display', 'none');
 });
+
 </script>
 </body>
 </html>

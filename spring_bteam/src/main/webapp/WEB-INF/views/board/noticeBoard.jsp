@@ -14,6 +14,7 @@ pageContext.setAttribute("bvo", bvo);
 <title>공지사항</title>
 <style type="text/css">
 #btnWrite{ float: right; margin-right: 20px; margin-bottom: 20px;}
+[name=search] {height: 35px; width: 80px;}
 </style>
 </head>
 <body>

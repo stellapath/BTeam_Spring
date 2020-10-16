@@ -13,7 +13,8 @@
 /* 	border-radius: 10px; */
 /* 	background-color: #bfe2f5; */
 /* } */
-
+/* #company_image{background-color: #1c1c1c; width: 100%; height:max-content; max-height: 400px; box-sizing: border-box; margin: 40px 0;} */
+.full_image {width: 100%; max-width: 1000px;}
 #staticMap { margin: 30px 0;}
 </style>
 </head>
@@ -23,15 +24,14 @@
 	<div class="titleLine"></div>
 </div>
 <div id="companyAbout">
-	<div id="company_image">
-<!----------------------------------------------------회사소개이미지---------------------------------------------------->
-		<img alt="회사소개이미지" src="img/company.png" class="full_image">
-	</div>
+	
 	<div class="bgInner">
-		<div class="innerTitle">
+		<div class="innerTitle" style="margin: 20px 0;">
 			<p>W E L C O M E</p>
 			<p>우산써조를 방문해 주셔서 감사합니다.</p>
 		</div>
+		<div class="titleLine"></div>
+		<img alt="우산써조" src="img/web_banner/work_area.png" class="full_image"/>
 		<div class="innerContent">
 			<div>
 <!----------------------------------------------------회사소개 좌측글--------------------------------------------------->
@@ -53,7 +53,8 @@
 	</div>
 </div>
 <div id="companyLoad">
-	<h3 class="o">오시는길</h3>
+	<p class="subTitleName">오시는 길</p>
+	<div class="titleLine"></div>
 
 	<p>(619-28) 광주광역시 서구 경열로 3 ( 농성동 271-4 )</p>
 	<div id="staticMap" style="width: 100%; height: 500px;"></div>
