@@ -1,4 +1,6 @@
 # 유저 (멤버)
+<pre>
+<code>
 create table bUser (
 	user_email		 varchar2(30)	 primary key,
 	user_pw			 varchar2(30)	 not null,
@@ -16,8 +18,12 @@ create table bUser (
 -- 컬럼 추가됨 (user_image)
 alter table bUser add user_image varchar2(300) default 'default_profile.png';
 alter table bUser add user_imagepath varchar2(200) default '';
+</code>
+</pre>
 
 # 게시판
+<pre>
+<code>
 create table bBoard (
 	board_num	number	primary key,
 	board_category	number	not null,
@@ -42,8 +48,12 @@ create sequence board_seq increment by 1;
 alter table bBoard add	board_readcnt number default 0;
 alter table bBoard add	board_filename varchar2(1024);
 alter table bBoard add	board_filepath varchar2(1024);
+</pre>
+</code>
 
 # 주문
+<pre>
+<code>
 create table bOrder (
 	order_num		number			primary key,
 	order_email		varchar2(30) 	    	not null,
@@ -63,8 +73,12 @@ create table bOrder (
   	deliv_memo		varchar2(1024)	
 
 );
+</pre>
+</code>
 
 # 문의
+<pre>
+<code>
 create table bQna (
 	qna_num			number			primary key,
 	qna_email		varchar2(30) 	not null,
@@ -72,11 +86,17 @@ create table bQna (
 	qna_category		varchar2(30),
 	qna_content		varchar2(1024) 	not null,
 );
+</pre>
+</code>
 
 # 판매제품 테이블
+<pre>
+<code>
 create table tmerchandise (
 	M_NUM		VARCHAR2(50)		constraint m_num_pk primary key,
 	M_NAME		VARCHAR2(50),
 	M_PRICE		NUMBER				not null,
 	M_DATE		DATE
 );
+</pre>
+</code>
