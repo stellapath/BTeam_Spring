@@ -92,5 +92,10 @@ public class OrderDAO implements OrderService{
 		return sql.selectOne("order.reviewProduct", board_num);
 	}
 
+	@Override
+	public OrderVO productDetail(String p_num) {
+		return sql.selectOne("order.productDetail", p_num);
+	}
+
 	
 }

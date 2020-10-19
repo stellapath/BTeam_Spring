@@ -2,11 +2,16 @@ package com.project.bteam.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.project.bteam.order.OrderServiceImpl;
 
 @Controller
 public class HomeController {
+	@Autowired private OrderServiceImpl order;
 	
 	// 메인
 	@RequestMapping("/home")
@@ -27,6 +32,14 @@ public class HomeController {
 	public String product(HttpSession session) {
 		session.setAttribute("menu", "product");
 		return "page/product";
+	}
+	
+	// 제품상세소개
+	@RequestMapping("/productDetail")
+	public String productDetail(Model model, HttpSession session) {
+		session.setAttribute("menu", "product");
+		model.addAttribute("product", order.productList());
+		return "page/productDetail";
 	}
 	
 	// 서비스안내

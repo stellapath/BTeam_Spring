@@ -11,10 +11,34 @@ public class OrderVO {
 	
 
 	//BMERCHANDISE 테이블(판매제품 등록관리)
-	private String p_name, p_num;
+	private String p_name, p_num, p_defaultimage_name, p_defaultimage_path, p_detailimage_name, p_detailimage_path;
 	private int p_price;
 	private Date p_date;
 	
+	public String getP_defaultimage_name() {
+		return p_defaultimage_name;
+	}
+	public void setP_defaultimage_name(String p_defaultimage_name) {
+		this.p_defaultimage_name = p_defaultimage_name;
+	}
+	public String getP_defaultimage_path() {
+		return p_defaultimage_path;
+	}
+	public void setP_defaultimage_path(String p_defaultimage_path) {
+		this.p_defaultimage_path = p_defaultimage_path;
+	}
+	public String getP_detailimage_name() {
+		return p_detailimage_name;
+	}
+	public void setP_detailimage_name(String p_detailimage_name) {
+		this.p_detailimage_name = p_detailimage_name;
+	}
+	public String getP_detailimage_path() {
+		return p_detailimage_path;
+	}
+	public void setP_detailimage_path(String p_detailimage_path) {
+		this.p_detailimage_path = p_detailimage_path;
+	}
 	public String getP_name() {
 		return p_name;
 	}

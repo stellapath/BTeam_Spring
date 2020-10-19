@@ -5,17 +5,23 @@
 	<!--관리자 전용 -->
 
 	<delete id="productUpdate">
-		update bProduct set p_name = #{p_name}, p_price = #{p_price} where p_num =
-		#{p_num}
+		update bProduct set p_name = #{p_name}, p_price = #{p_price}, 
+							p_defaultimage_name = #{p_defaultimage_name, jdbcType=VARCHAR}, p_defaultimage_path = #{p_defaultimage_path, jdbcType=VARCHAR}, 
+							p_detailimage_name = #{p_detailimage_name, jdbcType=VARCHAR}, p_detailimage_path = #{p_detailimage_path, jdbcType=VARCHAR} 
+		where p_num = #{p_num}
 	</delete>
-
+	
+	<select id="productDetail" resultType="OrderVO">
+		select * from bProduct where p_num = #{p_num}
+	</select>
+	
 	<delete id="productDelete">
 		delete from bProduct where p_num = #{p_num}
 	</delete>
 
 	<insert id="productAdd">
-		insert into bProduct (p_num, p_name, p_price) values (#{p_num}, #{p_name},
-		#{p_price})
+		insert into bProduct (p_num, p_name, p_price, p_defaultimage_name, p_defaultimage_path, p_detailimage_name, p_detailimage_path) 
+		values (#{p_num}, #{p_name}, #{p_price}, #{p_defaultimage_name, jdbcType=VARCHAR}, #{p_defaultimage_path, jdbcType=VARCHAR}, #{p_detailimage_name, jdbcType=VARCHAR}, #{p_detailimage_path, jdbcType=VARCHAR} )
 	</insert>
 
 	<select id="adminTotal" resultType="Integer">

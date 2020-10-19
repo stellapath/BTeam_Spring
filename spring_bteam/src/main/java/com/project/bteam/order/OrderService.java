@@ -24,6 +24,7 @@ public interface OrderService {
 	//관리자모드
 	BoardPage orderAdminList(BoardPage page);				//주문내역 조회
 	void productAdd(OrderVO vo);							//판매제품등록
+	OrderVO productDetail(String p_num);					//판매제품정보조회
 	int productDelete(String p_num);						//판매제품삭제
 	int productUpdate(OrderVO vo);							//판매제품수정
 

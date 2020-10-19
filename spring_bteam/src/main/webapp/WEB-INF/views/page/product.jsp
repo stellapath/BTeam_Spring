@@ -45,9 +45,10 @@ p.miniTitle{ margin-top: 20px;}
 	<div id="overBox">
 		<div class="boxSet overBox leftBox">
 			<div class="textBox">
-			<h3><i class="fas fa-mobile-alt"></i> 어플리케이션</h3>
+			<h3><i class="fas fa-mobile-alt"></i> 출근특보</h3>
 			<hr>
-			당신의 완벽한 하루의 시작을 돕는 알람어플리케이션입니다.
+			당신의 완벽한 하루의 시작을 돕는<br/> 
+			알람어플리케이션입니다.
 			</div>
 		</div>
 		<div class="boxSet overBox rightBox" style="background-color: #ededed;">
@@ -59,12 +60,13 @@ p.miniTitle{ margin-top: 20px;}
 			<a class="lineBox" onclick="go_order()"><i class="fas fa-angle-double-right"></i> 스마트우산 구매 바로가기</a>
 		</div>
 		<div class="boxSet underBox rightBox">
-			<img src="img/arduino.jpg" class="go_background"/>
 			<div class="textBox">
 			<h3><i class="fas fa-umbrella"></i> 스마트우산</h3>
 			<hr>
-			우산을 자주 잃어버리는 당신을 위한 스마트 우산
+			우산을 자주 잃어버리는 당신을 위한<br/>
+			어플리케이션 연동 스마트 우산
 			</div>
+			<a href="productDetail">제품상세페이지</a>
 		</div>
 	</div>
 </div>
@@ -90,7 +92,7 @@ p.miniTitle{ margin-top: 20px;}
 		</div>
 		<div class="d_Content">
 			<div class="d_title">
-				<p>기능안내</p>
+				<p>주요기능안내</p>
 				<div class="titleLine"></div>
 			</div>
 			<div class="d_text">
@@ -121,7 +123,7 @@ p.miniTitle{ margin-top: 20px;}
 		</div>
 		<div class="d_Content">
 			<div class="d_title">
-				<p>기능안내</p>
+				<p>주요기능안내</p>
 				<div class="titleLine"></div>
 			</div>
 			<div class="d_text">
@@ -139,6 +141,10 @@ p.miniTitle{ margin-top: 20px;}
 	</div>
 </div>
 <script type="text/javascript">
+$(function(){
+	$('#app').addClass('clicked');
+	$('#appBox').show();
+});
 $(document).on('click', '#app', function(){
 	$('#app').addClass('clicked');
 	$('#iot').removeClass('clicked');
@@ -163,7 +169,7 @@ $(function(){
 	function slideBanner() { 
 		$slide.css({ "margin-left": "-100%", "transition": "1s" });
         window.setTimeout(function () {  
-							$slide.removeAttr("style").children(":first").appendTo($slide); }, 400);
+							$slide.removeAttr("style").children(":first").appendTo($slide); }, 1500);
     }
 });
 
@@ -178,14 +184,9 @@ $(function(){
 	function slideBanner() { 
 		$slide01.css({ "margin-left": "-100%", "transition": "1s" });
         window.setTimeout(function () {  
-							$slide01.removeAttr("style").children(":first").appendTo($slide01); }, 400);
+							$slide01.removeAttr("style").children(":first").appendTo($slide01); }, 1500);
     }
 });
-
-
-
-
-
 
 function go_order(){
 	if('${login_info.user_email}' == ""){
