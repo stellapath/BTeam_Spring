@@ -6,6 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 수정</title>
+<c:if test="${login_info.user_email ne 'admin'}">
+<script>
+alert("관리자전용 페이지입니다.");
+location.href='login';
+</script>
+</c:if>
 </head>
 <body>
 <div class="pageName">

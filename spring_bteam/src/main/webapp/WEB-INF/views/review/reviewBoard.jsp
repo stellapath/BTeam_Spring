@@ -141,7 +141,7 @@
 </div>
 <script type="text/javascript">
 $('.board_title').click(function(){
-	$(this).parents('tr').next().show();
+	$(this).parents('tr').next().toggle();
 	$('tr.review_detail').not($(this).parents('tr').next()).hide();
 });
 

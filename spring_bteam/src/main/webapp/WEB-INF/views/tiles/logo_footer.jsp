@@ -23,7 +23,7 @@ ul li{float: left;}
 .button {background-color: #F8AA34;}
 
 /*푸터*/
-footer { padding:25px 0px; background-color: #dddedf; width:auto; height: 200px; margin:0; bottom: 0; margin-top: auto; z-index: 9999;} 
+footer { padding:25px 0px; background-color: #dddedf; width:auto; height: 200px; margin:0; bottom: 0; margin-top: auto; } 
 #footerZone { width: 80%; margin: 0 auto;    height: max-content;  box-sizing: border-box; min-width: max-content;}
 #footerLeft { float: left;}
 #footerRight { float: right; margin-right: 50px;}

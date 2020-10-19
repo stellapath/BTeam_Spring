@@ -85,17 +85,14 @@ public class CommonService {
 				msg.append("<html>");
 				msg.append("<body>");
 				msg.append("<div style='width:700px; text-align: center;'>");
-				msg.append("<img src='http://192.168.0.60:80/bteam/img/pre_logo.png' style='width: 150px; height: 150px; margin: 0 auto;'/>");
-				msg.append("<h3>문의해주셔서 감사합니다.</h3>");
+				msg.append("<img src='http://192.168.0.72:8282/bteam/img/logo/logo_transparent.png' style='background-color: #232F34; width: 150px; height: 150px; margin: 0 auto;'/>");
+				msg.append("<h3>${vo.user_nickname }님 문의해주셔서 감사합니다.</h3>");
 				msg.append("<table style='border: 1px solid #666; width: 100%; margin: 0 auto;'>"
 							+ "<tr><td colspan='2' style='padding: 20px; text-align: center; font-size: 15px; background-color: #ededed;'>문의정보</td></tr>" 
 							+ "<tr><th style='width: 100px;'>등록일</th><td>"+ qvo.getQna_writedate() +"</td></tr>"
 							+ "<tr><th>구분</th><td>"+ qvo.getQna_category() +"</td></tr>"
 							+ "<tr><th>질문</th><td>"+ qvo.getQna_question() +"</td></tr>"
 							+ "<tr><th>문의내용</th><td>"+ qvo.getQna_content() +"</td></tr>"
-							+ "<tr><td colspan='2' style='padding: 20px; text-align: center; font-size: 15px; background-color: #ededed;'>작성자정보</th></tr>"
-							+ "<tr><th>작성자</th><td>"+ qvo.getQna_nickname() +"</td></tr>"
-							+ "<tr><th>이메일</th><td>"+ qvo.getQna_email() +"</td></tr>"
 							+ "<tr><td colspan='2' style='padding: 20px; text-align: center; font-size: 15px; background-color: #ededed;'>답변정보</th></tr>"
 							+ "<tr><th>답변일</th><td>"+ qvo.getQna_answerdate() +"</td></tr>"
 							+ "<tr><th>답변내용</th><td>"+ qvo.getQna_answer() +"</td></tr>" 
@@ -134,15 +131,15 @@ public class CommonService {
 				msg.append("<html>");
 				msg.append("<body>");
 				msg.append("<div style='width:700px; text-align: center;'>");
-				msg.append("<img src='http://192.168.0.72:8282/bteam/img/pre_logo.png' style='width: 150px; height: 150px; margin: 0 auto;'/>");
+				msg.append("<img src='http://192.168.0.72:8282/bteam/img/logo/logo_transparent.png' style='background-color: #232F34; width: 150px; height: 150px; margin: 0 auto;'/>");
 				msg.append("<h3>"+vo.getOrder_name()+"님의 주문이 취소되었습니다.</h3>"
 							+ "<h4>주문취소사유는 다음과 같습니다.</h4>");
-				msg.append("<div style='border: 1px solid #666; width: 50%; margin: 0 auto; margin-bottom: 50px;'>"
-							+ "<p>주문취소사유 : "+cancelReason+"</p>"
+				msg.append("<div style='border: 1px solid #666; width: 100%; max-width:600px; margin: 0 auto; margin-bottom: 50px;'>"
+							+ "<p style='color: red; font-weight: bold;'>주문취소사유 : "+cancelReason+"</p>"
 							+ "<p>환불에는 영업일기준 약 3~5일이 소요됩니다.</p>"
 							+ "</div>");
 				msg.append("<h4>나의 주문내역</h4>"
-							+ "<table style='border: 1px solid #666; width: 100%; margin: 0 auto;'>"
+							+ "<table style='border: 1px solid #666; width: 100%; max-width:600px; margin: 0 auto;'>"
 							+ "<tr><td colspan='2' style='padding: 20px; text-align: center; font-size: 15px; background-color: #ededed;'>주문정보</td></tr>" 
 							+ "<tr><th style='width: 100px;'>주문번호</th><td>"+ vo.getOrder_num() +"</td></tr>"
 							+ "<tr><th>제품명</th><td>"+vo.getOrder_product()+"</td></tr>"
@@ -193,9 +190,9 @@ public class CommonService {
 			msg.append("<html>");
 			msg.append("<body>");
 			msg.append("<div style='width:700px; text-align: center;'>");
-			msg.append("<img src='http://192.168.0.72:8282/bteam/img/pre_logo.png' style='width: 150px; height: 150px; margin: 0 auto;'/>");
+			msg.append("<img src='http://192.168.0.72:8282/bteam/img/logo/logo_transparent.png' style='background-color: #232F34; width: 150px; height: 150px; margin: 0 auto;'/>");
 			msg.append("<h3>주문해주셔서 감사합니다.</h3>");
-			msg.append("<table style='border: 1px solid #666; width: 100%; margin: 0 auto;'>"
+			msg.append("<table style='border: 1px solid #666; width: 100%; max-width:600px; margin: 0 auto;'>"
 						+ "<tr><td colspan='2' style='padding: 20px; text-align: center; font-size: 15px; background-color: #ededed;'>주문정보</td></tr>" 
 						+ "<tr><th style='width: 100px;'>주문번호</th><td>"+ vo.getOrder_num() +"</td></tr>"
 						+ "<tr><th>제품명</th><td>"+vo.getOrder_product()+"</td></tr>"

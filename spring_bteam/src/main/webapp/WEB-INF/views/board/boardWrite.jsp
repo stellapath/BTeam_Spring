@@ -15,21 +15,12 @@ pageContext.setAttribute("name", name);
 <head>
 <meta charset="UTF-8">
 <title>${name} 글쓰기</title>
-<%-- 로그인 하지 않았을 경우 --%>
-<c:if test="${login_info eq null}">
+<c:if test="${login_info.user_email ne 'admin'}">
 <script>
-alert("로그인하신 사용자만 작성 가능합니다.");
-history.back();
+alert("관리자전용 페이지입니다.");
+location.href='login';
 </script>
 </c:if>
-<%-- 카테고리가 0이고 로그인된 사용자가 admin이 아니면 --%>
-<c:if test="${board_category eq 0 and login_info.user_email ne 'admin'}">
-<script>
-alert("공지사항은 관리자만 작성할 수 있습니다.");
-history.back();
-</script>
-</c:if>
-
 </head>
 <body>
 <div class="pageName">

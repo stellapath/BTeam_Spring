@@ -70,7 +70,9 @@ $(document).ready(function() {
       <input type="submit" value="로그인" class="button" onclick="go_login()"><br>
       <input type="reset" value="취소 " class="reset"/>
    </p>
-   
+<div>  
+<p id="token-result"></p>
+   </div>   
    <div id="signup">
       <ul>
          <li><a href="pwcheck" >비밀번호 찾기</a></li>
