@@ -138,6 +138,15 @@ public class AdminController {
 		return "admin/orderList";
 	}
 		
+	// 회원정보 페이지 요청
+	@RequestMapping("/userInfo")
+	public String userInfo(String user_email, Model model, HttpSession session) {
+		session.setAttribute("mypage", "userInfo");
+		UserVO vo = user.userDetail(user_email);
+		model.addAttribute("vo", vo);
+		return "admin/userInfo";
+	}
+	
 	// 회원관리 페이지 요청
 	@RequestMapping("/userList")
 	public String userList(Model model, HttpSession session) {

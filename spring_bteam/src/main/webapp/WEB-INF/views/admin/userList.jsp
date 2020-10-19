@@ -6,6 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>회원관리</title>
+<style type="text/css">
+.nickname:hover{
+	font-weight: bold;
+	color : #F8AA34;
+}
+</style>
 <c:if test="${login_info.user_email ne 'admin'}">
 <script>
 alert("관리자전용 페이지입니다.");
@@ -29,6 +35,9 @@ location.href='login';
 	<p class="subTitleName">고객관리</p>
 	<div class="titleLine"></div>
 </div>
+<form action="userInfo" method="post">
+<input type="hidden" name="user_email"/>
+</form>
 <table>
 <tr><th>회원번호</th>
 	<th>닉네임</th>
@@ -38,7 +47,7 @@ location.href='login';
 </tr>
 <c:forEach items="${list}" var="vo">	
 <tr><td>${vo.user_num }</td>
-	<td>${vo.user_nickname }</td>
+	<td><a class="nickname" onclick="go_detail('${vo.user_email }')">${vo.user_nickname }</a></td>
 	<td style="text-align: left;"><a class="left">${vo.user_email }</a></td>
 	<td><fmt:parseDate value="${vo.user_birth }" pattern="yyyy-MM-dd" var="user_birth"/>
 		<fmt:formatDate value="${ user_birth}" pattern="yyyy-MM-dd"/>
@@ -69,6 +78,11 @@ function goodbyeMember( user_email ){
 	}else{
 		alert('회원탈퇴가 취소되었습니다.');
 	}
+}
+
+function go_detail(user_email){
+	$('[name=user_email]').val(user_email);
+	$('form').submit();
 }
 </script>
 </body>
