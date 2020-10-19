@@ -9,7 +9,7 @@
 <c:if test="${login_info.user_email ne 'admin'}">
 <script>
 alert("관리자전용 페이지입니다.");
-history.back();
+location.href='login';
 </script>
 </c:if>
 <link rel="stylesheet" href="css/adminQna.css">
