@@ -28,7 +28,7 @@
 	</select>
 
 	<select id="detail" resultType="UserVO">
-	select * from bUser
+	select to_char(user_birth, 'YYYY-MM-DD') user_birth, u.* from bUser u
 	where user_email = #{user_email}
 	</select>
 
