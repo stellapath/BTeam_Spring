@@ -190,7 +190,7 @@ public class CommonService {
 			msg.append("<html>");
 			msg.append("<body>");
 			msg.append("<div style='width:700px; text-align: center;'>");
-			msg.append("<img src='http://192.168.0.72:8282/bteam/img/logo/logo_transparent.png' style='background-color: #232F34; width: 150px; height: 150px; margin: 0 auto;'/>");
+			msg.append("<img src='http://112.164.58.7:8282/bteam/img/logo/logo_transparent.png' style='background-color: #232F34; width: 150px; height: 150px; margin: 0 auto;'/>");
 			msg.append("<h3>주문해주셔서 감사합니다.</h3>");
 			msg.append("<table style='border: 1px solid #666; width: 100%; max-width:600px; margin: 0 auto;'>"
 						+ "<tr><td colspan='2' style='padding: 20px; text-align: center; font-size: 15px; background-color: #ededed;'>주문정보</td></tr>" 
@@ -229,6 +229,7 @@ public class CommonService {
 	}	
 	//이메일 인증번호발송
 	private void send_emailcheck(String email, String key, HttpSession session) {
+		File logofile = new File(session.getServletContext().getRealPath("resources")+"/img/logo/logo_transparent.png");
 		HtmlEmail mail = new HtmlEmail();
 		//메일을 작성할 서버를 지정
 		mail.setHostName("smtp.gmail.com");
@@ -245,11 +246,11 @@ public class CommonService {
 			mail.setSubject("회원가입 인증 이메일입니다.");
 			StringBuffer msg = new StringBuffer();
 			msg.append("<html>");
-			msg.append("<body>");
-			msg.append("<img src='img/pre_logo.png' style='width: 300px; height: 300px; margin: 0 auto;'/>");
+			msg.append("<body style='text-align:center;'>");
+			msg.append("<img src='http://112.164.58.7:8282/bteam/img/logo/logo_transparent.png' style='background-color: #232F34; width: 150px; height: 150px; margin: 0 auto;'/>");
 			msg.append("<hr>");
-			msg.append(key);
-			msg.append("<h3>받으신 인증번호를 입력해주시면 이메일 인증이 완료됩니다.</h3>");
+			msg.append("인증키 : "+key);
+			msg.append("<h3>발급된 인증번호를 입력해주시면 이메일 인증이 완료됩니다.</h3>");
 			msg.append("</body>");
 			msg.append("</html>");
 			mail.setHtmlMsg(msg.toString());
@@ -290,8 +291,8 @@ public class CommonService {
 			mail.setSubject("비밀번호 재설정 이메일입니다.");
 			StringBuffer msg = new StringBuffer();
 			msg.append("<html>");
-			msg.append("<body>");
-			msg.append("<img src='img/pre_logo.png' style='width: 300px; height: 300px; margin: 0 auto;'/>");
+			msg.append("<body style='text-align:center;'>");
+			msg.append("<img src='http://112.164.58.7:8282/bteam/img/logo/logo_transparent.png' style='background-color: #232F34; width: 150px; height: 150px; margin: 0 auto;'/>");
 			msg.append("<hr>");
 			msg.append("임시 비밀번호 : " + pw);
 			msg.append("<h3>위의 비밀번호로 로그인 하신 뒤 비밀번호를 변경해주세요.</h3>");

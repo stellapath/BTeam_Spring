@@ -8,9 +8,9 @@
 	
 	<insert id="signup">
 	insert into bUser (user_email, user_pw, user_nickname, user_phone, 
-			user_zipcode, user_address, detail_address, user_birth, user_key)
+			user_zipcode, user_address, detail_address, user_birth, user_key, user_image, user_imagepath)
 	values (#{user_email}, #{user_pw}, #{user_nickname}, #{user_phone}, 
-			#{user_zipcode}, #{user_address}, #{detail_address}, #{user_birth}, #{user_key})
+			#{user_zipcode}, #{user_address}, #{detail_address}, #{user_birth}, #{user_key}, #{user_image}, #{user_imagepath})
 	</insert>
 	
 	<select id="email_check" resultType="Integer">
