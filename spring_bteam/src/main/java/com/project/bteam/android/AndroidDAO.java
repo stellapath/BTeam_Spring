@@ -110,4 +110,24 @@ public class AndroidDAO implements AndroidService {
 	public int andTrafficLikeDelete(Map<String, Object> map) {
 		return sql.delete("android.trafficLikeDelete", map);
 	}
+
+	@Override
+	public List<CommentVO> andCommentList() {
+		return sql.selectList("android.commentList");
+	}
+
+	@Override
+	public int andCommentInsert(CommentVO vo) {
+		return sql.insert("android.commentInsert", vo);
+	}
+
+	@Override
+	public int andCommentDelete(int num) {
+		return sql.delete("android.commentDelete", num);
+	}
+
+	@Override
+	public int andCommentUpdate(CommentVO vo) {
+		return sql.update("android.commentUpdate", vo);
+	}
 }

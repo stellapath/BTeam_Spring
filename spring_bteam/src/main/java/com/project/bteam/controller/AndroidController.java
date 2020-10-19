@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.google.gson.Gson;
 import com.project.bteam.android.AndroidServiceImpl;
+import com.project.bteam.android.CommentVO;
 import com.project.bteam.android.TrafficVO;
 import com.project.bteam.board.BoardServiceImpl;
 import com.project.bteam.common.CommonService;
@@ -203,5 +203,30 @@ public class AndroidController {
 			// 없으면 추가하는 처리
 			return service.andTrafficLikeInsert(map);
 		}	
+	}
+	
+	// 댓글 목록
+	@RequestMapping("/andCommentList")
+	public String andCommentList(Model model) {
+		model.addAttribute("list", service.andCommentList());
+		return "app/andCommentList";
+	}
+	
+	// 댓글 등록
+	@ResponseBody @RequestMapping("/andCommentInsert")
+	public boolean andCommentInsert(CommentVO vo) {
+		return service.andCommentInsert(vo) > 0;
+	}
+	
+	// 댓글 삭제
+	@ResponseBody @RequestMapping("/andCommentDelete")
+	public boolean andCommentDelete(int num) {
+		return service.andCommentDelete(num) > 0;
+	}
+	
+	// 댓글 수정
+	@ResponseBody @RequestMapping("/andCommentUpdate")
+	public boolean andCommentUpdate(CommentVO vo) {
+		return service.andCommentUpdate(vo) > 0;
 	}
 }

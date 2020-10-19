@@ -26,4 +26,8 @@ public interface AndroidService {
 	int andTrafficLikeDelete(Map<String, Object> map);
 	boolean andTrafficLikeSelect(Map<String, Object> map);
 	int andTrafficLikeSu(int num);
+	List<CommentVO> andCommentList();
+	int andCommentInsert(CommentVO vo);
+	int andCommentDelete(int num);
+	int andCommentUpdate(CommentVO vo);
 }

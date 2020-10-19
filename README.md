@@ -48,8 +48,8 @@ create sequence board_seq increment by 1;
 alter table bBoard add	board_readcnt number default 0;
 alter table bBoard add	board_filename varchar2(1024);
 alter table bBoard add	board_filepath varchar2(1024);
-</pre>
 </code>
+</pre>
 
 # 주문
 <pre>
@@ -73,8 +73,8 @@ create table bOrder (
   	deliv_memo		varchar2(1024)	
 
 );
-</pre>
 </code>
+</pre>
 
 # 문의
 <pre>
@@ -86,8 +86,8 @@ create table bQna (
 	qna_category		varchar2(30),
 	qna_content		varchar2(1024) 	not null,
 );
-</pre>
 </code>
+</pre>
 
 # 판매제품 테이블
 <pre>
@@ -98,5 +98,5 @@ create table tmerchandise (
 	M_PRICE		NUMBER				not null,
 	M_DATE		DATE
 );
-</pre>
 </code>
+</pre>

@@ -11,20 +11,16 @@
 
 	<select id="boardList" resultType="BoardVO">
 		select rownum, n.* 
-		from (
-			select * from bBoard 
-			where board_category = #{category} 
-			order by board_num desc
-		) n
+		from ( select * from bBoard 
+			   where board_category = #{category} 
+			   order by board_num desc ) n
 		where rownum between #{begin} and #{end}
 	</select>
 	
 	<select id="trafficList" resultType="com.project.bteam.android.TrafficVO">
 		select rownum, n.*
-		from (
-			select * from traffic
-			order by tra_num desc
-		) n
+		from ( select * from traffic
+			   order by tra_num desc ) n
 		where rownum between #{begin} and #{end}
 	</select>
 	
@@ -48,23 +44,22 @@
 	
 	<select id="myPost" resultType="com.project.bteam.android.TrafficVO">
 		select rownum, n.*
-		from (
-			select * from traffic
-			where tra_user_email = #{email}
-			order by tra_num desc
-		) n
+		from ( select * from traffic
+			   where tra_user_email = #{email}
+			   order by tra_num desc ) n
 		where rownum between #{begin} and #{end}
 	</select>
 	
 	<select id="popular" resultType="com.project.bteam.android.TrafficVO">
-		select rownum, n.*
-		from (
-			select * from traffic
-			where tra_solve = 0
-			order by tra_readcount desc
-		) n
+		select rownum, t.* from (
+		    select t.*, l.tra_like 
+		    from traffic t, ( select like_board, count(like_id) tra_like
+		                      from traffic_like
+		                      group by like_board ) l
+		    where t.tra_num = l.like_board(+)
+		    and t.tra_solve = 0
+		    order by l.tra_like asc, t.tra_readcount desc ) t
 		where rownum between 1 and 3
-		
 	</select>
 	
 	<update id="readCount">
@@ -129,4 +124,27 @@
 		delete from traffic_like
 		where like_email = #{email} and like_board = #{num}
 	</delete>
+	
+	<select id="commentList" resultType="com.project.bteam.android.CommentVO">
+		select * from traffic_comment
+		order by comment_id desc
+	</select>
+	
+	<insert id="commentInsert">
+		insert into traffic_comment (comment_board, comment_email, 
+		comment_image, comment_content)
+		values (#{comment_board}, #{comment_email}, #{comment_image}, 
+		#{comment_content})
+	</insert>
+	
+	<delete id="commentDelete">
+		delete from traffic_comment
+		where comment_id = #{num}
+	</delete>
+	
+	<update id="commentUpdate">
+		update traffic_comment
+		set comment_content = #{comment_content}
+		where comment_id = #{comment_id}
+	</update>
 </mapper>

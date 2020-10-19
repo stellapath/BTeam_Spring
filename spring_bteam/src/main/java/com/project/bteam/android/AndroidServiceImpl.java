@@ -108,4 +108,24 @@ public class AndroidServiceImpl implements AndroidService {
 	public int andTrafficLikeDelete(Map<String, Object> map) {
 		return dao.andTrafficLikeDelete(map);
 	}
+
+	@Override
+	public List<CommentVO> andCommentList() {
+		return dao.andCommentList();
+	}
+
+	@Override
+	public int andCommentInsert(CommentVO vo) {
+		return dao.andCommentInsert(vo);
+	}
+
+	@Override
+	public int andCommentDelete(int num) {
+		return dao.andCommentDelete(num);
+	}
+
+	@Override
+	public int andCommentUpdate(CommentVO vo) {
+		return dao.andCommentUpdate(vo);
+	}
 }
