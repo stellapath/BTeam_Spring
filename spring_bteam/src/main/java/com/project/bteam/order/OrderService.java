@@ -27,5 +27,7 @@ public interface OrderService {
 	OrderVO productDetail(String p_num);					//판매제품정보조회
 	int productDelete(String p_num);						//판매제품삭제
 	int productUpdate(OrderVO vo);							//판매제품수정
-
+	
+	//비회원주문내역조회
+	List<OrderVO> nonMemberList(HashMap<String, String> map);
 }

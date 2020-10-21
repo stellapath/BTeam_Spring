@@ -6,6 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>사용후기 작성</title>
+<c:if test="${empty login_info }">
+<script type="text/javascript">
+alert('로그인 후 작성가능합니다.');
+location.href="login";
+</script>
+</c:if>
 </head>
 <body>
 <div class="pageName">
@@ -14,8 +20,8 @@
 </div>
 <div>
 <form action="reviewUpdateReq" method="post" enctype="multipart/form-data">
-	<input type="hidden" name="board_nickname" value="${login_info.user_nickname}" />
-	<input type="hidden" name="board_email" value="${login_info.user_email}" />
+	<input type="hidden" name="board_nickname" value="${vo.order_name}" />
+	<input type="hidden" name="board_email" value="${vo.order_email}" />
 	<input type="hidden" name="board_num" value="${vo.board_num }" />
 	<input type="hidden" name="board_category" value="1" />
 	<input type="hidden" name="attach"/>
@@ -87,7 +93,6 @@ if(imageFile != "" && imageFile != null) {
 if(${!empty bvo.board_filename}){
 	$('#delete-file').css('display', 'inline');
 	if(isImage('${bvo.board_filename}')){
-		//filepath: /upload/board/2020/09/25/abde\.png
 		var filepath = '${bvo.board_filepath}'.substring(1);
 		var img = "<img src='"+ filepath +"' class='file-img' id='preview-img'/>";
 		$('#preview').html(img);

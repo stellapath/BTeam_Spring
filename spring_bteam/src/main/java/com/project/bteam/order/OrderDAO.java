@@ -97,5 +97,11 @@ public class OrderDAO implements OrderService{
 		return sql.selectOne("order.productDetail", p_num);
 	}
 
+	@Override
+	public List<OrderVO> nonMemberList(HashMap<String, String> map) {
+		return sql.selectList("order.nonMemberList", map);
+	}
+
+
 	
 }

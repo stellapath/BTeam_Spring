@@ -5,6 +5,23 @@
 <meta charset="UTF-8">
 <title>로그인</title>
 <link rel="stylesheet" href="css/login.css">
+<style type="text/css">
+#nonMemberBtn {  
+	display: block;	   
+	width: 400px;    
+	margin: 0px auto 25px;    
+	text-align: center; 
+    height: 45px;
+    line-height: 45px;
+    font-size: 15px;
+    font-weight: normal; 
+    border: none;
+    border-radius: 5px;
+    background-color: #8a8a8a;
+    color: white;
+}
+hr { width: 400px; }
+</style>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="js/login.js"></script>
 <script type="text/javascript">
@@ -66,10 +83,14 @@ $(document).ready(function() {
          type="password" id="user_pw" name="user_pw" class="input" placeholder="비밀번호">
 <!--       <input type="password" id="user_pw" name="user_pw" class="input" placeholder="비밀번호를 입력하세요"/> -->
    </p>
+   <div>
    <p id="buttons">
       <input type="submit" value="로그인" class="button" onclick="go_login()"><br>
       <input type="reset" value="취소 " class="reset"/>
    </p>
+   <hr>
+   <a href="nonMemberPage" id="nonMemberBtn">비회원주문조회</a>
+   </div>
 <div>  
 <p id="token-result"></p>
    </div>   

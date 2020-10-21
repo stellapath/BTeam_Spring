@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>사용후기작성</title>
-<c:if test="${empty login_info }">
+<c:if test="${empty login_info}">
 <script type="text/javascript">
 alert('로그인 후 작성가능합니다.');
 location.href="login";
@@ -19,8 +19,8 @@ location.href="login";
 </div>
 <div class="container">
 <form action="reviewWriteReq" method="post" enctype="multipart/form-data">
-	<input type="hidden" name="board_nickname" value="${login_info.user_nickname}" />
-	<input type="hidden" name="board_email" value="${login_info.user_email}" />
+	<input type="hidden" name="board_nickname" value="${vo.order_name}" />
+	<input type="hidden" name="board_email" value="${vo.order_email}" />
 	<input type="hidden" name="board_category" value="1" />
 	<input type="hidden" name="order_num" value="${vo.order_num }" />
 	<table id="boardTable">
@@ -62,14 +62,6 @@ location.href="login";
 	</div>
 </div>	
 <script type="text/javascript">
-$(document).on('change', '#select_orderNum', function(){
-	var orderNum = $('#select_orderNum').val();
-//	alert(orderNum);	
-}).on('click', '#testBtn', function(){
-	var orderNum = $('#select_orderNum').val();
-	alert(orderNum);	
-});
-
 $('input[name=board_title], input[name=board_content]').on('keydown', function(){
 //	alert($('input:radio[name=board_recommend]').is(':checked'));
 	var need = true;

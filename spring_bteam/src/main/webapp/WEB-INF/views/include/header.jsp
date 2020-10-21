@@ -31,6 +31,14 @@ pageContext.setAttribute("vo", vo);
 		</ul>
 	</c:if>	
 	<c:if test="${empty login_info }">
+		<c:if test="${!empty nonMember }">
+		<ul>
+			<li>${nonMember.order_name }님 (비회원)</li>
+			<li><a onclick="nonMemberPage('${nonMember.order_name }', '${nonMember.order_email }')">주문내역</a></li>
+			<li><a onclick="nonMemberOut()">비회원 로그아웃</a></li>
+		</ul>
+		</c:if>
+		<c:if test="${empty nonMember }">
 		<ul>
 			<li><input type="text" id="user_email" placeholder="아이디(이메일)"/>
 				<input onkeypress="if( event.keyCode==13){ go_login() }" type="password" id="user_pw" placeholder="비밀번호"/>
@@ -38,6 +46,7 @@ pageContext.setAttribute("vo", vo);
 			<li><a class="btn_fill" onclick="go_login()">로그인</a></li>
 			<li><a class="btn_fill" href="signup">회원가입</a></li>
 		</ul>
+		</c:if>
 	</c:if>	
 	</div>
 </header>
@@ -80,5 +89,22 @@ function go_logout(){
 			alert(text+':'+req.status);
 		}		
 	});	
+}
+function nonMemberPage( name, email){
+	location.href="nonMemberConfirm?name="+name+"&email="+email;
+}
+function nonMemberOut(){
+
+	$.ajax({
+		url: 'nonMemberOut',
+		success: function(){
+			alert('비회원 로그아웃 처리가 완료되었습니다.');
+			location.href="home";
+		},
+		error: function(req, text){
+			alert(text+':'+req.status);
+		}	
+	});
+	
 }
 </script>

@@ -6,14 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-</style>
-<c:if test="${login_info eq null}">
-<script>
-	alert("로그인이 필요한 페이지 입니다.");
-	location.href = "login";
-</script>
-</c:if>
+
 <jsp:useBean id="now" class="java.util.Date" />
 <fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" /> 
 <style type="text/css">
@@ -21,6 +14,10 @@
 .infoTitle {text-align: left;}
 .infoTitle p{ font-size: 20px; font-weight: bold; margin-bottom: 10px; margin-top: 30px;}
 #delivTable td{text-align: left; padding-left: 20px;}
+#productInfo {overflow: hidden;}
+#productInfo div {float: left;}
+#productInfo img {width: 70px;}
+
 </style> 
 </head>
 <body>
@@ -35,10 +32,12 @@
 			<table>
 				<tr><th>주문번호</th><th>주문상품</th><th>결제금액</th><th>상태</th></tr>
 				<tr><td>${vo.order_num }</td>
-					<td>
-						${vo.order_product }<br/>
-						<hr>
+					<td id="productInfo">
+						<div>
+						<img src="<c:url value='/' />${vo.p_defaultimage_path}" class="defaultImage"/>
+						</div>
 						<div style="text-align: left;">
+						옵션 : ${vo.order_product }<br/>
 						색상 : ${vo.order_color }<br/>
 						수량 : ${vo.order_count } 개
 						</div>

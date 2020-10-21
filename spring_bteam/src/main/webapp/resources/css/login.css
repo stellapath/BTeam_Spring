@@ -29,7 +29,7 @@ body{
 
 #wrap{
    width: 550px;
-   height: 620px;
+   height: 660px;
    margin: 100px auto;
    box-sizing: border-box;
    padding: 20px;
@@ -87,7 +87,7 @@ p, .button{
 
 #buttons{
    width: 500px;
-   margin: 60px auto 45px;
+   margin: 60px auto 20px;
 }
 
 .button{

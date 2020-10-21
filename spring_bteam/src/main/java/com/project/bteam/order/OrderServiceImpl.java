@@ -81,4 +81,9 @@ public class OrderServiceImpl implements OrderService{
 		return dao.productDetail(p_num);
 	}
 
+	@Override
+	public List<OrderVO> nonMemberList(HashMap<String, String> map) {
+		return dao.nonMemberList(map);
+	}
+
 }

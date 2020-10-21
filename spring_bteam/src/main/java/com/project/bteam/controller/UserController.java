@@ -1,7 +1,9 @@
 package com.project.bteam.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -32,10 +34,57 @@ public class UserController {
 	@Autowired private CommonService common;
 	@Autowired private BoardPage page; 
 	
+	
+	/*
+	 *  비회원전용페이지
+	 */
+	
+	
+	// 비회원 로그아웃
+	@ResponseBody @RequestMapping("/nonMemberOut")
+	public void nonMemberOut(HttpSession session) {
+		session.removeAttribute("nonMember");
+	}
+	
+	// 비회원 구매내역요청
+	@RequestMapping("/nonMemberConfirm")
+	public String nonMemberConfirm(String email, String name, Model model, HttpSession session) {	
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("order_email", email);
+		map.put("order_name", name);
+		if(session.getAttribute("nonMember") == null) {
+			session.setAttribute("nonMember", map);
+		}	
+		model.addAttribute("order", order.nonMemberList(map));
+		return "nonMember/orderList";
+	}
+	
+	// 비회원 주문내역조회
+	@ResponseBody @RequestMapping("/nonMemberIn")
+	public String nonMemberIn(String email, String name, HttpSession session) {
+		session.setAttribute("menu", "");
+		HashMap<String, String> map = new HashMap<String, String>();		
+		map.put("order_email", email);
+		map.put("order_name", name);		
+		List<OrderVO> list = order.nonMemberList(map);
+		return list.size()>0 ? "1" : "0";
+	}
+	
+	// 비회원 전용 로그인 페이지 전환
+	@RequestMapping("/nonMemberPage")
+	public String nonMemberPage() {
+		return "nonMember/nonMemberPage";
+	}
+	
+	
+	/*
+	 *  회원전용페이지
+	 */
+	
+	
 	// 회원탈퇴 처리요청
 	@ResponseBody @RequestMapping("/goodbyeMember")
 	public boolean userDelete(String user_email) {
-		
 		return service.userDelete(user_email)>0 ? true : false;
 	}
 	
@@ -57,7 +106,8 @@ public class UserController {
 	@RequestMapping("/myOrderView")
 	public String myOrderView(String order_num, Model model) {
 		int orderNum = Integer.parseInt(order_num);
-		model.addAttribute("vo", order.orderDetail(orderNum));
+		OrderVO vo = order.orderDetail(orderNum);
+		model.addAttribute("vo", vo);
 		return "order/orderResult";
 	}
 	
@@ -77,14 +127,21 @@ public class UserController {
 	// 주문서작성 업로드 요청
 	@RequestMapping("/orderReq")
 	public String orderUpload(OrderVO vo, Model model, HttpSession session) {
-		if( session.getAttribute("login_info") == null) {
-			return "redirect:login";
-		}else {
+//		if( session.getAttribute("login_info") == null) {
+//			return "redirect:login";
+//		}else {
 			OrderVO result = order.orderInsert(vo);
 			model.addAttribute("vo", result);
 			common.mailOrder(result, session);
 			return "order/orderResult";
-		}
+//		}
+	}
+	
+	// 주문서작성 화면 요청2
+	@RequestMapping("/orderFixed")
+	public String orderFixed(Model model, String p_num) {
+		model.addAttribute("vo", order.productDetail(p_num));
+		return "order/orderFixedForm";
 	}
 	
 	// 주문서작성 화면 요청
