@@ -14,7 +14,7 @@ public class HomeController {
 	@Autowired private OrderServiceImpl order;
 	
 	// 메인
-	@RequestMapping("/home")
+	@RequestMapping(value={"/home", "/"})
 	public String index(HttpSession session) {
 		session.removeAttribute("menu");
 		return "main";

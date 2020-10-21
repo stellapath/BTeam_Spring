@@ -34,6 +34,8 @@ public class ReviewController {
 	@RequestMapping("/reviewDetail")
 	public String detail(int board_num, Model model) {
 		model.addAttribute("order_product", order.orderReviewProduct(board_num));
+		model.addAttribute("crlf", "\r\n");
+		model.addAttribute("lf", "\n");
 		model.addAttribute("vo", service.reviewDetail(board_num));
 		return "review/reviewDetail";
 	}
@@ -103,7 +105,7 @@ public class ReviewController {
 			vo.setBoard_filename(file.getOriginalFilename());
 			vo.setBoard_filepath(common.upload("board", file, session));
 		}
-		vo.setBoard_email(((UserVO)session.getAttribute("login_info")).getUser_email());
+//		vo.setBoard_email(((UserVO)session.getAttribute("login_info")).getUser_email());
 		int board_num = service.reviewInsert(vo);
 		
 		HashMap<String, Integer> map = new HashMap<>();

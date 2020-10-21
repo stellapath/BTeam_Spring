@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>우산써조</title>
 <!-- 로고CSS -->
 <style type="text/css">
 #logo_here{width: 500px; margin: 0 auto; text-align: center;}

@@ -35,7 +35,7 @@
 		</tr>
 		<tr>
 			<th>내용</th>
-			<td colspan="3" width="500" name="board_content">
+			<td colspan="3" min-width="500" name="board_content">
 				${fn:replace(bvo.board_content, crlf, '<br/>')}
 			</td>
 		</tr>

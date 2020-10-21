@@ -57,7 +57,8 @@ p.miniTitle{ margin-top: 20px;}
 	</div>
 	<div id="underBox">
 		<div class="boxSet underBox leftBox" style="background-color: #ededed;">
-			<a class="lineBox" onclick="go_order()"><i class="fas fa-angle-double-right"></i> 스마트우산 구매 바로가기</a>
+			<a class="lineBox" href="productDetail" style="margin-top: 100px;"><i class="fas fa-angle-double-right"></i> 스마트우산   상세정보보기</a><br/>
+			<a class="lineBox" onclick="go_order()" style="margin-top: 20px;"><i class="fas fa-angle-double-right"></i> 스마트우산 구매 바로가기</a>
 		</div>
 		<div class="boxSet underBox rightBox">
 			<div class="textBox">
@@ -66,7 +67,6 @@ p.miniTitle{ margin-top: 20px;}
 			우산을 자주 잃어버리는 당신을 위한<br/>
 			어플리케이션 연동 스마트 우산
 			</div>
-			<a href="productDetail">제품상세페이지</a>
 		</div>
 	</div>
 </div>

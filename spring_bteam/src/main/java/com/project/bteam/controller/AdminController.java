@@ -38,15 +38,16 @@ public class AdminController {
 		
 		//대표이미지 수정
 		if(!p_up_defaultImage.isEmpty()) {
-
+			//기존 이미지 세팅
 			vo.setP_defaultimage_name(p_up_defaultImage.getOriginalFilename());
 			vo.setP_defaultimage_path(common.upload("product", p_up_defaultImage, session));
-
+			//이미지 삭제
 			if(product.getP_defaultimage_name() != null) {
 				File f = new File(uuid_default);
 				if(f.exists()) f.delete();
 			}
 		}else {
+			//이미지 
 			if(attach_default.isEmpty()) {
 				if(product.getP_defaultimage_name() != null) {
 					File f = new File(uuid_default);

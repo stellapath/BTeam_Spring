@@ -41,7 +41,7 @@
 						<input type="text" name="order_phone" id="order_phone" class="need input_short" title="주문하신 분의 전화번호"
 								placeholder="연락처 (ex 010-0000-0000)"/><br/>
 	<!----------------------------------------------------------------------------------이메일 인증---------------------------------------------------------------->
-						<div class="unLoginEmailConfirm" style="margin: 0 auto;">		
+						<div class="unLoginEmailConfirm">		
 							<input type="text" name="order_email" id="order_email" class="need input_long" title="주문하신 분의 이메일"	placeholder="이메일"/>
 							<span><a id="email_certification" >인증메일발송</a></span><br/>
 							<input type="text" name="input_certification" id="input_certification" class="need input_long" title="이메일 인증번호"
@@ -76,7 +76,7 @@
 						<option value="부재시 전화나 문자를 남겨주세요.">부재시 전화나 문자를 남겨주세요.</option>
 						<option value="" >직접입력</option>
 					</select><br/>
-					<div id="memoInput" style="display: none; margin: 0 auto;">
+					<div id="memoInput" style="display: none;">
 						<input type="text" id="input_memo" class="input_long" placeholder="배송메모를 입력해주세요"/>
 					</div>
 				</div>
@@ -86,22 +86,19 @@
 				<div id="detail">
 					<ul>
 						<li class="goods_img">
-							<a href="productPage"><img src="<c:url value='/' />${product[0].p_defaultimage_path}" class="defaultImage"/></a>
+							<a href="productPage"><img src="<c:url value='/' />${vo.p_defaultimage_path}" class="defaultImage"/></a>
 						</li>
 						<li class="goods_detail" style="float: right;">
-							옵션 <select class="option" name="order_product">
-							<c:forEach items="${product}" var="vo">
-								<option value="${vo.p_num }" value2="${vo.p_price }" value3="${vo.p_defaultimage_path}" >${vo.p_name }</option>
-							</c:forEach>
-							</select><br/>
-							수량 <select class="quantity" name="order_count">
+							옵션: ${vo.p_name }<br/>
+							<input type="hidden" name="order_product" value="${vo.p_name }"/>
+							수량: <select class="quantity" name="order_count">
 								<option value="1" selected="selected">1개</option>
 								<option value="2">2개</option>
 								<option value="3">3개</option>
 								<option value="4">4개</option>
 								<option value="5">5개</option>
 							</select><br/>
-							색상선택 <select class="color" name="order_color">
+							색상선택: <select class="color" name="order_color">
 								<option value="Black" selected="selected">Black</option>
 								<option value="Red">Red</option>
 							</select>
@@ -247,10 +244,6 @@ $(document).on('click', '#email_certification', function(){
 	$('#emailConfirmResult').css('color', 'black');
 	$('#email_confirm').attr('value', 0);
 	
-}).on('change', '.option', function(){
-	var img = $('.option > option:selected').attr("value3");
-	$('.defaultImage').attr('src', "<c:url value='/' />"+img);
-	calc_pay();
 }).on('change', '.quantity', function(){
 	calc_pay();
 }).on('change', 'select#delivMemo', function(){
@@ -265,7 +258,7 @@ $(document).on('click', '#email_certification', function(){
 }); 
 
 function calc_pay(){
-	var price = $('.option > option:selected').attr("value2");
+	var price = ${vo.p_price};
 	//구매수량에 따른 가격설정
 	var total = $('.quantity').val() * price;
   	$('p.price').text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
@@ -287,7 +280,7 @@ function calc_pay(){
 }
 
 function go_payment(method){
-	
+
 	if($('#input_memo').val() != ''){
 		var input_memo = $('#input_memo').val();
 		$('select#delivMemo option:selected').val(input_memo);

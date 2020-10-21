@@ -22,22 +22,21 @@
 				<c:if test="${vo.board_recommend == 'DERECOMMEND' }">비추천<i class="far fa-thumbs-down"></i></c:if>
 			</td>
 		</tr>
-		<tr><th class="w-px100">제목</th><td colspan="3">${vo.board_title }</td></tr>
-		<tr><th>내용</th><td colspan="3" class="contentBox">${fn:replace(vo.board_content, crlf, '<br/>')}</td></tr>
+		<tr><th class="w-px100">제목</th><td colspan="3" style="text-align: left;">${vo.board_title }</td></tr>
+		<tr><th>내용</th><td colspan="3" class="contentBox" style="text-align: left; height: 300px;">${fn:replace(vo.board_content, crlf, '<br/>')}</td></tr>
 		<tr>
 			<th>첨부파일</th>
 			<td style="text-align: left;" colspan="3">
-			<label>
-				<img alt="파일선택" src="img/attach.png" class="file_icon">
-				<input type="file" name="file" id="attach-file" accept="image/*"/>
-			</label>
-			<span id="board-filename">${vo.board_filename }</span>
-			<span id="preview"></span>
-			<span id="delete-file" style="color : red;"><i class="fas fa-times file_icon"></i></span>
+				<c:if test="${empty vo.board_filename }">
+					첨부된 파일이 없습니다.
+				</c:if>
+				<c:if test="${!empty vo.board_filename }">
+					<img src="<c:url value='/' />${vo.board_filepath}" class="file-img"/>
+				</c:if>
 			</td>
 		</tr>
 	</table>
-</div>
+</div><br/>
 <div id="btnSet">
 	<a class="btn_fill" href="reviewUpdate?board_num=${vo.board_num }">수정</a>
 	<a class="btn_empty" href="javascript:history.go(-1)">이전</a>

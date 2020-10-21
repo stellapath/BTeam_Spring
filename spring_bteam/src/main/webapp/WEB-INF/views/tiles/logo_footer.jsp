@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>BTeam Project</title>
+<title>우산써조</title>
 <!-- 로고CSS -->
 <style type="text/css">
 html, body{margin: 0; padding:0; height: 100%; background-color: #344955}

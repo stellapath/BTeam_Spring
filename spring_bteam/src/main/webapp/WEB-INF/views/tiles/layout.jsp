@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>BTeamProject</title>
+<title>우산써조</title>
 <link rel='stylesheet' type='text/css' href='css/common.css?v=1<%= new java.util.Date().getTime()%>'>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <!-- font-awesome 라이브러리 -->
