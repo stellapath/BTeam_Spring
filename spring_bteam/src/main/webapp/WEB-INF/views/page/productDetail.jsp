@@ -8,14 +8,15 @@
 <title>Insert title here</title>
 <style type="text/css">
 #listBar {display: inline-block; width: 100%; margin-top: 50px; margin-bottom: 20px;}
-#listBar ul {overflow: hidden; width: 1000px; margin: 0px auto;}
+#listBar ul {overflow: visible; width: 1000px; margin: 0px auto;}
 #listBar ul li {float: left; width: 500px; box-sizing: border-box;}
-#listBar ul li:first-child {margin-left: 0px;}
+#listBar ul li:nth-child(2n){ margin-left: -2px;}
+#listBar ul li:nth-child(3){ margin-top: -2px;}
 a.productName { display:inline-block; width:100%; padding: 10px 0; border: 2px solid #F8AA34; font-weight: bold; box-sizing: border-box;}
-a.productName:hover, a.goPage:hover, a.clicked { background-color: #F8AA34; }
+a.productName:hover, a.goPage:hover, a.clicked { background-color: #F8AA34; margin: 0; }
 a.productName li:last-child { border-left: 0px; }
 
-.productBox, .productOverZone {display: inline-block; width: 100%; min-width: max-content;}
+.productBox, .productOverZone {display: inline-block; width: 100%; min-width: max-content;  max-width: 1000px;}
 .productOverZone {overflow: hidden;}
 .productMainImage, .productInfo {display: block; width: 50%; min-width: 300px; min-height:300px; box-sizing: border-box; float: left;}
 .productMainImage { vertical-align: middle;}
@@ -23,7 +24,7 @@ a.productName li:last-child { border-left: 0px; }
 
 .noImage {width: 300px; margin: 0 auto; vertical-align: middle;}
 .productDetailImage { height:max-content; vertical-align: middle;}
-.detailImage{ width: 70%;}
+.detailImage{ width: 100%;}
 .defaultImage{height: 300px; width: 300px; border: 10px solid #a8a8a8;}
 
 .deliv_info{margin: 40px 0; padding: 20px; background-color: #f2f2f2; border-radius: 10px;}
@@ -113,6 +114,9 @@ a.productName li:last-child { border-left: 0px; }
 </c:forEach>
 <script type="text/javascript">
 $(function(){
+	$('.listBar ul').css('height', 
+			(( $('.listBar ul li').length%2 > 0 ? 1 : 0 )+Math.floor($('.listBar ul li').length/2))*$('.listBar ul li').outerHeight(true)-2		
+	);
 	$('.productName:eq(0)').addClass('clicked');
 	$('.productBox:not(:eq(0))').hide();
 });
@@ -125,9 +129,6 @@ $(document).on('click', '.productName', function(){
   	$('.productName:not(:eq('+index+'))').removeClass('clicked');
   	$('.productBox:eq('+index+')').show();
   	$('.productBox:not(:eq('+index+'))').hide();
-});
-$(function(){
-	$('#listBar ul').css('height', (( $('.grid li').length%3 > 0 ? 1 : 0 ) + Math.floor($('.grid li').length/3) )*$('.grid li').outerHeight(true) );
 });
 
 function go_order(num){
