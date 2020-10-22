@@ -46,7 +46,7 @@
 	
 	<select id="list" resultType="UserVO">
 	select rownum user_num, u.* from 
-	(select * from bUser order by user_nickname) u
+	(select * from bUser) u
 	</select>
 
 </mapper>

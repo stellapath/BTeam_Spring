@@ -27,7 +27,7 @@
 						<h4>주문자</h4>
 						<input type="text" name="order_name" id="order_name" class="need input_short" title="주문하신 분의 이름"
 								value="${login_info.user_nickname }"/>&nbsp;
-						<input type="text" name="order_phone" id="order_phone" class="need input_short" title="주문하신 분의 전화번호"
+						<input type="text" name="order_phone" id="order_phone" class="need input_short" title="주문하신 분의 전화번호" maxlength="11"
 								value="${login_info.user_phone }"/><br/>
 						<input type="text" name="order_email" id="order_email" class="need input_long" title="주문하신 분의 이메일"
 								value="${login_info.user_email }"/><br/>
@@ -38,7 +38,7 @@
 						<h4>주문자</h4>
 						<input type="text" name="order_name" id="order_name" class="need input_short" title="주문하신 분의 이름"
 								placeholder="이름"/>&nbsp;
-						<input type="text" name="order_phone" id="order_phone" class="need input_short" title="주문하신 분의 전화번호"
+						<input type="text" name="order_phone" id="order_phone" class="need input_short" title="주문하신 분의 전화번호" maxlength="11"
 								placeholder="연락처 (ex 010-0000-0000)"/><br/>
 	<!----------------------------------------------------------------------------------이메일 인증---------------------------------------------------------------->
 						<div class="unLoginEmailConfirm" style="margin: 0 auto;">		
@@ -55,7 +55,7 @@
 					<h4>배송지 정보</h4>
 					<input type="text" name="deliv_name" id="deliv_name" class="need input_short" title="받으시는 분의 이름"
 							placeholder="이름" value="${login_info.user_nickname }"/>&nbsp;
-					<input type="text" name="deliv_phone" id="deliv_phone" class="need input_short" title="받으시는 분의 전화번호"
+					<input type="text" name="deliv_phone" id="deliv_phone" class="need input_short" title="받으시는 분의 전화번호" maxlength="11"
 							placeholder="연락처 (ex 010-0000-0000)" value="${login_info.user_phone }"/><br/>
 					<label id="postcodify_search_button" style="float: left;">		
 					<input type="text" name="deliv_zipcode" class="postcodify_postcode5 need input_short" title="받으시는 분의 주소"   
@@ -63,7 +63,7 @@
 					<a class="btn-fill">우편번호 검색</a><br/></label>
 					<input type="text" name="deliv_address" class="postcodify_address input_long"
 							placeholder="주소" value="${login_info.user_address }" /><br/>
-					<input type="text" name="detail_address" class="postcodify_details input_long" 
+					<input type="text" name="deliv_detailaddress" class="postcodify_details input_long" 
 							value="${login_info.detail_address }" placeholder="상세주소" />
 				</div>
 				
@@ -269,6 +269,7 @@ function calc_pay(){
 	//구매수량에 따른 가격설정
 	var total = $('.quantity').val() * price;
   	$('p.price').text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+  	
 	//가격에 따른 배송비 설정
 	if(total >= 30000){
   	 	$('p.delivery').text('무료');

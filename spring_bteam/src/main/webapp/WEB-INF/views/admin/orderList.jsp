@@ -48,9 +48,9 @@ location.href='login';
 </ul>
 <ul id="viewTab">	
 	<li>
-		<select name="orderStatus" class="w-px80" onchange="$('[name=curPage]').val(1); $('form').submit()">
+		<select name="orderStatus" class="w-px100" onchange="$('[name=curPage]').val(1); $('form').submit()">
 		<option value="all" ${page.orderStatus eq 'all' ? 'selected' : '' }>진행상태</option>
-		<option value="ing" ${page.orderStatus eq 'ing' ? 'selected' : '' }>주문확인</option>
+		<option value="ing" ${page.orderStatus eq 'ing' ? 'selected' : '' }>배송준비중</option>
 		<option value="done" ${page.orderStatus eq 'done' ? 'selected' : '' }>배송완료</option>
 		</select>
 	</li>
@@ -75,7 +75,7 @@ location.href='login';
 	<tr><td><a onclick="go_detail(${vo.order_num })">${vo.order_num }</a></td>
 		<td>${vo.order_product }</td>
 		<td>${vo.order_count }</td>
-		<td>${vo.order_amount }</td>
+		<td><fmt:formatNumber value="${vo.order_amount }" pattern="#,###"/></td>
 		<td><c:if test="${vo.order_date < today  }">배송완료</c:if>
 			<c:if test="${vo.order_date >= today  }">배송준비중</c:if>	
 		</td>
@@ -104,7 +104,7 @@ function orderCancel(order_num){
 	$.ajax({
 		url: 'orderCancel',
 		data: {	order_num : order_num,
-				reason : cancelReason
+				cancelReason : cancelReason
 		},
 		success: function(){
 			alert('주문이 취소되었습니다.\n주문취소 안내메일이 발송되었습니다.');

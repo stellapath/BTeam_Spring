@@ -127,6 +127,7 @@ h5 {
 <script type="text/javascript">
 $('.question').click(function(){
 	$(this).parents('tr').next('.contents').toggle();
+	$('tr.contents').not($(this).parents('tr').next()).hide();
 });
 </script>
 </body>

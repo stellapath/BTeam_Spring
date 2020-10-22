@@ -84,7 +84,9 @@ public class ReviewController {
 	//리뷰 수정 화면 요청
 	@RequestMapping("/reviewUpdate")
 	public String modify(int board_num, Model model) {
-		model.addAttribute("vo", service.reviewDetail(board_num));
+		BoardVO info = service.reviewDetail(board_num);
+		model.addAttribute("vo", info);
+//		System.out.println(info.getOrder_product());
 		return "review/reviewUpdate";
 	}
 	

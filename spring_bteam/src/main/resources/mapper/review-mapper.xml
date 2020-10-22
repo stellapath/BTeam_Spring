@@ -11,7 +11,7 @@
 	</update>
 
 	<select id="detail" resultType="BoardVO">
-		select * from bBoard where board_num=#{board_num}
+		select (select order_product from bOrder where order_review = #{board_num}) order_product, b.* from bBoard b where board_num=#{board_num}
 	</select>
 
 	<delete id="delete">

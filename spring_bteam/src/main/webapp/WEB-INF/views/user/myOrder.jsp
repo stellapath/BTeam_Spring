@@ -57,7 +57,7 @@
 			<tr><td><a onclick="go_detail(${vo.order_num })">${vo.order_num }<br/>(${vo.order_date })</a></td>
 				<td>${vo.order_product }</td>
 				<td>${vo.order_count }</td>
-				<td>${vo.order_amount }</td>
+				<td><fmt:formatNumber value="${vo.order_amount }" pattern="#,###"/></td>
 				<td><c:if test="${vo.order_date < today  }">배송완료</c:if>
 					<c:if test="${vo.order_date >= today  }">배송준비중</c:if>	
 				</td>
@@ -67,7 +67,7 @@
 				<td><c:if test="${vo.order_date < today  }">-</c:if>
 					<c:if test="${vo.order_date >= today  }"><a class="btn_fill_s" onclick="orderCancel(${vo.order_num })">취소</a></c:if>	
 				</td>
-				<td><a class="btn_fill_s" onclick="">일대일문의</a></td>
+				<td><a class="btn_fill_s" onclick="location.href='qnaWrite'">일대일문의</a></td>
 			</tr>
 		</c:forEach>
 	</c:if>

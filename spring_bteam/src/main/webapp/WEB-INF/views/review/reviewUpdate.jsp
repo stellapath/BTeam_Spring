@@ -20,15 +20,15 @@ location.href="login";
 </div>
 <div>
 <form action="reviewUpdateReq" method="post" enctype="multipart/form-data">
-	<input type="hidden" name="board_nickname" value="${vo.order_name}" />
-	<input type="hidden" name="board_email" value="${vo.order_email}" />
+	<input type="hidden" name="board_nickname" value="${vo.board_nickname}" />
+	<input type="hidden" name="board_email" value="${vo.board_email}" />
 	<input type="hidden" name="board_num" value="${vo.board_num }" />
 	<input type="hidden" name="board_category" value="1" />
 	<input type="hidden" name="attach"/>
 	<table id="boardTable">
 		<tr>
 			<th>구매상품</th>
-			<td>${order_product }</td>
+			<td>${vo.order_product }</td>
 		</tr>
 		<tr><th>추천여부</th>
 			<td><c:if test="${vo.board_recommend == 'RECOMMEND' }">

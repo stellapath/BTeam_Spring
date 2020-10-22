@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,8 +28,8 @@
 						<h4>주문자</h4>
 						<input type="text" name="order_name" id="order_name" class="need input_short" title="주문하신 분의 이름"
 								value="${login_info.user_nickname }"/>&nbsp;
-						<input type="text" name="order_phone" id="order_phone" class="need input_short" title="주문하신 분의 전화번호"
-								value="${login_info.user_phone }"/><br/>
+						<input type="text" name="order_phone" id="order_phone" class="need input_short" title="주문하신 분의 전화번호" maxlength="11"
+								value="${login_info.user_phone }" /><br/>
 						<input type="text" name="order_email" id="order_email" class="need input_long" title="주문하신 분의 이메일"
 								value="${login_info.user_email }"/><br/>
 					</div>
@@ -38,10 +39,10 @@
 						<h4>주문자</h4>
 						<input type="text" name="order_name" id="order_name" class="need input_short" title="주문하신 분의 이름"
 								placeholder="이름"/>&nbsp;
-						<input type="text" name="order_phone" id="order_phone" class="need input_short" title="주문하신 분의 전화번호"
+						<input type="text" name="order_phone" id="order_phone" class="need input_short" title="주문하신 분의 전화번호" maxlength="11"
 								placeholder="연락처 (ex 010-0000-0000)"/><br/>
 	<!----------------------------------------------------------------------------------이메일 인증---------------------------------------------------------------->
-						<div class="unLoginEmailConfirm">		
+						<div class="unLoginEmailConfirm" style=" margin: 0 auto;">		
 							<input type="text" name="order_email" id="order_email" class="need input_long" title="주문하신 분의 이메일"	placeholder="이메일"/>
 							<span><a id="email_certification" >인증메일발송</a></span><br/>
 							<input type="text" name="input_certification" id="input_certification" class="need input_long" title="이메일 인증번호"
@@ -55,7 +56,7 @@
 					<h4>배송지 정보</h4>
 					<input type="text" name="deliv_name" id="deliv_name" class="need input_short" title="받으시는 분의 이름"
 							placeholder="이름" value="${login_info.user_nickname }"/>&nbsp;
-					<input type="text" name="deliv_phone" id="deliv_phone" class="need input_short" title="받으시는 분의 전화번호"
+					<input type="text" name="deliv_phone" id="deliv_phone" class="need input_short" title="받으시는 분의 전화번호" maxlength="11"
 							placeholder="연락처 (ex 010-0000-0000)" value="${login_info.user_phone }"/><br/>
 					<label id="postcodify_search_button" style="float: left;">		
 					<input type="text" name="deliv_zipcode" class="postcodify_postcode5 need input_short" title="받으시는 분의 주소"   
@@ -63,7 +64,7 @@
 					<a class="btn-fill">우편번호 검색</a><br/></label>
 					<input type="text" name="deliv_address" class="postcodify_address input_long"
 							placeholder="주소" value="${login_info.user_address }" /><br/>
-					<input type="text" name="detail_address" class="postcodify_details input_long" 
+					<input type="text" name="deliv_detailaddress" class="postcodify_details input_long" 
 							value="${login_info.detail_address }" placeholder="상세주소" />
 				</div>
 				
@@ -76,7 +77,7 @@
 						<option value="부재시 전화나 문자를 남겨주세요.">부재시 전화나 문자를 남겨주세요.</option>
 						<option value="" >직접입력</option>
 					</select><br/>
-					<div id="memoInput" style="display: none;">
+					<div id="memoInput" style="display: none; margin: 0 auto;">
 						<input type="text" id="input_memo" class="input_long" placeholder="배송메모를 입력해주세요"/>
 					</div>
 				</div>
@@ -90,7 +91,7 @@
 						</li>
 						<li class="goods_detail" style="float: right;">
 							옵션: ${vo.p_name }<br/>
-							<input type="hidden" name="order_product" value="${vo.p_name }"/>
+							<input type="hidden" name="order_product" value="${vo.p_num }"/>
 							수량: <select class="quantity" name="order_count">
 								<option value="1" selected="selected">1개</option>
 								<option value="2">2개</option>
@@ -108,7 +109,7 @@
 				
 				<div id="goods_price">
 					<label for="price">상품가격</label>&nbsp;&nbsp;
-					<p class="price">10,000</p>
+					<p class="price"><fmt:formatNumber value="${vo.p_price }" pattern="#,###"/></p>
 				</div>
 				
 				<div id="goods_delivery">
@@ -119,8 +120,8 @@
 				
 				<div id="totalPayment">
 					<label for="payment">총 결제금액</label>&nbsp;&nbsp;
-					<p class="payment">12,500</p>
-					<input type="hidden" name="order_amount" value="12500"/>
+					<p class="payment"><fmt:formatNumber value="${vo.p_price + 2500}" pattern="#,###"/></p>
+					<input type="hidden" name="order_amount" value="${vo.p_price + 2500}"/>
 				</div>
 				
 				<div id="buttons">
@@ -199,13 +200,14 @@ $(document).on('click', '#email_certification', function(){
 				isEmail = 1;
 			} else {
 				isEmail = 0;
+				alert('인증키가 입력하신 이메일로 발송되었습니다.\n발송된 메일을 확인해주세요.');
 				//인증 이메일 발송
 				$.ajax({
 					url: 'email_certification',
 					data: { email: $('#order_email').val() },
-					success: function( email ){
- 						alert('이메일이 성공적으로 발송되었습니다.\n발송된 메일을 확인해주세요.');
-					},
+// 					success: function( email ){
+//  						alert('이메일이 성공적으로 발송되었습니다.\n발송된 메일을 확인해주세요.');
+// 					},
 					error: function(req, text){
 						alert(text+':'+req.status);
 					}
@@ -288,7 +290,6 @@ function go_payment(method){
 
 	if(necessary()){
 		if(method == '카드결제' || method == '핸드폰 소액결제') { alert(method + ' 결제 방식은 가상으로 진행됩니다.'); }
-		
 		$('form').append('<input type="hidden" name="order_pay" value="'+ method +'"/>');
 		$('form').submit();
 		

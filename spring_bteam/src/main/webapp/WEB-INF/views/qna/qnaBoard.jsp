@@ -21,12 +21,12 @@
 	</form>
 	<div align="center">
 	<table>
-		<tr><th class="w-px80">번호</th>
-			<th class="w-px120">구분</th>
+		<tr><th class="w-px60">번호</th>
+			<th class="w-px100">구분</th>
 			<th>질문</th>
-			<th class="w-px120">작성자</th>
-			<th class="w-px120">등록일</th>
-			<th class="w-px160">첨부파일</th>
+			<th class="w-px100">작성자</th>
+			<th class="w-px100">등록일</th>
+			<th class="w-px80">첨부파일</th>
 		</tr>
 		<c:forEach items="${page.list}" var="qvo">
 		<tr class="subject">

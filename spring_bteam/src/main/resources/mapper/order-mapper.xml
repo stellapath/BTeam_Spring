@@ -30,22 +30,25 @@
 	</insert>
 
 	<select id="adminTotal" resultType="Integer">
-		select count(*) from bOrder
+		select count(*) from bOrder <include refid="productList_where"/><include refid="orderStatus_where"/>
 	</select>
 
 	<sql id="productList_where">
 		<if test="keyword != null">
 		where order_product like '%' || #{keyword} || '%'
 		</if>
+		<if test="keyword == null">
+		where order_product is not null
+		</if>
 	</sql>
 	<sql id="orderStatus_where">
 		<if test="orderStatus == 'all'">
 		</if>
 		<if test="orderStatus == 'ing'">
-			and order_date = sysdate
+			and to_char(order_date, 'YY/MM/DD') = to_char(sysdate, 'YY/MM/DD')
 		</if>
 		<if test="orderStatus == 'done'">
-			and order_date != sysdate
+			and to_char(order_date, 'YY/MM/DD') != to_char(sysdate, 'YY/MM/DD')
 		</if>
 	</sql>
 
@@ -56,7 +59,7 @@
 		(select * from bOrder 
 		<include refid="productList_where"/> 
 		<include refid="orderStatus_where"/> 
-		order by order_date asc) b
+		order by order_num asc) b
 		order by board_no desc) b
 		where board_no between #{beginList} and #{endList}
 	</select>

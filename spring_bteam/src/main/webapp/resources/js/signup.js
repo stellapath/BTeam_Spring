@@ -35,13 +35,14 @@ $(document).on('click', '#email_certification', function(){
 				isEmail = 1;
 			} else {
 				isEmail = 0;
+				alert('인증키가 입력하신 이메일로 발송되었습니다.\n발송된 메일을 확인해주세요.');
 				//인증 이메일 발송
 				$.ajax({
 					url: 'email_certification',
 					data: { email: $('#user_email').val() },
-					success: function( email ){
- 						alert('이메일이 성공적으로 발송되었습니다.\n발송된 메일을 확인해주세요.');
-					},
+//					success: function( email ){
+// 						alert('이메일이 성공적으로 발송되었습니다.\n발송된 메일을 확인해주세요.');
+//					},
 					error: function(req, text){
 						alert(text+':'+req.status);
 					}

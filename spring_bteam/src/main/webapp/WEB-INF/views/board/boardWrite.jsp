@@ -67,7 +67,7 @@ location.href='login';
 </div>	
 <script type="text/javascript">
 $('#attach-file').on('change', function(){
-	if( this.files[0] ) $('#board_filename').text( this.files[0].name );
+	if( this.files[0] ) $('#board-filename').text( this.files[0].name );
 	$('#delete-file').css('display', 'inline');
 });
 

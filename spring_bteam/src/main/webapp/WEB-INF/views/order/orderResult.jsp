@@ -76,7 +76,12 @@
 				<tr><th>주소</th><td>( ${vo.deliv_zipcode } ) ${vo.deliv_address } ${vo.deliv_detailaddress }</td></tr>
 				<tr><th>배송메모</th><td>${vo.deliv_memo }</td></tr>
 			</table>
+		</div><br/>
+		<c:if test="${!empty login_info}">
+		<div>
+			<a class="btn_fill" href="myOrder?user_email=${login_info.user_email }" ${mypage eq 'order' ? 'class="active"' : '' }>내 주문목록</a>
 		</div>
+		</c:if>
 	</div>
 </div>
 </body>

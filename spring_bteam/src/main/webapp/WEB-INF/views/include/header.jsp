@@ -19,7 +19,7 @@ pageContext.setAttribute("vo", vo);
 	<c:if test="${!empty login_info }">
 		<ul>
 			<li style="margin-top:-24px;">
-				<img src="profileImgDn?user_email=${login_info.user_email}" style="width:40px; border-radius:40px; " />
+				<img src="profileImgDn?user_email=${login_info.user_email}" style="width:40px; height:40px; border-radius:40px; " />
 				${login_info.user_nickname }님 </li>
 			<c:if test="${login_info.user_email eq 'admin'}">
 				<li><a href="adminPage" ${menu eq 'admin' ? 'class="active"' : '' }>관리페이지</a></li>

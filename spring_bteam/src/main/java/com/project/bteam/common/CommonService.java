@@ -85,8 +85,8 @@ public class CommonService {
 				msg.append("<html>");
 				msg.append("<body>");
 				msg.append("<div style='width:700px; text-align: center;'>");
-				msg.append("<img src='http://192.168.0.72:8282/bteam/img/logo/logo_transparent.png' style='background-color: #232F34; width: 150px; height: 150px; margin: 0 auto;'/>");
-				msg.append("<h3>${vo.user_nickname }님 문의해주셔서 감사합니다.</h3>");
+				msg.append("<img src='http://112.164.58.7:8282/bteam/img/logo/logo_transparent.png' style='background-color: #232F34; width: 150px; height: 150px; margin: 0 auto;'/>");
+				msg.append("<h3>"+ qvo.getQna_nickname()+ "님 문의해주셔서 감사합니다.</h3>");
 				msg.append("<table style='border: 1px solid #666; width: 100%; margin: 0 auto;'>"
 							+ "<tr><td colspan='2' style='padding: 20px; text-align: center; font-size: 15px; background-color: #ededed;'>문의정보</td></tr>" 
 							+ "<tr><th style='width: 100px;'>등록일</th><td>"+ qvo.getQna_writedate() +"</td></tr>"
@@ -131,7 +131,7 @@ public class CommonService {
 				msg.append("<html>");
 				msg.append("<body>");
 				msg.append("<div style='width:700px; text-align: center;'>");
-				msg.append("<img src='http://192.168.0.72:8282/bteam/img/logo/logo_transparent.png' style='background-color: #232F34; width: 150px; height: 150px; margin: 0 auto;'/>");
+				msg.append("<img src='http://112.164.58.7:8282/bteam/img/logo/logo_transparent.png' style='background-color: #232F34; width: 150px; height: 150px; margin: 0 auto;'/>");
 				msg.append("<h3>"+vo.getOrder_name()+"님의 주문이 취소되었습니다.</h3>"
 							+ "<h4>주문취소사유는 다음과 같습니다.</h4>");
 				msg.append("<div style='border: 1px solid #666; width: 100%; max-width:600px; margin: 0 auto; margin-bottom: 50px;'>"
