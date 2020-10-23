@@ -62,8 +62,7 @@ location.href='login';
 			<td>
 				<c:if test="${!empty qvo.qna_filename }">
 					<label>
-						<img alt="첨부파일" src="img/attach.png" class="file_icon">
-						<a name="qna_filename" href="download.qo?qna_num=${qvo.qna_num }">${qvo.qna_filename }</a>
+						<a name="qna_filename" href="download.qo?qna_num=${qvo.qna_num }"><i class="far fa-file-alt"></i></a>
 					</label>
 				</c:if>
 				<c:if test="${ empty qvo.qna_filename }">-</c:if>
