@@ -59,7 +59,9 @@ public class UserDAO implements UserService {
 
 	@Override
 	public int userDelete(String user_email) {
-		return sql.delete("user.delete", user_email);
+		int result = sql.delete("user.delete", user_email);
+		System.out.println(result);
+		return result;
 	}
 	
 	// 난수 생성
@@ -101,7 +103,9 @@ public class UserDAO implements UserService {
 	@Override
 	public UserVO userPwCheck(UserVO vo) {
 		UserVO result = sql.selectOne("user.pwcheck", vo);
+		if( result != null ) {
 		return result;
+		}else return null;
 	}
 
 	

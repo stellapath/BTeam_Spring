@@ -76,8 +76,8 @@ location.href='login';
 		<td>${vo.order_product }</td>
 		<td>${vo.order_count }</td>
 		<td><fmt:formatNumber value="${vo.order_amount }" pattern="#,###"/></td>
-		<td><c:if test="${vo.order_date < today  }">배송완료</c:if>
-			<c:if test="${vo.order_date >= today  }">배송준비중</c:if>	
+		<td><c:if test="${vo.order_date < today || !empty vo.order_review}">배송완료</c:if>
+			<c:if test="${vo.order_date >= today && empty vo.order_review  }">배송준비중</c:if>	
 		</td>
 		<td><c:if test="${vo.order_date < today || !empty vo.order_review}">취소불가</c:if>
 			<c:if test="${vo.order_date >= today && empty vo.order_review }">

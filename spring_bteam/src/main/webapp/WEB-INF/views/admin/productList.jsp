@@ -43,7 +43,7 @@ location.href='login';
 			<td><input type="text" name="p_name" maxlength="20" class="need" title="제품명"/></td>
 			<td><input type="number" name="p_price" class="need" title="제품가격"/></td>
 			<td><div id="productAddBtn">
-					<a class="btn_fill_s" onclick="if(necessary()){$('form[name=addForm]').submit()}">등록</a>
+					<a class="btn_fill_s" onclick="go_add()">등록</a>
 					<a class="btn_empty_s" id="addCancel">취소</a>
 				</div>
 			</td>
@@ -177,6 +177,25 @@ $(document).on('click', '#addCancel', function(){
 	
 });
 
+function go_add(){
+	$('form[name=addForm]').submit();
+// 	var num = $('[name=p_num]').val();
+// 	var numRegExp = /^[A-Z]{3}[2020]\d{3}$/;
+	
+// 	if(necessary()){
+// 		if( numRegExp.test(num)){
+// 			alert(num+'\n제품번호는 영문대문자 세자리와 연도 4자리와 숫자3자리의 조합으로만 등록가능합니다.\n예) ###2020***');
+// 			$('[name=p_num]').focus();
+// 			return false;
+// 		}else{ alert('통과');}
+		
+// 		$('form[name=addForm]').submit();
+// 	}
+	
+}
+
+
+
 function go_delete( num, name, price, date ){
 	alert( "제품번호: " + num + "\n제품명: " + name + "\n가격: " + price + "\n등록일: " + date + "\n\n제품을 삭제하시겠습니까??" );
 	$.ajax({
@@ -193,7 +212,7 @@ function go_delete( num, name, price, date ){
 }
 
 function go_update( num ){
-
+	
  	$.ajax({
 		url: 'productUpdateInfo',
 		data: { p_num : num },
@@ -214,6 +233,7 @@ function go_update( num ){
 }
 
 function update_submit(){
+	
 	$('[name=attach-default]').val($('#up-default-filename').text());
 	$('[name=attach_detail]').val($('#up-detail-filename').text());
 	$('form[name=updateForm]').submit();

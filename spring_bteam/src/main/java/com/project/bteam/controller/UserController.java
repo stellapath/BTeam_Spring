@@ -85,7 +85,7 @@ public class UserController {
 	// 회원탈퇴 처리요청
 	@ResponseBody @RequestMapping("/goodbyeMember")
 	public boolean userDelete(String user_email) {
-		return service.userDelete(user_email)>0 ? true : false;
+		return service.userDelete(user_email) > 0 ? true : false;
 	}
 	
 	// 주문취소 처리요청
@@ -162,7 +162,8 @@ public class UserController {
 	public String pwcheckReq(UserVO vo, HttpSession session, Model model) {
 		UserVO result = service.userPwCheck(vo);
 		if (result != null) session.setAttribute("pwcheck_info", result);
-		return result.getUser_pw();
+		return result != null ? result.getUser_pw() : "";
+		
 	}
 	
 	// 회원정보수정

@@ -19,6 +19,7 @@
     border-radius: 5px;
     background-color: #8a8a8a;
     color: white;
+    margin-top: 20px;
 }
 hr { width: 400px; }
 </style>

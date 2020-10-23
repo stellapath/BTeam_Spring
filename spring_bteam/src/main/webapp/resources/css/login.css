@@ -87,7 +87,9 @@ p, .button{
 
 #buttons{
    width: 500px;
-   margin: 60px auto 20px;
+/*    margin: 60px auto 20px; */
+	margin-top: 60px;
+	margin-bottom: 0;
 }
 
 .button{

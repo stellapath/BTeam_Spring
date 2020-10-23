@@ -58,9 +58,9 @@
 				<td>${vo.order_product }</td>
 				<td>${vo.order_count }</td>
 				<td><fmt:formatNumber value="${vo.order_amount }" pattern="#,###"/></td>
-				<td><c:if test="${vo.order_date < today  }">배송완료</c:if>
-					<c:if test="${vo.order_date >= today  }">배송준비중</c:if>	
-				</td>
+				<td><c:if test="${vo.order_date < today || !empty vo.order_review}">배송완료</c:if>
+			<c:if test="${vo.order_date >= today && empty vo.order_review  }">배송준비중</c:if>	
+		</td>
 				<td><c:if test="${empty vo.order_review }"><a class="btn_fill_s" onclick="review_write(${vo.order_num })">작성</a></c:if>
 					<c:if test="${!empty vo.order_review }"><a class="btn_fill_s" onclick="review_detail(${vo.order_review })">조회</a></c:if>
 				</td>

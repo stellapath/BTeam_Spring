@@ -30,7 +30,7 @@ $(document).ready(() => {
 			url: "pwcheckReq",
 			data: { user_email:user_email.value, user_nickname:user_nickname.value },
 			success: function( data ){
-				if (data != null) {
+				if (data != "") {
 					alert("비밀번호는 " + data + "입니다.");
 					location.href = "login";
 				} else {
